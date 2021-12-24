@@ -1,0 +1,24 @@
+{
+  "name": "cybernetic",
+  "version": "1.0.0",
+  "description": "A all purpose Discord bot for anyone in a Discord server to have a fun time",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ultimatehecker/Cybernetic.git"
+  },
+  "author": "ultimate_hecker#1165",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ultimatehecker/Cybernetic/issues"
+  },
+  "homepage": "https://github.com/ultimatehecker/Cybernetic#readme",
+  "dependencies": {
+    "discord.js": "^13.4.0",
+    "dotenv": "^10.0.0",
+    "mongoose": "^6.1.3"
+  }
+}
