@@ -11,6 +11,9 @@ module.exports = (client, Discord) => {
 			const event_name = file.split(".")[0];
 			client.on(event_name, event.bind(null, Discord, client));
 		}
+
+		console.log(`Events Successfully Binded - ${event_files}`);
+		
 	};
 
 	["client"].forEach((e) => load_dir(e));

@@ -5,6 +5,7 @@ module.exports = (client, Discord) => {
     let basicCmds = new Discord.Collection();
 
 	const commandFolders = fs.readdirSync("./commands");
+	console.log(`Command Folders Successfully Scanned - ${commandFolders}`);
 
 	for (const folder of commandFolders) {
 		const commandFiles = fs
