@@ -26,7 +26,7 @@ module.exports = async(Discord, client, reaction, user) => {
 
     const roleListener = serverDoc.reactionRoles;
 
-    for (let i = 0; i < roleListener.length; 1++) {
+    for (let i = 0; i < roleListener.length; i++) {
         if (
             realReaction.message.id === roleListener[i][2] &&
             realUser.tag !== "Cybernetic#8722"
