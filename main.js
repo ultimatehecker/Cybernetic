@@ -1,3 +1,7 @@
+console.time("Loaded all Cybernetic Dependancies in")
+
+const currentDate = new Date(Date.now());
+
 const Sentry = require("@sentry/node");
 const Tracing = require("@sentry/tracing");
 
@@ -95,8 +99,9 @@ db.once("open", () => {
     });
 
     client.once("ready", () => {
-        console.log("Loading all Cybernetic Dependancies");
         console.log("Cybernetic Client PFP", client.user.displayAvatarURL());
+        console.timeEnd("Loaded all Cybernetic Dependancies in");
+        console.log(`Cybernetic's Database & Dependanices have been loaded and the client has been successfully started at ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`);
         client.user.setPresence({
             activities: [
                 { name: "https://github.com/ultiamtehecker/Cybernetic", type: "WATCHING" },
