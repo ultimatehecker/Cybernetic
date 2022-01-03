@@ -17,6 +17,6 @@ module.exports = {
             .setDescription(`Cybernetic was made by \`poly#3622\` & \`ultimate_hecker#1165\` using Discord.js v13 and the MongoDB Database Atlas Cluster! Cybernetic is fully open source under the lisence GLP 3.0. \n \n You can check out the full GitHub Repositoiry [https://github.com/ultimatehecker/Cybernetic] \n \n You can check out the Cybernetic Support Server at [https://discord.gg/PRXhMuHcAx]`)
             .setFooter(`Credits requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
-        return message.reply({ embed: [credits] });
+        return message.reply({ embeds: [credits] });
     }
 }
