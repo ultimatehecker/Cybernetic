@@ -14,7 +14,7 @@ module.exports = {
         const latency = new Discord.MessageEmbed()
             .setAuthor("Cybernetic Latency & API Latency", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
             .setColor(colors["MainColor"])
-            .setDescription(`🏓 Latency is \`${Date.now() - message.createdTimestamp}\` ms. Discord API Latency is currently \`${Math.round(client.ws.ping)}\` ms.`)
+            .setDescription(`🏓 Cybernetic's Latency is currently \`${Date.now() - message.createdTimestamp}\` ms. Discord API Latency is currently \`${Math.round(client.ws.ping)}\` ms.`)
             .setFooter(`Cybernetic's Latency requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
         message.reply({ embeds: [latency] });
