@@ -1,4 +1,3 @@
-const { errors } = require("../../models/hypixel");
 const colors = require("../../data/colors.json");
 
 module.exports = {
