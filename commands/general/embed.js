@@ -46,7 +46,7 @@ module.exports = {
                     .setColor(color)
                     .setDescription(content)
     
-                return message.reply({ embeds: [embed] }).then(() => {
+                return message.channel.send({ embeds: [embed] }).then(() => {
                     message.delete();
                 });
             }else {
