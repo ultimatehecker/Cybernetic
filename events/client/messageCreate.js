@@ -14,7 +14,7 @@ function splitCommandLine(commandLine) {
 	);
     let mangledParamArray = noSpacesInQuotes.split(/ +/);
     let paramArray = mangledParamArray.map((angledParam) => {
-        return mangledParam
+        return angledParam
             .replace(RegExp(spaceMarker, "g"), " ")
             .replace(RegExp(doubleDoubleQuote, "g"), "");
     });
@@ -48,7 +48,7 @@ module.exports = async (Discord, client, message) => {
         ? message.content.match(prefixMention)[0]
         : serverDoc.prefix;
 
-    if (!message.content.startWith(prefix) || message.author.bot) return;
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     const currentDate = new Date(Date.now());
 

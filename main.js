@@ -7,7 +7,7 @@ const Tracing = require("@sentry/tracing");
 
 Sentry.init({
     dsn: "https://d5ca07bf8f4845adb0bbd96aec2a7d96@o922460.ingest.sentry.io/6123054",
-    release: "0.0.1",
+    release: "0.1.0",
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
     environment: "development",
@@ -104,7 +104,7 @@ db.once("open", () => {
         console.log(`Cybernetic's Database & Dependanices have been loaded and the client has been successfully started at ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`);
         client.user.setPresence({
             activities: [
-                { name: "https://github.com/ultiamtehecker/Cybernetic", type: "WATCHING" },
+                { name: "https://github.com/ultimatehecker/Cybernetic", type: "WATCHING" },
             ],
             status: "online",
         });
