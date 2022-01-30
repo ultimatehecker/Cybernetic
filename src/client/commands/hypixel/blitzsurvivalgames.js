@@ -67,7 +67,7 @@ module.exports = {
                         .setAuthor('Error', 'https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp')
                         .setColor(colors["ErrorColor"])
                         .setDescription('That player has never played this game')
-                    return message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
+                    return message.reply({ embeds: [neverPlayed], allowedMentions: { repliedUser: false } })
                 } else {
                     const error = new Discord.MessageEmbed()
                         .setAuthor('Error', 'https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp')
