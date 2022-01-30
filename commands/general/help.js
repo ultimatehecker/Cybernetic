@@ -15,7 +15,7 @@ module.exports = {
             const general = new Discord.MessageEmbed()
                 .setAuthor("Cybernetic Help & Command List", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
                 .setColor(colors["MainColor"])
-                .setDescription(`Do \`${prefix}help [command]\` to see what a command does. Anything put in brackets "[]" means that argument is required, but anything in curly brackets "{}" is optional! \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`help\`, \`info\``)
+                .setDescription(`Do \`${prefix}help [command]\` to see what a command does. Anything put in brackets "[]" means that argument is required, but anything in curly brackets "{}" is optional! \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\``)
                 .setFooter(`Cybernetic Help and Command List requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
             return message.reply({ embeds: [general], allowedMentions: {repliedUser: false } })
