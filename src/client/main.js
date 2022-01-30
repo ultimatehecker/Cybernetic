@@ -7,7 +7,7 @@ const Tracing = require("@sentry/tracing");
 
 Sentry.init({
     dsn: "https://d5ca07bf8f4845adb0bbd96aec2a7d96@o922460.ingest.sentry.io/6123054",
-    release: "0.1.1",
+    release: "0.1.2",
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
     environment: "development",
@@ -52,18 +52,7 @@ db.once("open", () => {
         userID: String,
         guildID: String,
         infractions: Array,
-        profile: String,
-        netherite: Number,
-        emeralds: Number,
-        diamonds: Number,
-        bank: Number,
-        experience: Number,
-        items: Array,
-        rareItems: Array,
-    });
-
-    const serverSchema = new mongoose.Schema({
-        guildID: String,
+        profile: String,    
         prefix: String,
         welcomeMessage: String,
         welcomeChannelID: String,
