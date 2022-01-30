@@ -8,21 +8,12 @@ module.exports = {
     name: 'blitzsurvivalgames',
     aliases: [ "bsg", "survivalgames", "sg", "blitz" ],
     description: 'Show you the Blitz Survival Games statistics of an average Hypixel Blitz Player!',
-    defaultPermission: false,
-	options: [
-		{
-			name: "player",
-			description: "Shows the statistics of an average Hypixel Bedwars player!",
-			required: true,
-			type: "STRING"
-		}
-	],
     usage: '`blitzsurvivalgames [IGN]`',
     example: '`blitzsurvivalgames ultimate_hecker`',
     async execute(client, message, args, Discord, prefix) {
 
         await message.channel.sendTyping();
-        
+
         const data = await User.findOne({
             id: message.author.id
         });
