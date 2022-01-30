@@ -1,6 +1,6 @@
 const prettyMS = require("pretty-ms")
 const os = require("os-utils")
-const colors = require("../../data/colors.json");
+const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
 
 module.exports = {

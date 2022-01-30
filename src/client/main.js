@@ -98,6 +98,21 @@ db.once("open", () => {
         name: "Login to Discord API",
     });
 
+    const mineflayer = require("mineflayer")
+
+    const minecraft = mineflayer.createBot({
+        host: 'halarnkar.ghostnation.org',
+        username: process.env.MINECRAFT_USERNAME_ALT,
+        version: '1.18.1',
+        auth: 'microsoft'  
+    });
+
+    const { mineflayer: mineflayerViewer } = require('prismarine-viewer')
+        minecraft.once('spawn', () => {
+        mineflayerViewer(minecraft, { port: 3007, firstPerson: true }) // port is the minecraft server port, if first person is false, you get a bird's-eye view
+    });
+
+
     client.once("ready", () => {
         console.log("Cybernetic Client PFP", client.user.displayAvatarURL());
         console.timeEnd("Loaded all Cybernetic Dependancies in");
@@ -111,7 +126,7 @@ db.once("open", () => {
     });
 
     ["command_handler", "event_handler", "util_handler"].forEach((handler) => {
-        require(`./handlers/${handler}`)(client, Discord);
+        require(`./config/${handler}`)(client, Discord);
     });
     loginTransaction.finish();
 });
