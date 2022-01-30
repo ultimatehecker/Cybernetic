@@ -9,10 +9,10 @@ module.exports = {
     aliases: ["bw"],
     description: 'Will show you the BedWars stats of a player',
     usage: '`bedwars [IGN]`',
-    example: '`bedwars cxntered`',
-    async execute(client, message, args, Discord) {
+    example: '`bedwars ultimate_hecker`',
+    async execute(client, message, args, Discord, prefix) {
 
-            await message.channel.sendTyping()
+            await message.channel.sendTyping();
 
             const data = await User.findOne({
                 id: message.author.id
@@ -20,10 +20,10 @@ module.exports = {
 
             if (!args[0] && !data) { // if someone didn't type in ign and wasn't verified
                 const ign404 = new Discord.MessageEmbed()
-                    .setAuthor('Error', 'https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp')
-                    .setColor(colors["MainColor"])
-                    .setDescription('You need to type in a player\'s IGN! (Example: `h!bedwars cxntered`) \nYou can also link your account to do commands without inputting an IGN. (Example: `h!link cxntered`)')
-                return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: false } })
+				    .setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+				    .setColor(colors["ErrorColor"])
+				    .setDescription(`You need to type in a player's IGN! (Example: \`${prefix}bedwars ultimate_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultimate_hecker\`)`);
+			    return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: false }});
             }
 
             if (data && !args[0]) {
