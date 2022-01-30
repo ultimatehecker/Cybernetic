@@ -26,6 +26,7 @@ module.exports = {
             const server = new Discord.MessageEmbed()
                 .setAuthor('Server Info', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQne0t-5uaF_3jR5ewomb8M_XfWO0qds5Qi97Tzh0hZZS7JSVWIbNZKPscUOI1FEyplpjM&usqp=CAU')
                 .setTitle(args[0])
+                .setColor(colors["MainColor"])
                 .addField('IP Address', `\`${MOTDData.ip}\`:\`${MOTDData.port}\``)
                 .addField('Version', `\`${serverData.version.name}\``)
                 .addField('Online Players', `\`${serverData.players.online}\`/\`${serverData.players.max}\``)
@@ -50,8 +51,9 @@ module.exports = {
             message.reply({ embeds: [server], allowedMentions: { repliedUser: false } })
 
         } catch {
-            const error = new Discord.MessageEmbed(base)
+            const error = new Discord.MessageEmbed()
                 .setAuthor('Error', 'https://i.imgur.com/OuoECfX.jpeg')
+                .setColor(colors["ErrorColor"])
                 .setDescription('An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, please make a support ticket in the server. `h!links`')
             message.reply({ embeds: [error], allowedMentions: { repliedUser: false } })
         }
