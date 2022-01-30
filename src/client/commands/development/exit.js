@@ -28,7 +28,6 @@ module.exports = {
                 console.warn(`[RESTART]: Cybernetic shutdown by ${message.author.tag} at ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`)
                 process.exit()
             })
-            
         }
     }
 }
