@@ -92,6 +92,19 @@ db.once("open", () => {
     client.events = new Discord.Collection();
     client.utils = {};
 
+    const mineflayer = require('mineflayer')
+
+    const minecraft = mineflayer.createBot({
+        host: 'localhost', 
+        username: process.env.MINECRAFT_USERNAME_ALT,       
+        auth: 'microsoft'             
+    });
+
+    const { mineflayer: mineflayerViewer } = require('prismarine-viewer')
+    bot.once('spawn', () => {
+        mineflayerViewer(minecraft, { port: 3007, firstPerson: true }) 
+    });
+
     client.login(process.env.DISCORD_TOKEN);
     const loginTransaction = startupTransaction.startChild({
         op: "connection",
