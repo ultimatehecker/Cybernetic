@@ -1,7 +1,7 @@
-const { hypixel, errors } = require("../../models/hypixel");
-const commaNumber = require("comma-number");
-const User = require("../../models/user");
-const colors = require("../../colors.json");
+const { hypixel, errors } = require('../../schemas/hypixel');
+const commaNumber = require('comma-number');
+const User = require('../../schemas/user');
+const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
 
 module.exports = {

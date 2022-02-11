@@ -1,6 +1,6 @@
-const { hypixel, errors } = require('../../utils/hypixel');
+const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
-const User = require('../../utils/user');
+const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
 
