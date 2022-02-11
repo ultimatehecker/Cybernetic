@@ -95,7 +95,7 @@ db.once("open", () => {
     const mineflayer = require('mineflayer')
 
     const minecraft = mineflayer.createBot({
-        host: 'localhost', 
+        host: process.env.IP_ADDR, 
         username: process.env.MINECRAFT_USERNAME_ALT,       
         auth: 'microsoft'             
     });
