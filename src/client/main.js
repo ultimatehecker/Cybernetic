@@ -101,7 +101,7 @@ db.once("open", () => {
     });
 
     const { mineflayer: mineflayerViewer } = require('prismarine-viewer')
-    bot.once('spawn', () => {
+    minecraft.once('spawn', () => {
         mineflayerViewer(minecraft, { port: 3007, firstPerson: true }) 
     });
 
