@@ -1,0 +1,35 @@
+const colors = require(`../../tools/colors.json`)
+const currentDate = new Date(Date.now());
+const minecraftClient = require('../../schemas/setup');
+const setup = require(`../../schemas/setup`);
+
+module.exports = {
+    name: "join",
+    aliases: "run-client",
+    description: "Runs an alt account with mineflayer",
+    usage: "join",
+    example: "join",
+    async execute(client, message, args, Discord) {
+
+        await message.channel.sendTyping()
+
+        if(message.author.id != "724798908278112309") {
+            const error = new Discord.MessageEmbed()
+                .setAuthor("Error", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+                .setColor(colors["MainColor"])
+                .setDescription("Sorry, but only the owner ultimate_hecker can run this command for now")
+
+            message.reply({ embeds: [error], allowedMentions: { repliedUser: false } });
+
+        } else {
+            const joined = new Discord.MessageEmbed()
+                .setAuthor("Mineflayer Account Success", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+                .setColor(colors["MainColor"])
+                .setDescription(`The Minecraft account, \`${process.env.MINECRAFT_USERNAME_ALT}\`, has successfully joined the Minecraft server, \`${process.env.IP_ADDR}\``)
+                .setFooter(`Mineflayer Services requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
+
+            message.reply({ embeds: [joined], allowedMentions: { repliedUser: false } });
+            setup.getClient(client)
+        }
+    }
+}
