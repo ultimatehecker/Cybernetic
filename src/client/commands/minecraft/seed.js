@@ -12,7 +12,7 @@ module.exports = {
         await message.channel.sendTyping();
 
         function mcseed() {
-            let random_number = Math.floor(Math.random() * 2147483647);
+            let random_number = Math.floor(Math.random() * 9223372036854775807);
             let interger = ["-", ""]
             return interger[Math.floor(Math.random() * interger.length)], random_number
         }
