@@ -54,7 +54,7 @@ module.exports = {
             const error = new Discord.MessageEmbed()
                 .setAuthor('Error', 'https://i.imgur.com/OuoECfX.jpeg')
                 .setColor(colors["ErrorColor"])
-                .setDescription('An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, please make a support ticket in the server. `h!links`')
+                .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${prefix}github\``)
             message.reply({ embeds: [error], allowedMentions: { repliedUser: false } })
         }
     }
