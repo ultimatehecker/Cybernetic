@@ -7,7 +7,7 @@ module.exports = {
     description: "Will show you information about a Minecraft Server",
     usage: "server (ip) [port]",
     example: "server hypixel.net",
-    async execute(client, message, args, Discord) {
+    async execute(client, message, args, Discord, prefix) {
 
         await message.channel.sendTyping()
 
@@ -16,7 +16,7 @@ module.exports = {
                 const ip404 = new Discord.MessageEmbed()
                     .setAuthor('Error', 'https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp')
                     .setColor(colors["MainColor"])
-                    .setDescription('You need to type in a server IP! (Example: `h!server mc.hypixel.net`)')
+                    .setDescription(`You need to type in a server IP! (Example: \`${prefix}server mc.hypixel.net\`)`)
                 return message.reply({ embeds: [ip404], allowedMentions: { repliedUser: false } })
             }
 
