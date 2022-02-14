@@ -1,7 +1,7 @@
 const colors = require(`../../tools/colors.json`)
 const currentDate = new Date(Date.now());
-const minecraftClient = require('../../schemas/setup');
 const setup = require(`../../schemas/setup`);
+const online = require(`../../schemas/online`)
 
 module.exports = {
     name: "join",
