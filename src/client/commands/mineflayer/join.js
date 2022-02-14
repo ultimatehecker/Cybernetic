@@ -30,6 +30,7 @@ module.exports = {
 
             message.reply({ embeds: [joined], allowedMentions: { repliedUser: false } });
             setup.getClient(client)
+            online.toggleStatus()
         }
     }
 }
