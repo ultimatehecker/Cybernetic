@@ -13,11 +13,11 @@ module.exports = {
 
         await message.channel.sendTyping()
 
-        if(message.author.id != "724798908278112309") {
+        if(message.author.id != "724798908278112309" && message.author.id != "722092754510807133") {
             const error = new Discord.MessageEmbed()
                 .setAuthor("Error", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
                 .setColor(colors["MainColor"])
-                .setDescription("Sorry, but only the owner ultimate_hecker can run this command for now")
+                .setDescription("Sorry, but only the owner ultimate_hecker & poly can run this command for now")
 
             message.reply({ embeds: [error], allowedMentions: { repliedUser: false } });
 
@@ -29,7 +29,7 @@ module.exports = {
                 .setFooter(`Mineflayer Services requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
             message.reply({ embeds: [joined], allowedMentions: { repliedUser: false } });
-            setup.getClient(client)
+            setup.createClient()
             online.toggleStatus()
         }
     }
