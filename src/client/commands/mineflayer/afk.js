@@ -5,8 +5,8 @@ const online = require(`../../schemas/online`)
 
 module.exports = {
     name: "afk",
-    aliases: "run-afk",
-    description: "Runs an alt account with mineflayer",
+    aliases: "afk-client",
+    description: "Runs the account, and after 10 minutes disconnects and reconnects the client",
     usage: "afk",
     example: "afk",
     async execute(client, message, args, Discord) {
