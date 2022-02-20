@@ -7,7 +7,7 @@ let minecraft = null
 const createClient = () => {
     minecraft = mineflayer.createBot({
     host: process.env.IP_ADDR, 
-    username: process.env.MINECRAFT_USERNAME_ALT,       
+    username: process.env.MINECRAFT_USERNAME,       
     auth: 'microsoft'             
     });
 }
@@ -20,7 +20,7 @@ const afkClient = async() => {
     while (true) {
         createClient()
         online.toggleStatus()
-        await timer(600000)
+        await timer(300000)
         minecraft.quit()
         online.toggleStatus()
     }
