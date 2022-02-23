@@ -9,7 +9,7 @@ module.exports = (client, guildResolvable) => {
                     client.serverModel.create(
                         {
                             guildID: guild.id,
-                            prefix: ".",
+                            prefix: "-",
                             welcomeMessage: "{member-mention} has joined the server",
                             welcomeChannelID: "none",
                             leaveChannelID: "none",
