@@ -29,5 +29,4 @@ class Client {
 	quitClient() {
 		this.minecraft.quit()
 	}
-	
 }
