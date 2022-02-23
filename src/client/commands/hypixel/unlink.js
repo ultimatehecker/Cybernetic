@@ -1,5 +1,5 @@
 const axios = require("axios");
-const colors = require("../../colors.json");
+const colors = require(`../../tools/colors.json`);
 const currentDate = new Date(Date.now());
 const User = require("../../models/user");
 

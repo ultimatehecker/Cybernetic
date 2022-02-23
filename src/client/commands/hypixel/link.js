@@ -1,7 +1,7 @@
-const colors = require("../../colors.json");
+const colors = require(`../../tools/colors.json`)
 const currentDate = new Date(Date.now());
-const { hypixel, errors } = require("../../models/hypixel");
-const User = require("../../models/user");
+const { hypixel, errors } = require('../../schemas/hypixel');
+const User = require('../../schemas/user');
 
 module.exports = {
 	name: "link",
