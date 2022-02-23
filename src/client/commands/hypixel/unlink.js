@@ -1,7 +1,7 @@
 const axios = require("axios");
 const colors = require(`../../tools/colors.json`);
 const currentDate = new Date(Date.now());
-const User = require("../../models/user");
+const User = require('../../schemas/user');
 
 module.exports = {
 	name: "unlink",
