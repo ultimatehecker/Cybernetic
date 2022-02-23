@@ -1,14 +1,14 @@
-const mineflayer = require('mineflayer')
-const online = require(`./online`)
-const timer = require('util').promisify(setTimeout)
+const mineflayer = require('mineflayer');
+const online = require(`./online`);
+const timer = require('util').promisify(setTimeout);
 
 let minecraft = null
 
 const createClient = () => {
     minecraft = mineflayer.createBot({
-    host: process.env.IP_ADDR, 
-    username: process.env.MINECRAFT_USERNAME,       
-    auth: 'microsoft'             
+        host: process.env.IP_ADDR, 
+        username: process.env.MINECRAFT_USERNAME,       
+        auth: 'microsoft'             
     });
 }
 
@@ -18,16 +18,16 @@ const getClient = () => {
 
 const afkClient = async() => {
     while (true) {
-        createClient()
-        online.toggleStatus()
-        await timer(300000)
-        minecraft.quit()
-        online.toggleStatus()
+        createClient();
+        online.toggleStatus();
+        await timer(300000);
+        minecraft.quit();
+        online.toggleStatus();
     }
 }
 
 const quitClient = () => {
-    minecraft.quit()
+    minecraft.quit();
 }
 
 exports.createClient = createClient;
