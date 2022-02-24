@@ -12,11 +12,21 @@ module.exports = {
 	async execute(client, message, args, Discord) {
 
 		await message.channel.sendTyping();
+
+		let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
+        let authorSuccess = {
+            name: "Unlink",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
 		
 		const user = await User.findOne({ id: message.author.id });
 		if (!user) {
 			const notconnected = new Discord.MessageEmbed()
-				.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Your account is not connected!")
 			return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: false }});
@@ -26,7 +36,7 @@ module.exports = {
 
         user.deleteOne(() => {
 			const unlinked = new Discord.MessageEmbed()
-				.setAuthor("Unlink", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`${username.data.player.username} has been successfully unlinked from your account.`)
 				.setFooter(`Account Unlinking Services requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())

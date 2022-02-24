@@ -11,8 +11,13 @@ module.exports = {
 
         await message.channel.sendTyping()
 
+        let author = {
+            name: "Cybernetic GitHub Link",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
         const github = new Discord.MessageEmbed()
-			.setAuthor("Cybernetic's GitHub Link", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+			.setAuthor(author)
 			.setColor(colors["MainColor"])
             .setDescription("This will redirect you to Cybernetic's GitHub Repository, where you can view issues, code and potential contribute to Cybernetic")
             .setFooter(`Cybernetic Github requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`,message.author.displayAvatarURL())

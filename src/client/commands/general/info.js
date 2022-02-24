@@ -13,12 +13,17 @@ module.exports = {
 
         await message.channel.sendTyping();
 
+        let author = {
+            name: "Cybernetic - Database Statistics, Uptime & Popularity",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
         os.cpuUsage((percentage) => {
             client.myprofileSchema.distinct("userID").exec((err, count) => {
                 if (err) throw err;
 
                 const info = new Discord.MessageEmbed()
-                    .setAuthor("Cybernetic - Database Statistics, Uptime & Popularity", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+                    .setAuthor(author)
                     .setColor(colors["MainColor"])
                     .setDescription(`Cybernetic is one of the best Minecraft Discord Bots to exist. Down below is some statistics about Cybernetic Database, Uptime and Popularity. To get started with Cybernetic, do \`${prefix}help\``)
                     .setThumbnail(client.user.displayAvatarURL())

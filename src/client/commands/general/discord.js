@@ -11,8 +11,13 @@ module.exports = {
 
         await message.channel.sendTyping()
 
+        let author = {
+            name: "Cybernetic Discord Support Server",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
         const discord = new Discord.MessageEmbed()
-			.setAuthor("Cybernetic's Discord Support Server", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+			.setAuthor(author)
 			.setColor(colors["MainColor"])
             .setDescription("This will send you to the Cybernetic Support Server, where you will have the chance to see future updates, more information and test out beta features!")
             .setFooter(`Cybernetic Github requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`,message.author.displayAvatarURL())

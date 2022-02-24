@@ -11,9 +11,24 @@ module.exports = {
 
         await message.channel.sendTyping();
 
+        let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
+        let authorGeneral = {
+            name: "Cybernetic Help & Command List",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
+        let authorHelp = {
+            name: "Command Help",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
         if(!args.length) {
             const general = new Discord.MessageEmbed()
-                .setAuthor("Cybernetic Help & Command List", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+                .setAuthor(authorGeneral)
                 .setColor(colors["MainColor"])
                 .setDescription(`Do \`${prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\``)
                 .setFooter(`Cybernetic Help and Command List requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
@@ -25,7 +40,7 @@ module.exports = {
 
         if(!command) {
             const command404 = new Discord.MessageEmbed()
-                .setAuthor("Error - 404", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+                .setAuthor(authorError)
                 .setColor(colors["MainColor"])
                 .setDescription(`That command list isn't a valid command!`)
 
@@ -33,7 +48,7 @@ module.exports = {
         }
 
         const help = new Discord.MessageEmbed()
-            .setAuthor("Command Help", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+            .setAuthor(authorHelp)
             .setColor(colors["MainColor"])
             .setTitle(`${command.name} Command Description`)
             .addField("Description:", `\`\`\`${command.description}\`\`\``)

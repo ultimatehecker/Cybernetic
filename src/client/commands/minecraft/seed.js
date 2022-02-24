@@ -11,6 +11,16 @@ module.exports = {
 
         await message.channel.sendTyping();
 
+        let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
+        let authorSuccess = {
+            name: "Minecraft Seed Generator",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
         function mcseed() {
             let random_number = Math.floor(Math.random() * 9223372036854775807);
             let interger = ["-", ""]
@@ -19,7 +29,7 @@ module.exports = {
 
         if(args[0] = "random") {
             const seed = new Discord.MessageEmbed()
-                .setAuthor("Minecraft Seed Generator", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+                .setAuthor(authorSuccess)
                 .setColor(colors["MainColor"])
                 .setDescription(`Here is your randomly generated minecraft seed: \`${mcseed()}\``)
                 .setFooter(`Random Minecarft Seed requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
@@ -28,7 +38,7 @@ module.exports = {
 
         } else {
             const error503 = new Discord.MessageEmbed()
-                .setAuthor("Error", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+                .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`Currently anything other than a random seed is not-supported yet`)
 

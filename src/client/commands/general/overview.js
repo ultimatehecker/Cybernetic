@@ -14,11 +14,16 @@ module.exports = {
 
 		await message.channel.sendTyping();
 
+        let author = {
+            name: "Sever Statistics",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
 		const currentDate = new Date(Date.now());
 		const owner = message.guild.members.resolve(message.guild.ownerId).user.tag;
 
 		const overview = new Discord.MessageEmbed()
-			.setAuthor("Server Statistics", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+			.setAuthor(author)
 			.setColor(colors["MainColor"])
 			.setTitle(`${message.guild.name}`)
 			.setDescription("Different Statistics about this Discord Server")

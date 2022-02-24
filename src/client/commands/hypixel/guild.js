@@ -13,11 +13,21 @@ module.exports = {
 
 		await message.channel.sendTyping();
 
+		let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
+        let authorSuccess = {
+            name: "Guild Statistics",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
 		let guildName = args.join(" "); // for guilds with spaces in name
 		if (!args[0]) {
 			// if someone didn't type in guild name
 			const guildArg404 = new Discord.MessageEmbed()
-				.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You need to type in a guild's name! (Not guild tag, but guild name.) (Example: \`${prefix}guild Dragons of War\`)`)
 			return message.reply({embeds: [guildArg404], allowedMentions: { repliedUser: false }});
@@ -27,7 +37,7 @@ module.exports = {
 			.getGuild("name", guildName)
 			.then(async (guild) => {
 				const guildInfoEmbed = new Discord.MessageEmbed()
-					.setAuthor("Guild Stats", "https://i.imgur.com/tRe29vU.jpeg")
+					.setAuthor(authorSuccess)
 					.setColor(colors["MainColor"])
 					.setFooter(`Guild Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
@@ -56,13 +66,13 @@ module.exports = {
 				// error messages
 				if (e.message === errors.GUILD_DOES_NOT_EXIST) {
 					const guild404 = new Discord.MessageEmbed()
-						.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
 						.setDescription("I could not find that guild in the API. Check spelling and name history.")
 					return message.reply({ embeds: [guild404], allowedMentions: { repliedUser: false }});
 				} else {
 					const error = new Discord.MessageEmbed()
-						.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
 						.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
 					return message.reply({ embeds: [error], allowedMentions: { repliedUser: false }});

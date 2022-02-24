@@ -11,16 +11,26 @@ module.exports = {
 
         await message.channel.sendTyping();
 
+        let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
+        let authorSuccess = {
+            name: "Restart",
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
         if(message.member.id != "724798908278112309") {
             const permission404 = new Discord.MessageEmbed()
-                .setAuthor("Error", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+                .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`Sorry, but only **ultimate_hecker** can do this :(`)
 
             message.reply({ embeds:[permission404] })
         } else {
             const restart = new Discord.MessageEmbed()
-                .setAuthor("Restart", "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp")
+                .setAuthor(author)
                 .setColor(colors["MainColor"])
                 .setDescription(`**WARNING**: Cybernetic is being shutdown by \`${message.author.tag}\` at \`${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()}\` UTC`)
 

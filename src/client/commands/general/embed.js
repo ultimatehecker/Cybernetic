@@ -9,13 +9,17 @@ module.exports = {
 
 		await message.channel.sendTyping();
 
+        let author = {
+            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+        }
+
 		const title = args.shift();
 		const color = args.shift();
 
 		let content = args.join(" ");
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor("https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+			.setAuthor(author)
 			.setTitle(title)
 			.setColor(color)
 			.setDescription(content);
