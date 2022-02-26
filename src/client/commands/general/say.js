@@ -3,7 +3,7 @@ const colors = require("../../tools/colors.json");
 module.exports = {
     name: "say",
     aliases: [],
-    description: "Says anything that you tell the bot to",
+    description: "Responds with something that you say that is coming from the client",
     usage: "say {content}",
     example: "say Cybernetic is the best Discord bot ever!",
     async execute(client, message, args, Discord) {

@@ -4,7 +4,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: "discord",
     aliases: [],
-    description: "Sends an invite link so you can view Cybernetic's GitHub Repository",
+    description: "Sends an link where you will be able to invite yourself to my support server",
     usage: "discord",
     example: "discord",
     async execute(client, message, args, Discord) {

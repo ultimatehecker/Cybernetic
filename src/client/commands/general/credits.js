@@ -4,7 +4,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: "credits",
     aliases: [],
-    description: "Gives all the credits where credits is due in the making for this Discord Bot",
+    description: "Gives all the credits where credits is due in the making for this Discord client",
     usage: "credits",
     example: "credits",
     async execute(client, message, args, Discord) {

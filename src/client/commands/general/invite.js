@@ -4,7 +4,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: "invite",
     aliases: [],
-    description: "Sends an invite link so you can invite it to other servers",
+    description: "Sends an invite link that you can use to invite me to other servers",
     usage: "invite",
     example: "invite",
     async execute(client, message, args, Discord) {

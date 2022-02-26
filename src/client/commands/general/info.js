@@ -6,7 +6,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: "info",
     aliases: [],
-    description: "Grabs various statistics of Cybernetic and it's database!",
+    description: "Grabs various statistics of Cybernetic and it's machine it is running on!",
     usage: "info",
     example: "info",
     async execute(client, message, args, Discord, prefix) {

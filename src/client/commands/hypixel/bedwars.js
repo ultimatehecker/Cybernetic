@@ -7,9 +7,9 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: 'bedwars',
     aliases: ["bw"],
-    description: 'Will show you the BedWars stats of a player',
-    usage: '`bedwars [IGN]`',
-    example: '`bedwars ultimate_hecker`',
+    description: 'Shows you the different gamemodes and overall statistics of a Hypixel Bedwars player!',
+    usage: 'bedwars [IGN]',
+    example: 'bedwars ultimate_hecker',
     async execute(client, message, args, Discord, prefix) {
 
             await message.channel.sendTyping();

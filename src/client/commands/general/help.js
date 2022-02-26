@@ -4,7 +4,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: "help",
     aliases: ["commands", "commandlist"],
-    description: "Shows you a list of commands for information about a specific commands",
+    description: "Shows you a list of commands and information about a specific commands",
     usage: "help [command]",
     example: "`help`, `help coinflip`",
     async execute(client, message, args, Discord, prefix) {

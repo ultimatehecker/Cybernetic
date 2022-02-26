@@ -4,7 +4,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: "coinflip",
     aliases: ["cf"],
-    description: "Will start a CoinFlip between two people",
+    description: "Starts a coinflip between two people",
     usage: "coinflip",
     example: "coinflip",
     async execute(client, message, args, Discord) {

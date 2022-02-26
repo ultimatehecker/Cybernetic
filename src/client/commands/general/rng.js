@@ -4,7 +4,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
 	name: "rng",
 	aliases: ["random"],
-	description: "Will generate a random number out of any array of numbers you specify",
+	description: "Generates a random number from an array number from what you supply",
 	usage: "`rng [Min] [Max]`",
 	example: "`rng 1 10`",
 	async execute(client, message, args, Discord, prefix) {

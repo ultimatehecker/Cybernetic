@@ -2,12 +2,9 @@ const colors = require("../../tools/colors.json");
 
 module.exports = {
 	name: "overview",
-	description: "An overview of the current server's statistics",
-	defaultPermission: true,
-	options: [],
-	type: "general",
-	args: [],
 	aliases: [],
+	description: "Displays an overlay which shows your current discord server",
+	usage: "overview",
 	example: "overview",
 	notes: "nothing other than overview has to be provided",
 	async execute(client, message, args, Discord) {

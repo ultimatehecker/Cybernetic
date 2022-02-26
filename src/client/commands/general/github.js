@@ -4,7 +4,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: "github",
     aliases: [],
-    description: "Sends an invite link so you can view Cybernetic's GitHub Repository",
+    description: "Sends an link where you can view the current status of my GitHub Repository",
     usage: "github",
     example: "github",
     async execute(client, message, args, Discord) {

@@ -4,7 +4,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: "latency",
     aliases: [],
-    description: "Pings the client and responds with the latency",
+    description: "Responds with the latency of Discord API & myself",
     usage: "latency",
     example: "latency",
     async execute(client, message, args, Discord) {
