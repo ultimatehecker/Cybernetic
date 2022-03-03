@@ -30,7 +30,7 @@ module.exports = {
 
             message.reply({ embeds: [error], allowedMentions: { repliedUser: false } });
 
-        }else {
+        } else {
             const afking = new Discord.MessageEmbed()
                 .setAuthor(authorSuccess)
                 .setColor(colors["MainColor"])
