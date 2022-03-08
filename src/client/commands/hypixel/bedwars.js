@@ -28,6 +28,8 @@ module.exports = {
             id: message.author.id
         });
 
+        let player;
+
         if (!args[0] && !data) { // if someone didn't type in ign and wasn't verified
             const ign404 = new Discord.MessageEmbed()
 				.setAuthor(authorError)
@@ -37,9 +39,9 @@ module.exports = {
         }
 
         if (data && !args[0]) {
-            let player = data.uuid;
+            player = data.uuid;
         } else if (args[0]) {
-            let player = args[0];
+            player = args[0];
         }
 
         hypixel.getPlayer(player).then((player) => {
