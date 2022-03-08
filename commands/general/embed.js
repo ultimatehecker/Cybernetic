@@ -15,7 +15,6 @@ module.exports = {
 		let content = args.join(" ");
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor("https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
 			.setTitle(title)
 			.setColor(color)
 			.setDescription(content);
