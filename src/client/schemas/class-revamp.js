@@ -21,7 +21,7 @@ class Client {
 			createClient()
 			online.toggleStatus()
 			await timer(600000)
-			minecraft.quit()
+			this.minecraft.quit()
 			online.toggleStatus()
 		}
 	}	
