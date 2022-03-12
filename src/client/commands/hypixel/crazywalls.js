@@ -7,7 +7,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: 'crazywalls',
     aliases: [ "cw" ],
-    description: 'Show you the Crazy Walls Statistics of an average Hypixel CrazyWalls Player!',
+    description: 'Show you the Crazy Walls Statistics of an average Hypixel Player!',
     usage: '`crazywalls [IGN]`',
     example: '`crazywalls ultimate_hecker`',
     async execute(client, message, args, Discord, prefix) {

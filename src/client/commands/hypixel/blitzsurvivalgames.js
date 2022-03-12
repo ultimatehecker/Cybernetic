@@ -7,7 +7,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: 'blitzsurvivalgames',
     aliases: [ "bsg", "survivalgames", "sg", "blitz" ],
-    description: 'Show you the Blitz Survival Games statistics of an average Hypixel Blitz Player!',
+    description: 'Show you the Blitz Survival Games statistics of an average Hypixel Player!',
     usage: '`blitzsurvivalgames [IGN]`',
     example: '`blitzsurvivalgames ultimate_hecker`',
     async execute(client, message, args, Discord, prefix) {

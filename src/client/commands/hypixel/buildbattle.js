@@ -7,7 +7,7 @@ const currentDate = new Date(Date.now());
 module.exports = {
     name: 'buildbattle',
     aliases: [ "bb", "build" ],
-    description: 'Show you the Build Battle Statistics of am average Hypixel Build Battle Player!',
+    description: 'Show you the Build Battle Statistics of am average Hypixel Player!',
     usage: '`buildbattle [IGN]`',
     example: '`buildbattle ultimate_hecker`',
     async execute(client, message, args, Discord, prefix) {
