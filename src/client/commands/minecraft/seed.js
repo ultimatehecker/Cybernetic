@@ -5,8 +5,8 @@ module.exports = {
     name: "seed",
     aliases: [],
     description: "Gives all the credits where credits is due in the making for this Discord Bot",
-    usage: "seed (type)",
-    example: "seed random",
+    usage: "seed",
+    example: "seed",
     async execute(client, message, args, Discord) {
 
         await message.channel.sendTyping();
@@ -23,26 +23,16 @@ module.exports = {
 
         function mcseed() {
             let random_number = Math.floor(Math.random() * 9223372036854775807);
-            let interger = ["-", ""]
+            let interger = ["-1", ""]
             return interger[Math.floor(Math.random() * interger.length)], random_number
         }
 
-        if(args[0] = "random") {
-            const seed = new Discord.MessageEmbed()
-                .setAuthor(authorSuccess)
-                .setColor(colors["MainColor"])
-                .setDescription(`Here is your randomly generated minecraft seed: \`${mcseed()}\``)
-                .setFooter(`Random Minecarft Seed requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
+        const seed = new Discord.MessageEmbed()
+            .setAuthor(authorSuccess)
+            .setColor(colors["MainColor"])
+            .setDescription(`Here is your randomly generated minecraft seed: \`${mcseed()}\``)
+            .setFooter(`Random Minecarft Seed requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
-            message.reply({ embeds: [seed] })
-
-        } else {
-            const error503 = new Discord.MessageEmbed()
-                .setAuthor(authorError)
-                .setColor(colors["ErrorColor"])
-                .setDescription(`Currently anything other than a random seed is not-supported yet`)
-
-            message.reply({ embeds: [error503] })
-        }
+        message.reply({ embeds: [seed] })
     }
 }
