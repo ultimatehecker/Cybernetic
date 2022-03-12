@@ -15,12 +15,12 @@ module.exports = {
 
 		let authorError = {
             name: "Error",
-            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
         let authorSuccess = {
             name: "Link",
-            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
 		const user = await User.findOne({ id: message.author.id });
@@ -97,7 +97,7 @@ module.exports = {
 					const error = new Discord.MessageEmbed()
 						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
-						.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
+						.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
 					return message.reply({embeds: [error], allowedMentions: { repliedUser: false }});
 				}
 			}
