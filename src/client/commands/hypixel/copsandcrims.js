@@ -8,8 +8,8 @@ module.exports = {
     name: 'copsandcrims',
     aliases: [ "c&c", "cac", "cvc", "cops", "crims" ],
     description: 'Show you the Cops and Crims Statistics of an average Hypixel Player!',
-    usage: '`copsandcrims [IGN]`',
-    example: '`copsandcrims ultimate_hecker`',
+    usage: 'copsandcrims [IGN]',
+    example: 'copsandcrims ultimate_hecker',
     async execute(client, message, args, Discord, prefix) {
 
         await message.channel.sendTyping();

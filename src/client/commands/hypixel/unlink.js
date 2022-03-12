@@ -7,8 +7,8 @@ module.exports = {
 	name: "unlink",
 	aliases: ["unverify"],
 	description: "Allows you to unlink your Minecraft account from your Discord",
-	usage: "`unlink`",
-	example: "`unlink`",
+	usage: "unlink",
+	example: "unlink",
 	async execute(client, message, args, Discord) {
 
 		await message.channel.sendTyping();

@@ -8,8 +8,8 @@ module.exports = {
     name: 'buildbattle',
     aliases: [ "bb", "build" ],
     description: 'Show you the Build Battle Statistics of am average Hypixel Player!',
-    usage: '`buildbattle [IGN]`',
-    example: '`buildbattle ultimate_hecker`',
+    usage: 'buildbattle [IGN]',
+    example: 'buildbattle ultimate_hecker',
     async execute(client, message, args, Discord, prefix) {
 
         await message.channel.sendTyping();

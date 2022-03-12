@@ -7,8 +7,8 @@ module.exports = {
 	name: "link",
 	aliases: ["verify"],
 	description: "Allows you to link your Minecraft account to Discord",
-	usage: "`link [IGN]`",
-	example: "`link ultimate_hecker`",
+	usage: "link [IGN]",
+	example: "link ultimate_hecker",
 	async execute(client, message, args, Discord, prefix) {
 
 		await message.channel.sendTyping();

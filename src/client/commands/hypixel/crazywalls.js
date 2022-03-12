@@ -8,8 +8,8 @@ module.exports = {
     name: 'crazywalls',
     aliases: [ "cw" ],
     description: 'Show you the Crazy Walls Statistics of an average Hypixel Player!',
-    usage: '`crazywalls [IGN]`',
-    example: '`crazywalls ultimate_hecker`',
+    usage: 'crazywalls [IGN]',
+    example: 'crazywalls ultimate_hecker',
     async execute(client, message, args, Discord, prefix) {
 
         await message.channel.sendTyping();

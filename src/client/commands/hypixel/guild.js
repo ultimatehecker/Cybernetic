@@ -7,8 +7,8 @@ module.exports = {
 	name: "guild",
 	aliases: ["g"],
 	description: "Shows the statistics of a average Hypixel Guild!",
-	usage: "`guild [Guild]`",
-	example: "`guild Dragons of War`",
+	usage: "guild [Guild]",
+	example: "guild Dragons of War",
 	async execute(client, message, args, Discord, prefix) {
 
 		await message.channel.sendTyping();
