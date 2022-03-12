@@ -13,7 +13,7 @@ module.exports = {
 
         let author = {
             name: "Sever Statistics",
-            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
 		const currentDate = new Date(Date.now());
