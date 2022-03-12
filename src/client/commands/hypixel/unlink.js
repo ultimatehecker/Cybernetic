@@ -29,7 +29,7 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Your account is not connected!")
-			return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: false }});
+			return message.reply({embeds: [notconnected] });
 		}
 
 		const username = await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`).then((res) => res.json());
@@ -40,7 +40,7 @@ module.exports = {
 				.setColor(colors["MainColor"])
 				.setDescription(`${username.data.player.username} has been successfully unlinked from your account.`)
 				.setFooter(`Account Unlinking Services requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
-			message.reply({embeds: [unlinked], allowedMentions: { repliedUser: false },});
+			message.reply({embeds: [unlinked] });
 		});
 	}
 };

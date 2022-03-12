@@ -27,6 +27,6 @@ module.exports = {
             .setDescription(`${randomFlip()}`)
             .setFooter(`Coinflip requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
-            message.reply({ embeds: [coinflip], allowedMentions: { repliedUser: false } });
+            message.reply({ embeds: [coinflip] });
     }
 }

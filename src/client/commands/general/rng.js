@@ -29,7 +29,7 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You didn't specify a lowest and highest number! (Example: \`${prefix}rng 1 10\`)`);
 
-			return message.reply({ embeds: [nonumbers], allowedMentions: { repliedUser: false } });
+			return message.reply({ embeds: [nonumbers] });
 		}
 
 		if (isNaN(args[1])) {
@@ -38,7 +38,7 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("That is not a number!");
 
-			return message.reply({ embeds: [nan], allowedMentions: { repliedUser: false } });
+			return message.reply({ embeds: [nan] });
 		}
 
 		const rng = new Discord.MessageEmbed()
@@ -46,6 +46,6 @@ module.exports = {
 			.setColor(colors["MainColor"])
 			.setDescription(`You got \`${response}\`!`)
 			.setFooter(`RNG requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`,message.author.displayAvatarURL());
-		message.reply({ embeds: [rng], allowedMentions: { repliedUser: false } });
+		message.reply({ embeds: [rng] });
 	}
 }

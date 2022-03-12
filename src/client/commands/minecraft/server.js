@@ -27,7 +27,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["MainColor"])
                     .setDescription(`You need to type in a server IP! (Example: \`${prefix}server mc.hypixel.net\`)`)
-                return message.reply({ embeds: [ip404], allowedMentions: { repliedUser: false } })
+                return message.reply({ embeds: [ip404] });
             }
 
             const MOTDData = await axios.get(`https://api.mcsrvstat.us/2/${args[0]}`).then(res => res.json());
@@ -58,14 +58,14 @@ module.exports = {
                     server.addField('Raw MOTD', `\`${MOTDData.motd.raw[0]}\``)
                 }
 
-            message.reply({ embeds: [server], allowedMentions: { repliedUser: false } })
+            message.reply({ embeds: [server] });
 
         } catch {
             const error = new Discord.MessageEmbed()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${prefix}github\``)
-            message.reply({ embeds: [error], allowedMentions: { repliedUser: false } })
+            message.reply({ embeds: [error] });
         }
     }
 }

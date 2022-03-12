@@ -31,7 +31,7 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You need to type in a guild's name! (Not guild tag, but guild name.) (Example: \`${prefix}guild Dragons of War\`)`)
-			return message.reply({embeds: [guildArg404], allowedMentions: { repliedUser: false }});
+			return message.reply({embeds: [guildArg404] });
 		}
 
 		hypixel.getGuild("name", guildName).then(async (guild) => {
@@ -59,20 +59,20 @@ module.exports = {
 					guildInfoEmbed.setTitle(`${guild.name}`);
 				}
 
-			message.reply({embeds: [guildInfoEmbed], allowedMentions: { repliedUser: false }});
+			message.reply({embeds: [guildInfoEmbed] });
 		}).catch((e) => {
 			if (e.message === errors.GUILD_DOES_NOT_EXIST) {
 				const guild404 = new Discord.MessageEmbed()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that guild in the API. Check spelling and name history.")
-				return message.reply({ embeds: [guild404], allowedMentions: { repliedUser: false }});
+				return message.reply({ embeds: [guild404] });
 			} else {
 				const error = new Discord.MessageEmbed()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
-				return message.reply({ embeds: [error], allowedMentions: { repliedUser: false }});
+				return message.reply({ embeds: [error] });
 			}
 		});
 	}
