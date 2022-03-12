@@ -111,7 +111,7 @@ db.once("open", () => {
     });
 
     ["command_handler", "event_handler", "util_handler"].forEach((handler) => {
-        require(`./config/${handler}`)(client, Discord);
+        require(`./handlers/${handler}`)(client, Discord);
     });
     loginTransaction.finish();
 });
