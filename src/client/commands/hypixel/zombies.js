@@ -66,7 +66,8 @@ module.exports = {
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
                 const player404 = new Discord.MessageEbed()
                     .setAuthor(authorError)
-                    .setColor(colors["ErrorColor"])					.setDescription("I could not find that player in the API. Check spelling and name history.")
+                    .setColor(colors["ErrorColor"])
+                    .setDescription("I could not find that player in the API. Check spelling and name history.")
                 return message.reply({ embeds: [player404] });
             } else if (e.message === errors.PLAYER_HAS_NEVER_LOGGED) {
                 const neverLogged = new Discord.MessageEmbed()
