@@ -14,13 +14,6 @@ module.exports = {
 
         await message.channel.sendTyping();
 
-        let seconds;
-        let splice;
-        let minutes
-        let full_hours;
-        let full_minutes;
-        let remaining_seconds;
-
         let authorError = {
             name: "Error",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
@@ -53,18 +46,6 @@ module.exports = {
 
         hypixel.getPlayer(player).then((player) => {
 
-            function zombieMath() {
-
-                seconds = player.stats.arcade.zombies.overall.fastestRound30
-                splice = seconds / 3600
-                full_hours = Math.floor(splice)
-                minutes = seconds - full_hours * 60
-                full_minutes = Math.floor(minutes)
-                remaining_seconds = minutes - full_minutes * 60
-    
-                return `${full_hours}:${full_minutes}:${remaining_seconds}`
-            }
-
             const zombies = new Discord.MessageEmbed()
                 .setAuthor(authorSuccess)
                 .setTitle(`[${player.rank}] ${player.nickname}`)
@@ -76,7 +57,7 @@ module.exports = {
                 .addField("Kills", `\`•\` **Kills**: \`${player.stats.arcade.zombies.overall.zombieKills }\` \n \`•\` ** Deaths**: \`${commaNumber(player.stats.arcade.zombies.overall.deaths)}\` \n \`•\` **KDR**: \`${commaNumber((player.stats.arcade.zombies.overall.zombieKills / player.stats.arcade.zombies.overall.deaths).toFixed(2))}\``, true)
                 .addField("Wins", `\`•\` **Rounds Survived**: \`${player.stats.arcade.zombies.overall.roundsSurvived}\` \n \`•\` ** Wins**: \`${commaNumber(player.stats.arcade.zombies.overall.wins)}\``, true)
                 .addField("Revived", `\`•\` **Players Revived**: \`${player.stats.arcade.zombies.overall.playersRevived}\` \n \`•\` ** Times Knocked Down**: \`${commaNumber(player.stats.arcade.zombies.overall.timesKnockedDown)}\` \n \`•\` ** RDR**: \`${commaNumber((player.stats.arcade.zombies.overall.playersRevived / player.stats.arcade.zombies.overall.timesKnockedDown).toFixed(2))}\``, true)
-                .addField("Best Rounds", `\`•\` **Fastest Round 10**: \`${commaNumber((player.stats.arcade.zombies.overall.fastestRound10 / 60).toFixed(2))}\` \n \`•\` ** Fastest Round 20**: \`${commaNumber((player.stats.arcade.zombies.overall.fastestRound20/ 60).toFixed(2))}\` \n \`•\` ** Fastest Round 30**: \`${player.stats.arcade.zombies.overall.fastestRound30}\``, true)
+                .addField("Best Rounds", `\`•\` **Fastest Round 10**: \`${commaNumber((player.stats.arcade.zombies.overall.fastestRound10 / 60).toFixed(2))}\` \n \`•\` ** Fastest Round 20**: \`${commaNumber((player.stats.arcade.zombies.overall.fastestRound20/ 60).toFixed(2))}\` \n \`•\` ** Fastest Round 30**: \`${commaNumber((player.stats.arcade.zombies.overall.fastestRound30 / 60).toFixed(2))}\``, true)
 
             message.reply({ embeds: [zombies] });
 
