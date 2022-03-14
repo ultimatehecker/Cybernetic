@@ -1,3 +1,5 @@
+console.log('Util File Successfully Scanned - loadGuildInfo')
+
 module.exports = (client, guildResolvable) => {
     return new Promise((resolve, reject) => {
         let guild = client.guilds.resolve(guildResolvable);

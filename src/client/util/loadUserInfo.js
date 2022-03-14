@@ -1,3 +1,5 @@
+console.log('Util File Successfully Scanned - loadUserInfo')
+
 module.exports = (client, serverDoc, id) => {
 	return new Promise((resolve, reject) => {
 		client.userModel

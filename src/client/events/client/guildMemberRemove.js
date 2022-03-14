@@ -1,3 +1,5 @@
+console.log('Event File Successfully Scanned - guildMemberRemove')
+
 module.exports = async (Discord, client, member) => {
     console.log(member);
 

@@ -1,7 +1,4 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-unused-vars */
+console.log('Event File Successfully Scanned - messageReactionAdd')
 
 module.exports = async(Discord, client, reaction, user) => {
     if(reaction.partial) {

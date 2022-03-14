@@ -1,3 +1,5 @@
+console.log('Command File Successfully Scanned - info')
+
 const prettyMS = require("pretty-ms")
 const os = require("os-utils")
 const colors = require("../../tools/colors.json");

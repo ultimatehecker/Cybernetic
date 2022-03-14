@@ -1,3 +1,5 @@
+console.log('Event File Successfully Scanned - guildMemberAdd')
+
 module.exports = async (Discord, client, member) => {
     const serverDoc = await client.utils.loadGuildInfo(client, member.guild);
     const channel = member.guild.channels.resolve(serverDoc.welcomeChannelID);

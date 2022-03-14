@@ -3,6 +3,7 @@ const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
+console.log('Command File Successfully Scanned - buildbattle')
 
 module.exports = {
     name: 'buildbattle',
@@ -63,7 +64,7 @@ module.exports = {
 
             message.reply({ embeds: [buildbattle] });;
 
-        }).catch(e => { // error messages
+        }).catch((e) => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
                 const player404 = new Discord.MessageEmbed()
                     .setAuthor(authorError)
@@ -87,6 +88,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
+                console.error(e)
                 return message.reply({ embeds: [error] });
             }       
         });

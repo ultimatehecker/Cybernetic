@@ -2,6 +2,7 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
+console.log('Command File Successfully Scanned - socials')
 
 module.exports = {
 	name: "socials",
@@ -103,7 +104,8 @@ module.exports = {
 				const error = new Discord.MessageEmbed()
 					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
 					.setColor(colors["ErrorColor"])
-					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
+					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
+				console.error(e)
 				return message.reply({ embeds: [error] });
 			}
 		});

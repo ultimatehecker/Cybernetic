@@ -2,6 +2,7 @@ const colors = require(`../../tools/colors.json`)
 const currentDate = new Date(Date.now());
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
+console.log('Command File Successfully Scanned - link')
 
 module.exports = {
 	name: "link",
@@ -95,6 +96,7 @@ module.exports = {
 						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
 						.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
+						console.error(e)
 					return message.reply({embeds: [error] });
 				}
 			}

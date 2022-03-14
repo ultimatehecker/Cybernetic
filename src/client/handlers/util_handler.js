@@ -9,7 +9,4 @@ module.exports = (client) => {
 		const util = require(`../util/${file}`);
 		client.utils[file.split(".")[0]] = util;
 	}
-
-	console.log(`Utils Successfully Binded - ${util_files}`);
-
 };

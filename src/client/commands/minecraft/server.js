@@ -1,5 +1,6 @@
 const axios = require("axios")
 const colors = require("../../tools/colors.json");
+console.log('Command File Successfully Scanned - server')
 
 module.exports = {
     name: "server",
@@ -65,6 +66,7 @@ module.exports = {
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${prefix}github\``)
+            console.error(e)
             message.reply({ embeds: [error] });
         }
     }

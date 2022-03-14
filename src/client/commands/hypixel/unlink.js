@@ -2,6 +2,7 @@ const axios = require("axios");
 const colors = require(`../../tools/colors.json`);
 const currentDate = new Date(Date.now());
 const User = require('../../schemas/user');
+console.log('Command File Successfully Scanned - unlink')
 
 module.exports = {
 	name: "unlink",

@@ -2,6 +2,7 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
+console.log('Command File Successfully Scanned - watchdog')
 
 module.exports = {
 	name: "watchdog",

@@ -1,3 +1,5 @@
+console.log('Command File Successfully Scanned - embed')
+
 module.exports = {
 	name: "embed",
     aliases: [],

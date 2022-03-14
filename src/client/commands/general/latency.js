@@ -1,3 +1,5 @@
+console.log('Command File Successfully Scanned - latency')
+
 const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
 

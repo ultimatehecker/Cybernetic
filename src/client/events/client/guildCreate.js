@@ -1,3 +1,5 @@
+console.log('Event File Successfully Scanned - guildCreate')
+
 module.exports = (Discord, guild, prefix) => {
     const channel = guild.channels.cache.find((channel) => channel.type === "GUILD_TEXT" && channel.permissionsFor(guild.me).has("SEND_MESSAGES"))
 

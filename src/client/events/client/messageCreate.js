@@ -1,3 +1,5 @@
+console.log('Event File Successfully Scanned - messageCreate')
+
 function splitCommandLine(commandLine) {
     let doubleDoubleQuote = "<DDQ>";
     while (commandLine.indexOf(doubleDoubleQuote) > -1) doubleDoubleQuote += "@"

@@ -1,3 +1,5 @@
+console.log('Schema File Successfully Scanned - user')
+
 const mongoose = require("mongoose");
 
 const User = new mongoose.Schema({
