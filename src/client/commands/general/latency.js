@@ -1,7 +1,6 @@
-console.log('Command File Successfully Scanned - latency')
+console.log('Command File Successfully Scanned - latency');
 
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
 
 module.exports = {
     name: "latency",
@@ -22,8 +21,7 @@ module.exports = {
             .setAuthor(author)
             .setColor(colors["MainColor"])
             .setDescription(`🏓 Cybernetic's Latency is currently \`${Date.now() - message.createdTimestamp}\` ms. Discord API Latency is currently \`${Math.round(client.ws.ping)}\` ms.`)
-            .setFooter(`Cybernetic's Latency requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
         message.reply({ embeds: [latency] });
     }
-}
+};

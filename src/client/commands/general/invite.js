@@ -1,4 +1,4 @@
-console.log('Command File Successfully Scanned - invite')
+console.log('Command File Successfully Scanned - invite');
 
 const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
@@ -26,4 +26,4 @@ module.exports = {
 
 		message.reply({ embeds: [invite], components: [{ type: "ACTION_ROW", components: [{ type: "BUTTON", label: "Bot Invite", url: "https://discord.com/api/oauth2/authorize?client_id=834177766869565491&permissions=8&scope=applications.commands%20bot", style: "LINK" }]}]});
     }
-}
+};

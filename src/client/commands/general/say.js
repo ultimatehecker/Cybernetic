@@ -1,5 +1,5 @@
 const colors = require("../../tools/colors.json");
-console.log('Command File Successfully Scanned - say')
+console.log('Command File Successfully Scanned - say');
 
 module.exports = {
     name: "say",
@@ -34,14 +34,14 @@ module.exports = {
                     .setColor(colors["ErrorColor"])
                     .setDescription(`You need to enter something to say`)
 
-                    return message.reply({ embeds: [content404] })
+                    return message.reply({ embeds: [content404] });
                 }else {
                     const error = new Discord.MessageEmbed()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription(`Uhoh! A problem has been detected and the command has been aborted. If this is your first time encounting this error, please check the command, and check our quick fix error handling. If this keep on appearing, please DM ultimatehecker#1165 with this context: \`\`\`${err}\`\`\``)
 
-                    return message.reply({ embeds: [error] })
+                    return message.reply({ embeds: [error] });
                 }
             });
         }else {
@@ -54,14 +54,14 @@ module.exports = {
                     .setColor(colors["ErrorColor"])
                     .setDescription(`You need to enter something to say`)
 
-                    return message.reply({ embeds: [content404] })
+                    return message.reply({ embeds: [content404] });
                 }else {
                     const error = new Discord.MessageEmbed()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription(`Uhoh! A problem has been detected and the command has been aborted. If this is your first time encounting this error, please check the command, and check our quick fix error handling. If this keep on appearing, please DM ultimatehecker#1165 with this context: \`\`\`${err}\`\`\``)
 
-                    return message.reply({ embeds: [error] })
+                    return message.reply({ embeds: [error] });
                 }
             });
         }

@@ -1,7 +1,6 @@
-console.log('Command File Successfully Scanned - help')
+console.log('Command File Successfully Scanned - help');
 
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
 
 module.exports = {
     name: "help",
@@ -33,7 +32,6 @@ module.exports = {
                 .setAuthor(authorGeneral)
                 .setColor(colors["MainColor"])
                 .setDescription(`Do \`${prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n *The prefix of the bot is currently: \`${prefix}\`. If you want to change the prefix, that will come in another update, sorry for the inconvience!* \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\` \n \n 🌆 Hypixel: \`bedwars\`, \`blizsurvivalgames\`, \`buildbattle\`, \`copsandcrims\`, \`crazywalls\`, \`duels\`, \`guild\`, \`link\`, \`megawalls\`, \`miniwalls\`, \`murdermystery\`, \`player\`, \`skywars\`, \`smashheroes\`, \`soccer\`, \`socials\`, \`speeduhc\`, \`tntgames\`, \`uhc\`, \`unlink\`, \`vampirez\`, \`watchdog\`, \`zombies\`, \n \n 🏗️Minecraft: \`seed\`, \`server\`, \`skin\`, \`uuid\`, \`namehistory\`,`)
-                .setFooter(`Cybernetic Help and Command List requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
             return message.reply({ embeds: [general] })
         }
@@ -54,7 +52,6 @@ module.exports = {
             .setColor(colors["MainColor"])
             .setTitle(`${command.name} Command Description`)
             .addField("Description:", `\`\`\`${command.description}\`\`\``)
-            .setFooter(`Command Information requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
             if (command.aliases)
                 help
@@ -64,4 +61,4 @@ module.exports = {
 
         message.reply({ embeds: [help] });
     }
-}
+};

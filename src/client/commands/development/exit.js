@@ -28,7 +28,7 @@ module.exports = {
                 .setColor(colors["ErrorColor"])
                 .setDescription(`Sorry, but only **ultimate_hecker** can do this :(`)
 
-            message.reply({ embeds:[permission404] })
+            message.reply({ embeds:[permission404] });
         } else {
             const restart = new Discord.MessageEmbed()
                 .setAuthor(author)
@@ -37,8 +37,8 @@ module.exports = {
 
             message.reply({ embeds: [restart] }).then(() => {
                 console.warn(`[RESTART]: Cybernetic shutdown by ${message.author.tag} at ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`)
-                process.exit()
+                process.exit();
             })
         }
     }
-}
+};

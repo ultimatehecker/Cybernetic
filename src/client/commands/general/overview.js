@@ -1,4 +1,4 @@
-console.log('Command File Successfully Scanned - overview')
+console.log('Command File Successfully Scanned - overview');
 
 const colors = require("../../tools/colors.json");
 
@@ -8,7 +8,6 @@ module.exports = {
 	description: "Displays an overlay which shows your current discord server",
 	usage: "overview",
 	example: "overview",
-	notes: "nothing other than overview has to be provided",
 	async execute(client, message, args, Discord) {
 
 		await message.channel.sendTyping();
@@ -27,7 +26,6 @@ module.exports = {
 			.setTitle(`${message.guild.name}`)
 			.setDescription("Different Statistics about this Discord Server")
 			.setThumbnail(message.guild.iconURL())
-			.setFooter(`${message.guild.name} Discord Server Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 			.addFields([
 				{ name: "Member Count", value: `\`${message.guild.members.cache.size}\``, inline: true},
 				{ name: "Discord Server Role Count", value: `\`${message.guild.roles.cache.size}\``, inline: true },
@@ -39,4 +37,4 @@ module.exports = {
 
 		message.reply({ embeds: [overview] });
 	}
-}
+};

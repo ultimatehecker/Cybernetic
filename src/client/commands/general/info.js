@@ -1,9 +1,8 @@
-console.log('Command File Successfully Scanned - info')
+console.log('Command File Successfully Scanned - info');
 
 const prettyMS = require("pretty-ms")
 const os = require("os-utils")
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
 
 module.exports = {
     name: "info",
@@ -34,8 +33,7 @@ module.exports = {
                         { name: "Latency", value: `Client's Latency: \`${Date.now() - message.createdTimestamp}\` ms \n API Latency: \`${Math.round(client.ws.ping)}\` ms`, inline: true },
                         { name: "System", value: `CPU Usage: \`${Math.round((percentage * 100) / os.cpuCount())}%\` \n Memory Usage: \`${Math.round((process.memoryUsage().rss / 1024 / 1024) * 100) / 100}\`MB`, inline: true },
                         { name: "Popularity", value: `Number of Servers: \`${client.guilds.cache.size}\` \n Number of Members: \`${count.length}\``, inline: true },
-                    ])
-                    .setFooter(`Cybernetic Database Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
+                    ]);
                     message.reply({ embeds: [info] });
             });
         });

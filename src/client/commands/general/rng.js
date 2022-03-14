@@ -1,4 +1,4 @@
-console.log('Command File Successfully Scanned - rng')
+console.log('Command File Successfully Scanned - rng');
 
 const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
@@ -47,7 +47,6 @@ module.exports = {
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
 			.setDescription(`You got \`${response}\`!`)
-			.setFooter(`RNG requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`,message.author.displayAvatarURL());
 		message.reply({ embeds: [rng] });
 	}
-}
+};

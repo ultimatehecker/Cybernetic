@@ -1,5 +1,4 @@
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
 console.log('Command File Successfully Scanned - coinflip');
 
 module.exports = {
@@ -26,8 +25,7 @@ module.exports = {
             .setAuthor(author)
             .setColor(colors["MainColor"])
             .setDescription(`${randomFlip()}`)
-            .setFooter(`Coinflip requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
             message.reply({ embeds: [coinflip] });
     }
-}
+};
