@@ -2,8 +2,7 @@ const axios = require("axios");
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - namehistory')
+console.log('Command File Successfully Scanned - namehistory');
 
 module.exports = {
 	name: "namehistory",
@@ -56,12 +55,11 @@ module.exports = {
 				.setTitle(`${playerNameData[playerNameData.length - 1].name}'s Name History`)
 				.setColor(colors["MainColor"])
 				.setThumbnail(`https://crafatar.com/avatars/${user.uuid}?overlay&size=256`)
-				.setFooter(`Minecraft Name History requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`,message.author.displayAvatarURL())
 
 			for (let length in playerNameData) {
 				for (let key in playerNameData[length]) {
 					if (key == "name" && playerNameData[length].changedToAt == undefined) {
-						namehistory.addField(playerNameData[length][key], "`Original Name`", true)
+						namehistory.addField(playerNameData[length][key], "`Original Name`", true);
 					}
 				}
 			}
@@ -72,7 +70,7 @@ module.exports = {
 						if (playerNameData[length].changedToAt == undefined) {
 							break;
 						} else {
-							namehistory.addField(playerNameData[length][key], `<t:${playerNameData[length].changedToAt / 1000}:R>`, true)
+							namehistory.addField(playerNameData[length][key], `<t:${playerNameData[length].changedToAt / 1000}:R>`, true);
 						}
 					}
 				}
@@ -98,7 +96,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
-				console.error(e)
+				console.error(e);
 				return message.reply({embeds: [error] });
 			}
 		}

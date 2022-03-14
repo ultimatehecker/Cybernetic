@@ -1,8 +1,7 @@
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - socials')
+console.log('Command File Successfully Scanned - socials');
 
 module.exports = {
 	name: "socials",
@@ -50,34 +49,33 @@ module.exports = {
 				.setTitle(`[${player.rank}] ${player.nickname}`)
 				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 				.setColor(colors["MainColor"])
-				.setFooter(`${player.nickname} Socials requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`,message.author.displayAvatarURL());
 
 			if (player.socialMedia[0] != undefined || player.socialMedia[0] != null) {
-				socials.addField(player.socialMedia[0].name, player.socialMedia[0].link)
+				socials.addField(player.socialMedia[0].name, player.socialMedia[0].link);
 			}
 
 			if (player.socialMedia[1] != undefined || player.socialMedia[1] != null) {
-				socials.addField(player.socialMedia[1].name, player.socialMedia[1].link)
+				socials.addField(player.socialMedia[1].name, player.socialMedia[1].link);
 			}
 
 			if (player.socialMedia[2] != undefined || player.socialMedia[2] != null) {
-				socials.addField(player.socialMedia[2].name, player.socialMedia[2].link)
+				socials.addField(player.socialMedia[2].name, player.socialMedia[2].link);
 			}
 
 			if (player.socialMedia[3] != undefined || player.socialMedia[3] != null) {
-				socials.addField(player.socialMedia[3].name, player.socialMedia[3].link)
+				socials.addField(player.socialMedia[3].name, player.socialMedia[3].link);
 			}
 
 			if (player.socialMedia[4] != undefined || player.socialMedia[4] != null) {
-				socials.addField(player.socialMedia[4].name, player.socialMedia[4].link)
+				socials.addField(player.socialMedia[4].name, player.socialMedia[4].link);
 			}
 
 			if (player.socialMedia[5] != undefined || player.socialMedia[5] != null) {
-				socials.addField(player.socialMedia[5].name, player.socialMedia[5].link)
+				socials.addField(player.socialMedia[5].name, player.socialMedia[5].link);
 			}
 
 			if (player.socialMedia[6] != undefined || player.socialMedia[6] != null) {
-				socials.addField(player.socialMedia[6].name, player.socialMedia[6].link)
+				socials.addField(player.socialMedia[6].name, player.socialMedia[6].link);
 			}
 
 			message.reply({embeds: [socials] });
@@ -105,7 +103,7 @@ module.exports = {
 					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
-				console.error(e)
+				console.error(e);
 				return message.reply({ embeds: [error] });
 			}
 		});

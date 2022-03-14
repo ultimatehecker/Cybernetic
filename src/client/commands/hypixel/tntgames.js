@@ -2,8 +2,7 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - tntgames')
+console.log('Command File Successfully Scanned - tntgames');
 
 module.exports = {
     name: 'tntgames',
@@ -13,7 +12,7 @@ module.exports = {
     example: 'tntgames ultimate_hecker',
     async execute(client, message, args, Discord, prefix) {
 
-        await message.channel.sendTyping()
+        await message.channel.sendTyping();
 
         let authorError = {
             name: "Error",
@@ -26,7 +25,7 @@ module.exports = {
         }
 
         const data = await User.findOne({
-            id: message.author.id
+            id: message.author.id,
         });
 
         if (!data && !args[0]) { // if someone didn't type in ign
@@ -48,12 +47,12 @@ module.exports = {
             if (player.stats.tntgames.wizards.class == null) {
                  wizardsClass = 'None'
             }
-            const embed = new Discord.MessageEmbed()
+            const tntgames = new Discord.MessageEmbed()
                 .setAuthor(authorSuccess)
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-                .setFooter(`TNT Games Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`,message.author.displayAvatarURL())
+
                 .addField('Coins', `\`${commaNumber(player.stats.tntgames.coins)}\``, true)
                 .addField('Total Wins', `\`${commaNumber(player.stats.tntgames.wins)}\``, true)
                 .addField('Winstreak', `\`${commaNumber(player.stats.tntgames.winstreak)}\``, true)
@@ -80,7 +79,7 @@ module.exports = {
                 .addField('Wizards Points', `\`${commaNumber(player.stats.tntgames.wizards.points)}\``, true)
                 .addField('Wizards Class', `\`${wizardsClass}\``, true)
 
-            message.reply({ embeds: [embed] });
+            message.reply({ embeds: [tntgames] });
 
         }).catch((e) => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -106,9 +105,9 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
-                console.error(e)
+                console.error(e);
                 return message.reply({ embeds: [error] });
             }       
         });
     }
-}
+};

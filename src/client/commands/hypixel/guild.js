@@ -1,8 +1,7 @@
 const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - guild')
+console.log('Command File Successfully Scanned - guild');
 
 module.exports = {
 	name: "guild",
@@ -39,7 +38,6 @@ module.exports = {
 			const guildInfoEmbed = new Discord.MessageEmbed()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.setFooter(`Guild Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
 				.addField("Description", guild.description)
 				.addField("Level", `\`${guild.level}\``, true)
@@ -52,7 +50,7 @@ module.exports = {
 					arr.push(exp);
 				 }
 
-				guildInfoEmbed.addField("GEXP History", `${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n`)
+				guildInfoEmbed.addField("GEXP History", `${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n`);
 
 				if (guild.tag !== null) {
 					guildInfoEmbed.setTitle(`${guild.name} [${guild.tag}]`);
@@ -73,7 +71,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
-				console.error(e)
+				console.error(e);
 				return message.reply({ embeds: [error] });
 			}
 		});

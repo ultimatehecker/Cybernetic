@@ -2,8 +2,7 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - player')
+console.log('Command File Successfully Scanned - player');
 
 module.exports = {
 	name: "player",
@@ -74,7 +73,6 @@ module.exports = {
 				.setTitle(`[${player.rank}] ${player.nickname}`)
 				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 				.setColor(colors["MainColor"])
-				.setFooter(`${player.nickname} Hypixel Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 				.addField("Rank", `\`${playerRank}\``, true)
 				.addField("Level", `\`${player.level}\``, true)
 				.addField("Karma", `\`${commaNumber(player.karma)}\``, true);
@@ -102,7 +100,7 @@ module.exports = {
 			}
 
 			playerStats.addField("Social Media", `Run \`${prefix}socials ${player.nickname}\``);
-			message.reply({ embeds: [playerStats] });;
+			message.reply({ embeds: [playerStats] });
 
 		}).catch((e) => {
 			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -122,8 +120,8 @@ module.exports = {
 					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
-				console.error(e)
-				return message.reply({ embeds: [error] });;
+				console.error(e);
+				return message.reply({ embeds: [error] });
 			}
 		});
 	},

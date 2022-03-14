@@ -2,8 +2,7 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - bedwars')
+console.log('Command File Successfully Scanned - bedwars');
 
 module.exports = {
     name: 'bedwars',
@@ -26,7 +25,7 @@ module.exports = {
         }
 
         const data = await User.findOne({
-            id: message.author.id
+            id: message.author.id,
         });
 
         let player;
@@ -52,7 +51,6 @@ module.exports = {
                     .setTitle(`[${player.rank}] ${player.nickname}`)
                     .setColor(colors["MainColor"])
                     .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-                    .setFooter(`${player.nickname}'s Bedwars Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
                     .addField("General Stats", `\`•\` **Levels**: \`${player.stats.bedwars.level}✫\` \n \`•\` **Coins**: \`${commaNumber(player.stats.bedwars.coins)}\` \n \`•\` **Loot Chest**: \`${commaNumber((player.stats.bedwars.lootChests.normal + player.stats.bedwars.lootChests.golden + player.stats.bedwars.lootChests.christmas + player.stats.bedwars.lootChests.easter + player.stats.bedwars.lootChests.halloween))}\``, true)
                     .addField("Games", `\`•\` **Winstreak**: \`${commaNumber(player.stats.bedwars.winstreak)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.bedwars.wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.bedwars.losses)}\` \n \`•\` **WLR**: \`${player.stats.bedwars.WLRatio}\``, true)
@@ -62,7 +60,7 @@ module.exports = {
                     .addField("Averages per Game", `\`•\` **Kills**: \`${commaNumber((player.stats.bedwars.kills / player.stats.bedwars.playedGames).toFixed(2))}\` \n \`•\` **Final Kills**: \`${commaNumber((player.stats.bedwars.finalKills / player.stats.bedwars.playedGames).toFixed(2))}\` \n \`•\` **Beds**: \`${commaNumber((player.stats.bedwars.beds.broken / player.stats.bedwars.playedGames).toFixed(2))}\``, true)
                     .addField("Milestones", `\`•\` **Wins to ${commaNumber(Math.ceil(player.stats.bedwars.WLRatio))} WLR**: \`${commaNumber(player.stats.bedwars.losses * Math.ceil(player.stats.bedwars.WLRatio) - player.stats.bedwars.wins)}\` \n \`•\` **Finals to ${commaNumber(Math.ceil(player.stats.bedwars.finalKDRatio))} FKDR**: \`${commaNumber(player.stats.bedwars.finalDeaths * Math.ceil(player.stats.bedwars.finalKDRatio) - player.stats.bedwars.finalKills)}\` \n \`•\` **Beds to ${commaNumber(Math.ceil(player.stats.bedwars.beds.BLRatio))} BBLR**: \`${commaNumber(player.stats.bedwars.beds.lost * Math.ceil(player.stats.bedwars.beds.BLRatio) - player.stats.bedwars.beds.broken)}\``, true)
 
-                message.reply({ embeds: [bedwars] })
+                message.reply({ embeds: [bedwars] });
             }
         }).catch((e) => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -82,15 +80,15 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription("That player has never played this game")
-                 return message.reply({ embeds: [neverPlayed] })
+                 return message.reply({ embeds: [neverPlayed] });
             } else {
 				const error = new Discord.MessageEmbed()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
-                    console.error(e)
+                    console.error(e);
 				return message.reply({ embeds: [error] });
             }       
         });
     }
-}
+};

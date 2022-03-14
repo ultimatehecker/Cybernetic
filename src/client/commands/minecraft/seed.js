@@ -1,6 +1,5 @@
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - seed')
+console.log('Command File Successfully Scanned - seed');
 
 module.exports = {
     name: "seed",
@@ -24,16 +23,15 @@ module.exports = {
 
         function mcseed() {
             let random_number = Math.floor(Math.random() * 9223372036854775807);
-            let interger = ["-1", ""]
-            return interger[Math.floor(Math.random() * interger.length)], random_number
+            let interger = ["-1", ""];
+            return interger[Math.floor(Math.random() * interger.length)], random_number;
         }
 
         const seed = new Discord.MessageEmbed()
             .setAuthor(authorSuccess)
             .setColor(colors["MainColor"])
             .setDescription(`Here is your randomly generated minecraft seed: \`${mcseed()}\``)
-            .setFooter(`Random Minecarft Seed requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
-        message.reply({ embeds: [seed] })
+        message.reply({ embeds: [seed] });
     }
-}
+};

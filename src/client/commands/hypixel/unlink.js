@@ -1,8 +1,7 @@
 const axios = require("axios");
 const colors = require(`../../tools/colors.json`);
-const currentDate = new Date(Date.now());
 const User = require('../../schemas/user');
-console.log('Command File Successfully Scanned - unlink')
+console.log('Command File Successfully Scanned - unlink');
 
 module.exports = {
 	name: "unlink",
@@ -40,7 +39,6 @@ module.exports = {
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`${username.data.player.username} has been successfully unlinked from your account.`)
-				.setFooter(`Account Unlinking Services requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 			message.reply({embeds: [unlinked] });
 		});
 	}

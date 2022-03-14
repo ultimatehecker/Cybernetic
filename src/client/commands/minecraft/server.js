@@ -1,6 +1,6 @@
 const axios = require("axios")
 const colors = require("../../tools/colors.json");
-console.log('Command File Successfully Scanned - server')
+console.log('Command File Successfully Scanned - server');
 
 module.exports = {
     name: "server",
@@ -45,18 +45,18 @@ module.exports = {
 
                 if (MOTDData.motd.clean[1] !== undefined) {
                     const cleanMOTD = `\n ${MOTDData.motd.clean[1]}`
-                    server.addField('Clean MOTD', `\`${MOTDData.motd.clean[0]}${cleanMOTD}\``)
+                    server.addField('Clean MOTD', `\`${MOTDData.motd.clean[0]}${cleanMOTD}\``);
 
                 } else if (MOTDData.motd.clean[1] == undefined) {
-                    server.addField('Clean MOTD', `\`${MOTDData.motd.clean[0]}\``)
+                    server.addField('Clean MOTD', `\`${MOTDData.motd.clean[0]}\``);
                 }
 
                 if (MOTDData.motd.raw[1] !== undefined) {
                     const rawMOTD = `\n ${MOTDData.motd.raw[1]}`
-                    server.addField('Raw MOTD', `\`${MOTDData.motd.raw[0]}${rawMOTD}\``)
+                    server.addField('Raw MOTD', `\`${MOTDData.motd.raw[0]}${rawMOTD}\``);
                     
                 } else if (MOTDData.motd.clean[1] == undefined) {
-                    server.addField('Raw MOTD', `\`${MOTDData.motd.raw[0]}\``)
+                    server.addField('Raw MOTD', `\`${MOTDData.motd.raw[0]}\``);
                 }
 
             message.reply({ embeds: [server] });
@@ -66,8 +66,7 @@ module.exports = {
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${prefix}github\``)
-            console.error(e)
             message.reply({ embeds: [error] });
         }
     }
-}
+};

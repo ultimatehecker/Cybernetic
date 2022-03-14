@@ -1,8 +1,7 @@
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - skin')
+console.log('Command File Successfully Scanned - skin');
 
 module.exports = {
 	name: "skin",
@@ -49,7 +48,6 @@ module.exports = {
 			const skin = new Discord.MessageEmbed()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.setFooter(`Minecraft Skin Services requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 				.addField("Username", `\`${user.nickname}\``)
 				.addField("Apply Skin", `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`)
 				.setImage(`http://photopass.appspot.com/3d.php?user=${player}&vr=-25&hr=35&hrh=0&vrll=0&vrrl=0&vrla=0&vrra=0&displayHair=true&headOnly=false&format=png&ratio=20&aa=true&layers=true}`)
@@ -73,7 +71,6 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
-				console.error(e)
 				return message.reply({embeds: [error] });
 			}
 		}

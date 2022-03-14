@@ -1,8 +1,7 @@
 const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - watchdog')
+console.log('Command File Successfully Scanned - watchdog');
 
 module.exports = {
 	name: "watchdog",
@@ -23,7 +22,6 @@ module.exports = {
 			const embed = new Discord.MessageEmbed()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.setFooter(`Watchdog Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 				.addField("Total Watchdog bans", `\`${commaNumber(stats.byWatchdogTotal)}\``, true)
 				.addField("Bans in the last minute", `\`${commaNumber(stats.byWatchDogLastMinute)}\``, true)
 				.addField("Total staff bans", `\`${commaNumber(stats.byStaffTotal)}\``, true)

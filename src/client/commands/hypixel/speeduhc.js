@@ -2,8 +2,7 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - speeduhc')
+console.log('Command File Successfully Scanned - speeduhc');
 
 module.exports = {
     name: 'speeduhc',
@@ -13,7 +12,7 @@ module.exports = {
     example: 'speeduhc ultimate_hecker',
     async execute(client, message, args, Discord, prefix) {
 
-        await message.channel.sendTyping()
+        await message.channel.sendTyping();
 
         let authorError = {
             name: "Error",
@@ -26,7 +25,7 @@ module.exports = {
         }
 
         const data = await User.findOne({
-            id: message.author.id
+            id: message.author.id,
         });
 
         if (!data && !args[0]) { // if someone didn't type in ign
@@ -34,7 +33,7 @@ module.exports = {
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`You need to type in a player's IGN! (Example: \`${prefix}speeduhc ultimate_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultimate_hecker\`)`)
-            return message.reply({ embeds: [ign404] })
+            return message.reply({ embeds: [ign404] });
         }
 
         let player;
@@ -51,7 +50,7 @@ module.exports = {
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-                .setFooter(`SpeedUHC Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`,message.author.displayAvatarURL())
+
                 .addField('Kills', `\`${commaNumber(player.stats.speedUHC.kills)}\``, true)
                 .addField('Losses', `\`${commaNumber(player.stats.speedUHC.losses)}\``, true)
                 .addField('Wins', `\`${commaNumber(player.stats.speedUHC.wins)}\``, true)
@@ -88,9 +87,9 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
-                console.error(e)
+                console.error(e);
                 return message.reply({ embeds: [error] });
             }       
         });
     }
-}
+};

@@ -2,8 +2,7 @@ const axios = require("axios");
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - uuid')
+console.log('Command File Successfully Scanned - uuid');
 
 module.exports = {
 	name: "uuid",
@@ -56,7 +55,6 @@ module.exports = {
 				.addField("UUID", `\`${playerUUIDData.data.player.id}\``)
 				.addField("Trimmed UUID", `\`${playerUUIDData.data.player.raw_id}\``)
 				.setThumbnail(`https://crafatar.com/avatars/${playerUUIDData.data.player.id}?overlay&size=256`)
-				.setFooter(`Minecraft UUID Services requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
 			message.reply({embeds: [embed] });
 		} catch (error) {
@@ -77,7 +75,6 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`Redstone#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
-				console.error(e)
 				return message.reply({embeds: [error] });
 			}
 		}

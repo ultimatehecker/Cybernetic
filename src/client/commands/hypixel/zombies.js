@@ -2,8 +2,7 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const currentDate = new Date(Date.now());
-console.log('Command File Successfully Scanned - zombies')
+console.log('Command File Successfully Scanned - zombies');
 
 module.exports = {
     name: 'zombies',
@@ -26,7 +25,7 @@ module.exports = {
         }
 
         const data = await User.findOne({
-            id: message.author.id
+            id: message.author.id,
         });
 
         if (!args[0] && !data) { // if someone didn't type in ign and wasn't verified
@@ -52,7 +51,6 @@ module.exports = {
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-                .setFooter(`${player.nickname}'s Zombies Statistics requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, message.author.displayAvatarURL())
 
                 .addField("Windows & Doors", `\`•\` **Opened**: \`${player.stats.arcade.zombies.overall.doorsOpened}\` \n \`•\` **Repaired**: \`${commaNumber(player.stats.arcade.zombies.overall.windowsRepaired)}\``, true)
                 .addField("Kills", `\`•\` **Kills**: \`${player.stats.arcade.zombies.overall.zombieKills }\` \n \`•\` ** Deaths**: \`${commaNumber(player.stats.arcade.zombies.overall.deaths)}\` \n \`•\` **KDR**: \`${commaNumber((player.stats.arcade.zombies.overall.zombieKills / player.stats.arcade.zombies.overall.deaths).toFixed(2))}\``, true)
@@ -87,9 +85,9 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
-                console.error(e)
+                console.error(e);
                 return message.reply({ embeds: [error] });
             }       
         });
     }
-}
+};
