@@ -29,6 +29,7 @@ module.exports = {
         });
 
         let player;
+        let gamemode = ["solo", "doubles", "threes", "fours", "4v4", "castle", "dream"]
 
         if (!args[0] && !data) { // if someone didn't type in ign and wasn't verified
             const ign404 = new Discord.MessageEmbed()
@@ -45,7 +46,6 @@ module.exports = {
         }
 
         hypixel.getPlayer(player).then((player) => {
-            if(args[1] === "overall"){
                 const bedwars = new Discord.MessageEmbed()
                     .setAuthor(authorSuccess)
                     .setTitle(`[${player.rank}] ${player.nickname}`)
@@ -61,7 +61,6 @@ module.exports = {
                     .addField("Milestones", `\`•\` **Wins to ${commaNumber(Math.ceil(player.stats.bedwars.WLRatio))} WLR**: \`${commaNumber(player.stats.bedwars.losses * Math.ceil(player.stats.bedwars.WLRatio) - player.stats.bedwars.wins)}\` \n \`•\` **Finals to ${commaNumber(Math.ceil(player.stats.bedwars.finalKDRatio))} FKDR**: \`${commaNumber(player.stats.bedwars.finalDeaths * Math.ceil(player.stats.bedwars.finalKDRatio) - player.stats.bedwars.finalKills)}\` \n \`•\` **Beds to ${commaNumber(Math.ceil(player.stats.bedwars.beds.BLRatio))} BBLR**: \`${commaNumber(player.stats.bedwars.beds.lost * Math.ceil(player.stats.bedwars.beds.BLRatio) - player.stats.bedwars.beds.broken)}\``, true)
 
                 message.reply({ embeds: [bedwars] });
-            }
         }).catch((e) => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
 				const player404 = new Discord.MessageEmbed()
