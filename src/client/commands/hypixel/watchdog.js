@@ -15,7 +15,7 @@ module.exports = {
 
 		let authorSuccess = {
             name: "Watchdog Statistics",
-            iconURL: "https://cdn.discordapp.com/avatars/923947315063062529/0a3bc17096585739484e4c6dfb7c184b.webp"
+            iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
         }
 
 		hypixel.getWatchdogStats().then((stats) => {

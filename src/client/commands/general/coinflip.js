@@ -13,7 +13,7 @@ module.exports = {
 
         let author = {
             name: "Random CoinFlip",
-            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+            iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
         }
 
         function randomFlip() {
