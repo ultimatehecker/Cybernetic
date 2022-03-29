@@ -64,7 +64,7 @@ module.exports = {
 				.addField("Souls", `\`${commaNumber(player.stats.skywars.souls)}\``, true)
 				.addField("Ranked Kills", `\`${commaNumber(player.stats.skywars.ranked.kills)}\``, true)
 				.addField("Ranked Losses", `\`${commaNumber(player.stats.skywars.ranked.losses)}\``, true)
-				.addField("Ranked Games Played", `\`${commaNumber(player.stats.skywars.ranked.played)}\``, true)
+				.addField("Ranked Games Played", `\`${commaNumber(player.stats.skywars.ranked.playedGames)}\``, true)
 				.addField("Ranked Wins", `\`${commaNumber(player.stats.skywars.ranked.wins)}\``, true)
 				.addField("Ranked KD Ratio", `\`${player.stats.skywars.ranked.KDRatio}\``, true)
 				.addField("Ranked WL Ratio", `\`${player.stats.skywars.ranked.WLRatio}\``, true)
