@@ -11,20 +11,15 @@ module.exports = {
 
 		await message.channel.sendTyping();
 
-        let author = {
-            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
-        }
-
 		const title = args.shift();
 		const color = args.shift();
 
 		let content = args.join(" ");
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor(author)
 			.setTitle(title)
 			.setColor(color)
-			.setDescription(content);
+			.setDescription(content)
 
 		return message.channel.send({ embeds: [embed] });
 	}
