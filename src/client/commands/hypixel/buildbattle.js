@@ -51,7 +51,7 @@ module.exports = {
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 
                 .addField('Coins', `\`${commaNumber(player.stats.buildbattle.coins)}\``, true)
-                .addField('Total Wins', `\`${commaNumber(player.stats.buildbattle.winsTotal)}\``, true)
+                .addField('Total Wins', `\`${commaNumber(player.stats.buildbattle.totalWins)}\``, true)
                 .addField('Total Games', `\`${commaNumber(player.stats.buildbattle.playedGames)}\``, true)
                 .addField('Total Votes', `\`${commaNumber(player.stats.buildbattle.totalVotes)}\``, true)
                 .addField('Score', `\`${commaNumber(player.stats.buildbattle.score)}\``, true)
