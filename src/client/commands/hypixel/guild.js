@@ -39,10 +39,13 @@ module.exports = {
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 
-				.addField("Description", guild.description)
 				.addField("Level", `\`${guild.level}\``, true)
 				.addField("Members", `\`${Object.keys(guild.members).length}/125\``, true)
 				.addField("Date Created", `<t:${Math.ceil(guild.createdAtTimestamp / 1000)}:R>`, true)
+
+				if (guild.description !== null) {
+					guildInfoEmbed.addField("Description", guild.description)
+				}
 
 				let arr = [];
 				for (let i = 0; i < guild.expHistory.length; i++) {
@@ -50,12 +53,12 @@ module.exports = {
 					arr.push(exp);
 				 }
 
-				guildInfoEmbed.addField("GEXP History", `${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n`);
+				guildInfoEmbed.addField("GEXP History", `${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n`)
 
 				if (guild.tag !== null) {
-					guildInfoEmbed.setTitle(`${guild.name} [${guild.tag}]`);
+					guildInfoEmbed.setTitle(`${guild.name} [${guild.tag}]`)
 				} else {
-					guildInfoEmbed.setTitle(`${guild.name}`);
+					guildInfoEmbed.setTitle(`${guild.name}`)
 				}
 
 			message.reply({embeds: [guildInfoEmbed] });
