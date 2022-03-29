@@ -24,46 +24,25 @@ module.exports = {
         const content = args.join(" ");
         const user = message.mentions.users.first();
 
+        const joined = `\`${message.author.tag}\` said: ${content}`
+
+        if(!content) {
+            const content404 = new Discord.MessageEmbed()
+            .setAuthor(authorError)
+            .setColor(colors["ErrorColor"])
+            .setDescription(`You need to enter something to say`)
+
+            return message.reply({ embeds: [content404] });
+        }
+
         if(message.member.permissions.has("ADMINISTRATOR")) {
             message.channel.send(content).then(() => {
                 message.delete();
-            }).catch((err) => {
-                if(err.message === "MESSAGE_CONTENT_TYPE") {
-                    const content404 = new Discord.MessageEmbed()
-                    .setAuthor(authorError)
-                    .setColor(colors["ErrorColor"])
-                    .setDescription(`You need to enter something to say`)
-
-                    return message.reply({ embeds: [content404] });
-                }else {
-                    const error = new Discord.MessageEmbed()
-                    .setAuthor(authorError)
-                    .setColor(colors["ErrorColor"])
-                    .setDescription(`Uhoh! A problem has been detected and the command has been aborted. If this is your first time encounting this error, please check the command, and check our quick fix error handling. If this keep on appearing, please DM ultimatehecker#1165 with this context: \`\`\`${err}\`\`\``)
-
-                    return message.reply({ embeds: [error] });
-                }
-            });
+            })
         }else {
-            message.channel.send(message.author.tag, "said", content).then(() => {
+            message.channel.send(joined).then(() => {
                 message.delete();
-            }).catch((err) => {
-                if(err.message === "MESSAGE_CONTENT_TYPE") {
-                    const content404 = new Discord.MessageEmbed()
-                    .setAuthor(authorError)
-                    .setColor(colors["ErrorColor"])
-                    .setDescription(`You need to enter something to say`)
-
-                    return message.reply({ embeds: [content404] });
-                }else {
-                    const error = new Discord.MessageEmbed()
-                    .setAuthor(authorError)
-                    .setColor(colors["ErrorColor"])
-                    .setDescription(`Uhoh! A problem has been detected and the command has been aborted. If this is your first time encounting this error, please check the command, and check our quick fix error handling. If this keep on appearing, please DM ultimatehecker#1165 with this context: \`\`\`${err}\`\`\``)
-
-                    return message.reply({ embeds: [error] });
-                }
-            });
+            })
         }
     }
 };
