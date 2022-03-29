@@ -22,9 +22,14 @@ module.exports = {
         }
 
         function mcseed() {
-            let random_number = Math.floor(Math.random() * 9223372036854775807);
-            let interger = ["-1", ""];
-            return interger[Math.floor(Math.random() * interger.length)], random_number;
+            let response = [Math.floor(Math.random() * (9223372036854775807 - 1 + 1) + 1)];
+            let rand = Math.random()
+
+            if(rand <= 0.5) {
+                return `${[Math.floor(Math.random() * 1)]}${response}`
+            }else if(rand >= 0.5) {
+                return `${[Math.floor(Math.random() * -1)]}${response}`
+            }
         }
 
         const seed = new Discord.MessageEmbed()
