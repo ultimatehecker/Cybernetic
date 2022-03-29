@@ -17,8 +17,13 @@ module.exports = {
         }
 
         function randomFlip() {
-            const rand = ["The Coin landed on Heads!", "The Coin landed on Tails!"];
-            return rand[Math.floor(Math.random() * rand.length)];
+            let rand = Math.random()
+
+            if(rand <= 0.5) {
+                return `The Coin landed on Heads!`
+            }else if(rand >= 0.5) {
+                return `The Coin landed on Tails!`
+            }
         }
 
         const coinflip = new Discord.MessageEmbed()
