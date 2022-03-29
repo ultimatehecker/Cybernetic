@@ -24,6 +24,6 @@ module.exports = {
             .setDescription("This Cybernetic Invite Link does include the slash commands which will be added soon and includes the regular message based commands.")
             .setFooter(`Cybernetic Invite Link requested by ${message.author.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`,message.author.displayAvatarURL())
 
-		message.reply({ embeds: [invite], components: [{ type: "ACTION_ROW", components: [{ type: "BUTTON", label: "Bot Invite", url: "https://discord.com/api/oauth2/authorize?client_id=834177766869565491&permissions=8&scope=applications.commands%20bot", style: "LINK" }]}]});
+		message.reply({ embeds: [invite], components: [{ type: "ACTION_ROW", components: [{ type: "BUTTON", label: "Bot Invite", url: "https://discord.com/api/oauth2/authorize?client_id=923239259845066843&permissions=8&scope=bot%20applications.commands", style: "LINK" }]}]});
     }
 };
