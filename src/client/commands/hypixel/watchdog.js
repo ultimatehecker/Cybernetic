@@ -23,7 +23,7 @@ module.exports = {
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.addField("Total Watchdog bans", `\`${commaNumber(stats.byWatchdogTotal)}\``, true)
-				.addField("Bans in the last minute", `\`${commaNumber(stats.byWatchDogLastMinute)}\``, true)
+				.addField("Bans in the last minute", `\`${commaNumber(stats.byWatchdogLastMinute)}\``, true)
 				.addField("Total staff bans", `\`${commaNumber(stats.byStaffTotal)}\``, true)
 			message.reply({embeds: [embed] });
 		});
