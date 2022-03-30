@@ -32,13 +32,13 @@ module.exports = {
 			return message.reply({embeds: [notconnected] });
 		}
 
-		const username = await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`).then((res) => res.json());
+		const username = await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`);
 
         user.deleteOne(() => {
 			const unlinked = new Discord.MessageEmbed()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.setDescription(`${username.data.player.username} has been successfully unlinked from your account.`)
+				.setDescription(`${username.data.data.player.username} has been successfully unlinked from your account.`)
 			message.reply({embeds: [unlinked] });
 		});
 	}
