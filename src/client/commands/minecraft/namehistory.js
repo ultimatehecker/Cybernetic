@@ -97,7 +97,7 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
 				console.error(error);
-				return message.reply({embeds: [error] });
+				return message.reply({embeds: [err] });
 			}
 		}
 	}
