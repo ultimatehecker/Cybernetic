@@ -7,7 +7,9 @@
     "config": "npm uninstall pm2 && npm install pm2 -g",
     "build": "npm install",
     "start": "cd .\\src\\client && pm2 start main.js --watch && pm2 monit",
-    "stop": "pm2 kill"
+    "stop": "pm2 kill",
+    "moniter": "pm2 monit",
+    "log": "pm2 logs"
   },
   "repository": {
     "type": "git",
