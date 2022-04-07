@@ -59,11 +59,9 @@ module.exports = {
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 
-                .addField('Coins', `\`${commaNumber(player.stats.blitzsg.coins)}\``, true)
-                .addField('Solo Wins', `\`${commaNumber(player.stats.blitzsg.winsSolo)}\``, true)
-                .addField('Team Wins', `\`${commaNumber(player.stats.blitzsg.winsTeam)}\``, true)
-                .addField('Deaths', `\`${commaNumber(player.stats.blitzsg.deaths)}\``, true)
-                .addField('KDR', `\`${commaNumber(player.stats.blitzsg.KDRatio)}\``, true)
+                .addField('General', `\`•\` **Coins**: \`${commaNumber(player.stats.blitzsg.coins)}\` \n \`•\` **Kit Statistics**: \`${commaNumber(player.stats.blitzsg.kitStats)}\``, true)
+                .addField('Wins', `\`•\` **Solo Wins**: \`${commaNumber(player.stats.blitzsg.winsSolo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.blitzsg.winsTeam)}\``, true)
+                .addField('Kills', `\`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kills)}\` \n \`•\` **Deaths**:\`${commaNumber(player.stats.blitzsg.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.KDRatio)}\``, true)
 
             message.reply({ embeds: [blitzsurvivalgames] });
 
