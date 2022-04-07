@@ -44,6 +44,15 @@ module.exports = {
         }
 
         hypixel.getPlayer(player).then((player) => {
+
+            if (!player.stats.smashheroes) {
+                const neverPlayed = new Discord.MessageEmbed()
+                    .setAuthor(authorError)
+                    .setColor(colors["ErrorColor"])
+                    .setDescription("That player has never played this game")
+                return message.reply({ embeds: [neverPlayed] });
+            }
+
             const embed = new Discord.MessageEmbed()
                 .setAuthor(authorSuccess)
                 .setTitle(`[${player.rank}] ${player.nickname}`)
@@ -76,12 +85,6 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription('That player has never logged into Hypixel.')
-                return message.reply({ embeds: [neverLogged] });
-            } else if (e.message === errors.CANNOT_READ_PROPERTIES_OF_UNDEFINED) {
-                const neverLogged = new Discord.MessageEmbed()
-                    .setAuthor(authorError)
-                    .setColor(colors["ErrorColor"])
-                    .setDescription('That player has never played this game')
                 return message.reply({ embeds: [neverLogged] });
             } else {
                 const error = new Discord.MessageEmbed()

@@ -51,15 +51,15 @@ module.exports = {
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 
-                .addField('Kills', `\`${commaNumber(player.stats.speedUHC.kills)}\``, true)
-                .addField('Losses', `\`${commaNumber(player.stats.speedUHC.losses)}\``, true)
-                .addField('Wins', `\`${commaNumber(player.stats.speedUHC.wins)}\``, true)
-                .addField('Winstreak', `\`${commaNumber(player.stats.speedUHC.winstreak)}\``, true)
-                .addField('Deaths', `\`${commaNumber(player.stats.speedUHC.deaths)}\``, true)
-                .addField('Games Played', `\`${commaNumber(player.stats.speedUHC.playedGames)}\``, true)
-                .addField('Coins', `\`${commaNumber(player.stats.speedUHC.coins)}\``, true)
-                .addField('KD Ratio', `\`${player.stats.speedUHC.KDRatio}\``, true)
-                .addField('WL Ratio', `\`${player.stats.speedUHC.WLRatio}\``, true)
+                .addField('Kills', `\`${commaNumber(player.stats.speeduhc.kills)}\``, true)
+                .addField('Losses', `\`${commaNumber(player.stats.speeduhc.losses)}\``, true)
+                .addField('Wins', `\`${commaNumber(player.stats.speeduhc.wins)}\``, true)
+                .addField('Winstreak', `\`${commaNumber(player.stats.speeduhc.winstreak)}\``, true)
+                .addField('Deaths', `\`${commaNumber(player.stats.speeduhc.deaths)}\``, true)
+                .addField('Games Played', `\`${commaNumber(player.stats.speeduhc.playedGames)}\``, true)
+                .addField('Coins', `\`${commaNumber(player.stats.speeduhc.coins)}\``, true)
+                .addField('KD Ratio', `\`${player.stats.speeduhc.KDRatio}\``, true)
+                .addField('WL Ratio', `\`${player.stats.speeduhc.WLRatio}\``, true)
 
             message.reply({ embeds: [speeduhc] });
 
@@ -75,12 +75,6 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription('That player has never logged into Hypixel.')
-                return message.reply({ embeds: [neverLogged] });
-            } else if (e.message === errors.CANNOT_READ_PROPERTIES_OF_UNDEFINED) {
-                const neverLogged = new Discord.MessageEmbed()
-                    .setAuthor(authorError)
-                    .setColor(colors["ErrorColor"])
-                    .setDescription('That player has never played this game')
                 return message.reply({ embeds: [neverLogged] });
             } else {
                 const error = new Discord.MessageEmbed()

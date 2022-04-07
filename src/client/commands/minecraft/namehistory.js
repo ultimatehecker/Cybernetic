@@ -85,12 +85,6 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
 				return message.reply({ embeds: [player404] });
-			} else if (error.message === errors.PLAYER_HAS_NEVER_LOGGED) {
-				const neverLogged = new Discord.MessageEmbed()
-					.setAuthor(authorError)
-					.setColor(colors["ErrorColor"])
-					.setDescription("That player has never logged into Hypixel.");
-				return message.reply({embeds: [neverLogged] });
 			} else {
 				const err = new Discord.MessageEmbed()
 					.setAuthor(authorError)

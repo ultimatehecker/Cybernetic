@@ -31,33 +31,17 @@ module.exports = {
                 return message.reply({ embeds: [ip404] });
             }
 
-            const MOTDData = await axios.get(`https://api.mcsrvstat.us/2/${args[0]}`).then(res => res.json());
-            const serverData = await axios.get(`https://mc-api.net/v3/server/ping/${args[0]}`).then(res => res.json());
+            const MOTDData = (await axios.get(`https://api.mcsrvstat.us/2/${args[0]}`)).data;
+            const serverData = (await axios.get(`https://mc-api.net/v3/server/ping/${args[0]}`)).data;
 
             const server = new Discord.MessageEmbed()
                 .setAuthor(authorSuccess)
-                .setTitle(args[0])
+                .setTitle(`\`\`\`${args[0]}\`\`\``)
                 .setColor(colors["MainColor"])
                 .addField('IP Address', `\`${MOTDData.ip}\`:\`${MOTDData.port}\``)
                 .addField('Version', `\`${serverData.version.name}\``)
                 .addField('Online Players', `\`${serverData.players.online}\`/\`${serverData.players.max}\``)
                 .setThumbnail(serverData.favicon)
-
-                if (MOTDData.motd.clean[1] !== undefined) {
-                    const cleanMOTD = `\n ${MOTDData.motd.clean[1]}`
-                    server.addField('Clean MOTD', `\`${MOTDData.motd.clean[0]}${cleanMOTD}\``);
-
-                } else if (MOTDData.motd.clean[1] == undefined) {
-                    server.addField('Clean MOTD', `\`${MOTDData.motd.clean[0]}\``);
-                }
-
-                if (MOTDData.motd.raw[1] !== undefined) {
-                    const rawMOTD = `\n ${MOTDData.motd.raw[1]}`
-                    server.addField('Raw MOTD', `\`${MOTDData.motd.raw[0]}${rawMOTD}\``);
-                    
-                } else if (MOTDData.motd.clean[1] == undefined) {
-                    server.addField('Raw MOTD', `\`${MOTDData.motd.raw[0]}\``);
-                }
 
             message.reply({ embeds: [server] });
 
