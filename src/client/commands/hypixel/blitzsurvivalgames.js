@@ -53,13 +53,17 @@ module.exports = {
                 return message.reply({ embeds: [neverPlayed] });
             }
 
+            if(!player.stats.blitzsg.kitStats) {
+
+            }
+
             const blitzsurvivalgames = new Discord.MessageEmbed()
                 .setAuthor(authorSuccess)
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 
-                .addField('General', `\`•\` **Coins**: \`${commaNumber(player.stats.blitzsg.coins)}\` \n \`•\` **Kit Statistics**: \`${commaNumber(player.stats.blitzsg.kitStats)}\``, true)
+                .addField('General', `\`•\` **Coins**: \`${commaNumber(player.stats.blitzsg.coins)}\``, true)
                 .addField('Wins', `\`•\` **Solo Wins**: \`${commaNumber(player.stats.blitzsg.winsSolo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.blitzsg.winsTeam)}\``, true)
                 .addField('Kills', `\`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kills)}\` \n \`•\` **Deaths**:\`${commaNumber(player.stats.blitzsg.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.KDRatio)}\``, true)
 
