@@ -59,15 +59,8 @@ module.exports = {
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 
-                .addField('Coins', `\`${commaNumber(player.stats.buildbattle.coins)}\``, true)
-                .addField('Total Wins', `\`${commaNumber(player.stats.buildbattle.totalWins)}\``, true)
-                .addField('Total Games', `\`${commaNumber(player.stats.buildbattle.playedGames)}\``, true)
-                .addField('Total Votes', `\`${commaNumber(player.stats.buildbattle.totalVotes)}\``, true)
-                .addField('Score', `\`${commaNumber(player.stats.buildbattle.score)}\``, true)
-                .addField('Solo Wins', `\`${commaNumber(player.stats.buildbattle.wins.solo)}\``, true)
-                .addField('Team Wins', `\`${commaNumber(player.stats.buildbattle.wins.team)}\``, true)
-                .addField('Pro Wins', `\`${commaNumber(player.stats.buildbattle.wins.pro)}\``, true)
-                .addField('Guess That Build Wins', `\`${commaNumber(player.stats.buildbattle.wins.gtb)}\``, true)
+                .addField('Total Games', `\`•\` **Total Games**: \`${commaNumber(player.stats.buildbattle.playedGames)}\` \n \`•\` **Total Votes**: \`${commaNumber(player.stats.buildbattle.totalVotes)}\``, true)
+                .addField('Wins', `\`•\` **Coins**: \`${commaNumber(player.stats.buildbattle.coins)}\` \n **Solo Wins**: \`${commaNumber(player.stats.buildbattle.wins.solo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.buildbattle.wins.team)}\` \n \`•\` **Pro Wins**: \`${commaNumber(player.stats.buildbattle.wins.pro)}\` \n \`•\` **GTB Wins**: \`${commaNumber(player.stats.buildbattle.wins.gtb)}\` \n \`•\` **Total Wins**: \`${commaNumber(player.stats.buildbattle.totalWins)}\``, true)
 
             message.reply({ embeds: [buildbattle] });
 
