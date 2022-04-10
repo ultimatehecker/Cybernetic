@@ -15,21 +15,17 @@ You will need to have these things installed on your system for this to fully wo
 
 2. Then you will need to in the root dir do:
 
-```npm i```
+```npm run build```
 
-3. If you already have pm2 installed globally then you can skip the following steps:
+3. You will have to run the config script to configure pm2 
 
-```npm uninstall pm2```
-
-4. Install pm2 again globally:
-
-```npm install pm2 -g```
+```npm run config```
 
 Now you have Cybernetic installed on your system! You can start the client with either:
 
-```pm2 start main.js```
+```npm run start```
 
-OR
+OR in the client folder:
 
 ```node .```
 
