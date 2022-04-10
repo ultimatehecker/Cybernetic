@@ -1,0 +1,3 @@
+DISCORD_TOKEN = (discord token)
+MONGODB_SRV = (mongodb atlas srv)
+HYPIXEL_API_KEY = (hypixel api key)

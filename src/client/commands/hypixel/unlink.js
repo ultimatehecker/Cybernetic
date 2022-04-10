@@ -1,0 +1,45 @@
+const axios = require("axios");
+const colors = require(`../../tools/colors.json`);
+const User = require('../../schemas/user');
+console.log('Command File Successfully Scanned - unlink');
+
+module.exports = {
+	name: "unlink",
+	aliases: ["unverify"],
+	description: "Allows you to unlink your Minecraft account from your Discord",
+	usage: "unlink",
+	example: "unlink",
+	async execute(client, message, args, Discord) {
+
+		await message.channel.sendTyping();
+
+		let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
+        let authorSuccess = {
+            name: "Unlink",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+		
+		const user = await User.findOne({ id: message.author.id });
+		if (!user) {
+			const notconnected = new Discord.MessageEmbed()
+				.setAuthor(authorError)
+				.setColor(colors["ErrorColor"])
+				.setDescription("Your account is not connected!")
+			return message.reply({embeds: [notconnected] });
+		}
+
+		const username = await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`);
+
+        user.deleteOne(() => {
+			const unlinked = new Discord.MessageEmbed()
+				.setAuthor(authorSuccess)
+				.setColor(colors["MainColor"])
+				.setDescription(`${username.data.data.player.username} has been successfully unlinked from your account.`)
+			message.reply({embeds: [unlinked] });
+		});
+	}
+};
