@@ -17,8 +17,6 @@ module.exports = (client, Discord) => {
 		}
 	}
 
-	/*
-
 	client.user.id = process.env.CLIENT_ID;
 	let slashCommands = basicCmds.map((command) => {
 		let slashCmd = {
@@ -107,7 +105,7 @@ module.exports = (client, Discord) => {
 
 	console.timeEnd("Finished Loading Context Menu Data in");
 
-	console.log("Singularity Commands Set");
+	console.log("Cybernetic Commands Set");
 
 	if (process.argv[2] === "-d") {
 		console.log(
@@ -156,6 +154,4 @@ module.exports = (client, Discord) => {
 			console.timeEnd(`Removed All Slash (/) Commands Globally in`);
 		});
 	}
-
-	*/
 };
