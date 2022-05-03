@@ -1,4 +1,4 @@
-console.time("Loaded all Cybernetic Dependancies in")
+console.time("Loaded all Cybernetic Dependancies in");
 
 const currentDate = new Date(Date.now());
 
@@ -7,7 +7,7 @@ const Tracing = require("@sentry/tracing");
 
 Sentry.init({
     dsn: "https://d5ca07bf8f4845adb0bbd96aec2a7d96@o922460.ingest.sentry.io/6123054",
-    release: "0.1.1",
+    release: "0.2.2",
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
     environment: "development",
