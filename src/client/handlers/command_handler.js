@@ -30,53 +30,7 @@ module.exports = (client, Discord) => {
 			execute: command.execute,
 			slashExecute: command.slashExecute,
 		};
-		if (fs.existsSync(`./commands/${command.name}/`)) {
-			let sub_dir = fs.readdirSync(`./commands/${command.name}/`, {
-				withFileTypes: true,
-			});
-			for (let ent of sub_dir) {
-				if (ent.isDirectory()) {
-					if (ent.name === command.name) continue;
-					let grp_meta = require(`../commands/${command.name}/${ent.name}/.meta.js`);
-					let index =
-						slashCmd.options.push({
-							name: ent.name,
-							description: grp_meta.description,
-							type: "SUB_COMMAND_GROUP",
-							options: [],
-						}) - 1;
-					let subgrp_cmds = fs
-						.readdirSync(`./commands/${command.name}/${ent.name}/`)
-						.filter((file) => file.endsWith("js"));
-					for (let subgrp_cmd_name of subgrp_cmds) {
-						if (subgrp_cmd_name === ".meta.js") continue;
-						const subgrp_cmd = require(`../commands/${command.name}/${ent.name}/${subgrp_cmd_name}`);
-						slashCmd.options[index].options.push({
-							name: subgrp_cmd.name,
-							description: subgrp_cmd.description,
-							type: "SUB_COMMAND",
-							options: subgrp_cmd.options,
-							example: subgrp_cmd.example,
-							notes: subgrp_cmd.notes,
-							execute: subgrp_cmd.execute,
-							slashExecute: subgrp_cmd.slashExecute,
-						});
-					}
-				} else if (ent.name.endsWith("js")) {
-					let sub_cmd = require(`../commands/${command.name}/${ent.name}`);
-					slashCmd.options.push({
-						name: sub_cmd.name,
-						description: sub_cmd.description,
-						type: "SUB_COMMAND",
-						options: sub_cmd.options,
-						example: sub_cmd.example,
-						notes: sub_cmd.notes,
-						execute: sub_cmd.execute,
-						slashExecute: sub_cmd.slashExecute,
-					});
-				}
-			}
-		}
+	
 		client.commands.set(slashCmd.name, slashCmd);
 		return slashCmd;
 	});
