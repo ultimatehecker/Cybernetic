@@ -30,7 +30,7 @@ module.exports = {
                 .setColor(colors["ErrorColor"])
                 .setDescription('You have to enter a prefix to chnage a prefix!')
 
-            return message.reply({ embeds: [prefix404] });
+            return message.reply({ embeds: [prefix404], allowedMentions: { repliedUser: true } });
         }
 
         if(message.member.permissions.has("MANAGE_GUILD")) {
@@ -41,7 +41,7 @@ module.exports = {
 						.setColor(colors["MainColor"])
 						.setDescription(`Prefix set to: \`${args[0]}\``);
 
-					message.reply({ embeds: [success] });
+					message.reply({ embeds: [success], allowedMentions: { repliedUser: true } });
 			});
         } else {
             const invalid = new Discord.MessageEmbed()
@@ -49,7 +49,7 @@ module.exports = {
                 .setColor(colors["ErrorColor"])
                 .setDescription('You don\'t have permission to change my prefix!')
 
-            return message.reply({ embeds: [invalid]} )
+            return message.reply({ embeds: [invalid], allowedMentions: { repliedUser: true } })
         }
     },
     async slashExecute(client, Discord, interaction) {
