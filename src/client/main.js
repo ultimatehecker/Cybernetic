@@ -108,10 +108,10 @@ db.once("open", () => {
             ],
             status: "online",
         });
-    });
 
-    ["command_handler", "event_handler", "util_handler"].forEach((handler) => {
-        require(`./handlers/${handler}`)(client, Discord);
+        ["command_handler", "event_handler", "util_handler"].forEach((handler) => {
+            require(`./handlers/${handler}`)(client, Discord);
+        });
     });
     loginTransaction.finish();
 });
