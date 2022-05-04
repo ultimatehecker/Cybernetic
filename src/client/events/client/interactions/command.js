@@ -17,7 +17,7 @@ module.exports  = async (Discord, client, interaction) => {
         await executor(client, Discord, interaction, serverDoc)
     } catch(error) {
         console.error(error);
-        const embed = new Discord.MessageEmebed()
+        const embed = new Discord.MessageEmbed()
             .setColor(colors["ErrorColor"])
             .setDescription("There was an error encountered while executing this command!")
 
