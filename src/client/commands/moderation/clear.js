@@ -2,12 +2,13 @@ const colors = require("../../tools/colors.json");
 
 module.exports = {
 	name: "clear",
-	description: "Clear messages",
+	aliases: ["purge"],
+	description: "Clears the amount of messages that are specified",
 	defaultPermission: true,
 	options: [
 		{
 			name: "amount",
-			description: "The number of messages you wish to clear, or all",
+			description: "The number of messages you want to clear",
 			type: "STRING",
 			required: true,
 		},
