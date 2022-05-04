@@ -75,7 +75,7 @@ module.exports = {
                     .setColor(colors["MainColor"])
                     .setDescription(`Prefix set to: \`${interaction.options.get("prefix").value}\``)
 
-                interaction.editReply({ embeds: [embed] });
+                interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 			});
 		} else {
 			const permsEmbed = new Discord.MessageEmbed()
@@ -83,7 +83,7 @@ module.exports = {
                 .setColor(colors["ErrorColor"])
 				.setDescription("You don\'t have permission to change my prefix!")
 
-			interaction.editReply({ embeds: [permsEmbed] });
+			interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
 
             setTimeout(function() {
                 interaction.deleteReply()
