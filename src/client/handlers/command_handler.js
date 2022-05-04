@@ -17,16 +17,18 @@ module.exports = (client, Discord) => {
 		}
 	}
 
+	console.time("Finished Loading Slash (/) Command Data in");
+
 	client.user.id = process.env.CLIENT_ID;
 	let slashCommands = basicCmds.map((command) => {
 		let slashCmd = {
 			name: command.name,
-			type: command.type,
+			aliases: command.aliases,
 			description: command.description,
 			options: command.options,
 			defaultPermission: command.defaultPermission,
+			usage: command.usage,
 			example: command.example,
-			notes: command.notes,
 			execute: command.execute,
 			slashExecute: command.slashExecute,
 		};
@@ -41,11 +43,11 @@ module.exports = (client, Discord) => {
 	console.time("Finished Loading Context Menu Data in");
 
 	const context_files = fs
-		.readdirSync("./contexts/")
+		.readdirSync("./src/client/contexts/")
 		.filter((file) => file.endsWith("js"));
 
 	for (const file of context_files) {
-		const context = require(`../contexts/${file}`);
+		const context = require(`../../contexts/${file}`);
 		if (context.name) {
 			client.contexts.set(context.name, context);
 			slashCommands.push({
@@ -58,7 +60,6 @@ module.exports = (client, Discord) => {
 	}
 
 	console.timeEnd("Finished Loading Context Menu Data in");
-
 	console.log("Cybernetic Commands Set");
 
 	if (process.argv[2] === "-d") {
