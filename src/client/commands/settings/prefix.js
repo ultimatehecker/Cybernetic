@@ -34,16 +34,15 @@ module.exports = {
         }
 
         if(message.member.permissions.has("MANAGE_GUILD")) {
-            client.utils
-				.updateServer(client, message.guild.id, { prefix: args[0] })
-				.then(() => {
+            client.utils.updateServer(client, message.guild.id, { prefix: args[0] }).then(() => {
+
 					const success = new Discord.MessageEmbed()
-                        .setAutor(authorSuccess)
+                        .setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
 						.setDescription(`Prefix set to: \`${args[0]}\``);
 
 					message.reply({ embeds: [success] });
-				});
+			});
         } else {
             const invalid = new Discord.MessageEmbed()
                 .setAuthor(authorError)
@@ -54,27 +53,41 @@ module.exports = {
         }
     },
     async slashExecute(client, Discord, interaction) {
-		await interaction.deferReply({ ephemeral: true });
-		if (interaction.member.permissions.has("MANAGE_GUILD")) {
-			client.utils
-				.updateServer(client, interaction.guild.id, {
-					prefix: interaction.options.get("prefix").value,
-				})
-				.then(() => {
-					const embed = new Discord.MessageEmbed()
-                        .setAuthor(authorSuccess)
-						.setColor(colors["MainColor"])
-						.setDescription(`Prefix set to: \`${interaction.options.get("prefix").value}\``)
 
-					interaction.deferReply({ embeds: [embed] });
-				});
+        await interaction.deferReply({ ephemeral: false });
+
+        let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
+        }
+    
+        let authorSuccess = {
+            name: "Prefix Changed!",
+            iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
+
+		if (interaction.member.permissions.has("MANAGE_GUILD")) {
+			client.utils.updateServer(client, interaction.guild.id, { prefix: interaction.options.get("prefix").value }).then(() => {
+
+                const embed = new Discord.MessageEmbed()
+                    .setAuthor(authorSuccess)
+                    .setColor(colors["MainColor"])
+                    .setDescription(`Prefix set to: \`${interaction.options.get("prefix").value}\``)
+
+                interaction.editReply({ embeds: [embed] });
+			});
 		} else {
 			const permsEmbed = new Discord.MessageEmbed()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
 				.setDescription("You don\'t have permission to change my prefix!")
 
-			interaction.deferReply({ embeds: [permsEmbed], ephemeral: true });
+			interaction.editReply({ embeds: [permsEmbed] });
+
+            setTimeout(function() {
+                interaction.deleteReply()
+            }, 5000);
 		}
 	},
 };
