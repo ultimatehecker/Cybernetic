@@ -11,7 +11,9 @@ module.exports  = async (Discord, client, interaction) => {
 
     if (serverDoc === "error") return;
 
-    let executor = client.commands.get(interaction.commandName).slashExecute;
+    let executor = null; 
+	executor = client.commands.get(interaction.commandName).slashExecute;
+	
 
     try {
         await executor(client, Discord, interaction, serverDoc)
