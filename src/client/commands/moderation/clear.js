@@ -174,25 +174,23 @@ module.exports = {
 			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 		}
 
-		interaction.channel
-			.bulkDelete(Number(interaction.options.get("amount").value), true)
-			.then(async (collection) => {
-				const embed = new Discord.MessageEmbed()
-					.setAuthor(authorSuccess)
-					.setColor(colors["MainColor"])
-					.setDescription(`Successfully cleared \`${collection.size}\` messages! *Note: Some messages may have not been cleared since they are older than 14 days old. Click below to learn why:* \n https://wiki.dyno.gg/en/purge-14-day`)
+		interaction.channel.bulkDelete(Number(interaction.options.get("amount").value), true).then(async (collection) => {
+			const embed = new Discord.MessageEmbed()
+				.setAuthor(authorSuccess)
+				.setColor(colors["MainColor"])
+				.setDescription(`Successfully cleared \`${collection.size}\` messages! *Note: Some messages may have not been cleared since they are older than 14 days old. Click below to learn why:* \n https://wiki.dyno.gg/en/purge-14-day`)
 
-				interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-			}).catch((err) => {
-				console.error(err);
-				const embed = new Discord.MessageEmbed()
-					.setAuthor(authorError)
-					.setColor(colors["ErrorColor"])
-					.setDescription("An error occured while clearing the messages.")
+			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+		}).catch((err) => {
+			console.error(err);
+			const embed = new Discord.MessageEmbed()
+				.setAuthor(authorError)
+				.setColor(colors["ErrorColor"])
+				.setDescription("An error occured while clearing the messages.")
 
-				interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-				console.error(err)
-				return;
-			});
+			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			console.error(err)
+			return;
+		});
 	},
 };
