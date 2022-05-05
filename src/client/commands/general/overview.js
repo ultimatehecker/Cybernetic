@@ -1,5 +1,3 @@
-console.log('Command File Successfully Scanned - overview');
-
 const colors = require("../../tools/colors.json");
 
 module.exports = {

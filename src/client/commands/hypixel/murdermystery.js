@@ -2,7 +2,6 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-console.log('Command File Successfully Scanned - murdermystery');
 
 module.exports = {
     name: 'murdermystery',

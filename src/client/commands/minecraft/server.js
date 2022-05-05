@@ -1,6 +1,5 @@
 const axios = require("axios")
 const colors = require("../../tools/colors.json");
-console.log('Command File Successfully Scanned - server');
 
 module.exports = {
     name: "server",

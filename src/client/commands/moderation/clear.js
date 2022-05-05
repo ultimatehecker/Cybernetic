@@ -4,7 +4,6 @@ module.exports = {
 	name: "clear",
 	aliases: ["purge"],
 	description: "Clears the amount of messages that are specified",
-	defaultPermission: true,
 	options: [
 		{
 			name: "amount",
@@ -13,6 +12,7 @@ module.exports = {
 			required: true,
 		},
 	],
+	defaultPermission: true,
 	usage: 'clear (amount)',
 	example: "clear 100",
 	async execute(client, message, args, Discord, prefix) {

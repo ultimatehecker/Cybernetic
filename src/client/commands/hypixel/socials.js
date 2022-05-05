@@ -1,7 +1,6 @@
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-console.log('Command File Successfully Scanned - socials');
 
 module.exports = {
 	name: "socials",

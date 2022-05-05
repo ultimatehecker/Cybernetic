@@ -2,7 +2,6 @@ const axios = require("axios");
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-console.log('Command File Successfully Scanned - uuid');
 
 module.exports = {
 	name: "uuid",

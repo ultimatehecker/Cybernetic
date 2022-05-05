@@ -1,5 +1,3 @@
-console.log('Command File Successfully Scanned - rng');
-
 const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
 

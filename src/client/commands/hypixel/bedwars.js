@@ -8,7 +8,6 @@ module.exports = {
     name: 'bedwars',
     aliases: ["bw"],
     description: 'Shows you the different gamemodes and overall statistics of a Hypixel Bedwars player!',
-    defaultPermission: false,
 	options: [
 		{
 			name: "player",
@@ -17,6 +16,7 @@ module.exports = {
 			type: "STRING"
 		}
 	],
+    defaultPermission: true,
     usage: 'bedwars [IGN] (gamemode)',
     example: 'bedwars ultimate_hecker overall',
     async execute(client, message, args, Discord, prefix) {
@@ -177,7 +177,7 @@ module.exports = {
                 const error = new Discord.MessageEmbed()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
-                    .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
+                    .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
                 interaction.editReply({ embeds: [error], allowedMentions: { repliedUser: true } });
             }
         });

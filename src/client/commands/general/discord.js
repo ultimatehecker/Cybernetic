@@ -1,5 +1,4 @@
 const colors = require("../../tools/colors.json");
-console.log('Command File Successfully Scanned - discord')
 
 module.exports = {
     name: "discord",

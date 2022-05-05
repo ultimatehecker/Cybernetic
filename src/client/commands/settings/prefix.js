@@ -1,5 +1,4 @@
 const colors = require("../../tools/colors.json");
-console.log('Command File Successfully Scanned - prefix');
 
 module.exports = {
     name: 'prefix',
@@ -8,6 +7,7 @@ module.exports = {
     options: [
 		{ name: "prefix", description: "The new prefix", type: "STRING", required: true },
 	],
+    defaultPermission: true,
     usage: 'prefix (prefix)',
     example: 'prefix $',
     async execute(client, message, args, Discord, prefix) {

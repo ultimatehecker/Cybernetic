@@ -1,7 +1,6 @@
 const colors = require(`../../tools/colors.json`)
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
-console.log('Command File Successfully Scanned - link');
 
 module.exports = {
 	name: "link",
