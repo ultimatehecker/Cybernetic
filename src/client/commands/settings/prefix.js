@@ -94,7 +94,7 @@ module.exports = {
 
 			interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    interaction.deleteReply()
                 }, 5000);
             });
 		}

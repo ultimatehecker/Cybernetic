@@ -113,14 +113,14 @@ module.exports = {
 					.setDescription("That isn't a valid command!");
 				return interaction.editReply({ embeds: [command404], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
-                        message.delete()
+                        interaction.deleteReply()
                     }, 5000);
                 });
 			}
 
 			const help = new Discord.MessageEmbed()
 
-			.setAuthor("Help", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+			.setAuthor(authorHelp)
 			.setColor(colors["MainColor"])
 			.setTitle(`${command.name} Command Description`)
 			.addField("Description:", `\`\`\`${command.description}\`\`\``);

@@ -53,11 +53,11 @@ module.exports = {
                         .setColor(colors["MainColor"])
                         .setDescription("You cannot perform this action!");
 
-                    press.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-
-                    setTimeout(function() {
-                        interaction.deleteReply()
-                    }, 5000);
+                    press.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                        setTimeout(function() {
+                            interaction.deleteReply()
+                        }, 5000);
+                    });
                 } else {
                     await press.deferUpdate();
 

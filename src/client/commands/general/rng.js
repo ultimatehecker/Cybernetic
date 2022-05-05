@@ -68,10 +68,10 @@ module.exports = {
 				.setDescription(`You didn't specify a lowest and highest number! (Example: \`${serverDoc.prefix}rng 1 10\`)`)
 
 			return interaction.editReply({ embeds: [nonumbers], allowedMentions: { repliedUser: true } }).then(() => {
-				setTimeout(function() {
-					message.delete()
-				}, 5000);
-			});
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		if(isNaN(interaction.options.get("number"))){
@@ -81,10 +81,10 @@ module.exports = {
 				.setDescription("That is not a number!")
 
 			return interaction.editReply({ embeds: [nan], allowedMentions: { repliedUser: true } }).then(() => {
-				setTimeout(function() {
-					message.delete()
-				}, 5000);
-			});
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		const embed = new Discord.MessageEmbed()
