@@ -129,10 +129,10 @@ module.exports = {
 		}
 
 		let player;
-		if (data && !interaction.options.get("player")) {
+		if (data && !interaction.options.get("player").value()) {
 			player = data.uuid;
-		} else if (interaction.options.get("player")) {
-			player = interaction.options.get("player");
+		} else if (interaction.options.get("player").value()) {
+			player = interaction.options.get("player").value();
 		}
 
 		hypixel.getPlayer(player).then((player) => {

@@ -20,6 +20,6 @@ module.exports = {
 			.setColor(colors["MainColor"])
             .setDescription("This will redirect you to Cybernetic's GitHub Repository, where you can view issues, code and potential contribute to Cybernetic")
 
-		message.reply({ embeds: [github], components: [{ type: "ACTION_ROW", components: [{ type: "BUTTON", label: "GitHub Repository", url: "https://github.com/ultimatehecker/Cybernetic", style: "LINK" }]}]});
+		message.reply({ embeds: [github], allowedMentions: { repliedUser: true }, components: [{ type: "ACTION_ROW", components: [{ type: "BUTTON", label: "GitHub Repository", url: "https://github.com/ultimatehecker/Cybernetic", style: "LINK" }]}]});
     }
 };

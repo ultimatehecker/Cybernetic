@@ -34,6 +34,7 @@ module.exports = (client, Discord) => {
 		};
 	
 		client.commands.set(slashCmd.name, slashCmd);
+		console.log(slashCmd);
 		return slashCmd;
 	});
 

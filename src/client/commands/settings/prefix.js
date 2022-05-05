@@ -30,7 +30,11 @@ module.exports = {
                 .setColor(colors["ErrorColor"])
                 .setDescription('You have to enter a prefix to chnage a prefix!')
 
-            return message.reply({ embeds: [prefix404], allowedMentions: { repliedUser: true } });
+            return message.reply({ embeds: [prefix404], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    message.delete()
+                }, 5000);
+            })
         }
 
         if(message.member.permissions.has("MANAGE_GUILD")) {
@@ -49,7 +53,12 @@ module.exports = {
                 .setColor(colors["ErrorColor"])
                 .setDescription('You don\'t have permission to change my prefix!')
 
-            return message.reply({ embeds: [invalid], allowedMentions: { repliedUser: true } })
+            return message.reply({ embeds: [invalid], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    message.delete()
+                }, 5000);
+            })
+
         }
     },
     async slashExecute(client, Discord, interaction) {
@@ -83,11 +92,11 @@ module.exports = {
                 .setColor(colors["ErrorColor"])
 				.setDescription("You don\'t have permission to change my prefix!")
 
-			interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
-
-            setTimeout(function() {
-                interaction.deleteReply()
-            }, 5000);
+			interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    message.delete()
+                }, 5000);
+            });
 		}
 	},
 };

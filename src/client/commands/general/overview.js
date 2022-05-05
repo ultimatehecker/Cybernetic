@@ -15,7 +15,6 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-		const currentDate = new Date(Date.now());
 		const owner = message.guild.members.resolve(message.guild.ownerId).user.tag;
 
 		const overview = new Discord.MessageEmbed()
@@ -33,6 +32,27 @@ module.exports = {
 				{ name: "Date Created", value: `\`${message.guild.createdAt.getMonth()}/${message.guild.createdAt.getDate()}/${message.guild.createdAt.getFullYear()}\``, inline: true },
 			]);
 
-		message.reply({ embeds: [overview] });
-	}
+		message.reply({ embeds: [overview], allowedMentions: { repliedUser: true } });
+	},
+	async slashExecute(client, Discord, interaction) {
+
+		await interaction.deferReply({ ephemeral: false });
+	
+		const embed = new Discord.MessageEmbed()
+			.setColor(colors["MainColor"])
+			.setAuthor("Server Statistics", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+			.setTitle(`${interaction.guild.name} - Server Stats`)
+			.setDescription("Various statistics about this server")
+			.setThumbnail(interaction.guild.iconURL())
+			.addFields([
+				{ name: "Member Count", value: `\`${interaction.guild.members.cache.size}\``, inline: true },
+				{ name: "Discord Server Role Count", value: `\`${interaction.guild.roles.cache.size}\``, inline: true },
+				{ name: "Server Owner", value: `\`interaction.guild.members.resolve(interaction.guild.ownerId).user\``, inline: true },
+				{ name: "Channel Count", value: `\`${interaction.guild.channels.cache.size}\``, inline: true },
+				{ name: "Server ID", value: `\`${interaction.guild.id}\``, inline: true },
+				{ name: "Date Created", value: `\`${interaction.guild.createdAt.getMonth()}/${interaction.guild.createdAt.getDate()}/${interaction.guild.createdAt.getFullYear()}\``, inline: true },
+			]);
+	
+		interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+	},
 };

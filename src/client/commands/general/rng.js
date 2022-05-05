@@ -29,7 +29,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You didn't specify a lowest and highest number! (Example: \`${prefix}rng 1 10\`)`);
 
-			return message.reply({ embeds: [nonumbers] });
+			return message.reply({ embeds: [nonumbers], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    message.delete()
+                }, 5000);
+            })
 		}
 
 		if (isNaN(args[1])) {
@@ -38,13 +42,56 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("That is not a number!");
 
-			return message.reply({ embeds: [nan] });
+			return message.reply({ embeds: [nan], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    message.delete()
+                }, 5000);
+            })
 		}
 
 		const rng = new Discord.MessageEmbed()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
 			.setDescription(`You got \`${response}\`!`)
-		message.reply({ embeds: [rng] });
-	}
+		message.reply({ embeds: [rng], allowedMentions: { repliedUser: true } });
+	},
+	async slashExecute(client, Discord, interaction, serverDoc) {
+
+		await interaction.deferReply({ ephemeral: false });
+		
+		let response = [Math.floor(Math.random() * (interaction.options.get("number") - 1 + 1) + 1)]; // rng
+
+		if(!interaction.options.get("number")){
+			const nonumbers = new Discord.MessageEmbed()
+				.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+				.setColor(colors["ErrorColor"])
+				.setDescription(`You didn't specify a lowest and highest number! (Example: \`${serverDoc.prefix}rng 1 10\`)`)
+
+			return interaction.editReply({ embeds: [nonumbers], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
+		}
+
+		if(isNaN(interaction.options.get("number"))){
+			const nan = new Discord.MessageEmbed()
+				.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+				.setColor(colors["ErrorColor"])
+				.setDescription("That is not a number!")
+
+			return interaction.editReply({ embeds: [nan], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
+		}
+
+		const embed = new Discord.MessageEmbed()
+			.setAuthor("RNG", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+			.setColor(colors["MainColor"])
+			.setDescription(`You got \`${response}\`!`)
+			
+		interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+	},
 };

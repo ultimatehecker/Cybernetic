@@ -19,6 +19,6 @@ module.exports = {
 			.setColor(color)
 			.setDescription(content)
 
-		return message.channel.send({ embeds: [embed] });
+		return message.channel.send({ embeds: [embed], allowedMentions: { repliedUser: true } });
 	}
 };

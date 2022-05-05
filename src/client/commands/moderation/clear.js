@@ -34,7 +34,11 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to clear messages!")
-			return message.reply({ embeds: [invalidperms], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [invalidperms], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
 		}
 
 		if (!args[0]) {
@@ -42,7 +46,11 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Please enter the amount of messages you wish to clear!")
-			return message.reply({ embeds: [message404], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [message404], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
 		}
 
 		if (isNaN(args[0])) {
@@ -67,7 +75,11 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("Please enter an actual number!")
-				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                    setTimeout(function() {
+                        message.delete()
+                    }, 5000);
+                });
 			}
 		}
 
@@ -76,7 +88,11 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You are not able to delete over 100 messages at a time! Although, you can do \`${prefix}clear all\` to clear the channel history. Click below to learn why: \n https://stackoverflow.com/questions/54931470/how-can-i-delete-more-than-100-messages-at-once`)
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
 		}
 
 		if (args[0] < 1) {
@@ -84,7 +100,11 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You must delete at least one message!");
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
 		}
 
 		message.delete().then(() => {
@@ -105,8 +125,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("At this time, you cannot delete messages that are over 14 days old! Click below to learn why: \n https://wiki.dyno.gg/en/purge-14-day")
 					
-				message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-				console.error(err);
+				message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                    setTimeout(function() {
+                        message.delete()
+                    }, 5000);
+                });
 				return;
 			});
 		});
@@ -131,7 +154,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to clear messages!")
 
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
 		}
 
 		if (!Number.isInteger(Number(interaction.options.get("amount").value))) {
@@ -155,7 +182,11 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("Please enter a valid integer!")
-				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                    setTimeout(function() {
+                        message.delete()
+                    }, 5000);
+                });
 			}
 		}
 
@@ -164,7 +195,11 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You are not able to delete over 100 messages at a time! Although, you can do \`/clear all\` to clear the channel history. Click below to learn why: \n https://stackoverflow.com/questions/54931470/how-can-i-delete-more-than-100-messages-at-once`)
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
 		}
 
 		if (Number(interaction.options.get("amount").value) < 1) {
@@ -172,7 +207,11 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You must delete at least one message!");
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
 		}
 
 		interaction.channel.bulkDelete(Number(interaction.options.get("amount").value), true).then(async (collection) => {
@@ -187,9 +226,13 @@ module.exports = {
 			const embed = new Discord.MessageEmbed()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
-				.setDescription("An error occured while clearing the messages.")
+				.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
 
-			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					message.delete()
+				}, 5000);
+			});
 			console.error(err)
 			return;
 		});
