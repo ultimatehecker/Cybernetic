@@ -28,7 +28,11 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Your account is not connected!")
-			return message.reply({embeds: [notconnected] });
+			return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    message.delete()
+                }, 5000);
+            });
 		}
 
 		const username = await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`);
@@ -38,7 +42,44 @@ module.exports = {
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`${username.data.data.player.username} has been successfully unlinked from your account.`)
-			message.reply({embeds: [unlinked] });
+			message.reply({embeds: [unlinked], allowedMentions: { repliedUser: true } });
 		});
-	}
+	},
+	async slashExecute(client, Discord, interaction, serverDoc) {
+
+        await interaction.deferReply({ ephemeral: false });
+
+        let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
+        let authorSuccess = {
+            name: "Unlink",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
+        const user = await User.findOne({ id: interaction.user.id });
+		if (!user) {
+			const notconnected = new Discord.MessageEmbed()
+				.setAuthor(authorError)
+				.setColor(colors["ErrorColor"])
+				.setDescription("Your account is not connected!")
+			return interaction.editReply({embeds: [notconnected], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					interaction.deleteReply()
+				}, 5000);
+			});
+		}
+
+		const username = await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`);
+
+        user.deleteOne(() => {
+			const unlinked = new Discord.MessageEmbed()
+				.setAuthor(authorSuccess)
+				.setColor(colors["MainColor"])
+				.setDescription(`\`${username.data.data.player.username}\` has been successfully unlinked from your account.`)
+			interaction.editReply({embeds: [unlinked], allowedMentions: { repliedUser: true } });
+		});
+    }
 };

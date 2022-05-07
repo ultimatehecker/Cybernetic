@@ -4,6 +4,15 @@ module.exports = {
     name: "say",
     aliases: [],
     description: "Responds with something that you say that is coming from the client",
+	options: [
+		{
+			name: "message",
+			description: "The message I should repeat",
+			type: "STRING",
+			required: true,
+		},
+	],
+    defaultPermission: true,
     usage: "say {content}",
     example: "say Cybernetic is the best Discord bot ever!",
     async execute(client, message, args, Discord) {

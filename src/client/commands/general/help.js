@@ -14,7 +14,7 @@ module.exports = {
 	],
     defaultPermission: true,
     usage: "help [command]",
-    example: "hel`, help coinflip",
+    example: "help, help coinflip",
     async execute(client, message, args, Discord, prefix) {
 
         await message.channel.sendTyping();
@@ -103,8 +103,8 @@ module.exports = {
 		}
 
 		const command =
-			client.commands.get(interaction.options.get("command").value.toLowerCase()) ||
-			client.commands.find((c) => c.aliases && c.aliases.includes(interaction.options.get("command").value.toLowerCase()));
+			client.commands.get(interaction.options.get("command")?.value.toLowerCase()) ||
+			client.commands.find((c) => c.aliases && c.aliases.includes(interaction.options.get("command")?.value.toLowerCase()));
 
 			if (!command) {
 				const command404 = new Discord.MessageEmbed()
