@@ -10,7 +10,13 @@ module.exports = {
 	options: [
 		{
 			name: "player",
-			description: "Shows the statistics of an average Hypixel Bedwars player!",
+			description: "Shows the statistics of an average Hypixel Skywars player!",
+			required: false,
+			type: "STRING"
+		},
+		{
+			name: "mode",
+			description: "Shows the statistics of an average Hypixel Skywars player of a certain mode!",
 			required: false,
 			type: "STRING"
 		}
@@ -48,11 +54,12 @@ module.exports = {
 			});
 		}
 
+		let gamemode = args[0];
 		let player;
-		if (data && !args[0]) {
+		if (data && !args[1]) {
 			player = data.uuid;
-		} else if (args[0]) {
-			player = args[0];
+		} else if (args[1]) {
+			player = args[1];
 		}
 
 		hypixel.getPlayer(player).then((player) => {
@@ -69,32 +76,35 @@ module.exports = {
 				});
             }
 
-			const embed = new Discord.MessageEmbed()
-				.setAuthor(authorSuccess)
-				.setTitle(`[${player.rank}] ${player.nickname}`)
-				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-				.setColor(colors["MainColor"])
+			if(!gamemode) {
+				const embed = new Discord.MessageEmbed()
+					.setAuthor(authorSuccess)
+					.setTitle(`[${player.rank}] ${player.nickname}`)
+					.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+					.setColor(colors["MainColor"])
 
-				.addField("Level", `\`${player.stats.skywars.level}\``, true)
-				.addField("Heads", `\`${commaNumber(player.stats.skywars.heads)}\``, true)
-				.addField("KD Ratio", `\`${player.stats.skywars.KDRatio}\``, true)
-				.addField("WL Ratio", `\`${player.stats.skywars.WLRatio}\``, true)
-				.addField("Coins", `\`${commaNumber(player.stats.skywars.coins)}\``, true)
-				.addField("Total Deaths", `\`${commaNumber(player.stats.skywars.deaths)}\``, true)
-				.addField("Total Kills", `\`${commaNumber(player.stats.skywars.kills)}\``, true)
-				.addField("Winstreak", `\`${commaNumber(player.stats.skywars.winstreak)}\``, true)
-				.addField("Total Wins", `\`${commaNumber(player.stats.skywars.wins)}\``, true)
-				.addField("Tokens", `\`${commaNumber(player.stats.skywars.tokens)}\``, true)
-				.addField("Prestige", `\`${player.stats.skywars.prestige}\``, true)
-				.addField("Souls", `\`${commaNumber(player.stats.skywars.souls)}\``, true)
-				.addField("Ranked Kills", `\`${commaNumber(player.stats.skywars.ranked.kills)}\``, true)
-				.addField("Ranked Losses", `\`${commaNumber(player.stats.skywars.ranked.losses)}\``, true)
-				.addField("Ranked Games Played", `\`${commaNumber(player.stats.skywars.ranked.playedGames)}\``, true)
-				.addField("Ranked Wins", `\`${commaNumber(player.stats.skywars.ranked.wins)}\``, true)
-				.addField("Ranked KD Ratio", `\`${player.stats.skywars.ranked.KDRatio}\``, true)
-				.addField("Ranked WL Ratio", `\`${player.stats.skywars.ranked.WLRatio}\``, true)
+					.addField("General Stats", `\`•\` **Levels**: \`${player.stats.skywars.level}✫\` \n \`•\` **Heads**: \`${commaNumber(player.stats.skywars.heads)}\` \n \`•\` **Shards**: \`${commaNumber((player.stats.skywars.shards))}\``, true)
+					.addField("Experience", `\`•\` **Experience**: \`${player.stats.skywars.experience}✫\` \n \`•\` **Coins**: \`${commaNumber(player.stats.skywars.coins)}\` \n \`•\` **Loot Chest**: \`${commaNumber((player.stats.skywars.lootChests))}\``, true)
+					.addField("Games", `\`•\` **Winstreak**: \`${commaNumber(player.stats.skywars.winstreak)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.skywars.wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.skywars.losses)}\` \n \`•\` **WLR**: \`${player.stats.skywars.WLRatio}\``, true)
+					.addField("Combat", `\`•\` **Kills**: \`${commaNumber(player.stats.skywars.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.skywars.deaths)}\` \n \`•\` **KDR**: \`${player.stats.skywars.KDRatio}\``, true)
+					.addField("Averages per Game", `\`•\` **Kills**: \`${commaNumber((player.stats.skywars.kills / player.stats.skywars.playedGames).toFixed(2))}\` \n \`•\` **Final Kills**: \`${commaNumber((player.stats.skywars.finalKills / player.stats.skywars.playedGames).toFixed(2))}\` \n \`•\` **Beds**: \`${commaNumber((player.stats.skywars.beds.broken / player.stats.skywars.playedGames).toFixed(2))}\``, true)
 
-			message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			}else if(gamemode == "solo" || "team" || "ranked") {
+				const embed = new Discord.MessageEmbed()
+					.setAuthor(authorSuccess)
+					.setTitle(`[${player.rank}] ${player.nickname}`)
+					.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+					.setColor(colors["MainColor"])
+
+					.addField("General Stats", `\`•\` **Levels**: \`${player.stats.skywars.level}✫\` \n \`•\` **Heads**: \`${commaNumber(player.stats.skywars.heads)}\` \n \`•\` **Shards**: \`${commaNumber((player.stats.skywars.shards))}\``, true)
+					.addField("Experience", `\`•\` **Experience**: \`${player.stats.skywars.experience}✫\` \n \`•\` **Coins**: \`${commaNumber(player.stats.skywars.coins)}\` \n \`•\` **Loot Chest**: \`${commaNumber((player.stats.skywars.lootChests))}\``, true)
+					.addField("Games", `\`•\` **Winstreak**: \`${commaNumber(player.stats.skywars[gamemode].winstreak)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.skywars[gamemode].wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.skywars[gamemode].losses)}\` \n \`•\` **WLR**: \`${player.stats.skywars[gamemode].WLRatio}\``, true)
+					.addField("Combat", `\`•\` **Kills**: \`${commaNumber(player.stats.skywars[gamemode].kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.skywars[gamemode].deaths)}\` \n \`•\` **KDR**: \`${player.stats.skywars[gamemode].KDRatio}\``, true)
+					.addField("Averages per Game", `\`•\` **Kills**: \`${commaNumber((player.stats.skywars[gamemode].kills / player.stats.skywars[gamemode].playedGames).toFixed(2))}\` \n \`•\` **Final Kills**: \`${commaNumber((player.stats.skywars[gamemode].finalKills / player.stats.skywars[gamemode].playedGames).toFixed(2))}\` \n \`•\` **Beds**: \`${commaNumber((player.stats.skywars[gamemode].beds.broken / player.stats.skywars[gamemode].playedGames).toFixed(2))}\``, true)
+
+				message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			}
 
 		}).catch((e) => {            
 			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -161,7 +171,8 @@ module.exports = {
 			});
         }
 
-        let player
+		let gamemode = interaction.options.get("mode")?.value;
+        let player;
         if (data && !interaction.options.get("player")?.value) {
              player = data.uuid;
         } else if (interaction.options.get("player")?.value) {
@@ -182,33 +193,54 @@ module.exports = {
                 });
             }
 
-            const embed = new Discord.MessageEmbed()
-				.setAuthor(authorSuccess)
-				.setTitle(`[${player.rank}] ${player.nickname}`)
-				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-				.setColor(colors["MainColor"])
+            if(!gamemode) {
 
-				.addField("Level", `\`${player.stats.skywars.level}\``, true)
-				.addField("Heads", `\`${commaNumber(player.stats.skywars.heads)}\``, true)
-				.addField("KD Ratio", `\`${player.stats.skywars.KDRatio}\``, true)
-				.addField("WL Ratio", `\`${player.stats.skywars.WLRatio}\``, true)
-				.addField("Coins", `\`${commaNumber(player.stats.skywars.coins)}\``, true)
-				.addField("Total Deaths", `\`${commaNumber(player.stats.skywars.deaths)}\``, true)
-				.addField("Total Kills", `\`${commaNumber(player.stats.skywars.kills)}\``, true)
-				.addField("Winstreak", `\`${commaNumber(player.stats.skywars.winstreak)}\``, true)
-				.addField("Total Wins", `\`${commaNumber(player.stats.skywars.wins)}\``, true)
-				.addField("Tokens", `\`${commaNumber(player.stats.skywars.tokens)}\``, true)
-				.addField("Prestige", `\`${player.stats.skywars.prestige}\``, true)
-				.addField("Souls", `\`${commaNumber(player.stats.skywars.souls)}\``, true)
-				.addField("Ranked Kills", `\`${commaNumber(player.stats.skywars.ranked.kills)}\``, true)
-				.addField("Ranked Losses", `\`${commaNumber(player.stats.skywars.ranked.losses)}\``, true)
-				.addField("Ranked Games Played", `\`${commaNumber(player.stats.skywars.ranked.playedGames)}\``, true)
-				.addField("Ranked Wins", `\`${commaNumber(player.stats.skywars.ranked.wins)}\``, true)
-				.addField("Ranked KD Ratio", `\`${player.stats.skywars.ranked.KDRatio}\``, true)
-				.addField("Ranked WL Ratio", `\`${player.stats.skywars.ranked.WLRatio}\``, true)
+				const embed = new Discord.MessageEmbed()
+					.setAuthor(authorSuccess)
+					.setTitle(`[${player.rank}] ${player.nickname}`)
+					.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+					.setColor(colors["MainColor"])
 
-            interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+					.addField("General Stats", `\`•\` **Levels**: \`${player.stats.skywars.level}✫\` \n \`•\` **Heads**: \`${commaNumber(player.stats.skywars.heads)}\` \n \`•\` **Shards**: \`${commaNumber((player.stats.skywars.shards))}\``, true)
+					.addField("Experience", `\`•\` **Experience**: \`${player.stats.skywars.experience}✫\` \n \`•\` **Coins**: \`${commaNumber(player.stats.skywars.coins)}\` \n \`•\` **Loot Chest**: \`${commaNumber((player.stats.skywars.lootChests))}\``, true)
+					.addField("Games", `\`•\` **Winstreak**: \`${commaNumber(player.stats.skywars.winstreak)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.skywars.wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.skywars.losses)}\` \n \`•\` **WLR**: \`${player.stats.skywars.WLRatio}\``, true)
+					.addField("Combat", `\`•\` **Kills**: \`${commaNumber(player.stats.skywars.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.skywars.deaths)}\` \n \`•\` **KDR**: \`${player.stats.skywars.KDRatio}\``, true)
+					.addField("Averages per Game", `\`•\` **Kills**: \`${commaNumber((player.stats.skywars.kills / player.stats.skywars.playedGames).toFixed(2))}\``, true)
 
+				interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+
+			}else if(gamemode == "solo" || "team" || "ranked") {
+
+				let str = gamemode.slice(1);
+		        let uppercase = gamemode[0].toUpperCase();
+		        let uppercased = uppercase + str;
+
+                authorSuccess.name = `${uppercased} SkyWars Statistics`;
+
+				const embed = new Discord.MessageEmbed()
+					.setAuthor(authorSuccess)
+					.setTitle(`[${player.rank}] ${player.nickname}`)
+					.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+					.setColor(colors["MainColor"])
+
+					.addField("General Stats", `\`•\` **Levels**: \`${player.stats.skywars.level}✫\` \n \`•\` **Heads**: \`${commaNumber(player.stats.skywars.heads)}\` \n \`•\` **Shards**: \`${commaNumber((player.stats.skywars.shards))}\``, true)
+					.addField("Experience", `\`•\` **Experience**: \`${player.stats.skywars.experience}✫\` \n \`•\` **Coins**: \`${commaNumber(player.stats.skywars.coins)}\` \n \`•\` **Loot Chest**: \`${commaNumber((player.stats.skywars.lootChests))}\``, true)
+					.addField("Games", `\`•\` **Winstreak**: \`${commaNumber(player.stats.skywars[gamemode].winstreak)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.skywars[gamemode].wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.skywars[gamemode].losses)}\` \n \`•\` **WLR**: \`${player.stats.skywars[gamemode].WLRatio}\``, true)
+					.addField("Combat", `\`•\` **Kills**: \`${commaNumber(player.stats.skywars[gamemode].kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.skywars[gamemode].deaths)}\` \n \`•\` **KDR**: \`${player.stats.skywars[gamemode].KDRatio}\``, true)
+					.addField("Averages per Game", `\`•\` **Kills**: \`${commaNumber((player.stats.skywars[gamemode].kills / player.stats.skywars[gamemode].playedGames).toFixed(2))}\``, true)
+
+				interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			} else {
+                const gamemode504 = new Discord.MessageEmbed()
+                    .setAuthor(authorError)
+                    .setColor(colors["ErrorColor"])
+                    .setDescription("That gamemode does not exist.")
+                interaction.editReply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
+                    setTimeout(function() {
+                        interaction.deleteReply()
+                    }, 5000);
+                });
+			}
         }).catch(e => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
                 const player404 = new Discord.MessageEmbed()
@@ -234,10 +266,11 @@ module.exports = {
                 const error = new Discord.MessageEmbed()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
-                    .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
+                    .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
                 return interaction.editReply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
                         interaction.deleteReply()
+						console.error(e)
                     }, 5000);
                 });
             }       
