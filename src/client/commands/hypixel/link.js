@@ -143,11 +143,21 @@ module.exports = {
 
 		await interaction.deferReply({ ephemeral: false });
 
+		let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
+        let authorSuccess = {
+            name: "Link",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
 		const user = await User.findOne({ id: interaction.user.id });
 
 		if (user && user.uuid) {
 			const alreadyconnected = new Discord.MessageEmbed()
-				.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Your account is already connected!");
 			return interaction.editReply({ embeds: [alreadyconnected], allowedMentions: { repliedUser: true } }).then(() => {
@@ -159,7 +169,7 @@ module.exports = {
 
 		if (!interaction.options.get("player")) {
 			const ign404 = new Discord.MessageEmbed()
-				.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You need to type in a player's IGN! (Example: \`${serverDoc.prefix}link ultimate_hecker\`)`)
 			return interaction.editReply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
@@ -172,7 +182,7 @@ module.exports = {
 		hypixel.getPlayer(interaction.options.get("player")?.value).then(async (player) => {
 			if (!player.socialMedia.find((s) => s.id === "DISCORD")) {
 				const notconnected = new Discord.MessageEmbed()
-					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("You haven't connected your Discord account to your account. Watch the GIF to learn how to connect your Discord account.")
 					.setImage("https://thumbs.gfycat.com/DentalTemptingLeonberger-size_restricted.gif")
@@ -184,7 +194,7 @@ module.exports = {
 			}
 			if (player.socialMedia.find((s) => s.id === "DISCORD").link !== interaction.user.tag) {
 				const tagnomatch = new Discord.MessageEmbed()
-					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`${player.nickname}'s connected Discord tag doesn't match your Discord tag.`)
 				return interaction.editReply({embeds: [tagnomatch], allowedMentions: { repliedUser: true } }).then(() => {
@@ -197,7 +207,7 @@ module.exports = {
 			const user1 = await User.findOne({ uuid: player.uuid });
 			if (user1) {
 				const playerdupe = new Discord.MessageEmbed()
-					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("That player has already been linked to another account.")
 				return interaction.editReply({embeds: [playerdupe], allowedMentions: { repliedUser: true } }).then(() => {
@@ -209,7 +219,7 @@ module.exports = {
 
 			new User({ id: interaction.user.id, uuid: player.uuid }).save(() => {
 				const linked = new Discord.MessageEmbed()
-					.setAuthor("Link", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+					.setAuthor(authorSuccess)
 					.setColor(colors["MainColor"])
 					.setDescription(`\`${player.nickname}\` has been successfully linked to your account.`)
 			
@@ -217,10 +227,9 @@ module.exports = {
 				});
 			});
 		}).catch((e) => {
-			// error messages
 			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
 				const player404 = new Discord.MessageEmbed()
-					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
 				return interaction.editReply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
@@ -230,7 +239,7 @@ module.exports = {
                 });
 			} else if (e.message === errors.PLAYER_HAS_NEVER_LOGGED) {
 				const neverLogged = new Discord.MessageEmbed()
-					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("That player has never logged into Hypixel.");
 				return interaction.editReply({ embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then(() => {
@@ -241,7 +250,7 @@ module.exports = {
 			} else {
 				if (interaction.options.get("player")) {
 					const error = new Discord.MessageEmbed()
-						.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
+						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
 						.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
 					return interaction.editReply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
