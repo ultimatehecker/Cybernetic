@@ -22,8 +22,9 @@ module.exports = {
 		}
 	],
     defaultPermission: true,
-	usage: "skywars [IGN]",
-	example: "skywars ultimate_hecker",
+	usage: "skywars [gamemode] [IGN]",
+	example: "skywars, skywars solo ultimate_hecker, skywars ultimate_hecker",
+	notes: 'For your skywars mega statistics, you need to make sure the gamemode is set to mega, and the type is set to the mega gamemode, such as solos etc.',
 	async execute(client, message, args, Discord, prefix) {
 
 		await message.channel.sendTyping();
