@@ -69,6 +69,7 @@ module.exports = {
                     .addField("Aliases:", `\`\`\`${prefix}${command.aliases}\`\`\``)
                     .addField("Usage", `\`\`\`${command.usage}\`\`\``)
                     .addField("Example", `\`\`\`${command.example}\`\`\``)
+                    .addField("Notes", ` \n *${command.notes}*`)
 
         message.reply({ embeds: [help], allowedMentions: { repliedUser: true } });
     },
