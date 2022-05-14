@@ -3,8 +3,8 @@
 ## Supported Versions
 
 Only the current running version of Cybernetic will be supported and are currently stable. If
-you are planning to report something with the unstable version. so realize that nothing in there
-is stable.
+you are planning to report something from a version that an end-of-life has already happened, you 
+will be ignored. If you report a bug, please specify to what version.
 
 | Version | Supported          | End of Life | Released | Stage/Development |
 | ------- | ------------------ | ----------- | -------- | ------------------|
