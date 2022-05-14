@@ -6,14 +6,16 @@ A free very easy to use Discord Client to interact with the hypixel and mojang A
 
 You will need to have these things installed on your system for this to fully work:
 
-- node 16.6 or greater
-- npm 7.0 or higher
-- At least 200MB of RAM **FREE**
-- At least 500MB of free HDD space
+- node `16.6` or greater
+- npm `7.0` or higher
+- At least `200MB` of RAM **FREE**
+- At least `500MB` of free HDD space
 
 Not nessacary but nice things to have:
 
 - Text/Program editor like Visual Studio/Code, WebStorm, Atom, Subline Text etc.
+
+### Building the Directory
 
 1. You will need to clone the repository:
 
@@ -31,11 +33,13 @@ Not nessacary but nice things to have:
 
 Now you have Cybernetic installed on your system! Now you need to choose how to run it:
 
-`node . -d` - Deploys Slash Commands to the Development Server
-`node . -D` - Deploys Slash Commands Globally (not recommended)
-`node . -r` - Removes Slash Commands from the Development Server
-`node . -R` - Removes Slash Commands Globally 
-`node .` - Runs Cybernetic without making any changes to Slash Commands
+### Running Cybernetic
 
-Now you have Cybernetic working perfectly fine, please make sure you are following the current lisense that Cybernetic is under. If you want to contribute to 
-Cybernetic, then you can visit the CONTRIBUTING.MD! To see previous updates that Cybernetic has had, you can visit the SECURITY.md
+- `node . -d`: Deploys Slash Commands to the Development Server
+- `node . -D`: Deploys Slash Commands Globally (not recommended)
+- `node . -r`: Removes Slash Commands from the Development Server
+- `node . -R`: Removes Slash Commands Globally 
+- `node .`: Runs Cybernetic without making any changes to Slash Commands
+
+*Now you have Cybernetic working perfectly fine, please make sure you are following the current lisense that Cybernetic is under. If you want to contribute to 
+Cybernetic, then you can visit the CONTRIBUTING.MD! To see previous updates that Cybernetic has had, you can visit the SECURITY.md*
