@@ -4,10 +4,16 @@ A free very easy to use Discord Client to interact with the hypixel and mojang A
 
 ### How to build this on your system
 
-You will need to have these things installed on your system for this to fully work
+You will need to have these things installed on your system for this to fully work:
+
 - node 16.6 or greater
 - npm 7.0 or higher
-- Code editor like Visual Studio/Code or Vim
+- At least 200MB of RAM **FREE**
+- At least 500MB of free HDD space
+
+Not nessacary but nice things to have:
+
+- Text/Program editor like Visual Studio/Code, WebStorm, Atom, Subline Text etc.
 
 1. You will need to clone the repository:
 
