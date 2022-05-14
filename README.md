@@ -21,11 +21,15 @@ You will need to have these things installed on your system for this to fully wo
 
 ```npm run config```
 
-Now you have Cybernetic installed on your system! You can start the client with either:
+4. Now you need to clone a version of the .env. Create a file in the root dir called `.env`, and enter the nessacary items according to the example.env.txt
 
-```npm run start```
+Now you have Cybernetic installed on your system! Now you need to choose how to run it:
 
-OR in the client folder:
+`node . -d` - Deploys Slash Commands to the Development Server
+`node . -D` - Deploys Slash Commands Globally (not recommended)
+`node . -r` - Removes Slash Commands from the Development Server
+`node . -R` - Removes Slash Commands Globally 
+`node .` - Runs Cybernetic without making any changes to Slash Commands
 
-```node .```
-
+Now you have Cybernetic working perfectly fine, please make sure you are following the current lisense that Cybernetic is under. If you want to contribute to 
+Cybernetic, then you can visit the CONTRIBUTING.MD! To see previous updates that Cybernetic has had, you can visit the SECURITY.md
