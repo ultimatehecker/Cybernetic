@@ -7,6 +7,15 @@ module.exports = {
 	name: "namehistory",
 	aliases: ["nh", "names"],
 	description: "Shows you the name history of an average Minecraft Player!",
+	options: [
+		{
+			name: "player",
+			description: "Shows the statistics of an average Hypixel Bedwars player!",
+			required: false,
+			type: "STRING"
+		}
+	],
+    defaultPermission: true,
 	usage: "namehistory [IGN]",
 	example: "namehistory ultimate_hecker",
 	async execute(client, message, args, Discord, prefix) {
