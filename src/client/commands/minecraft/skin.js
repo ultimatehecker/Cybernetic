@@ -6,6 +6,15 @@ module.exports = {
 	name: "skin",
 	aliases: ["playerskin"],
 	description: "Shows you the skin of an average Minecraft Player!",
+	options: [
+		{
+			name: "player",
+			description: "Shows the statistics of an average Hypixel Bedwars player!",
+			required: false,
+			type: "STRING"
+		}
+	],
+    defaultPermission: true,
 	usage: "skin [IGN]",
 	example: "skin ultimate_hecker",
 	async execute(client, message, args, Discord, prefix) {
