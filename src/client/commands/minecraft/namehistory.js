@@ -179,7 +179,7 @@ module.exports = {
 				}
 			}
 
-			interaction.reply({ embeds: [namehistory], allowedMentions: { repliedUser: true } });
+			interaction.editReply({ embeds: [namehistory], allowedMentions: { repliedUser: true } });
 
 		} catch (error) {
 			if (error.message === errors.PLAYER_DOES_NOT_EXIST) {
