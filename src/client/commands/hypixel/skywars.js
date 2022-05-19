@@ -105,7 +105,17 @@ module.exports = {
 					.addField("Averages per Game", `\`•\` **Kills**: \`${commaNumber((player.stats.skywars[gamemode].kills / player.stats.skywars[gamemode].playedGames).toFixed(2))}\` \n \`•\` **Final Kills**: \`${commaNumber((player.stats.skywars[gamemode].finalKills / player.stats.skywars[gamemode].playedGames).toFixed(2))}\` \n \`•\` **Beds**: \`${commaNumber((player.stats.skywars[gamemode].beds.broken / player.stats.skywars[gamemode].playedGames).toFixed(2))}\``, true)
 
 				message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-			}
+			} else {
+                const gamemode504 = new Discord.MessageEmbed()
+                    .setAuthor(authorError)
+                    .setColor(colors["ErrorColor"])
+                    .setDescription(`That gamemode does not exist or the argument list wasnt correctly order. \n \n *Reminder that dream statistics are currently not supported, and will be supported in a later update*`)
+                message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
+                    setTimeout(function() {
+                        message.delete()
+                    }, 5000);
+                });
+            }
 
 		}).catch((e) => {            
 			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
