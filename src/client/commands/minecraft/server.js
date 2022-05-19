@@ -35,7 +35,7 @@ module.exports = {
                 const ip404 = new Discord.MessageEmbed()
                     .setAuthor(authorError)
                     .setColor(colors["MainColor"])
-                    .setDescription(`You need to type in a server IP! (Example: \`${serverDoc.prefix}server mc.hypixel.net\`)`)
+                    .setDescription(`You need to type in a server IP! (Example: \`${prefix}server mc.hypixel.net\`)`)
                 return message.reply({ embeds: [ip404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
@@ -113,7 +113,7 @@ module.exports = {
             const error = new Discord.MessageEmbed()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
-                .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${prefix}github\``)
+                .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${serverDoc.prefix}github\``)
             interaction.editReply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
                     interaction.deleteReply()
