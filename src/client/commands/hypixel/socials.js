@@ -190,7 +190,7 @@ module.exports = {
                 });
             }
 
-			let socials = new Discord.MessageEmbed()
+			const socials = new Discord.MessageEmbed()
 				.setAuthor(authorSuccess)
 				.setTitle(`[${player.rank}] ${player.nickname}`)
 				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
@@ -224,7 +224,7 @@ module.exports = {
 				socials.addField(player.socialMedia[6].name, player.socialMedia[6].link);
 			}
 
-            interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+            interaction.editReply({ embeds: [socials], allowedMentions: { repliedUser: true } });
 
         }).catch(e => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -251,10 +251,11 @@ module.exports = {
                 const error = new Discord.MessageEmbed()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
-                    .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
+                    .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
                 return interaction.editReply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
                         interaction.deleteReply()
+						console.error(e)
                     }, 5000);
                 });
             }       
