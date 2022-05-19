@@ -181,7 +181,6 @@ module.exports = {
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-                .setFooter(`Cops & Crims Statistics requested by ${interaction.user.tag} • ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`, interaction.user.displayAvatarURL())
                 .addField('Coins', `\`${commaNumber(player.stats.copsandcrims.coins)}\``, true)
                 .addField('Wins', `\`${commaNumber(player.stats.copsandcrims.wins)}\``, true)
                 .addField('Round Wins', `\`${commaNumber(player.stats.copsandcrims.roundWins)}\``, true)
@@ -226,6 +225,7 @@ module.exports = {
                 return interaction.editReply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
                         interaction.deleteReply()
+                        console.error(e)
                     }, 5000);
                 });
             }       
