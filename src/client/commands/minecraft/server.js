@@ -35,7 +35,7 @@ module.exports = {
                 const ip404 = new Discord.MessageEmbed()
                     .setAuthor(authorError)
                     .setColor(colors["MainColor"])
-                    .setDescription(`You need to type in a server IP! (Example: \`${prefix}server mc.hypixel.net\`)`)
+                    .setDescription(`You need to type in a server IP! (Example: \`${serverDoc.prefix}server mc.hypixel.net\`)`)
                 return message.reply({ embeds: [ip404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
