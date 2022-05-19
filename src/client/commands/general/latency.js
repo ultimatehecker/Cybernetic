@@ -40,7 +40,7 @@ module.exports = {
 		
 		let latestEmbed = new Discord.MessageEmbed()
 			.setAuthor(authorSuccess)
-			.setDescription(`🏓 Latency is ${Date.now() - interaction.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`)
+			.setDescription(`🏓 Cybernetic's Latency is: \`${Date.now() - interaction.createdTimestamp}\` ms. Discord API Latency is: \`${Math.round(client.ws.ping)}\` ms.`)
 			.setColor(colors["MainColor"]);
 
 		interaction.editReply({embeds: [latestEmbed], allowedMentions: { repliedUser: true }, components: [{type: "ACTION_ROW", components: [{type: "BUTTON", label: "Retest", style: "PRIMARY", customId: "retest" }] }] }).then((reply) => {
@@ -64,7 +64,7 @@ module.exports = {
                     const embed = new Discord.MessageEmbed()
                         .setAuthor(authorSuccess)
                         .setColor(colors["MainColor"])
-                        .setDescription(`🏓 Latency is ${Date.now() - press.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`)
+                        .setDescription(`🏓 Cybernetic's Latency is: \`${Date.now() - press.createdTimestamp}\` ms. Discord API Latency is: \`${Math.round(client.ws.ping)}\` ms.`)
                         
 
                     latestEmbed = embed;
