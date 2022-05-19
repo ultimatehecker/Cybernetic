@@ -67,11 +67,15 @@ module.exports = {
 			const embed = new Discord.MessageEmbed()
 				.setAuthor(author)
 				.setColor(colors["MainColor"])
-				.setDescription("Done!")
+				.setDescription("Done! *This message will delete itself in 5 seconds!*")
 
-			interaction.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		} else {
-			interaction.reply({ content: `**${interaction.user.tag}:** ${interaction.options.get("message").value}`, allowedMentions: { parse: ["everyone", "roles", "users"], users: [], roles: [] } });
+			interaction.editReply({ content: `**${interaction.user.tag}:** ${interaction.options.get("message").value}`, allowedMentions: { parse: ["everyone", "roles", "users"], users: [], roles: [] } });
 		}
 	}
 };
