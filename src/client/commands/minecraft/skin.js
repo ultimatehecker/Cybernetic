@@ -1,7 +1,6 @@
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const { slashExecute } = require('./namehistory');
 
 module.exports = {
 	name: "skin",
@@ -33,7 +32,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}skin ultiamte_hecker\`)`)
-				return message.reply({ embeds: [ign404] }).then(() => {
+				return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
 					}, 5000);
@@ -56,14 +55,14 @@ module.exports = {
 				.addField("Apply Skin", `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`)
 				.setImage(`http://photopass.appspot.com/3d.php?user=${player}&vr=-25&hr=35&hrh=0&vrll=0&vrrl=0&vrla=0&vrra=0&displayHair=true&headOnly=false&format=png&ratio=20&aa=true&layers=true}`)
 
-			message.reply({ embeds: [skin] });
+			message.reply({ embeds: [skin], allowedMentions: { repliedUser: true } });
 		} catch (error) {
 			if (error.message === errors.PLAYER_DOES_NOT_EXIST) {
 				const player404 = new Discord.MessageEmbed()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
-				return message.reply({embeds: [player404] }).then(() => {
+				return message.reply({embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
 					}, 5000);
@@ -73,7 +72,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("That player has never logged into Hypixel.");
-				return message.reply({embeds: [neverLogged] }).then(() => {
+				return message.reply({embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
 					}, 5000);
@@ -83,7 +82,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
-				return message.reply({embeds: [error] }).then(() => {
+				return message.reply({embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
 					}, 5000);
@@ -114,8 +113,8 @@ module.exports = {
 				const ign404 = new Discord.MessageEmbed()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
-					.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}skin ultiamte_hecker\`)`)
-				return message.reply({ embeds: [ign404] }).then(() => {
+					.setDescription(`You need to type in a player's IGN! (Example: \`${serverDoc.prefix}skin ultiamte_hecker\`)`)
+				return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						interaction.deleteReply()
 					}, 5000);
@@ -138,7 +137,7 @@ module.exports = {
 				.addField("Apply Skin", `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`)
 				.setImage(`http://photopass.appspot.com/3d.php?user=${player}&vr=-25&hr=35&hrh=0&vrll=0&vrrl=0&vrla=0&vrra=0&displayHair=true&headOnly=false&format=png&ratio=20&aa=true&layers=true}`)
 
-			interaction.editReply({ embeds: [skin] });
+			interaction.editReply({ embeds: [skin], allowedMentions: { repliedUser: true } });
 
 		} catch (error) {
 			if (error.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -156,7 +155,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("That player has never logged into Hypixel.");
-				return interaction.editReply({embeds: [neverLogged] }).then(() => {
+				return interaction.editReply({embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						interaction.deleteReply()
 					}, 5000);
@@ -166,7 +165,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
-				return interaction.editReply({embeds: [error] }).then(() => {
+				return interaction.editReply({embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						interaction.deleteReply()
 					}, 5000);
