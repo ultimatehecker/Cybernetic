@@ -107,32 +107,30 @@ module.exports = {
 			client.commands.get(interaction.options.get("command")?.value.toLowerCase()) ||
 			client.commands.find((c) => c.aliases && c.aliases.includes(interaction.options.get("command")?.value.toLowerCase()));
 
-			if (!command) {
-				const command404 = new Discord.MessageEmbed()
-					.setAuthor(authorError)
-					.setColor(colors["ErrorColor"])
-					.setDescription("That isn't a valid command!");
-				return interaction.editReply({ embeds: [command404], allowedMentions: { repliedUser: true } }).then(() => {
-                    setTimeout(function() {
-                        interaction.deleteReply()
-                    }, 5000);
-                });
-			}
+        if (!command) {
+            const command404 = new Discord.MessageEmbed()
+                .setAuthor(authorError)
+                .setColor(colors["ErrorColor"])
+                .setDescription("That isn't a valid command!");
+            return interaction.editReply({ embeds: [command404], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
+        } 
 
-			const help = new Discord.MessageEmbed()
+        const help = new Discord.MessageEmbed()
+            .setAuthor(authorHelp)
+            .setColor(colors["MainColor"])
+            .setTitle(`${command.name} Command Description`)
+            .addField("Description:", `\`\`\`${command.description}\`\`\``);
+        if (command.aliases)
+            help
+                .addField("Aliases:", `\`\`\`${serverDoc.prefix}${command.aliases}\`\`\``)
+                .addField("Usage:", `\`\`${command.usage}\`\``)
+                .addField("Example:", `\`\`${command.example}\`\``);
 
-			.setAuthor(authorHelp)
-			.setColor(colors["MainColor"])
-			.setTitle(`${command.name} Command Description`)
-			.addField("Description:", `\`\`\`${command.description}\`\`\``);
-
-		if (command.aliases)
-			help
-				.addField("Aliases:", `\`\`\`${serverDoc.prefix}${command.aliases}\`\`\``)
-				.addField("Usage:", `\`\`${command.usage}\`\``)
-				.addField("Example:", `\`\`${command.example}\`\``);
-
-		interaction.editReply({ embeds: [help], allowedMentions: { repliedUser: true } });
+        interaction.editReply({ embeds: [help], allowedMentions: { repliedUser: true } });
 
 	}
 };
