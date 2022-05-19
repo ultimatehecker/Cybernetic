@@ -36,7 +36,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["MainColor"])
                     .setDescription(`You need to type in a server IP! (Example: \`${prefix}server mc.hypixel.net\`)`)
-                return message.reply({ embeds: [ip404] }).then(() => {
+                return message.reply({ embeds: [ip404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
 					}, 5000);
@@ -55,14 +55,14 @@ module.exports = {
                 .addField('Online Players', `\`${serverData.players.online}\`/\`${serverData.players.max}\``)
                 .setThumbnail(serverData.favicon)
 
-            message.reply({ embeds: [server] });
+            message.reply({ embeds: [server], allowedMentions: { repliedUser: true } });
 
         } catch {
             const error = new Discord.MessageEmbed()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${prefix}github\``)
-            message.reply({ embeds: [error] }).then(() => {
+            message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
                     message.delete()
                 }, 5000);
@@ -89,7 +89,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["MainColor"])
                     .setDescription(`You need to type in a server IP! (Example: \`${serverDoc.prefix}server mc.hypixel.net\`)`)
-                return interaction.editReply({ embeds: [ip404] }).then(() => {
+                return interaction.editReply({ embeds: [ip404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						interaction.deleteReply()
 					}, 5000);
@@ -108,13 +108,13 @@ module.exports = {
                 .addField('Online Players', `\`${serverData.players.online}\`/\`${serverData.players.max}\``)
                 .setThumbnail(serverData.favicon)
 
-            interaction.editReply({ embeds: [server] });
+            interaction.editReply({ embeds: [server], allowedMentions: { repliedUser: true } });
         } catch {
             const error = new Discord.MessageEmbed()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${prefix}github\``)
-            interaction.editReply({ embeds: [error] }).then(() => {
+            interaction.editReply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
                     interaction.deleteReply()
                 }, 5000);

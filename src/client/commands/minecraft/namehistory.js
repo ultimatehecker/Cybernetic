@@ -39,7 +39,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}namehistory ultiamte_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultiamte_hecker\`)`)
-				return message.reply({ embeds: [ign404] }).then(() => {
+				return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
 					}, 5000);
@@ -84,7 +84,7 @@ module.exports = {
 				}
 			}
 
-			message.reply({ embeds: [namehistory] });
+			message.reply({ embeds: [namehistory], allowedMentions: { repliedUser: true } });
 
 		} catch (error) {
 			if (error.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -92,7 +92,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
-				return message.reply({ embeds: [player404] }).then(() => {
+				return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
 					}, 5000);
@@ -103,7 +103,7 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
 				console.error(error);
-				return message.reply({embeds: [err] }).then(() => {
+				return message.reply({embeds: [err], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						message.delete()
 					}, 5000);
@@ -187,7 +187,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
-				interaction.editReply({ embeds: [player404] }).then(() => {
+				interaction.editReply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						interaction.deleteReply()
 					}, 5000);
@@ -198,7 +198,7 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
 				console.error(error);
-				return interaction.editReply({ embeds: [err] }).then(() => {
+				return interaction.editReply({ embeds: [err], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						interaction.deleteReply()
 					}, 5000);
