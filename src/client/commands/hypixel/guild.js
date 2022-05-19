@@ -1,5 +1,6 @@
 const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
+const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
 
 module.exports = {
@@ -117,7 +118,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-		let guildName = interaction.options.get("guild").join(" "); // for guilds with spaces in name
+		let guildName = interaction.options.get("guild")?.value // for guilds with spaces in name
 
         const data = await User.findOne({
             id: interaction.user.id
