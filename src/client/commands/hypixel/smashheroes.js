@@ -84,8 +84,7 @@ module.exports = {
                 .addField('Deaths', `\`${commaNumber(player.stats.smashheroes.deaths)}\``, true)
                 .addField('KD Ratio', `\`${commaNumber(player.stats.smashheroes.KDRatio)}\``, true)
                 .addField('Winstreak', `\`${commaNumber(player.stats.smashheroes.winstreak)}\``, true)
-                .addField('Total Games', `\`${commaNumber(player.stats.smashheroes.games)}\``, true)
-                .addField('Total Quits', `\`${commaNumber(player.stats.smashheroes.quits)}\``, true)
+                .addField('Total Games', `\`${commaNumber(player.stats.smashheroes.playedGames)}\``, true)
 
             message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 
