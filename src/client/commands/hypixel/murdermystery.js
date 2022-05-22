@@ -86,8 +86,7 @@ module.exports = {
                 .addField('Total Games', `\`${commaNumber(player.stats.murdermystery.playedGames)}\``, true)
                 .addField('Kills', `\`${commaNumber(player.stats.murdermystery.kills)}\``, true)
                 .addField('Deaths', `\`${commaNumber(player.stats.murdermystery.deaths)}\``, true)
-                .addField('Wins As Murderer', `\`${commaNumber(player.stats.murdermystery.winsAsMurderer)}\``, true)
-                .addField('Wins As Detective', `\`${commaNumber(player.stats.murdermystery.winsAsDetective)}\``, true)
+                .addField('Wins As', `\`•\` **Wins As Murderer**: \`${commaNumber(player.stats.murdermystery.winsAsMurderer)}\` \n \`•\` **Wins As Detective**: \`${commaNumber(player.stats.murdermystery.winsAsDetective)}\``, true)
 
             message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });;
 
