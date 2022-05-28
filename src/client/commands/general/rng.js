@@ -7,7 +7,13 @@ module.exports = {
 	description: "Generates a random number from an array number from what you supply",
 	options: [
 		{ 
-			name: "number",
+			name: "number1",
+			description: "First number for the random number picker",
+			required: true,
+			type: "STRING"
+		},
+		{ 
+			name: "number2",
 			description: "First number for the random number picker",
 			required: true,
 			type: "STRING"
@@ -30,7 +36,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-		let response = [Math.floor(Math.random() * (args[1] - 1 + 1) + 1)]; // rng
+		let response = [Math.round(Math.random() * (Number(args[1]) - Number(args[0])) + Number(args[0]))]; // rng
 
 		if (!args[1]) {
 			const nonumbers = new Discord.MessageEmbed()
@@ -45,7 +51,7 @@ module.exports = {
             })
 		}
 
-		if (isNaN(args[1])) {
+		if (Number.isNaN(args[1])) {
 			const nan = new Discord.MessageEmbed()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
@@ -78,9 +84,9 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 		
-		let response = [Math.floor(Math.random() * (interaction.options.get("number") - 1 + 1) + 1)]; // rng
+		let response = [Math.round(Math.random() * (Number(interaction.options.get("number2")?.value) - Number(interaction.options.get("number1")?.value)) + Number(interaction.options.get("number1")?.value))];
 
-		if(!interaction.options.get("number")){
+		if(!interaction.options.get("number1") || !interaction.options.get("number2")){
 			const nonumbers = new Discord.MessageEmbed()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
@@ -93,7 +99,7 @@ module.exports = {
             });
 		}
 
-		if(isNaN(interaction.options.get("number"))){
+		if(Number.isNaN(interaction.options.get("number1")?.value) || Number.isNaN(interaction.options.get("number2")?.value)){
 			const nan = new Discord.MessageEmbed()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])

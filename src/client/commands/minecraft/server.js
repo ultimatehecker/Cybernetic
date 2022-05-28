@@ -96,12 +96,12 @@ module.exports = {
 				});
             }
 
-            const MOTDData = (await axios.get(`https://api.mcsrvstat.us/2/${args[0]}`)).data;
-            const serverData = (await axios.get(`https://mc-api.net/v3/server/ping/${args[0]}`)).data;
+            const MOTDData = (await axios.get(`https://api.mcsrvstat.us/2/${interaction.options.get("server").value}`)).data;
+            const serverData = (await axios.get(`https://mc-api.net/v3/server/ping/${interaction.options.get("server").value}`)).data;
 
             const server = new Discord.MessageEmbed()
                 .setAuthor(authorSuccess)
-                .setTitle(`\`\`\`${args[0]}\`\`\``)
+                .setTitle(`\`\`\`${interaction.options.get("server").value}\`\`\``)
                 .setColor(colors["MainColor"])
                 .addField('IP Address', `\`${MOTDData.ip}\`:\`${MOTDData.port}\``)
                 .addField('Version', `\`${serverData.version.name}\``)
@@ -109,7 +109,7 @@ module.exports = {
                 .setThumbnail(serverData.favicon)
 
             interaction.editReply({ embeds: [server], allowedMentions: { repliedUser: true } });
-        } catch {
+        } catch(e) {
             const error = new Discord.MessageEmbed()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
@@ -117,6 +117,7 @@ module.exports = {
             interaction.editReply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
                     interaction.deleteReply()
+                    console.error(e);
                 }, 5000);
             });
         }

@@ -99,7 +99,7 @@ module.exports = {
 				.setColor(colors["MainColor"])
 				.setDescription(`Do \`${serverDoc.prefix}help [command]\` to see what that command does.\n \n 🛠️ General: \`${serverDoc.prefix}help\`, \`${serverDoc.prefix}info\`, \`${serverDoc.prefix}latency\`, \`${serverDoc.prefix}links\`, \`${serverDoc.prefix}coinflip\`, \`${serverDoc.prefix}credits\`, \n \`${serverDoc.prefix}overview\`, \`${serverDoc.prefix}say\`, \`${serverDoc.prefix}sayembed\`, \`${serverDoc.prefix}rng\` \n \n 🚔 Moderation: \`${serverDoc.prefix}clear\`, \`${serverDoc.prefix}ban\`, \`${serverDoc.prefix}kick\`, \`${serverDoc.prefix}promote\`, \`${serverDoc.prefix}demote\`, \`${serverDoc.prefix}prefix\`, \n \`${serverDoc.prefix}leavemessage\`, \`${serverDoc.prefix}welcomemessage\`, \`${serverDoc.prefix}mute\`, \`${serverDoc.prefix}nickname\`, \`${serverDoc.prefix}reactionrole\`, \n \`${serverDoc.prefix}unban\`, \`${serverDoc.prefix}unmute\` \n \n 🎮 Hypixel: \`${serverDoc.prefix}player\`, \`${serverDoc.prefix}guild\`, \`${serverDoc.prefix}bedwars\`, \`${serverDoc.prefix}skywars\`, \`${serverDoc.prefix}duels\`, \`${serverDoc.prefix}uhc\`, \n \`${serverDoc.prefix}socials\`, \`${serverDoc.prefix}link\`, \`${serverDoc.prefix}unlink\`, \`${serverDoc.prefix}blitzsurvivalgames\`, \`${serverDoc.prefix}buildbattle\`, \n \`${serverDoc.prefix}copsandcrims\`, \`${serverDoc.prefix}crazywalls\`, \`${serverDoc.prefix}megawalls\`, \`${serverDoc.prefix}murdermystery\`, \n \`${serverDoc.prefix}smashheros\`, \`${serverDoc.prefix}speeduhc\`, \`${serverDoc.prefix}tntgames\`, \`${serverDoc.prefix}vampirez\` \n \n  ⛏ Minecraft: \`${serverDoc.prefix}namehistory\`, \`${serverDoc.prefix}uuid\`, \`${serverDoc.prefix}skin\`, \`${serverDoc.prefix}mcserver\``)
 
-				interaction.editReply({embeds: [general], allowedMentions: { repliedUser: true }});
+			return interaction.editReply({embeds: [general], allowedMentions: { repliedUser: true }});
 
 		}
 
@@ -127,8 +127,9 @@ module.exports = {
         if (command.aliases)
             help
                 .addField("Aliases:", `\`\`\`${serverDoc.prefix}${command.aliases}\`\`\``)
-                .addField("Usage:", `\`\`${command.usage}\`\``)
-                .addField("Example:", `\`\`${command.example}\`\``);
+                .addField("Usage:", `\`\`\`${command.usage}\`\`\``)
+                .addField("Example:", `\`\`\`${command.example}\`\`\``)
+                .addField("Notes", ` \n *${command.notes}*`)
 
         interaction.editReply({ embeds: [help], allowedMentions: { repliedUser: true } });
 
