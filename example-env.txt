@@ -1,0 +1,5 @@
+DISCORD_TOKEN = (discord token)
+MONGODB_SRV = (mongodb atlas srv)
+HYPIXEL_API_KEY = (hypixel api key)
+CLIENT_ID = (bot id)
+DEV_GUILD_ID = (development guild server id)

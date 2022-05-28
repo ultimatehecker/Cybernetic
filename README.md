@@ -4,10 +4,18 @@ A free very easy to use Discord Client to interact with the hypixel and mojang A
 
 ### How to build this on your system
 
-You will need to have these things installed on your system for this to fully work
-- node 16.6 or greater
-- npm 7.0 or higher
-- Code editor like Visual Studio/Code or Vim
+You will need to have these things installed on your system for this to fully work:
+
+- node `16.6` or greater
+- npm `7.0` or higher
+- At least `200MB` of RAM **FREE**
+- At least `500MB` of free HDD space
+
+Not nessacary but nice things to have:
+
+- Text/Program editor like Visual Studio/Code, WebStorm, Atom, Subline Text etc.
+
+### Building the Directory
 
 1. You will need to clone the repository:
 
@@ -15,21 +23,23 @@ You will need to have these things installed on your system for this to fully wo
 
 2. Then you will need to in the root dir do:
 
-```npm i```
+```npm run build```
 
-3. If you already have pm2 installed globally then you can skip the following steps:
+3. You will have to run the config script to configure pm2 
 
-```npm uninstall pm2```
+```npm run config```
 
-4. Install pm2 again globally:
+4. Now you need to clone a version of the .env. Create a file in the root dir called `.env`, and enter the nessacary items according to the example.env.txt
 
-```npm install pm2 -g```
+Now you have Cybernetic installed on your system! Now you need to choose how to run it:
 
-Now you have Cybernetic installed on your system! You can start the client with either:
+### Running Cybernetic
 
-```pm2 start main.js```
+- `node . -d`: Deploys Slash Commands to the Development Server
+- `node . -D`: Deploys Slash Commands Globally (not recommended)
+- `node . -r`: Removes Slash Commands from the Development Server
+- `node . -R`: Removes Slash Commands Globally 
+- `node .`: Runs Cybernetic without making any changes to Slash Commands
 
-OR
-
-```node .```
-
+*Now you have Cybernetic working perfectly fine, please make sure you are following the current lisense that Cybernetic is under. If you want to contribute to 
+Cybernetic, then you can visit the CONTRIBUTING.MD! To see previous updates that Cybernetic has had, you can visit the SECURITY.md*
