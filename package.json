@@ -33,7 +33,7 @@
     "minecraft-data": "^3.2.0",
     "mineflayer": "^4.0.0",
     "mineflayer-pathfinder": "^2.1.1",
-    "mongoose": "^6.3.4",
+    "mongoose": "^6.3.5",
     "os-utils": "^0.0.14",
     "pretty-ms": "^7.0.1",
     "prismarine-viewer": "^1.23.0"
