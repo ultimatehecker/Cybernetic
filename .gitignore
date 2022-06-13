@@ -102,3 +102,5 @@ dist
 
 # TernJS port file
 .tern-port
+src/client/commands/moderation/ban.js
+src/client/commands/moderation/kick.js
