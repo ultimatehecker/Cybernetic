@@ -178,6 +178,17 @@ module.exports = {
 	async slashExecute(client, Discord, interaction, serverDoc) {
 
 		await interaction.deferReply();
+
+		let authorError = {
+            name: "Error",
+            iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
+        }
+    
+        let authorSuccess = {
+            name: "Successfully Cleared",
+            iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
+        }
+		
 		let user = interaction.options.get("user");
 
 		if (user.member.permissions.has("ADMINISTRATOR")) {
