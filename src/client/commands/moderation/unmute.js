@@ -39,7 +39,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("This member is not muted!")
 
-				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+					setTimeout(() => {
+						sent.delete();
+					}, 5000);
+				});
 			}
 			const unmuter = message.guild.members.resolve(message.author);
 			if (member) {
@@ -49,7 +53,11 @@ module.exports = {
 						.setColor(colors["ErrorColor"])
 						.setDescription("You do not have permission to unmute!")
 
-					return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+					return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then((sent) => {
+						setTimeout(() => {
+							sent.delete();
+						}, 5000);
+					});
 				}
 				const unmuteRole = message.guild.roles.cache.find((role) => role.name === "Muted");
 				member.roles.remove(unmuteRole, args[1]).then(() => {
@@ -65,7 +73,11 @@ module.exports = {
 						.setColor(colors["ErrorColor"])
 						.setDescription("I was unable to unmute the member because: \n`" + err + "`")
 
-					message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+					message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+						setTimeout(() => {
+							sent.delete();
+						}, 5000);
+					});
 				});
 			} else {
 				const embed = new Discord.MessageEmbed()
@@ -73,7 +85,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("That user isn't in this guild!")
 
-				message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+					setTimeout(() => {
+						sent.delete();
+					}, 5000);
+				});
 			}
 		} else {
 			const embed = new Discord.MessageEmbed()
@@ -81,7 +97,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You didn't mention the user to unmute!")
 
-			message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				setTimeout(() => {
+					sent.delete();
+				}, 5000);
+			});
 		}
 	},
 	async slashExecute(client, Discord, interaction) {
@@ -108,7 +128,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("This member is not muted!")
 
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		const unmuter = interaction.member;
@@ -118,7 +142,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to unmute!")
 	
-			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 		const unmuteRole = interaction.guild.roles.cache.find((role) => role.name === "Muted");
 		member.roles.remove( unmuteRole, interaction.options.get("reason")?.value ?? `User unmuted by ${interaction.user.tag}`).then(() => {
@@ -134,8 +162,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("I was unable to unmute the member because: \n`" + err + "`")
 
-			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-			console.error(err);
+			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		});
 	},
 };
