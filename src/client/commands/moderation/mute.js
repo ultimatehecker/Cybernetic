@@ -14,7 +14,7 @@ module.exports = {
 	notes: "You must mention the user you want to kick",
 	async execute(client, message, args, Discord, prefix) {
 
-		await message.replyTyping()
+		await message.channel.sendTyping();
 
 		let authorError = {
             name: "Error",

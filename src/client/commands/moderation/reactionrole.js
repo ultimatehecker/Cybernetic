@@ -15,7 +15,7 @@ module.exports = {
 	notes: "Message will be sent in channel that the command is sent in",
 	async execute(client, message, args, Discord, prefix, serverDoc) {
 
-		await message.replyTyping()
+		await message.channel.sendTyping();
 
 		let authorError = {
             name: "Error",

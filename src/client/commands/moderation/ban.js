@@ -39,6 +39,8 @@ module.exports = {
 	notes: "The of days cannot be longer than 7 - if days are omitted, mentioned user will be banned indefinitely",
 	execute(client, message, args, Discord, prefix) {
 
+		await message.channel.sendTyping();
+
         let authorError = {
 			name: "Error",
 			iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
