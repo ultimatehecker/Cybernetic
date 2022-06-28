@@ -105,7 +105,7 @@ module.exports = {
 	},
 	async slashExecute(client, Discord, interaction) {
 
-		await interaction.deferReply({ ephemeral: true });
+		await interaction.deferReply({ ephemeral: false });
 
 		let authorError = {
             name: "Error",
