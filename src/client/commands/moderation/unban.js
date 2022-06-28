@@ -152,7 +152,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You must provide either a user tag or a user id!");
 
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } })
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 		const bans = await interaction.guild.bans.fetch();
 		if (interaction.options.get("tag")?.value === "list") {
@@ -223,8 +227,8 @@ module.exports = {
 
 			interaction.guild.members.unban(user, reason ?? `${user.tag} unbanned by ${interaction.user.tag}`).then(() => {
 				const successEmbed = new Discord.MessageEmbed()
-					.setAuthor(authorError)
-					.setColor(colors["ErrorColor"])
+					.setAuthor(authorSuccess)
+					.setColor(colors["MainColor"])
 					.setDescription(`Successfully unbanned **${user.tag}**`)
 
 				interaction.editReply({ embeds: [successEmbed], allowedMentions: { repliedUser: true } });
