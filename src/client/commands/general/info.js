@@ -1,4 +1,4 @@
-const prettyMS = require("pretty-ms")
+const prettyMS = import("pretty-ms")
 const os = require("os-utils")
 const colors = require("../../tools/colors.json");
 
