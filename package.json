@@ -30,7 +30,7 @@
     "dotenv": "^16.0.1",
     "fs": "^0.0.1-security",
     "hypixel-api-reborn": "^10.0.0",
-    "minecraft-data": "^3.4.0",
+    "minecraft-data": "^3.5.0",
     "mineflayer": "^4.3.0",
     "mineflayer-pathfinder": "^2.1.1",
     "mongoose": "^6.4.0",
