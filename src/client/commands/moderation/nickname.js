@@ -12,7 +12,7 @@ module.exports = {
 	usage: "",
 	example: "nickname @ultimate_hecker Mr. Hecker",
 	notes: "You must mention the user you want to kick",
-	execute(client, message, args, Discord, prefix) {
+	async execute(client, message, args, Discord, prefix) {
 
 		await message.channel.sendTyping();
 
