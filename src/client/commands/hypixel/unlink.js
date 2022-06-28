@@ -30,7 +30,7 @@ module.exports = {
 				.setDescription("Your account is not connected!")
 			return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    sent.delete();
                 }, 5000);
             });
 		}

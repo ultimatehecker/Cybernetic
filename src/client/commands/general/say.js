@@ -37,7 +37,7 @@ module.exports = {
 
             return message.reply({ embeds: [content404], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    sent.delete();
                 }, 5000);
             })
         }

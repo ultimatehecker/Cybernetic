@@ -41,7 +41,7 @@ module.exports = {
 					.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}namehistory ultiamte_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultiamte_hecker\`)`)
 				return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
 			}
@@ -94,7 +94,7 @@ module.exports = {
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
 				return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
 			} else {
@@ -105,7 +105,7 @@ module.exports = {
 				console.error(error);
 				return message.reply({embeds: [err], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
 			}

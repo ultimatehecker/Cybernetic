@@ -45,7 +45,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("You cannot kick a moderator!")
 
-				return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						sent.delete();
+					}, 5000);
+				});
 			}
 
 			const kicker = message.guild.members.resolve(message.author);
@@ -57,7 +61,11 @@ module.exports = {
 						.setColor(colors["ErrorColor"])
 						.setDescription("You do not have permissions to kick!")
 
-					return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+					return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+						setTimeout(function() {
+							sent.delete();
+						}, 5000);
+					});
 				}
 
 				member.kick(reason ? reason : `User kicked by ${message.author.tag}`).then(() => {
@@ -74,14 +82,22 @@ module.exports = {
 							.setColor(colors["ErrorColor"])
 							.setDescription("I don't have permissions to kick this user!");
 
-						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+							setTimeout(function() {
+								sent.delete();
+							}, 5000);
+						});
 					}
 					const errEmbed = new Discord.MessageEmbed()
 						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
 						.setDescription("I was unable to kick the member because: \n`" + err + "`")
 
-					message.reply({ embeds: [errEmbed], allowedMentions: { repliedUser: true } });
+					message.reply({ embeds: [errEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+						setTimeout(function() {
+							sent.delete();
+						}, 5000);
+					});
 
 					console.error(err)
 				});
@@ -91,7 +107,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("That user isn't in this server!")
 
-				message.reply({ embeds: [naEmbed], allowedMentions: { repliedUser: true } });
+				message.reply({ embeds: [naEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						sent.delete();
+					}, 5000);
+				});
 			}
 		} else {
 			const mentionEmbed = new Discord.MessageEmbed()
@@ -99,7 +119,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You didn't mention the user to kick!")
 
-			message.reply({ embeds: [mentionEmbed], allowedMentions: { repliedUser: true } });
+			message.reply({ embeds: [mentionEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					sent.delete();
+				}, 5000);
+			});
 		}
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
@@ -111,7 +135,7 @@ module.exports = {
         }
     
         let authorSuccess = {
-            name: "Successfully Cleared",
+            name: "Successfully Removed",
             iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
         }
 
@@ -124,7 +148,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot kick a moderator!")
 
-			return interaction.editReply({ embeds: [permsEmbed] });
+			return interaction.editReply({ embeds: [permsEmbed] }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		if (!interaction.member.permissions.has("KICK_MEMBERS") && !interaction.member.permissions.has("ADMINISTRATOR")) {
@@ -133,7 +161,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permissions to kick!")
 
-			return interaction.editReply({ embeds: [permsEmbed] });
+			return interaction.editReply({ embeds: [permsEmbed] }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		const kickedEmbed = new Discord.MessageEmbed()
@@ -171,14 +203,22 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("I don't have permissions to kick this user!")
 
-				return interaction.editReply({ embeds: [embed] });
+				return interaction.editReply({ embeds: [embed] }).then(() => {
+					setTimeout(function() {
+						interaction.deleteReply()
+					}, 5000);
+				});
 			}
 			const errEmbed = new Discord.MessageEmbed()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("I was unable to kick the member because: \n`" + err + "`")
 
-			interaction.editReply({ embeds: [errEmbed] });
+			interaction.editReply({ embeds: [errEmbed] }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 
 			console.error(err);
 		});

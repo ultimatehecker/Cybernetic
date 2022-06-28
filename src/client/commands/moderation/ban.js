@@ -45,7 +45,7 @@ module.exports = {
 		}
 
 		let authorSuccess = {
-			name: "UUID",
+			name: "Successfully Destoryed",
 			iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
 		}
 
@@ -62,7 +62,11 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
 					.setDescription("You cannot ban a moderator!")
-				return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						sent.delete();
+					}, 5000);
+				});
 			}
 
 			if (member) {
@@ -71,7 +75,11 @@ module.exports = {
 					const permsEmbed = new Discord.MessageEmbed()
 						.setDescription("You do not have permission to ban!")
 						.setColor(0x000000);
-					return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+					return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+						setTimeout(function() {
+							sent.delete();
+						}, 5000);
+					});
 				}
 
 				if (args[1] && isNaN(args[1])) {
@@ -89,14 +97,22 @@ module.exports = {
 									.setColor(colors["ErrorColor"])
 									.setDescription("I do not have permissions to ban this user!")
 
-								return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+								return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+									setTimeout(function() {
+										sent.delete();
+									}, 5000);
+								});
 							}
 
 							const embed = new Discord.MessageEmbed()
 								.setAuthor(authorError)
 								.setColor(colors["ErrorColor"])
 								.setDescription(`I was unable to ban the member because: \n \`\`\`${err}\`\`\``);
-							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+								setTimeout(function() {
+									sent.delete();
+								}, 5000);
+							});
 						});
 				} else if (!args[1]) {
 					return member
@@ -115,14 +131,22 @@ module.exports = {
 									.setColor(colors["ErrorColor"])
 									.setDescription("I do not have permissions to ban this user!");
 
-								return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+								return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+									setTimeout(function() {
+										sent.delete();
+									}, 5000);
+								});
 							}
 
 							const embed = new Discord.MessageEmbed()
 								.setAuthor(authorError)
 								.setColor(colors["ErrorColor"])
 								.setDescription(`I was unable to ban the member because: \n \`\`\`${err}\`\`\``);
-							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+								setTimeout(function() {
+									sent.delete();
+								}, 5000);
+							});
 						});
 				} else {
 					if (args[1] > 7) {
@@ -130,7 +154,11 @@ module.exports = {
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
 							.setDescription("You cannot tempban someone for more than 7 days!");
-						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+							setTimeout(function() {
+								sent.delete();
+							}, 5000);
+						});
 					}
 
 					member.ban({ days: args[1], reason: args[2] ? args[2] : `User banned by ${message.author.tag}` }).then(() => {
@@ -147,7 +175,11 @@ module.exports = {
 									.setColor(colors["MainColor"])
 									.setDescription("I do not have permissions to ban this user!")
 
-								return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+								return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+									setTimeout(function() {
+										sent.delete();
+									}, 5000);
+								});
 							}
 
 							const embed = new Discord.MessageEmbed()
@@ -155,7 +187,11 @@ module.exports = {
 								.setColor(colors["ErrorColor"])
 								.setDescription(`I was unable to ban the member because: \n \`\`\`${err}\`\`\``)
 
-							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+								setTimeout(function() {
+									sent.delete();
+								}, 5000);
+							});
 						});
 				}
 			} else {
@@ -164,7 +200,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("That user isn't in this guild!");
 
-				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						sent.delete();
+					}, 5000);
+				});
 			}
 		} else {
 			const embed = new Discord.MessageEmbed()
@@ -172,7 +212,11 @@ module.exports = {
 				.setColor(authorError)
 				.setDescription("You didn't mention the user to ban!");
 
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					sent.delete();
+				}, 5000);
+			});
 		}
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
@@ -197,7 +241,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot ban a moderator!")
 
-			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		if (!interaction.member.permissions.has("BAN_MEMBERS")) {
@@ -206,7 +254,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to ban!")
 
-			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		const bannedEmbed = new Discord.MessageEmbed()
@@ -247,7 +299,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("I do not have permissions to ban this user!");
 
-				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						interaction.deleteReply()
+					}, 5000);
+				});
 			}
 
 			const embed = new Discord.MessageEmbed()
@@ -255,7 +311,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription(`I was unable to ban the member because: \n \`\`\`${err}\`\`\``)
 
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		});
 	},
 };

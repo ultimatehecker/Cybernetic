@@ -22,7 +22,7 @@ module.exports = {
         }
     
         let authorSuccess = {
-            name: "Successfully Cleared",
+            name: "Successfully Deafened",
             iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
         }
 
@@ -41,7 +41,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("You cannot mute a moderator!")
 
-				return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						sent.delete();
+					}, 5000);
+				});
 			}
 
 			if (member.roles.cache.find((role) => role.name === "Muted")) {
@@ -50,7 +54,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("This member is already muted!")
 
-				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						sent.delete();
+					}, 5000);
+				});
 			}
 
 			const muter = message.guild.members.resolve(message.author);
@@ -62,7 +70,11 @@ module.exports = {
 						.setColor(colors["ErrorColor"])
 						.setDescription("You do not have permissions to mute!")
 
-					return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+					return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+						setTimeout(function() {
+							sent.delete();
+						}, 5000);
+					});
 				}
 
 				let rolesize;
@@ -114,7 +126,11 @@ module.exports = {
 							.setColor(colors["ErrorColor"])
 							.setDescription("I was unable to mute the member because: \n`" + err + "`")
 
-						message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+						message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+							setTimeout(function() {
+								sent.delete();
+							}, 5000);
+						});
 						console.error(err);
 					});
 			} else {
@@ -123,7 +139,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("That user isn't in this server!");
 
-				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						sent.delete();
+					}, 5000);
+				});
 			}
 		} else {
 			const embed = new Discord.MessageEmbed()
@@ -131,7 +151,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You didn't mention the user to mute!");
 
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					sent.delete();
+				}, 5000);
+			});
 		}
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
@@ -156,7 +180,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot mute a moderator!")
 
-			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		if (!interaction.member.permissions.has("MUTE_MEMBERS")) {
@@ -165,7 +193,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permissions to mute!")
 
-			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		if (user.member.roles.cache.find((role) => role.name === "Muted")) {
@@ -174,7 +206,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("This member is already muted!")
 
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		await interaction.guild.roles.fetch();
@@ -245,7 +281,11 @@ module.exports = {
 				.setColor(colors["MainColor"])
 				.setDescription("I was unable to mute the member because: \n`" + err + "`")
 
-			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 			console.error(err);
 		});
 	}

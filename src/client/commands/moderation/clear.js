@@ -36,7 +36,7 @@ module.exports = {
 				.setDescription("You do not have permission to clear messages!")
 			return message.reply({ embeds: [invalidperms], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}
@@ -48,7 +48,7 @@ module.exports = {
 				.setDescription("Please enter the amount of messages you wish to clear!")
 			return message.reply({ embeds: [message404], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}
@@ -77,7 +77,7 @@ module.exports = {
 					.setDescription("Please enter an actual number!")
 				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
-                        message.delete()
+                        sent.delete();
                     }, 5000);
                 });
 			}
@@ -90,7 +90,7 @@ module.exports = {
 				.setDescription(`You are not able to delete over 100 messages at a time! Although, you can do \`${prefix}clear all\` to clear the channel history. Click below to learn why: \n https://stackoverflow.com/questions/54931470/how-can-i-delete-more-than-100-messages-at-once`)
 			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}
@@ -102,7 +102,7 @@ module.exports = {
 				.setDescription("You must delete at least one message!");
 			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}
@@ -127,7 +127,7 @@ module.exports = {
 					
 				message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
-                        message.delete()
+                        sent.delete();
                     }, 5000);
                 });
 				return;

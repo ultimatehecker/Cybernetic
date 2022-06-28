@@ -42,7 +42,7 @@ module.exports = {
 				.setDescription(`You need to type in a guild's name! (Not guild tag, but guild name.) (Example: \`${prefix}guild Dragons of War\`)`)
 			return message.reply({embeds: [guildArg404], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}
@@ -76,7 +76,7 @@ module.exports = {
 
 			message.reply({embeds: [guildInfoEmbed], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}).catch((e) => {
@@ -87,7 +87,7 @@ module.exports = {
 					.setDescription("I could not find that guild in the API. Check spelling and name history.")
 				return message.reply({ embeds: [guild404], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
-                        message.delete()
+                        sent.delete();
                     }, 5000);
                 });
 			} else {
@@ -98,7 +98,7 @@ module.exports = {
 				console.error(e);
 				return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
-                        message.delete()
+                        sent.delete();
                     }, 5000);
                 });
 			}

@@ -23,7 +23,7 @@ module.exports = {
         }
     
         let authorSuccess = {
-            name: "Successfully Cleared",
+            name: "Successfully Created",
             iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
         }
 
@@ -43,8 +43,13 @@ module.exports = {
 				const embed = new Discord.MessageEmbed()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
-					.setDescription(`A required argument was not provided: \`${field}\``);
-				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+					.setDescription(`A required argument was not provided: \`${field}\``)
+					
+				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+					setTimeout(() => {
+						sent.delete();
+					}, 5000);
+				});
 			}
 		}
 
@@ -60,7 +65,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("That role does not exist!");
 
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				setTimeout(() => {
+					sent.delete();
+				}, 5000);
+			});
 		}
 
 		let sentMessage;
@@ -84,7 +93,7 @@ module.exports = {
 		message.reply({ embeds: [successEmbed], allowedMentions: { repliedUser: true } }).then((sent) => {
 			setTimeout(() => {
 				sent.delete();
-			}, 3000);
+			}, 5000);
 		});
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
@@ -121,14 +130,18 @@ module.exports = {
 		try {
 			await sentMessage.react(emoji);
 		} catch {
-			sentMessage.delete();
+			sentsent.delete();;
 
 			const embed = new Discord.MessageEmbed()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Invalid emoji")
 
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		const successEmbed = new Discord.MessageEmbed()
@@ -136,6 +149,10 @@ module.exports = {
 			.setColor(colors["MainColor"])
 			.setDescription("Reaction role added!")
 
-		interaction.editReply({ embeds: [successEmbed], allowedMentions: { repliedUser: true } });
+		interaction.editReply({ embeds: [successEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+			setTimeout(function() {
+				interaction.deleteReply()
+			}, 5000);
+		});
 	}
 };

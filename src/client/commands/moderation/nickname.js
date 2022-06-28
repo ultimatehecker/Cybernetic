@@ -22,7 +22,7 @@ module.exports = {
         }
     
         let authorSuccess = {
-            name: "Successfully Cleared",
+            name: "Successfully Renamed",
             iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
         }
 
@@ -54,7 +54,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot nickname a moderator!")
 
-			return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					sent.delete();
+				}, 5000);
+			});
 		}
 
 		const prevName = member.nickname;
@@ -80,14 +84,22 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("Uh oh! I don't have permission to nickname this user!")
 
-				return message.reply({ embeds: [errPermsEmbed] });
+				return message.reply({ embeds: [errPermsEmbed] }).then(() => {
+					setTimeout(function() {
+						sent.delete();
+					}, 5000);
+				});
 			} else {
 				const errEmbed = new Discord.MessageEmbed()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`I was unable to change the member's nickname because: \n \`${err}\``)
 
-				return message.reply({ embeds: [errEmbed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [errEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						sent.delete();
+					}, 5000);
+				});
 			}
 		});
 	},
@@ -111,7 +123,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to set the nickname of others!")
 
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		let user = interaction.options.get("user").user;
@@ -123,7 +139,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot nickname a moderator!")
 
-			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+                setTimeout(function() {
+                    interaction.deleteReply()
+                }, 5000);
+            });
 		}
 
 		const prevName = member.nickname;
@@ -143,14 +163,22 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("Uh oh! I don't have permission to nickname this user!")
 
-				return interaction.editReply({ embeds: [errPermsEmbed], allowedMentions: { repliedUser: true } });
+				return interaction.editReply({ embeds: [errPermsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						interaction.deleteReply()
+					}, 5000);
+				});
 			} else {
 				const errEmbed = new Discord.MessageEmbed()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`I was unable to change the member's nickname because: \n \`${err}\``)
 
-				return interaction.editReply({ embeds: [errEmbed], allowedMentions: { repliedUser: true } });
+				return interaction.editReply({ embeds: [errEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						interaction.deleteReply()
+					}, 5000);
+				});
 			}
 		});
 	}

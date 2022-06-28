@@ -50,7 +50,7 @@ module.exports = {
 				.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}skywars ultimate_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultimate_hecker\`)`)
 			return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}
@@ -72,7 +72,7 @@ module.exports = {
                     .setDescription("That player has never played this game")
                 return interaction.reply({ embeds: [neverPlayed], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
             }
@@ -112,7 +112,7 @@ module.exports = {
                     .setDescription(`That gamemode does not exist or the argument list wasnt correctly order. \n \n *Reminder that dream statistics are currently not supported, and will be supported in a later update*`)
                 message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
-                        message.delete()
+                        sent.delete();
                     }, 5000);
                 });
             }
@@ -125,7 +125,7 @@ module.exports = {
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
 				return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
 			} else if (e.message === errors.PLAYER_HAS_NEVER_LOGGED) {
@@ -135,7 +135,7 @@ module.exports = {
 					.setDescription("That player has never logged into Hypixel.")
 				return message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
 			} else {
@@ -146,7 +146,7 @@ module.exports = {
 				console.error(e);
 				return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
 			}

@@ -46,7 +46,7 @@ module.exports = {
 
 			return message.reply({ embeds: [nonumbers], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    sent.delete();
                 }, 5000);
             })
 		}
@@ -59,7 +59,7 @@ module.exports = {
 
 			return message.reply({ embeds: [nan], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    sent.delete();
                 }, 5000);
             })
 		}
