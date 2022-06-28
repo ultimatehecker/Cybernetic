@@ -37,7 +37,7 @@ module.exports = {
 	usage: [".ban (user) [amount of days] [reason]"],
 	example: "ban @ultimate_hecker 7 memes in general",
 	notes: "The of days cannot be longer than 7 - if days are omitted, mentioned user will be banned indefinitely",
-	execute(client, message, args, Discord, prefix) {
+	async execute(client, message, args, Discord, prefix) {
 
 		await message.channel.sendTyping();
 
