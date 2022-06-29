@@ -32,7 +32,7 @@
     "hypixel-api-reborn": "^10.0.0",
     "minecraft-data": "^3.5.0",
     "mineflayer": "^4.3.0",
-    "mineflayer-pathfinder": "^2.1.1",
+    "mineflayer-pathfinder": "^2.2.0",
     "mongoose": "^6.4.1",
     "os-utils": "^0.0.14",
     "pretty-ms": "^8.0.0",
