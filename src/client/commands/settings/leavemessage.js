@@ -11,7 +11,7 @@ module.exports = {
 	usage: 'leavemessage (channel) (leavemessage)',
 	example: 'leavemessage #goodbye "Goodbye, {member-tag}"',
 	notes: 'If you want to disable leave messages, you can just run the command how it is',
-	execute(client, message, args, Discord, prefix, serverDoc) {
+	async execute(client, message, args, Discord, prefix, serverDoc) {
 
 		await message.channel.sendTyping();
 
