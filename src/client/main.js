@@ -95,7 +95,7 @@ db.once("open", () => {
     const { Distube } = require("distube")
     const { SpotifyPlugin } = require('@distube/spotify')
 
-    client.distubr = new Distube(client, {
+    client.Distube = new Distube(client, {
         emitNewSongOnly: true,
         leaveOnFinish: true,
         emitAddSongWhenCreatingQueue: false,
