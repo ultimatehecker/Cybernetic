@@ -234,7 +234,6 @@ module.exports = {
                 }, 5000);
             });
 			console.error(err)
-			return;
 		});
 	},
 };
