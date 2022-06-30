@@ -92,16 +92,6 @@ db.once("open", () => {
     client.events = new Discord.Collection();
     client.utils = {};
 
-    const { Distube } = require("distube")
-    const { SpotifyPlugin } = require('@distube/spotify')
-
-    client.Distube = new Distube(client, {
-        emitNewSongOnly: true,
-        leaveOnFinish: true,
-        emitAddSongWhenCreatingQueue: false,
-        plugins: [new SpotifyPlugin()]
-    });
-
     client.login(process.env.DISCORD_TOKEN);
     const loginTransaction = startupTransaction.startChild({
         op: "connection",
