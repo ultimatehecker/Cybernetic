@@ -61,7 +61,7 @@ module.exports = {
 						.setColor(colors["MainColor"])
 						.setDescription(`Channel message history successfully cleared! \n \n *This message will be deleted after 5 seconds*`)
 
-					newChannel.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+					newChannel.send({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
 						setTimeout(() => {
 							sent.delete();
 						}, 5000);
@@ -169,7 +169,7 @@ module.exports = {
 						.setColor(colors["MainColor"])
 						.setDescription(`Channel message history successfully cleared! \n \n *This message will be deleted after 5 seconds*`);
 
-						newChannel.reply({ embeds: [embed] }).then((sent) => {
+						newChannel.send({ embeds: [embed] }).then((sent) => {
 							setTimeout(() => {
 								sent.delete();
 							}, 5000);
