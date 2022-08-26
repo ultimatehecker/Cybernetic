@@ -31,7 +31,7 @@
     "fs": "^0.0.1-security",
     "hypixel-api-reborn": "^10.0.0",
     "minecraft-data": "^3.11.0",
-    "mineflayer": "^4.3.0",
+    "mineflayer": "^4.4.0",
     "mineflayer-pathfinder": "^2.3.2",
     "mongoose": "^6.5.3",
     "os-utils": "^0.0.14",
