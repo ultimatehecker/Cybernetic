@@ -75,14 +75,20 @@ module.exports = {
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                .addFields([
+                    { name: `General`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.blitzsg.coins)}\``, required: true, inline: true },
+                    { name: `Wins`, value: `\`•\` **Solo Wins**: \`${commaNumber(player.stats.blitzsg.winsSolo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.blitzsg.winsTeam)}\``, required: true, inline: true },
+                    { name: `Kills`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.blitzsg.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.KDRatio)}\``, required: true, inline: true },
+                ])
 
-                .addField('General', `\`•\` **Coins**: \`${commaNumber(player.stats.blitzsg.coins)}\``, true)
-                .addField('Wins', `\`•\` **Solo Wins**: \`${commaNumber(player.stats.blitzsg.winsSolo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.blitzsg.winsTeam)}\``, true)
-                .addField('Kills', `\`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kills)}\` \n \`•\` **Deaths**:\`${commaNumber(player.stats.blitzsg.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.KDRatio)}\``, true)
-
+            // If problem occours, it is most probably line 89 & 90 along with the last 2 on line 88
 
             if(player.stats.blitzsg.kitStats) {
-                blitzsurvivalgames.addField('Kit Statistics', `\`•\` **Kit Statistics**: \`${player.stats.blitzsg.kitStats.name}\` \n \`•\` **Kit Level**: \`${commaNumber(player.stats.blitzsg.kitStats.level)}\``)
+                blitzsurvivalgames.addFields([
+                    { name: `Kit Statistics`, value: `\`•\` **Name**: \`${commaNumber(player.stats.blitzsg.kitStats.name)}\` \n \`•\` **Level**: \`${commaNumber(player.stats.blitzsg.kitStats.level)}\` \n \`•\` **Time Played**: \`${commaNumber(player.stats.blitzsg.kitStats.timePlayed)}\` \n \`•\` **Games Played**: \`${commaNumber(player.stats.blitzsg.kitStats.games)}\` \n \`•\` **Experience**: \`${commaNumber(player.stats.blitzsg.kitStats.prestige)}\` \n \`•\` **Experience**: \`${commaNumber(player.stats.blitzsg.kitStats.experience)}\``, required: true, inline: true },
+                    { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.blitzsg.kitStats.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kitStats.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.kitStats.KDRatio)}\``, required: true, inline: true },
+                    { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.blitzsg.kitStats.wins)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kitStats.losses)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.kitStats.WLRatio)}\``, required: true, inline: true },
+                ]);
             }
 
             message.reply({ embeds: [blitzsurvivalgames], allowedMentions: { repliedUser: true } });
@@ -173,16 +179,28 @@ module.exports = {
                 });
             }
 
-            const embed = new Discord.EmbedBuilder()
+            const blitzsurvivalgames = new Discord.EmbedBuilder()
                 .setAuthor(authorSuccess)
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-                .addField('General', `\`•\` **Coins**: \`${commaNumber(player.stats.blitzsg.coins)}\``, true)
-                .addField('Wins', `\`•\` **Solo Wins**: \`${commaNumber(player.stats.blitzsg.winsSolo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.blitzsg.winsTeam)}\``, true)
-                .addField('Kills', `\`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kills)}\` \n \`•\` **Deaths**:\`${commaNumber(player.stats.blitzsg.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.KDRatio)}\``, true)
+                .addFields([
+                    { name: `General`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.blitzsg.coins)}\``, required: true, inline: true },
+                    { name: `Wins`, value: `\`•\` **Solo Wins**: \`${commaNumber(player.stats.blitzsg.winsSolo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.blitzsg.winsTeam)}\``, required: true, inline: true },
+                    { name: `Kills`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.blitzsg.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.KDRatio)}\``, required: true, inline: true },
+                ])
 
-            interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+            // If problem occours, it is most probably line 199 & 198 along with the last 2 on line 197
+
+            if(player.stats.blitzsg.kitStats) {
+                blitzsurvivalgames.addFields([
+                    { name: `Kit Statistics`, value: `\`•\` **Name**: \`${commaNumber(player.stats.blitzsg.kitStats.name)}\` \n \`•\` **Level**: \`${commaNumber(player.stats.blitzsg.kitStats.level)}\` \n \`•\` **Time Played**: \`${commaNumber(player.stats.blitzsg.kitStats.timePlayed)}\` \n \`•\` **Games Played**: \`${commaNumber(player.stats.blitzsg.kitStats.games)}\` \n \`•\` **Experience**: \`${commaNumber(player.stats.blitzsg.kitStats.prestige)}\` \n \`•\` **Experience**: \`${commaNumber(player.stats.blitzsg.kitStats.experience)}\``, required: true, inline: true },
+                    { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.blitzsg.kitStats.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kitStats.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.kitStats.KDRatio)}\``, required: true, inline: true },
+                    { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.blitzsg.kitStats.wins)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kitStats.losses)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.kitStats.WLRatio)}\``, required: true, inline: true },
+                ]);
+            }
+
+            interaction.editReply({ embeds: [blitzsurvivalgames], allowedMentions: { repliedUser: true } });
 
         }).catch(e => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
