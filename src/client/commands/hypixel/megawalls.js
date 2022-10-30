@@ -70,28 +70,47 @@ module.exports = {
                 });
             }
 
-            const megawalls = new Discord.EmbedBuilder()
-                .setAuthor(authorSuccess)
-                .setTitle(`[${player.rank}] ${player.nickname}`)
-                .setColor(colors["MainColor"])
-                .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+            if(!gamemode) {
+                const megawalls = new Discord.EmbedBuilder()
+                    .setAuthor(authorSuccess)
+                    .setTitle(`[${player.rank}] ${player.nickname}`)
+                    .setColor(colors["MainColor"])
+                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                    .addFields([
+                        { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.megawalls.coins)}\` \n \`•\` **Class**: \`${commaNumber(player.stats.megawalls.selectedClass)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.megawalls.playedGames)}\``, required: true, inline: true },
+                        { name: `Combat`, value: `\`•\` **Kills/Assists**: \`${commaNumber(player.stats.megawalls.kills)}\` / \`${commaNumber(player.stats.megawalls.assists)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.megawalls.KDRatio)}\` \n `, required: true, inline: true },
+                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.megawalls.wins)}\` \n \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.losses)}\` \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.WLRatio)}\` \n \n `, required: true, inline: true },
+                        { name: `Finals`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.megawalls.finalKills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.finalDeaths)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.megawalls.finalKDRatio)}\` \n `, required: true, inline: true },
+                        { name: `Random Stats`, value: `\`•\` **Defender Kills**: \`${commaNumber(player.stats.megawalls.defenderKills)}\` \n \`•\` **Wither Damage**: \`${commaNumber(player.stats.megawalls.finalAssists)}\``, required: true, inline: true },
+                    ]);
 
-                .addField('Class', `\`${commaNumber(player.stats.megawalls.selectedClass)}\``, true)
-                .addField('Coins', `\`${commaNumber(player.stats.megawalls.coins)}\``, true)
-                .addField('Wins', `\`${commaNumber(player.stats.megawalls.wins)}\``, true)
-                .addField('Total Games', `\`${commaNumber(player.stats.megawalls.playedGames)}\``, true)
-                .addField('Kills', `\`${commaNumber(player.stats.megawalls.kills)}\``, true)
-                .addField('Final Kills', `\`${commaNumber(player.stats.megawalls.finalKills)}\``, true)
-                .addField('Losses', `\`${commaNumber(player.stats.megawalls.losses)}\``, true)
-                .addField('Deathes', `\`${commaNumber(player.stats.megawalls.deaths)}\``, true)
-                .addField('Final Deaths', `\`${commaNumber(player.stats.megawalls.finalDeaths)}\``, true)
-                .addField('Final Assists', `\`${commaNumber(player.stats.megawalls.finalAssists)}\``, true)
-                .addField('Wither Kills', `\`${commaNumber(player.stats.megawalls.defenderKills)}\``, true)
-                .addField('Wither Damage', `\`${commaNumber(player.stats.megawalls.witherDamage)}\``, true)
-                .addField('KD Ratio', `\`${commaNumber(player.stats.megawalls.KDRatio)}\``, true)
-                .addField('WL Ratio', `\`${commaNumber(player.stats.megawalls.WLRatio)}\``, true)
+                message.reply({ embeds: [megawalls], allowedMentions: { repliedUser: true } });
+            } else if(gamemode === "normal" | "faceoff" | "casualBrawl") {
+                const megawalls = new Discord.EmbedBuilder()
+                    .setAuthor(authorSuccess)
+                    .setTitle(`[${player.rank}] ${player.nickname}`)
+                    .setColor(colors["MainColor"])
+                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                    .addFields([
+                        { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.megawalls.coins)}\` \n \`•\` **Class**: \`${commaNumber(player.stats.megawalls.selectedClass)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.megawalls.playedGames)}\``, required: true, inline: true },
+                        { name: `Combat`, value: `\`•\` **Kills/Assists**: \`${commaNumber(player.stats.megawalls.mode[gamemode].kills)}\` / \`${commaNumber(player.stats.megawalls.mode[gamemode].assists)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.mode[gamemode].deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.megawalls.mode[gamemode].KDRatio)}\` \n `, required: true, inline: true },
+                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.megawalls.mode[gamemode].wins)}\` \n \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.mode[gamemode].losses)}\` \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.mode[gamemode].WLRatio)}\` \n \n `, required: true, inline: true },
+                        { name: `Finals`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.megawalls.finalKills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.finalDeaths)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.megawalls.finalKDRatio)}\` \n `, required: true, inline: true },
+                        { name: `Random Stats`, value: `\`•\` **Defender Kills**: \`${commaNumber(player.stats.megawalls.defenderKills)}\` \n \`•\` **Wither Damage**: \`${commaNumber(player.stats.megawalls.finalAssists)}\``, required: true, inline: true },
+                    ]);
 
-            message.reply({ embeds: [megawalls], allowedMentions: { repliedUser: true } });
+                message.reply({ embeds: [megawalls], allowedMentions: { repliedUser: true } });
+            } else {
+                const gamemode504 = new Discord.EmbedBuilder()
+                    .setAuthor(authorError)
+                    .setColor(colors["ErrorColor"])
+                    .setDescription(`That gamemode does not exist or the argument list wasnt correctly order.`)
+                message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
+                    setTimeout(function() {
+                        message.delete()
+                    }, 5000);
+                });
+            }
 
         }).catch((e) => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -179,27 +198,47 @@ module.exports = {
                 });
             }
 
-            const embed = new Discord.EmbedBuilder()
-                .setAuthor(authorSuccess)
-                .setTitle(`[${player.rank}] ${player.nickname}`)
-                .setColor(colors["MainColor"])
-                .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-                .addField('Class', `\`${commaNumber(player.stats.megawalls.selectedClass)}\``, true)
-                .addField('Coins', `\`${commaNumber(player.stats.megawalls.coins)}\``, true)
-                .addField('Wins', `\`${commaNumber(player.stats.megawalls.wins)}\``, true)
-                .addField('Total Games', `\`${commaNumber(player.stats.megawalls.playedGames)}\``, true)
-                .addField('Kills', `\`${commaNumber(player.stats.megawalls.kills)}\``, true)
-                .addField('Final Kills', `\`${commaNumber(player.stats.megawalls.finalKills)}\``, true)
-                .addField('Losses', `\`${commaNumber(player.stats.megawalls.losses)}\``, true)
-                .addField('Deathes', `\`${commaNumber(player.stats.megawalls.deaths)}\``, true)
-                .addField('Final Deaths', `\`${commaNumber(player.stats.megawalls.finalDeaths)}\``, true)
-                .addField('Final Assists', `\`${commaNumber(player.stats.megawalls.finalAssists)}\``, true)
-                .addField('Wither Kills', `\`${commaNumber(player.stats.megawalls.defenderKills)}\``, true)
-                .addField('Wither Damage', `\`${commaNumber(player.stats.megawalls.witherDamage)}\``, true)
-                .addField('KD Ratio', `\`${commaNumber(player.stats.megawalls.KDRatio)}\``, true)
-                .addField('WL Ratio', `\`${commaNumber(player.stats.megawalls.WLRatio)}\``, true)
+            if(!gamemode) {
+                const megawalls = new Discord.EmbedBuilder()
+                    .setAuthor(authorSuccess)
+                    .setTitle(`[${player.rank}] ${player.nickname}`)
+                    .setColor(colors["MainColor"])
+                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                    .addFields([
+                        { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.megawalls.coins)}\` \n \`•\` **Class**: \`${commaNumber(player.stats.megawalls.selectedClass)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.megawalls.playedGames)}\``, required: true, inline: true },
+                        { name: `Combat`, value: `\`•\` **Kills/Assists**: \`${commaNumber(player.stats.megawalls.kills)}\` / \`${commaNumber(player.stats.megawalls.assists)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.megawalls.KDRatio)}\` \n `, required: true, inline: true },
+                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.megawalls.wins)}\` \n \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.losses)}\` \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.WLRatio)}\` \n \n `, required: true, inline: true },
+                        { name: `Finals`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.megawalls.finalKills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.finalDeaths)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.megawalls.finalKDRatio)}\` \n `, required: true, inline: true },
+                        { name: `Random Stats`, value: `\`•\` **Defender Kills**: \`${commaNumber(player.stats.megawalls.defenderKills)}\` \n \`•\` **Wither Damage**: \`${commaNumber(player.stats.megawalls.finalAssists)}\``, required: true, inline: true },
+                    ]);
+                
+                interaction.editReply({ embeds: [megawalls], allowedMentions: { repliedUser: true } });
+            }else if(gamemode == "normal" || "faceoff" || "casualBrawl") {
+                const megawalls = new Discord.EmbedBuilder()
+                    .setAuthor(authorSuccess)
+                    .setTitle(`[${player.rank}] ${player.nickname}`)
+                    .setColor(colors["MainColor"])
+                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                    .addFields([
+                        { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.megawalls.coins)}\` \n \`•\` **Class**: \`${commaNumber(player.stats.megawalls.selectedClass)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.megawalls.playedGames)}\``, required: true, inline: true },
+                        { name: `Combat`, value: `\`•\` **Kills/Assists**: \`${commaNumber(player.stats.megawalls.mode[gamemode].kills)}\` / \`${commaNumber(player.stats.megawalls.mode[gamemode].assists)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.mode[gamemode].deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.megawalls.mode[gamemode].KDRatio)}\` \n `, required: true, inline: true },
+                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.megawalls.mode[gamemode].wins)}\` \n \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.mode[gamemode].losses)}\` \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.mode[gamemode].WLRatio)}\` \n \n `, required: true, inline: true },
+                        { name: `Finals`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.megawalls.finalKills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.finalDeaths)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.megawalls.finalKDRatio)}\` \n `, required: true, inline: true },
+                        { name: `Random Stats`, value: `\`•\` **Defender Kills**: \`${commaNumber(player.stats.megawalls.defenderKills)}\` \n \`•\` **Wither Damage**: \`${commaNumber(player.stats.megawalls.finalAssists)}\``, required: true, inline: true },
+                    ]);
 
-            interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+                interaction.editReply({ embeds: [megawalls], allowedMentions: { repliedUser: true } });
+            }else {
+                const gamemode504 = new Discord.EmbedBuilder()
+                    .setAuthor(authorError)
+                    .setColor(colors["ErrorColor"])
+                    .setDescription(`That gamemode does not exist or the argument list wasnt correctly order.`)
+                interaction.editReply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
+                    setTimeout(function() {
+                        message.delete()
+                    }, 5000);
+                });
+            }
 
         }).catch(e => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
