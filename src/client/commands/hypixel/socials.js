@@ -77,34 +77,49 @@ module.exports = {
 				.setColor(colors["MainColor"])
 
 			if (player.socialMedia[0] != undefined || player.socialMedia[0] != null) {
-				socials.addField(player.socialMedia[0].name, player.socialMedia[0].link);
+				socials.addFields([
+					{ name: `Social Media 1`, value: `\`${player.socialMedia[0].name, player.socialMedia[0].link}\``, required: true, inline: false }
+				]);
 			}
 
-			if (player.socialMedia[1] != undefined || player.socialMedia[1] != null) {
-				socials.addField(player.socialMedia[1].name, player.socialMedia[1].link);
+			if (player.socialMedia[1] != undefined || player.socialMedia[0] != null) {
+				socials.addFields([
+					{ name: `Social Media 2`, value: `\`${player.socialMedia[1].name, player.socialMedia[1].link}\``, required: true, inline: false }
+				]);
 			}
 
-			if (player.socialMedia[2] != undefined || player.socialMedia[2] != null) {
-				socials.addField(player.socialMedia[2].name, player.socialMedia[2].link);
+			if (player.socialMedia[2] != undefined || player.socialMedia[0] != null) {
+				socials.addFields([
+					{ name: `Social Media 3`, value: `\`${player.socialMedia[2].name, player.socialMedia[2].link}\``, required: true, inline: false }
+				]);
 			}
 
-			if (player.socialMedia[3] != undefined || player.socialMedia[3] != null) {
-				socials.addField(player.socialMedia[3].name, player.socialMedia[3].link);
+			if (player.socialMedia[3] != undefined || player.socialMedia[0] != null) {
+				socials.addFields([
+					{ name: `Social Media 4`, value: `\`${player.socialMedia[3].name, player.socialMedia[3].link}\``, required: true, inline: false }
+				]);
 			}
 
-			if (player.socialMedia[4] != undefined || player.socialMedia[4] != null) {
-				socials.addField(player.socialMedia[4].name, player.socialMedia[4].link);
+			if (player.socialMedia[4] != undefined || player.socialMedia[0] != null) {
+				socials.addFields([
+					{ name: `Social Media 5`, value: `\`${player.socialMedia[4].name, player.socialMedia[4].link}\``, required: true, inline: false }
+				]);
 			}
 
-			if (player.socialMedia[5] != undefined || player.socialMedia[5] != null) {
-				socials.addField(player.socialMedia[5].name, player.socialMedia[5].link);
+			if (player.socialMedia[5] != undefined || player.socialMedia[0] != null) {
+				socials.addFields([
+					{ name: `Social Media 6`, value: `\`${player.socialMedia[5].name, player.socialMedia[5].link}\``, required: true, inline: false }
+				]);
 			}
 
-			if (player.socialMedia[6] != undefined || player.socialMedia[6] != null) {
-				socials.addField(player.socialMedia[6].name, player.socialMedia[6].link);
+			if (player.socialMedia[6] != undefined || player.socialMedia[0] != null) {
+				socials.addFields([
+					{ name: `Social Media 7`, value: `\`${player.socialMedia[6].name, player.socialMedia[6].link}\``, inline: false, required: false}
+				]);
 			}
 
 			message.reply({embeds: [socials], allowedMentions: { repliedUser: true } });
+
 		}).catch((e) => {
 			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
 				const player404 = new Discord.EmbedBuilder()
@@ -197,33 +212,47 @@ module.exports = {
 				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 				.setColor(colors["MainColor"])
 
-			if (player.socialMedia[0] != undefined || player.socialMedia[0] != null) {
-				socials.addField(player.socialMedia[0].name, player.socialMedia[0].link);
-			}
-
-			if (player.socialMedia[1] != undefined || player.socialMedia[1] != null) {
-				socials.addField(player.socialMedia[1].name, player.socialMedia[1].link);
-			}
-
-			if (player.socialMedia[2] != undefined || player.socialMedia[2] != null) {
-				socials.addField(player.socialMedia[2].name, player.socialMedia[2].link);
-			}
-
-			if (player.socialMedia[3] != undefined || player.socialMedia[3] != null) {
-				socials.addField(player.socialMedia[3].name, player.socialMedia[3].link);
-			}
-
-			if (player.socialMedia[4] != undefined || player.socialMedia[4] != null) {
-				socials.addField(player.socialMedia[4].name, player.socialMedia[4].link);
-			}
-
-			if (player.socialMedia[5] != undefined || player.socialMedia[5] != null) {
-				socials.addField(player.socialMedia[5].name, player.socialMedia[5].link);
-			}
-
-			if (player.socialMedia[6] != undefined || player.socialMedia[6] != null) {
-				socials.addField(player.socialMedia[6].name, player.socialMedia[6].link);
-			}
+				if (player.socialMedia[0] != undefined || player.socialMedia[0] != null) {
+					socials.addFields([
+						{ name: `Social Media 1`, value: `\`${player.socialMedia[0].name, player.socialMedia[0].link}\``, required: true, inline: false }
+					]);
+				}
+	
+				if (player.socialMedia[1] != undefined || player.socialMedia[0] != null) {
+					socials.addFields([
+						{ name: `Social Media 2`, value: `\`${player.socialMedia[1].name, player.socialMedia[1].link}\``, required: true, inline: false }
+					]);
+				}
+	
+				if (player.socialMedia[2] != undefined || player.socialMedia[0] != null) {
+					socials.addFields([
+						{ name: `Social Media 3`, value: `\`${player.socialMedia[2].name, player.socialMedia[2].link}\``, required: true, inline: false }
+					]);
+				}
+	
+				if (player.socialMedia[3] != undefined || player.socialMedia[0] != null) {
+					socials.addFields([
+						{ name: `Social Media 4`, value: `\`${player.socialMedia[3].name, player.socialMedia[3].link}\``, required: true, inline: false }
+					]);
+				}
+	
+				if (player.socialMedia[4] != undefined || player.socialMedia[0] != null) {
+					socials.addFields([
+						{ name: `Social Media 5`, value: `\`${player.socialMedia[4].name, player.socialMedia[4].link}\``, required: true, inline: false }
+					]);
+				}
+	
+				if (player.socialMedia[5] != undefined || player.socialMedia[0] != null) {
+					socials.addFields([
+						{ name: `Social Media 6`, value: `\`${player.socialMedia[5].name, player.socialMedia[5].link}\``, required: true, inline: false }
+					]);
+				}
+	
+				if (player.socialMedia[6] != undefined || player.socialMedia[0] != null) {
+					socials.addFields([
+						{ name: `Social Media 7`, value: `\`${player.socialMedia[6].name, player.socialMedia[6].link}\``, required: true, inline: false }
+					]);
+				}
 
             interaction.editReply({ embeds: [socials], allowedMentions: { repliedUser: true } });
 

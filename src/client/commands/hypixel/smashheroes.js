@@ -75,17 +75,11 @@ module.exports = {
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-
-                .addField('Level', `\`${commaNumber(player.stats.smashheroes.level)}\``, true)
-                .addField('Coins', `\`${commaNumber(player.stats.smashheroes.coins)}\``, true)
-                .addField('Wins', `\`${commaNumber(player.stats.smashheroes.wins)}\``, true)
-                .addField('Losses', `\`${commaNumber(player.stats.smashheroes.losses)}\``, true)
-                .addField('WL Ratio', `\`${commaNumber(player.stats.smashheroes.WLRatio)}\``, true)
-                .addField('Kills', `\`${commaNumber(player.stats.smashheroes.kills)}\``, true)
-                .addField('Deaths', `\`${commaNumber(player.stats.smashheroes.deaths)}\``, true)
-                .addField('KD Ratio', `\`${commaNumber(player.stats.smashheroes.KDRatio)}\``, true)
-                .addField('Winstreak', `\`${commaNumber(player.stats.smashheroes.winstreak)}\``, true)
-                .addField('Total Games', `\`${commaNumber(player.stats.smashheroes.playedGames)}\``, true)
+                .addFields([
+                    { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.smashheroes.coins)}\` \n \`•\` **Level**: \`${commaNumber(player.stats.smashheroes.level)}\` \n \`•\` **Winstreak**: \`${commaNumber(player.stats.smashheroes.winstreak)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.smashheroes.playedGames)}\``, inline: true, required: true},
+                    { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.smashheroes.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.smashheroes.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.smashheroes.KDRatio)}\``, inline: true, required: true},
+                    { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.smashheroes.wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.smashheroes.losses)}\` \n \`•\` **WLR**: \`${commaNumber(player.stats.smashheroes.WLRatio)}\``, inline: true, required: true},
+                ]);
 
             message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 
@@ -181,17 +175,11 @@ module.exports = {
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 
-                .addField('Level', `\`${commaNumber(player.stats.smashheroes.level)}\``, true)
-                .addField('Coins', `\`${commaNumber(player.stats.smashheroes.coins)}\``, true)
-                .addField('Wins', `\`${commaNumber(player.stats.smashheroes.wins)}\``, true)
-                .addField('Losses', `\`${commaNumber(player.stats.smashheroes.losses)}\``, true)
-                .addField('WL Ratio', `\`${commaNumber(player.stats.smashheroes.WLRatio)}\``, true)
-                .addField('Kills', `\`${commaNumber(player.stats.smashheroes.kills)}\``, true)
-                .addField('Deaths', `\`${commaNumber(player.stats.smashheroes.deaths)}\``, true)
-                .addField('KD Ratio', `\`${commaNumber(player.stats.smashheroes.KDRatio)}\``, true)
-                .addField('Winstreak', `\`${commaNumber(player.stats.smashheroes.winstreak)}\``, true)
-                .addField('Total Games', `\`${commaNumber(player.stats.smashheroes.games)}\``, true)
-                .addField('Total Quits', `\`${commaNumber(player.stats.smashheroes.quits)}\``, true)
+                .addFields([
+                    { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.smashheroes.coins)}\` \n \`•\` **Level**: \`${commaNumber(player.stats.smashheroes.level)}\` \n \`•\` **Winstreak**: \`${commaNumber(player.stats.smashheroes.winstreak)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.smashheroes.playedGames)}\` \n \`•\` **Active Class**: \`${commaNumber(player.stats.smashheroes.activeClass)}\``, inline: true, required: true},
+                    { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.smashheroes.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.smashheroes.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.smashheroes.KDRatio)}\``, inline: true, required: true},
+                    { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.smashheroes.wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.smashheroes.losses)}\` \n \`•\` **WLR**: \`${commaNumber(player.stats.smashheroes.WLRatio)}\``, inline: true, required: true},
+                ]);
 
             interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 

@@ -76,16 +76,11 @@ module.exports = {
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-
-                .addField('Kills', `\`${commaNumber(player.stats.speeduhc.kills)}\``, true)
-                .addField('Losses', `\`${commaNumber(player.stats.speeduhc.losses)}\``, true)
-                .addField('Wins', `\`${commaNumber(player.stats.speeduhc.wins)}\``, true)
-                .addField('Winstreak', `\`${commaNumber(player.stats.speeduhc.winstreak)}\``, true)
-                .addField('Deaths', `\`${commaNumber(player.stats.speeduhc.deaths)}\``, true)
-                .addField('Games Played', `\`${commaNumber(player.stats.speeduhc.playedGames)}\``, true)
-                .addField('Coins', `\`${commaNumber(player.stats.speeduhc.coins)}\``, true)
-                .addField('KD Ratio', `\`${player.stats.speeduhc.KDRatio}\``, true)
-                .addField('WL Ratio', `\`${player.stats.speeduhc.WLRatio}\``, true)
+                .addFields([
+                    { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.speeduhc.coins)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.speeduhc.playedGames)}\` \n \`•\` **Winstreak**: \`${commaNumber(player.stats.speeduhc.winstreak)}\``, inline: true, required: true },
+                    { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.speeduhc.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.speeduhc.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.speeduhc.KDRatio)}\``, inline: true, required: true },
+                    { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.speeduhc.wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.speeduhc.losses)}\` \n \`•\` **WLR**: \`${commaNumber(player.stats.speeduhc.WLRatio)}\` \n `, inline: true, required: true },
+                ])
 
             message.reply({ embeds: [speeduhc], allowedMentions: { repliedUser: true } })
 
@@ -180,16 +175,11 @@ module.exports = {
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-
-                .addField('Kills', `\`${commaNumber(player.stats.speeduhc.kills)}\``, true)
-                .addField('Losses', `\`${commaNumber(player.stats.speeduhc.losses)}\``, true)
-                .addField('Wins', `\`${commaNumber(player.stats.speeduhc.wins)}\``, true)
-                .addField('Winstreak', `\`${commaNumber(player.stats.speeduhc.winstreak)}\``, true)
-                .addField('Deaths', `\`${commaNumber(player.stats.speeduhc.deaths)}\``, true)
-                .addField('Games Played', `\`${commaNumber(player.stats.speeduhc.playedGames)}\``, true)
-                .addField('Coins', `\`${commaNumber(player.stats.speeduhc.coins)}\``, true)
-                .addField('KD Ratio', `\`${player.stats.speeduhc.KDRatio}\``, true)
-                .addField('WL Ratio', `\`${player.stats.speeduhc.WLRatio}\``, true)
+                .addFields([
+                    { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.speeduhc.coins)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.speeduhc.playedGames)}\` \n \`•\` **Winstreak**: \`${commaNumber(player.stats.speeduhc.winstreak)}\``, required: true, inline: true },
+                    { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.speeduhc.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.speeduhc.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.speeduhc.KDRatio)}\``, required: true, inline: true },
+                    { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.speeduhc.wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.speeduhc.losses)}\` \n \`•\` **WLR**: \`${commaNumber(player.stats.speeduhc.WLRatio)}\` \n `, required: true, inline: true },
+                ])
 
             interaction.editReply({ embeds: [speeduhc], allowedMentions: { repliedUser: true } });
 

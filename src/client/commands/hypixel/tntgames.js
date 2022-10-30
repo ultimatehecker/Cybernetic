@@ -110,9 +110,9 @@ module.exports = {
                     { name: "General Stats", value: `\`•\` **Coins**: \`${commaNumber(player.stats.tntgames.coins)}\` \n \`•\` **Total Wins**: \`${commaNumber(player.stats.tntgames.wins)}\` \n \`•\` **Winstreak**: \`${commaNumber(player.stats.tntgames.winstreak)}\``, required: true, inline: true },
                     { name: "TNT Run", value: `\`•\` **TNT Run Kills**: \`N/A\` \n \`•\` **TNT Run Wins**: \`${commaNumber(player.stats.tntgames.tntrun.wins)}\` \n \`•\` **TNT Run Deaths**: \`${commaNumber(player.stats.tntgames.tntrun.deaths)}\` \n \`•\` **TNT Run Longest Game**: \`${Math.floor(player.stats.tntgames.tntrun.record / 60)}\`:\`${player.stats.tntgames.tntrun.record - Math.floor(player.stats.tntgames.tntrun.record / 60) * 60}\` \n \`•\` **TNT Run Record**: \`${commaNumber(player.stats.tntgames.tntrun.record)}\` \n \`•\` **TNT Run KDR**: \`${commaNumber(player.stats.tntgames.tntrun.KDRatio)}\``, required: true, inline: true },
                     { name: "PvP Run", value: `\`•\` **PVP Run Kills**: \`${commaNumber(player.stats.tntgames.pvprun.kills)}\` \n \`•\` **PVP Run Wins**: \`${commaNumber(player.stats.tntgames.pvprun.wins)}\` \n \`•\` **PVP Run Deaths**: \`${commaNumber(player.stats.tntgames.pvprun.deaths)}\` \n \`•\` **PVP Run Longest Game**: \`${Math.floor(player.stats.tntgames.pvprun.record / 60)}\`:\`${player.stats.tntgames.pvprun.record - Math.floor(player.stats.tntgames.pvprun.record / 60) * 60}\` \n \`•\` **PVP Run Record**: \`${commaNumber(player.stats.tntgames.pvprun.record)}\` \n \`•\` **TNT Run KDR**: \`${commaNumber(player.stats.tntgames.pvprun.KDRatio)}\``, required: true, inline: true },
-                    { name: "TNT Tag", value: ``, required: true, inline: true },
-                    { name: "Bow Spleef", value: ``, required: true, inline: true },
-                    { name: "Wizards", value: ``, required: true, inline: true },
+                    { name: "TNT Tag", value: `\`•\` **TNT Tag Kills**: \`${commaNumber(player.stats.tntgames.tnttag.kills)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.tntgames.tnttag.wins)}\` \n \`•\` **TNT Tag Speed**: \`${commaNumber(player.stats.tntgames.tnttag.speed)}\` \n `, required: true, inline: true },
+                    { name: "Bow Spleef", value: `\`•\` **Bow Spleef Wins**: \`${commaNumber(player.stats.tntgames.bowspleef.wins)}\` \n \`•\` **Bow Spleef Deaths**: \`${commaNumber(player.stats.tntgames.bowspleef.deaths)}\` \n \`•\` **Bow Spleef Tags**: \`${commaNumber(player.stats.tntgames.bowspleef.tags)}\` \n `, required: true, inline: true },
+                    { name: "Wizards", value: `\`•\` **Wizards Points**: \`${commaNumber(player.stats.tntgames.wizards.points)}\` \`•\` **Wizards Kills/Assists**: \`${commaNumber(player.stats.tntgames.wizards.kills)}\` / \`${commaNumber(player.stats.tntgames.wizards.assists)}\` \`•\` **Wizards Kills**: \`${commaNumber(player.stats.tntgames.wizards.kills)}\` \`•\` **Wizards Death**: \`${commaNumber(player.stats.tntgames.wizards.deaths)}\` \`•\` **Wizards KDR**: \`${commaNumber(player.stats.tntgames.wizards.KDRatio)}\` `, required: true, inline: true },
                 ])
 
             message.reply({ embeds: [tntgames], allowedMentions: { repliedUser: true } });
@@ -211,32 +211,14 @@ module.exports = {
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-
-                .addField('Coins', `\`${commaNumber(player.stats.tntgames.coins)}\``, true)
-                .addField('Total Wins', `\`${commaNumber(player.stats.tntgames.wins)}\``, true)
-                .addField('Winstreak', `\`${commaNumber(player.stats.tntgames.winstreak)}\``, true)
-                .addField('TNT Run Wins', `\`${commaNumber(player.stats.tntgames.tntrun.wins)}\``, true)
-                .addField('TNT Run Deaths', `\`${commaNumber(player.stats.tntgames.tntrun.deaths)}\``, true)
-                .addField('TNT Run Longest Game (Minutes)', `\`${Math.floor(player.stats.tntgames.tntrun.record / 60)}\`:\`${player.stats.tntgames.tntrun.record - Math.floor(player.stats.tntgames.tntrun.record / 60) * 60}\``, true)
-                .addField('PvP Run Wins', `\`${commaNumber(player.stats.tntgames.pvprun.wins)}\``, true)
-                .addField('PvP Run Deaths', `\`${commaNumber(player.stats.tntgames.pvprun.deaths)}\``, true)
-                .addField('PvP Run Longest Game (Minutes)', `\`${Math.floor(player.stats.tntgames.pvprun.record / 60)}\`:\`${player.stats.tntgames.pvprun.record - Math.floor(player.stats.tntgames.pvprun.record / 60) * 60}\``, true)
-                .addField('PvP Run Kills', `\`${commaNumber(player.stats.tntgames.pvprun.kills)}\``, true)
-                .addField('PvP Run KD Ratio', `\`${commaNumber(player.stats.tntgames.pvprun.KDRatio)}\``, true)
-                .addField('PvP Run Wins', `\`${commaNumber(player.stats.tntgames.pvprun.wins)}\``, true)
-                .addField('TNT Tag Kills', `\`${commaNumber(player.stats.tntgames.tnttag.kills)}\``, true)
-                .addField('TNT Tag Wins', `\`${commaNumber(player.stats.tntgames.tnttag.wins)}\``, true)
-                .addField('TNT Tag Speed', `\`${commaNumber(player.stats.tntgames.tnttag.speed)}\``, true)
-                .addField('Bow Spleef Wins', `\`${commaNumber(player.stats.tntgames.bowspleef.wins)}\``, true)
-                .addField('Bow Spleef Tags', `\`${commaNumber(player.stats.tntgames.bowspleef.tags)}\``, true)
-                .addField('Bow Spleef Deaths', `\`${commaNumber(player.stats.tntgames.bowspleef.deaths)}\``, true)
-                .addField('Wizards Wins', `\`${commaNumber(player.stats.tntgames.wizards.wins)}\``, true)
-                .addField('Wizards Kills', `\`${commaNumber(player.stats.tntgames.wizards.kills)}\``, true)
-                .addField('Wizards Deaths', `\`${commaNumber(player.stats.tntgames.wizards.deaths)}\``, true)
-                .addField('Wizards Assists', `\`${commaNumber(player.stats.tntgames.wizards.wins)}\``, true)
-                .addField('Wizards KD Ratio', `\`${commaNumber(player.stats.tntgames.wizards.KDRatio)}\``, true)
-                .addField('Wizards Points', `\`${commaNumber(player.stats.tntgames.wizards.points)}\``, true)
-                .addField('Wizards Class', `\`${wizardsClass}\``, true)
+                .addFields([
+                    { name: "General Stats", value: `\`•\` **Coins**: \`${commaNumber(player.stats.tntgames.coins)}\` \n \`•\` **Total Wins**: \`${commaNumber(player.stats.tntgames.wins)}\` \n \`•\` **Winstreak**: \`${commaNumber(player.stats.tntgames.winstreak)}\``, required: true, inline: true },
+                    { name: "TNT Run", value: `\`•\` **Kills**: \`N/A\` \n \`•\` **TNT Run Wins**: \`${commaNumber(player.stats.tntgames.tntrun.wins)}\` \n \`•\` **TNT Run Deaths**: \`${commaNumber(player.stats.tntgames.tntrun.deaths)}\` \n \`•\` **TNT Run Longest Game**: \`${Math.floor(player.stats.tntgames.tntrun.record / 60)}\`:\`${player.stats.tntgames.tntrun.record - Math.floor(player.stats.tntgames.tntrun.record / 60) * 60}\` \n \`•\` **TNT Run Record**: \`${commaNumber(player.stats.tntgames.tntrun.record)}\` \n \`•\` **TNT Run KDR**: \`${commaNumber(player.stats.tntgames.tntrun.KDRatio)}\``, required: true, inline: true },
+                    { name: "PvP Run", value: `\`•\` **Kills**: \`${commaNumber(player.stats.tntgames.pvprun.kills)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.tntgames.pvprun.wins)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.tntgames.pvprun.deaths)}\` \n \`•\` **Longest Game**: \`${Math.floor(player.stats.tntgames.pvprun.record / 60)}\`:\`${player.stats.tntgames.pvprun.record - Math.floor(player.stats.tntgames.pvprun.record / 60) * 60}\` \n \`•\` **Record**: \`${commaNumber(player.stats.tntgames.pvprun.record)}\``, required: true, inline: true },
+                    { name: "TNT Tag", value: `\`•\` **Kills**: \`${commaNumber(player.stats.tntgames.tnttag.kills)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.tntgames.tnttag.wins)}\` \n \`•\` **Speed**: \`${commaNumber(player.stats.tntgames.tnttag.speed)}\` \n `, required: true, inline: true },
+                    { name: "Bow Spleef", value: `\`•\` **Wins**: \`${commaNumber(player.stats.tntgames.bowspleef.wins)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.tntgames.bowspleef.deaths)}\` \n \`•\` **Tags**: \`${commaNumber(player.stats.tntgames.bowspleef.tags)}\` \n `, required: true, inline: true },
+                    { name: "Wizards", value: `\`•\` *Points**: \`${commaNumber(player.stats.tntgames.wizards.points)}\` \n \`•\` *Kills/Assists**: \`${commaNumber(player.stats.tntgames.wizards.kills)}\` / \`${commaNumber(player.stats.tntgames.wizards.assists)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.tntgames.wizards.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.tntgames.wizards.KDRatio)}\` `, required: true, inline: true },
+                ])
 
             interaction.editReply({ embeds: [tntgames], allowedMentions: { repliedUser: true } });
 
