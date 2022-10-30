@@ -55,6 +55,7 @@ module.exports = {
             });
         }
 
+        let gamemode = args[1];
         let player;
         if (data && !args[0]) {
              player = data.uuid;
@@ -76,20 +77,43 @@ module.exports = {
                 });
             }
 
-            const embed = new Discord.EmbedBuilder()
-                .setAuthor(authorSuccess)
-                .setTitle(`[${player.rank}] ${player.nickname}`)
-                .setColor(colors["MainColor"])
-                .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+            if(gamemode == "infection" || "doubleup" || "assassins") {
+                const infection = new Discord.EmbedBuilder()
+                    .setAuthor(authorSuccess)
+                    .setTitle(`[${player.rank}] ${player.nickname}`)
+                    .setColor(colors["MainColor"])
+                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                    .addFields([
+                        { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.murdermystery.coins)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.murdermystery[gamemode].playedGames)}\` \n `, required: true, inline: true },
+                        { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.murdermystery[gamemode].kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.murdermystery[gamemode].deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.murdermystery[gamemode].KDRatio)}\``, required: true, inline: true },
+                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.murdermystery[gamemode].wins)}\``, required: true, inline: true },
+                    ]);
 
-                .addField('Coins', `\`${commaNumber(player.stats.murdermystery.coins)}\``, true)
-                .addField('Wins', `\`${commaNumber(player.stats.murdermystery.wins)}\``, true)
-                .addField('Total Games', `\`${commaNumber(player.stats.murdermystery.playedGames)}\``, true)
-                .addField('Kills', `\`${commaNumber(player.stats.murdermystery.kills)}\``, true)
-                .addField('Deaths', `\`${commaNumber(player.stats.murdermystery.deaths)}\``, true)
-                .addField('Wins As', `\`•\` **Wins As Murderer**: \`${commaNumber(player.stats.murdermystery.winsAsMurderer)}\` \n \`•\` **Wins As Detective**: \`${commaNumber(player.stats.murdermystery.winsAsDetective)}\``, true)
+                message.reply({ embeds: [infection], allowedMentions: { repliedUser: true } });
+            } else if(!gamemode) {
+                const murdermystery = new Discord.EmbedBuilder()
+                    .setAuthor(authorSuccess)
+                    .setTitle(`[${player.rank}] ${player.nickname}`)
+                    .setColor(colors["MainColor"])
+                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                    .addFields([
+                        { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.murdermystery.coins)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.murdermystery.playedGames)}\` \n `, required: true, inline: true },
+                        { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.murdermystery.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.murdermystery.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.murdermystery.KDRatio)}\``, required: true, inline: true },
+                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.murdermystery.wins)}\` \n \`•\` **Wins as Murderer**: \`${commaNumber(player.stats.murdermystery.winsAsMurderer)}\` \n \`•\` **Wins as Detective**: \`${commaNumber(player.stats.murdermystery.winsAsDetective)}\` \n `, required: true, inline: true },
+                    ]);
 
-            message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });;
+                message.reply({ embeds: [murdermystery], allowedMentions: { repliedUser: true } });
+            } else {
+                const gamemode504 = new Discord.EmbedBuilder()
+                    .setAuthor(authorError)
+                    .setColor(colors["ErrorColor"])
+                    .setDescription("That gamemode does not exist.")
+                message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
+                    setTimeout(function() {
+                        sent.delete();
+                    }, 5000);
+                });
+            }
 
         }).catch((e) => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -185,11 +209,11 @@ module.exports = {
                     .setTitle(`[${player.rank}] ${player.nickname}`)
                     .setColor(colors["MainColor"])
                     .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-
-                    .addField('Coins', `\`${commaNumber(player.stats.murdermystery.coins)}\``, true)
-                    .addField('Total Games', `\`${commaNumber(player.stats.murdermystery.playedGames)}\``, true)
-                    .addField("Combat", `\`•\` **Kills**: \`${commaNumber(player.stats.murdermystery.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.murdermystery.deaths)}\` \n \`•\` **KDR**: \`${player.stats.murdermystery.WLRatio}\``, true)
-                    .addField("Games", `\`•\` **Wins**: \`${commaNumber(player.stats.murdermystery.wins)}\` \n \`•\` **Wins a Murderer**: \`${commaNumber(player.stats.murdermystery.winsAsMurderer)}\` \n \`•\` **Wins a Detective**: \`${player.stats.murdermystery.winsAsDetective}\``, true)
+                    .addFields([
+                        { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.murdermystery.coins)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.murdermystery.playedGames)}\` \n `, required: true, inline: true },
+                        { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.murdermystery.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.murdermystery.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.murdermystery.KDRatio)}\``, required: true, inline: true },
+                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.murdermystery.wins)}\` \n \`•\` **Wins as Murderer**: \`${commaNumber(player.stats.murdermystery.winsAsMurderer)}\` \n \`•\` **Wins as Detective**: \`${commaNumber(player.stats.murdermystery.winsAsDetective)}\` \n `, required: true, inline: true },
+                    ]);
 
                 interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
             }else if(gamemode == "assassins" || "doubleup" || "infection") {
@@ -205,12 +229,12 @@ module.exports = {
                     .addField("Games", `\`•\` **Wins**: \`${commaNumber(player.stats.murdermystery[gamemode].wins)}\` \n \`•\` **Wins a Murderer**: \`${commaNumber(player.stats.murdermystery.winsAsMurderer)}\` \n \`•\` **Wins a Detective**: \`${player.stats.murdermystery.winsAsDetective}\``, true)
 
                 interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-            }else {
+            } else {
                 const gamemode504 = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription("That gamemode does not exist.")
-                message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
+                interaction.editReply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
