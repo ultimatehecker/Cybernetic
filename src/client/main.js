@@ -25,9 +25,10 @@ Sentry.configureScope((scope) => {
 });
 
 const Discord = require("discord.js");
+const { GatewayIntentBits, Partials, ActivityType } = require("discord.js");
 const client = new Discord.Client({
-    partials: ["REACTION", "MESSAGE", "CHANNEL"],
-    intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "DIRECT_MESSAGES"],
+    partials: [Partials.Reaction, Partials.Message, Partials.Channel],
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildBans, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.DirectMessages],
     failIfNotExists: true,
 });
 
@@ -104,7 +105,7 @@ db.once("open", () => {
         console.log(`Cybernetic's Database & Dependanices have been loaded and the client has been successfully started at ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`);
         client.user.setPresence({
             activities: [
-                { name: "https://github.com/ultimatehecker/Cybernetic", type: "WATCHING" },
+                { name: "https://github.com/ultimatehecker/Cybernetic", type: ActivityType.Watching},
             ],
             status: "online",
         });

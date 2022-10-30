@@ -26,7 +26,7 @@ module.exports = {
             }
         }
 
-        const seed = new Discord.MessageEmbed()
+        const seed = new Discord.EmbedBuilder()
             .setAuthor(authorSuccess)
             .setColor(colors["MainColor"])
             .setDescription(`Here is your randomly generated minecraft seed: \`${mcseed()}\``)
@@ -54,7 +54,7 @@ module.exports = {
             }
         }
 
-        const seed = new Discord.MessageEmbed()
+        const seed = new Discord.EmbedBuilder()
             .setAuthor(authorSuccess)
             .setColor(colors["MainColor"])
             .setDescription(`Here is your randomly generated minecraft seed: \`${mcseed()}\``)

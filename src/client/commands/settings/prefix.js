@@ -1,11 +1,17 @@
 const colors = require("../../tools/colors.json");
+const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
     name: 'prefix',
     aliases: ["pre"],
     description: 'Changes the prefix of the client',
     options: [
-		{ name: "prefix", description: "The new prefix", type: "STRING", required: true },
+		{ 
+            name: "prefix", 
+            description: "The new prefix", 
+            type: ApplicationCommandOptionType.String,
+            required: true,
+        },
 	],
     defaultPermission: true,
     usage: 'prefix (prefix)',
@@ -25,7 +31,7 @@ module.exports = {
         }
 
         if(!args[0]) {
-            const prefix404 = new Discord.MessageEmbed()
+            const prefix404 = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription('You have to enter a prefix to chnage a prefix!')
@@ -40,7 +46,7 @@ module.exports = {
         if(message.member.permissions.has("MANAGE_GUILD")) {
             client.utils.updateServer(client, message.guild.id, { prefix: args[0] }).then(() => {
 
-					const success = new Discord.MessageEmbed()
+					const success = new Discord.EmbedBuilder()
                         .setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
 						.setDescription(`Prefix set to: \`${args[0]}\``);
@@ -48,7 +54,7 @@ module.exports = {
 					message.reply({ embeds: [success], allowedMentions: { repliedUser: true } });
 			});
         } else {
-            const invalid = new Discord.MessageEmbed()
+            const invalid = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription('You don\'t have permission to change my prefix!')
@@ -79,7 +85,7 @@ module.exports = {
 		if (interaction.member.permissions.has("MANAGE_GUILD")) {
 			client.utils.updateServer(client, interaction.guild.id, { prefix: interaction.options.get("prefix").value }).then(() => {
 
-                const embed = new Discord.MessageEmbed()
+                const embed = new Discord.EmbedBuilder()
                     .setAuthor(authorSuccess)
                     .setColor(colors["MainColor"])
                     .setDescription(`Prefix set to: \`${interaction.options.get("prefix").value}\``)
@@ -87,7 +93,7 @@ module.exports = {
                 interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 			});
 		} else {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
 				.setDescription("You don\'t have permission to change my prefix!")

@@ -1,6 +1,7 @@
 const { hypixel, errors } = require('../../schemas/hypixel');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
+const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
 	name: "socials",
@@ -11,7 +12,7 @@ module.exports = {
 			name: "player",
 			description: "Shows the statistics of an average Hypixel Bedwars player!",
 			required: false,
-			type: "STRING"
+			type: ApplicationCommandOptionType.String
 		}
 	],
     defaultPermission: true,
@@ -37,13 +38,13 @@ module.exports = {
 
 		if (!data && !args[0]) {
 			// if someone didn't type in ign
-			const ign404 = new Discord.MessageEmbed()
+			const ign404 = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}socials ultimate_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultimate_hecker\`)`)
 			return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}
@@ -58,18 +59,18 @@ module.exports = {
 		hypixel.getPlayer(player).then(async (player) => {
 
 			if (!player.socialMedia) {
-                const neverPlayed = new Discord.MessageEmbed()
+                const neverPlayed = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription("That player doesn't have any socials")
                 return message.reply({ embeds: [neverPlayed], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
             }
 
-			let socials = new Discord.MessageEmbed()
+			let socials = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setTitle(`[${player.rank}] ${player.nickname}`)
 				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
@@ -106,34 +107,34 @@ module.exports = {
 			message.reply({embeds: [socials], allowedMentions: { repliedUser: true } });
 		}).catch((e) => {
 			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
-				const player404 = new Discord.MessageEmbed()
+				const player404 = new Discord.EmbedBuilder()
 					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
 				return message.reply({embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
 			} else if (e.message === errors.PLAYER_HAS_NEVER_LOGGED) {
-				const neverLogged = new Discord.MessageEmbed()
+				const neverLogged = new Discord.EmbedBuilder()
 					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
 					.setColor(colors["ErrorColor"])
 					.setDescription("That player has never logged into Hypixel.");
 				return message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
 			} else {
-				const error = new Discord.MessageEmbed()
+				const error = new Discord.EmbedBuilder()
 					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
 				console.error(e);
 				return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
-						message.delete()
+						sent.delete();
 					}, 5000);
 				});
 			}
@@ -158,7 +159,7 @@ module.exports = {
         });
 
         if (!data && !interaction.options.get("player")) { // if someone didn't type in ign
-            const ign404 = new Discord.MessageEmbed()
+            const ign404 = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`You need to type in a player's IGN! (Example: \`${serverDoc.prefix}megawalls ultimate_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${serverDoc.prefix}link ultimate_hecker\`)`)
@@ -179,7 +180,7 @@ module.exports = {
         hypixel.getPlayer(player).then((player) => {
 
             if (!player.socialMedia) {
-                const neverPlayed = new Discord.MessageEmbed()
+                const neverPlayed = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription("That player doesn't have any socials")
@@ -190,7 +191,7 @@ module.exports = {
                 });
             }
 
-			const socials = new Discord.MessageEmbed()
+			const socials = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setTitle(`[${player.rank}] ${player.nickname}`)
 				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
@@ -228,7 +229,7 @@ module.exports = {
 
         }).catch(e => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
-                const player404 = new Discord.MessageEmbed()
+                const player404 = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription('I could not find that player in the API. Check spelling and name history.')
@@ -238,7 +239,7 @@ module.exports = {
                     }, 5000);
                 });
             } else if (e.message === errors.PLAYER_HAS_NEVER_LOGGED) {
-                const neverLogged = new Discord.MessageEmbed()
+                const neverLogged = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription('That player has never logged into Hypixel.')
@@ -248,7 +249,7 @@ module.exports = {
                     }, 5000);
                 });
             } else {
-                const error = new Discord.MessageEmbed()
+                const error = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)

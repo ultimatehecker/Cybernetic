@@ -1,6 +1,7 @@
 const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const colors = require("../../tools/colors.json");
+const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
 	name: "watchdog",
@@ -8,6 +9,7 @@ module.exports = {
 	description:"Show you the statistics of Watchdog which updates every 15 seconds!",
 	usage: "watchdog",
 	example: "watchdog",
+	notes: 'The statistics of the last day reset at 5 AM UTC',
 	async execute(client, message, args, Discord) {
 
 		await message.channel.sendTyping();
@@ -18,12 +20,16 @@ module.exports = {
         }
 
 		hypixel.getWatchdogStats().then((stats) => {
-			const embed = new Discord.MessageEmbed()
+
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.addField("Total Watchdog bans", `\`${commaNumber(stats.byWatchdogTotal)}\``, true)
-				.addField("Bans in the last minute", `\`${commaNumber(stats.byWatchdogLastMinute)}\``, true)
-				.addField("Total staff bans", `\`${commaNumber(stats.byStaffTotal)}\``, true)
+				.addFields([
+					{ name: "Overall", value: `\`•\` **Lifetime**: \`${commaNumber((stats.byWatchdogTotal + stats.byStaffTotal))}\` \n \`•\` **Last Day**: \`${commaNumber((stats.byWatchdogRollingDay + stats.byStaffRollingDay))}\``, required: true, inline: false },
+					{ name: "Watchdog", value: `\`•\` **Lifetime**: \`${commaNumber(stats.byWatchdogTotal)}\` \n \`•\` **Last Day**: \`${commaNumber(stats.byWatchdogRollingDay)}\` \n \`•\` **Last Minute**: \`${commaNumber(stats.byWatchdogLastMinute)}\``, required: true, inline: false },
+					{ name: "Staff", value: `\`•\` **Lifetime**: \`${commaNumber(stats.byStaffTotal)}\` \n \`•\` **Last Day**: \`${commaNumber(stats.byStaffRollingDay)}\``, required: true, inline: false }
+				])
+
 			message.reply({embeds: [embed], allowedMentions: { repliedUser: true } });
 		});
 	},
@@ -37,12 +43,16 @@ module.exports = {
         }
 
 		hypixel.getWatchdogStats().then((stats) => {
-			const embed = new Discord.MessageEmbed()
+
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.addField("Total Watchdog bans", `\`${commaNumber(stats.byWatchdogTotal)}\``, true)
-				.addField("Bans in the last minute", `\`${commaNumber(stats.byWatchdogLastMinute)}\``, true)
-				.addField("Total staff bans", `\`${commaNumber(stats.byStaffTotal)}\``, true)
+				.addFields([
+					{ name: "Overall", value: `\`•\` **Lifetime**: \`${commaNumber((stats.byWatchdogTotal + stats.byStaffTotal))}\` \n \`•\` **Last Day**: \`${commaNumber((stats.byWatchdogRollingDay + stats.byStaffRollingDay))}\``, required: true, inline: false },
+					{ name: "Watchdog", value: `\`•\` **Lifetime**: \`${commaNumber(stats.byWatchdogTotal)}\` \n \`•\` **Last Day**: \`${commaNumber(stats.byWatchdogRollingDay)}\` \n \`•\` **Last Minute**: \`${commaNumber(stats.byWatchdogLastMinute)}\``, required: true, inline: false },
+					{ name: "Staff", value: `\`•\` **Lifetime**: \`${commaNumber(stats.byStaffTotal)}\` \n \`•\` **Last Day**: \`${commaNumber(stats.byStaffRollingDay)}\``, required: true, inline: false }
+				])
+
 			interaction.editReply({embeds: [embed], allowedMentions: { repliedUser: true } });
 		});
     }

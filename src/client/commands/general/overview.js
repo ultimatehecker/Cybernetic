@@ -17,7 +17,7 @@ module.exports = {
 
 		const owner = message.guild.members.resolve(message.guild.ownerId).user.tag;
 
-		const overview = new Discord.MessageEmbed()
+		const overview = new Discord.EmbedBuilder()
 			.setAuthor(author)
 			.setColor(colors["MainColor"])
 			.setTitle(`${message.guild.name}`)
@@ -45,7 +45,7 @@ module.exports = {
 
 		const owner = interaction.guild.members.resolve(interaction.guild.ownerId).user.tag;
 	
-		const embed = new Discord.MessageEmbed()
+		const embed = new Discord.EmbedBuilder()
 			.setColor(colors["MainColor"])
 			.setAuthor(author)
 			.setTitle(`${interaction.guild.name} - Server Stats`)

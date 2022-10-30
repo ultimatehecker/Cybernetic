@@ -1,5 +1,6 @@
 const colors = require("../../tools/colors.json");
 const currentDate = new Date(Date.now());
+const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
 	name: "rng",
@@ -10,13 +11,13 @@ module.exports = {
 			name: "number1",
 			description: "First number for the random number picker",
 			required: true,
-			type: "STRING"
+			type: ApplicationCommandOptionType.String
 		},
 		{ 
 			name: "number2",
 			description: "First number for the random number picker",
 			required: true,
-			type: "STRING"
+			type: ApplicationCommandOptionType.String
 		}
 	],
     defaultPermission: true,
@@ -39,32 +40,32 @@ module.exports = {
 		let response = [Math.round(Math.random() * (Number(args[1]) - Number(args[0])) + Number(args[0]))]; // rng
 
 		if (!args[1]) {
-			const nonumbers = new Discord.MessageEmbed()
+			const nonumbers = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You didn't specify a lowest and highest number! (Example: \`${prefix}rng 1 10\`)`);
 
 			return message.reply({ embeds: [nonumbers], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    sent.delete();
                 }, 5000);
             })
 		}
 
 		if (Number.isNaN(args[1])) {
-			const nan = new Discord.MessageEmbed()
+			const nan = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("That is not a number!");
 
 			return message.reply({ embeds: [nan], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    sent.delete();
                 }, 5000);
             })
 		}
 
-		const rng = new Discord.MessageEmbed()
+		const rng = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
 			.setDescription(`You got \`${response}\`!`)
@@ -87,7 +88,7 @@ module.exports = {
 		let response = [Math.round(Math.random() * (Number(interaction.options.get("number2")?.value) - Number(interaction.options.get("number1")?.value)) + Number(interaction.options.get("number1")?.value))];
 
 		if(!interaction.options.get("number1") || !interaction.options.get("number2")){
-			const nonumbers = new Discord.MessageEmbed()
+			const nonumbers = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You didn't specify a lowest and highest number! (Example: \`${serverDoc.prefix}rng 1 10\`)`)
@@ -100,7 +101,7 @@ module.exports = {
 		}
 
 		if(Number.isNaN(interaction.options.get("number1")?.value) || Number.isNaN(interaction.options.get("number2")?.value)){
-			const nan = new Discord.MessageEmbed()
+			const nan = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("That is not a number!")
@@ -112,7 +113,7 @@ module.exports = {
             });
 		}
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
 			.setDescription(`You got \`${response}\`!`)

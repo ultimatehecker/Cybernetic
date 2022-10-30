@@ -1,6 +1,7 @@
 const axios = require("axios");
 const colors = require(`../../tools/colors.json`);
 const User = require('../../schemas/user');
+const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
 	name: "unlink",
@@ -24,13 +25,13 @@ module.exports = {
 		
 		const user = await User.findOne({ id: message.author.id });
 		if (!user) {
-			const notconnected = new Discord.MessageEmbed()
+			const notconnected = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Your account is not connected!")
 			return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    sent.delete();
                 }, 5000);
             });
 		}
@@ -38,7 +39,7 @@ module.exports = {
 		const username = await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`);
 
         user.deleteOne(() => {
-			const unlinked = new Discord.MessageEmbed()
+			const unlinked = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`${username.data.data.player.username} has been successfully unlinked from your account.`)
@@ -61,7 +62,7 @@ module.exports = {
 
         const user = await User.findOne({ id: interaction.user.id });
 		if (!user) {
-			const notconnected = new Discord.MessageEmbed()
+			const notconnected = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Your account is not connected!")
@@ -75,7 +76,7 @@ module.exports = {
 		const username = await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`);
 
         user.deleteOne(() => {
-			const unlinked = new Discord.MessageEmbed()
+			const unlinked = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`\`${username.data.data.player.username}\` has been successfully unlinked from your account.`)

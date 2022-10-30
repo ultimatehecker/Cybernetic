@@ -1,4 +1,5 @@
 const colors = require("../../tools/colors.json");
+const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
 	name: "embed",
@@ -9,19 +10,19 @@ module.exports = {
 			name: "title",
 			description: "Title for the embed",
 			required: true,
-			type: "STRING"
+			type: ApplicationCommandOptionType.String
 		},
         { 
 			name: "color",
 			description: "Color for the embed",
 			required: true,
-			type: "STRING"
+			type: ApplicationCommandOptionType.String
 		},
         { 
 			name: "content",
 			description: "Content for the embed",
 			required: true,
-			type: "STRING"
+			type: ApplicationCommandOptionType.String
 		}
 	],
     defaultPermission: true,
@@ -36,7 +37,7 @@ module.exports = {
 
 		let content = args.join(" ");
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new Discord.EmbedBuilder()
 			.setTitle(title)
 			.setColor(color)
 			.setDescription(content)
@@ -52,14 +53,14 @@ module.exports = {
 		const content = interaction.options.get("content")?.value
 
 		if(interaction.member.permissions.has("MANAGE_GUILDS")) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setTitle(title)
 				.setColor(color)
 				.setDescription(content)
 
 			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 		} else {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
 				.setDescription("You don\'t have permission to change my prefix!")

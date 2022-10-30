@@ -1,4 +1,5 @@
 const colors = require("../../tools/colors.json");
+const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
     name: "help",
@@ -9,7 +10,7 @@ module.exports = {
 			name: "command",
 			description: "Information for a specific command",
 			required: false,
-			type: "STRING"
+			type: ApplicationCommandOptionType.String
 		}
 	],
     defaultPermission: true,
@@ -35,10 +36,10 @@ module.exports = {
         }
 
         if(!args.length) {
-            const general = new Discord.MessageEmbed()
+            const general = new Discord.EmbedBuilder()
                 .setAuthor(authorGeneral)
                 .setColor(colors["MainColor"])
-                .setDescription(`Do \`${prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n *The prefix of the bot is currently: \`${prefix}\`. You can change the prefix by doing ${prefix}prefix (prefix)* \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\` \n \n 🚔 Moderation: \`clear\`, \`prefix\` \n \n 🌆 Hypixel: \`bedwars\`, \`blizsurvivalgames\`, \`buildbattle\`, \`copsandcrims\`, \`crazywalls\`, \`duels\`, \`guild\`, \`link\`, \`megawalls\`, \`miniwalls\`, \`murdermystery\`, \`player\`, \`skywars\`, \`smashheroes\`, \`soccer\`, \`socials\`, \`speeduhc\`, \`tntgames\`, \`uhc\`, \`unlink\`, \`vampirez\`, \`watchdog\`, \`zombies\`, \n \n 🏗️Minecraft: \`seed\`, \`server\`, \`skin\`, \`uuid\`, \`namehistory\`,`)
+                .setDescription(`Do \`${prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n *The prefix of the bot is currently: \`${prefix}\`. You can change the prefix by doing ${prefix}prefix (prefix)* \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\` \n \n 🚔 Moderation: \`ban\`, \`clear\`, \`kick\`, \`mute\`, \`nickname\`, \`reactionrole\`, \`unban\`, \`unmute\` \n \n 🌆 Hypixel: \`bedwars\`, \`blizsurvivalgames\`, \`buildbattle\`, \`copsandcrims\`, \`crazywalls\`, \`duels\`, \`guild\`, \`link\`, \`megawalls\`, \`miniwalls\`, \`murdermystery\`, \`player\`, \`skywars\`, \`smashheroes\`, \`soccer\`, \`socials\`, \`speeduhc\`, \`tntgames\`, \`uhc\`, \`unlink\`, \`vampirez\`, \`watchdog\`, \`zombies\`, \n \n 🏗️Minecraft: \`seed\`, \`server\`, \`skin\`, \`uuid\`, \`namehistory\` \n \n :gear: Settings: \`prefix\`, \`welcomemessage\`, \`leavemessage\``)
 
             return message.reply({ embeds: [general], allowedMentions: { repliedUser: true } })
         }
@@ -46,19 +47,19 @@ module.exports = {
         const command = client.commands.get(args[0].toLowerCase()) || client.commands.find((c) => c.aliases.includes(args[0].toLowerCase()));
 
         if(!command) {
-            const command404 = new Discord.MessageEmbed()
+            const command404 = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["MainColor"])
                 .setDescription(`That command list isn't a valid command!`)
 
             return message.reply({ embeds: [command404], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    sent.delete();
                 }, 5000);
             });
         }
 
-        const help = new Discord.MessageEmbed()
+        const help = new Discord.EmbedBuilder()
             .setAuthor(authorHelp)
             .setColor(colors["MainColor"])
             .setTitle(`${command.name} Command Description`)
@@ -94,10 +95,10 @@ module.exports = {
 
 		if (!interaction.options.get("command")) {
 
-			const general = new Discord.MessageEmbed()
+			const general = new Discord.EmbedBuilder()
 				.setAuthor(authorGeneral)
 				.setColor(colors["MainColor"])
-				.setDescription(`Do \`${serverDoc.prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n *The prefix of the bot is currently: \`${serverDoc.prefix}\`. You can change the prefix by doing ${serverDoc.prefix}prefix (prefix)* \n \n 🛠️ General: \`help\`, \`info\`, \`latency\`, \`links\`, \`coinflip\`, \`credits\`, \n \`overview\`, \`say\`, \`sayembed\`, \`rng\` \n \n 🚔 Moderation: \`clear\`, \`prefix\` \n \n 🎮 Hypixel: \`player\`, \`guild\`, \`bedwars\`, \`skywars\`, \`duels\`, \`uhc\`, \n \`socials\`, \`link\`, \`unlink\`, \`blitzsurvivalgames\`, \`buildbattle\`, \n \`copsandcrims\`, \`crazywalls\`, \`megawalls\`, \`murdermystery\`, \n \`smashheros\`, \`speeduhc\`, \`tntgames\`, \`vampirez\` \n \n  ⛏ Minecraft: \`namehistory\`, \`uuid\`, \`skin\`, \`mcserver\``)
+				.setDescription(`Do \`${serverDoc.prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n *The prefix of the bot is currently: \`${serverDoc.prefix}\`. You can change the prefix by doing ${serverDoc.prefix}prefix (prefix)* \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\` \n \n 🚔 Moderation: \`ban\`, \`clear\`, \`kick\`, \`mute\`, \`nickname\`, \`prefix\`, \`reactionrole\`, \`unban\`, \`unmute\` \n \n 🌆 Hypixel: \`bedwars\`, \`blizsurvivalgames\`, \`buildbattle\`, \`copsandcrims\`, \`crazywalls\`, \`duels\`, \`guild\`, \`link\`, \`megawalls\`, \`miniwalls\`, \`murdermystery\`, \`player\`, \`skywars\`, \`smashheroes\`, \`soccer\`, \`socials\`, \`speeduhc\`, \`tntgames\`, \`uhc\`, \`unlink\`, \`vampirez\`, \`watchdog\`, \`zombies\`, \n \n 🏗️Minecraft: \`seed\`, \`server\`, \`skin\`, \`uuid\`, \`namehistory\` \n \n :gear: Settings: \`prefix\`, \`welcomemessage\`, \`leavemessage\``)
 
 			return interaction.editReply({embeds: [general], allowedMentions: { repliedUser: true }});
 
@@ -108,7 +109,7 @@ module.exports = {
 			client.commands.find((c) => c.aliases && c.aliases.includes(interaction.options.get("command")?.value.toLowerCase()));
 
         if (!command) {
-            const command404 = new Discord.MessageEmbed()
+            const command404 = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription("That isn't a valid command!");
@@ -119,7 +120,7 @@ module.exports = {
             });
         } 
 
-        const help = new Discord.MessageEmbed()
+        const help = new Discord.EmbedBuilder()
             .setAuthor(authorHelp)
             .setColor(colors["MainColor"])
             .setTitle(`${command.name} Command Description`)

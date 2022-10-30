@@ -17,7 +17,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-        const latency = new Discord.MessageEmbed()
+        const latency = new Discord.EmbedBuilder()
             .setAuthor(author)
             .setColor(colors["MainColor"])
             .setDescription(`🏓 Cybernetic's Latency is currently \`${Date.now() - message.createdTimestamp}\` ms. Discord API Latency is currently \`${Math.round(client.ws.ping)}\` ms.`)
@@ -38,7 +38,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }	
 		
-		let latestEmbed = new Discord.MessageEmbed()
+		let latestEmbed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setDescription(`🏓 Cybernetic's Latency is: \`${Date.now() - interaction.createdTimestamp}\` ms. Discord API Latency is: \`${Math.round(client.ws.ping)}\` ms.`)
 			.setColor(colors["MainColor"]);
@@ -48,7 +48,7 @@ module.exports = {
 
             collector.on("collect", async (press) => {
                 if (press.user.id !== interaction.user.id) {
-                    const embed = new Discord.MessageEmbed()
+                    const embed = new Discord.EmbedBuilder()
                         .setAuthor(authorError)
                         .setColor(colors["MainColor"])
                         .setDescription("You cannot perform this action!");
@@ -61,7 +61,7 @@ module.exports = {
                 } else {
                     await press.deferUpdate();
 
-                    const embed = new Discord.MessageEmbed()
+                    const embed = new Discord.EmbedBuilder()
                         .setAuthor(authorSuccess)
                         .setColor(colors["MainColor"])
                         .setDescription(`🏓 Cybernetic's Latency is: \`${Date.now() - press.createdTimestamp}\` ms. Discord API Latency is: \`${Math.round(client.ws.ping)}\` ms.`)

@@ -17,7 +17,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-        const github = new Discord.MessageEmbed()
+        const github = new Discord.EmbedBuilder()
 			.setAuthor(author)
 			.setColor(colors["MainColor"])
             .setDescription("This will redirect you to Cybernetic's GitHub Repository, where you can view issues, code and potential contribute to Cybernetic")
@@ -33,7 +33,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-        const github = new Discord.MessageEmbed()
+        const github = new Discord.EmbedBuilder()
 			.setAuthor(author)
 			.setColor(colors["MainColor"])
             .setDescription("This will redirect you to Cybernetic's GitHub Repository, where you can view issues, code and potential contribute to Cybernetic")

@@ -15,7 +15,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-        const invite = new Discord.MessageEmbed()
+        const invite = new Discord.EmbedBuilder()
 			.setAuthor(author)
 			.setColor(colors["MainColor"])
             .setDescription("This Cybernetic Invite Link does include the slash commands which will be added soon and includes the regular message based commands.")
@@ -31,7 +31,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-        const invite = new Discord.MessageEmbed()
+        const invite = new Discord.EmbedBuilder()
 			.setAuthor(author)
 			.setColor(colors["MainColor"])
             .setDescription("This Cybernetic Invite Link does include the slash commands which will be added soon and includes the regular message based commands.")

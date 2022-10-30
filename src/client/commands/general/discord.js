@@ -17,7 +17,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-        const discord = new Discord.MessageEmbed()
+        const discord = new Discord.EmbedBuilder()
 			.setAuthor(author)
 			.setColor(colors["MainColor"])
             .setDescription("This will send you to the Cybernetic Support Server, where you will have the chance to see future updates, more information and test out beta features!")
@@ -33,7 +33,7 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-        const discord = new Discord.MessageEmbed()
+        const discord = new Discord.EmbedBuilder()
             .setAuthor(author)
             .setColor(colors["MainColor"])
             .setDescription("This will send you to the Cybernetic Support Server, where you will have the chance to see future updates, more information and test out beta features!")

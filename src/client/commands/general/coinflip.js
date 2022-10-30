@@ -27,7 +27,7 @@ module.exports = {
             }
         }
 
-        const coinflip = new Discord.MessageEmbed()
+        const coinflip = new Discord.EmbedBuilder()
             .setAuthor(author)
             .setColor(colors["MainColor"])
             .setDescription(`${randomFlip()}`)
@@ -53,7 +53,7 @@ module.exports = {
             }
         }
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new Discord.EmbedBuilder()
 		    .setAuthor(author)
 		    .setColor(colors["MainColor"])
 		    .setDescription(`${randomFlip()}`)

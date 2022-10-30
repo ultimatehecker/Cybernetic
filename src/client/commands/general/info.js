@@ -1,4 +1,4 @@
-const prettyMS = require("pretty-ms")
+const prettyMS = import("pretty-ms")
 const os = require("os-utils")
 const colors = require("../../tools/colors.json");
 
@@ -23,7 +23,7 @@ module.exports = {
             client.myprofileSchema.distinct("userID").exec((err, count) => {
                 if (err) throw err;
 
-                const info = new Discord.MessageEmbed()
+                const info = new Discord.EmbedBuilder()
                     .setAuthor(author)
                     .setColor(colors["MainColor"])
                     .setDescription(`Cybernetic is one of the best Minecraft Discord Bots to exist. Down below is some statistics about Cybernetic Database, Uptime and Popularity. To get started with Cybernetic, do \`${prefix}help\``)
@@ -53,7 +53,7 @@ module.exports = {
 			client.myprofileSchema.distinct("userID").exec((err, count) => {
 				if (err) throw err;
 
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(author)
 					.setColor(colors["MainColor"])
 					.setDescription(`Cybernetic is one of the best Minecraft Discord Bots to exist. Down below is some statistics about Cybernetic Database, Uptime and Popularity. To get started with Cybernetic, do \`${serverDoc.prefix}help\``)

@@ -2,6 +2,7 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
+const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
 	name: "guild",
@@ -12,7 +13,7 @@ module.exports = {
 			name: "guild",
 			description: "Shows the statistics of an average Hypixel Guild!",
 			required: true,
-			type: "STRING"
+			type: ApplicationCommandOptionType.String
 		}
 	],
 	defaultPermission: true,
@@ -36,19 +37,19 @@ module.exports = {
 		
 		if (!args[0]) {
 			// if someone didn't type in guild name
-			const guildArg404 = new Discord.MessageEmbed()
+			const guildArg404 = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You need to type in a guild's name! (Not guild tag, but guild name.) (Example: \`${prefix}guild Dragons of War\`)`)
 			return message.reply({embeds: [guildArg404], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}
 
 		hypixel.getGuild("name", guildName).then(async (guild) => {
-			const guildInfoEmbed = new Discord.MessageEmbed()
+			const guildInfoEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 
@@ -76,29 +77,29 @@ module.exports = {
 
 			message.reply({embeds: [guildInfoEmbed], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					message.delete()
+					sent.delete();
 				}, 5000);
 			});
 		}).catch((e) => {
 			if (e.message === errors.GUILD_DOES_NOT_EXIST) {
-				const guild404 = new Discord.MessageEmbed()
+				const guild404 = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that guild in the API. Check spelling and name history.")
 				return message.reply({ embeds: [guild404], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
-                        message.delete()
+                        sent.delete();
                     }, 5000);
                 });
 			} else {
-				const error = new Discord.MessageEmbed()
+				const error = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
 				console.error(e);
 				return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
-                        message.delete()
+                        sent.delete();
                     }, 5000);
                 });
 			}
@@ -125,7 +126,7 @@ module.exports = {
         });
 
         if (!data && !interaction.options.get("guild")) { // if someone didn't type in ign
-            const ign404 = new Discord.MessageEmbed()
+            const ign404 = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`You need to type in a guild's name! (Example: \`${serverDoc.prefix}guild Dragons of War\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${serverDoc.prefix}link ultimate_hecker\`)`)
@@ -137,7 +138,7 @@ module.exports = {
         }
 
 		hypixel.getGuild("name", guildName).then(async (guild) => {
-			const guildInfoEmbed = new Discord.MessageEmbed()
+			const guildInfoEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 
@@ -166,7 +167,7 @@ module.exports = {
 			interaction.editReply({ embeds: [guildInfoEmbed], allowedMentions: { repliedUser: true } });
 		}).catch((e) => {
 			if (e.message === errors.GUILD_DOES_NOT_EXIST) {
-				const guild404 = new Discord.MessageEmbed()
+				const guild404 = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that guild in the API. Check spelling and name history.")
@@ -176,7 +177,7 @@ module.exports = {
                     }, 5000);
                 });
 			} else {
-				const error = new Discord.MessageEmbed()
+				const error = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)

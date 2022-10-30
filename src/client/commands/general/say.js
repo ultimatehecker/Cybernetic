@@ -1,4 +1,5 @@
 const colors = require("../../tools/colors.json");
+const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
     name: "say",
@@ -8,7 +9,7 @@ module.exports = {
 		{
 			name: "message",
 			description: "The message I should repeat",
-			type: "STRING",
+			type: ApplicationCommandOptionType.String,
 			required: true,
 		},
 	],
@@ -30,14 +31,14 @@ module.exports = {
         const joined = `\`${message.author.tag}\` said: ${content}`
 
         if(!content) {
-            const content404 = new Discord.MessageEmbed()
+            const content404 = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`You need to enter something to say`)
 
             return message.reply({ embeds: [content404], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {
-                    message.delete()
+                    sent.delete();
                 }, 5000);
             })
         }
@@ -64,7 +65,7 @@ module.exports = {
 		if (interaction.user.id === "724798908278112309" && interaction.options.get("message").value.startsWith("~")) {
 			interaction.channel.send(`${interaction.options.get("message").value.slice(1)}`);
 
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(author)
 				.setColor(colors["MainColor"])
 				.setDescription("Done! *This message will delete itself in 5 seconds!*")
