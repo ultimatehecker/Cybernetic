@@ -30,7 +30,7 @@
     "fs": "^0.0.1-security",
     "hypixel-api-reborn": "^10.0.0",
     "libsodium-wrappers": "^0.7.10",
-    "minecraft-data": "^3.12.0",
+    "minecraft-data": "^3.17.0",
     "mineflayer": "^4.4.0",
     "mineflayer-pathfinder": "^2.3.3",
     "mongoose": "^6.6.0",
