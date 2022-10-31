@@ -105,5 +105,6 @@ dist
 .tern-port
 
 # ?
-
-./commmands/music
+friend.js
+apistatus.js
+zombies.js
