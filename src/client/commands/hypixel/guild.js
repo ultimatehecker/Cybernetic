@@ -52,13 +52,17 @@ module.exports = {
 			const guildInfoEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-
-				.addField("Level", `\`${guild.level}\``, true)
-				.addField("Members", `\`${Object.keys(guild.members).length}/125\``, true)
-				.addField("Date Created", `<t:${Math.ceil(guild.createdAtTimestamp / 1000)}:R>`, true)
+				.addFields([
+					{ name: `Guild Info`, value: `\`•\` **Name**: \`${commaNumber(guild.name)}\` \n \`•\` **Level**: \`${commaNumber(guild.level)}\` \n \`•\` **Members**: \`${commaNumber(guild.members)}\` \n \`•\` **Created**: \`${commaNumber(guild.createdAt)}\``, required: true, inline: true },
+					{ name: `General Stats`, value: `\`•\` **Experince**: \`${commaNumber(guild.experience)}\` \n \`•\` **Preferred Games**: \`${commaNumber(guild.preferredGames)}\` \n \`•\` **Joinable**: \`${commaNumber(guild.joinable)}\` \n \`•\` **Publicly Listed**: \`${commaNumber(guild.publiclyListed)}\``, required: true, inline: true },
+					{ name: `Activity`, value: `\`•\` **Guild Master**: \`${commaNumber(guild.guildMaster)}\` \n \`•\` **Daily History**: \`${commaNumber(guild.expHistory.exp)}\` \n \`•\` **Weekly GXP**: \`${commaNumber(guild.totalWeeklyGexp)}\``, required: true, inline: true },
+				]);
 
 				if (guild.description !== null) {
 					guildInfoEmbed.addField("Description", guild.description)
+					guildInfoEmbed.addFields([
+						{ name: `Description`, value: `\`${guild.description}\``, required: true, inline: true },
+					]);
 				}
 
 				let arr = [];
@@ -67,7 +71,9 @@ module.exports = {
 					arr.push(exp);
 				 }
 
-				guildInfoEmbed.addField("GEXP History", `${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n`)
+				guildInfoEmbed.addFields([
+					{ name: `GEXP History`, value: `\`${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n\``, required: true, inline: true },
+				]);
 
 				if (guild.tag !== null) {
 					guildInfoEmbed.setTitle(`${guild.name} [${guild.tag}]`)
@@ -141,13 +147,17 @@ module.exports = {
 			const guildInfoEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-
-				.addField("Level", `\`${guild.level}\``, true)
-				.addField("Members", `\`${Object.keys(guild.members).length}/125\``, true)
-				.addField("Date Created", `<t:${Math.ceil(guild.createdAtTimestamp / 1000)}:R>`, true)
+				.addFields([
+					{ name: `Guild Info`, value: `\`•\` **Name**: \`${commaNumber(guild.name)}\` \n \`•\` **Level**: \`${commaNumber(guild.level)}\` \n \`•\` **Members**: \`${commaNumber(guild.members)}\` \n \`•\` **Created**: \`${commaNumber(guild.createdAt)}\``, required: true, inline: true },
+					{ name: `General Stats`, value: `\`•\` **Experince**: \`${commaNumber(guild.experience)}\` \n \`•\` **Preferred Games**: \`${commaNumber(guild.preferredGames)}\` \n \`•\` **Joinable**: \`${commaNumber(guild.joinable)}\` \n \`•\` **Publicly Listed**: \`${commaNumber(guild.publiclyListed)}\``, required: true, inline: true },
+					{ name: `Activity`, value: `\`•\` **Guild Master**: \`${commaNumber(guild.guildMaster)}\` \n \`•\` **Daily History**: \`${commaNumber(guild.expHistory.exp)}\` \n \`•\` **Weekly GXP**: \`${commaNumber(guild.totalWeeklyGexp)}\``, required: true, inline: true },
+				]);
 
 				if (guild.description !== null) {
 					guildInfoEmbed.addField("Description", guild.description)
+					guildInfoEmbed.addFields([
+						{ name: `Description`, value: `\`${guild.description}\``, required: true, inline: true },
+					]);
 				}
 
 				let arr = [];
@@ -156,7 +166,9 @@ module.exports = {
 					arr.push(exp);
 				 }
 
-				guildInfoEmbed.addField("GEXP History", `${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n`)
+				guildInfoEmbed.addFields([
+					{ name: `GEXP History`, value: `\`${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n\``, required: true, inline: true },
+				]);
 
 				if (guild.tag !== null) {
 					guildInfoEmbed.setTitle(`${guild.name} [${guild.tag}]`)
