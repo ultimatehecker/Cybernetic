@@ -68,7 +68,9 @@ module.exports = {
 			for (let length in playerNameData) {
 				for (let key in playerNameData[length]) {
 					if (key == "name" && playerNameData[length].changedToAt == undefined) {
-						namehistory.addField(playerNameData[length][key], "`Original Name`", true);
+						namehistory.addFields([
+							{ name: `Original Name`, value: `\`${playerNameData[length][key]}\``, required: true, inline: true },
+						]);
 					}
 				}
 			}
@@ -79,7 +81,9 @@ module.exports = {
 						if (playerNameData[length].changedToAt == undefined) {
 							break;
 						} else {
-							namehistory.addField(playerNameData[length][key], `<t:${playerNameData[length].changedToAt / 1000}:R>`, true);
+							namehistory.addFields([
+								{ name: ``, value: `${playerNameData[length][key]}, <t:${playerNameData[length].changedToAt / 1000}:R>`, required: true, inline: true },
+							]);
 						}
 					}
 				}
@@ -160,25 +164,29 @@ module.exports = {
 				.setColor(colors["MainColor"])
 				.setThumbnail(`https://crafatar.com/avatars/${user.uuid}?overlay&size=256`)
 
-			for (let length in playerNameData) {
-				for (let key in playerNameData[length]) {
-					if (key == "name" && playerNameData[length].changedToAt == undefined) {
-						namehistory.addField(playerNameData[length][key], "`Original Name`", true);
-					}
-				}
-			}
-
-			for (let length in playerNameData) {
-				for (let key in playerNameData[length]) {
-					if (key == "name") {
-						if (playerNameData[length].changedToAt == undefined) {
-							break;
-						} else {
-							namehistory.addField(playerNameData[length][key], `<t:${playerNameData[length].changedToAt / 1000}:R>`, true);
+				for (let length in playerNameData) {
+					for (let key in playerNameData[length]) {
+						if (key == "name" && playerNameData[length].changedToAt == undefined) {
+							namehistory.addFields([
+								{ name: `Original Name`, value: `\`${playerNameData[length][key]}\``, required: true, inline: true },
+							]);
 						}
 					}
 				}
-			}
+	
+				for (let length in playerNameData) {
+					for (let key in playerNameData[length]) {
+						if (key == "name") {
+							if (playerNameData[length].changedToAt == undefined) {
+								break;
+							} else {
+								namehistory.addFields([
+									{ name: ``, value: `${playerNameData[length][key]}, <t:${playerNameData[length].changedToAt / 1000}:R>`, required: true, inline: true },
+								]);
+							}
+						}
+					}
+				}
 
 			interaction.editReply({ embeds: [namehistory], allowedMentions: { repliedUser: true } });
 

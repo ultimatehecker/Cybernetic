@@ -51,10 +51,12 @@ module.exports = {
                 .setAuthor(authorSuccess)
                 .setTitle(`\`\`\`${args[0]}\`\`\``)
                 .setColor(colors["MainColor"])
-                .addField('IP Address', `\`${MOTDData.ip}\`:\`${MOTDData.port}\``)
-                .addField('Version', `\`${serverData.version.name}\``)
-                .addField('Online Players', `\`${serverData.players.online}\`/\`${serverData.players.max}\``)
                 .setThumbnail(serverData.favicon)
+                .addFields([
+                    { name: `IP Address`, value: `\`${MOTDData.ip}\`:\`${MOTDData.port}\``, required: true, inline: true },
+                    { name: `Version`, value: `\`${serverData.version.name}\``, required: true, inline: true },
+                    { name: `Online Players`, value: `\`${serverData.players.online}\`/\`${serverData.players.max}\``, required: true, inline: true },
+                ])
 
             message.reply({ embeds: [server], allowedMentions: { repliedUser: true } });
 
@@ -104,10 +106,12 @@ module.exports = {
                 .setAuthor(authorSuccess)
                 .setTitle(`\`\`\`${interaction.options.get("server").value}\`\`\``)
                 .setColor(colors["MainColor"])
-                .addField('IP Address', `\`${MOTDData.ip}\`:\`${MOTDData.port}\``)
-                .addField('Version', `\`${serverData.version.name}\``)
-                .addField('Online Players', `\`${serverData.players.online}\`/\`${serverData.players.max}\``)
                 .setThumbnail(serverData.favicon)
+                .addFields([
+                    { name: `IP Address`, value: `\`${MOTDData.ip}\`:\`${MOTDData.port}\``, required: true, inline: true },
+                    { name: `Version`, value: `\`${serverData.version.name}\``, required: true, inline: true },
+                    { name: `Online Players`, value: `\`${serverData.players.online}\`/\`${serverData.players.max}\``, required: true, inline: true },
+                ])
 
             interaction.editReply({ embeds: [server], allowedMentions: { repliedUser: true } });
         } catch(e) {

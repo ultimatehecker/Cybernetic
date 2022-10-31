@@ -61,15 +61,17 @@ module.exports = {
 			const user = await hypixel.getPlayer(player);
 			const playerUUIDData = (await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`)).data; // fetch uuid
 
-			const embed = new Discord.EmbedBuilder()
+			const uuid = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setTitle(`${playerUUIDData.data.player.username}`)
 				.setColor(colors["MainColor"])
-				.addField("UUID", `\`${playerUUIDData.data.player.id}\``)
-				.addField("Trimmed UUID", `\`${playerUUIDData.data.player.raw_id}\``)
 				.setThumbnail(`https://crafatar.com/avatars/${playerUUIDData.data.player.id}?overlay&size=256`)
+				.addFields([
+					{ name: `UUID`, value: `\`${playerUUIDData.data.player.id}\``, required: true, inline: true },
+					{ name: `Trimmed UUID`, value: `\`${playerUUIDData.data.player.raw_id}\``, required: true, inline: true },
+				]);
 
-			message.reply({embeds: [embed], allowedMentions: { repliedUser: true } });
+			message.reply({embeds: [uuid], allowedMentions: { repliedUser: true } });
 
 		} catch (error) {
 			if (error.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -137,15 +139,17 @@ module.exports = {
 			const user = await hypixel.getPlayer(player);
 			const playerUUIDData = (await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`)).data; // fetch uuid
 
-			const embed = new Discord.EmbedBuilder()
+			const uuid = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setTitle(`${playerUUIDData.data.player.username}`)
 				.setColor(colors["MainColor"])
-				.addField("UUID", `\`${playerUUIDData.data.player.id}\``)
-				.addField("Trimmed UUID", `\`${playerUUIDData.data.player.raw_id}\``)
 				.setThumbnail(`https://crafatar.com/avatars/${playerUUIDData.data.player.id}?overlay&size=256`)
+				.addFields([
+					{ name: `UUID`, value: `\`${playerUUIDData.data.player.id}\``, required: true, inline: true },
+					{ name: `Trimmed UUID`, value: `\`${playerUUIDData.data.player.raw_id}\``, required: true, inline: true },
+				]);
 
-			interaction.editReply({embeds: [embed], allowedMentions: { repliedUser: true } });
+			interaction.editReply({embeds: [uuid], allowedMentions: { repliedUser: true } });
 
 		} catch (error) {
 			if (error.message === errors.PLAYER_DOES_NOT_EXIST) {

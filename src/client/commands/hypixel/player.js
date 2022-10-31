@@ -86,33 +86,45 @@ module.exports = {
 				.setTitle(`[${player.rank}] ${player.nickname}`)
 				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 				.setColor(colors["MainColor"])
-				.addField("Rank", `\`${playerRank}\``, true)
-				.addField("Level", `\`${player.level}\``, true)
-				.addField("Karma", `\`${commaNumber(player.karma)}\``, true);
+				.addFields([
+					{ name: `General Stats`, value: `\`•\` **Rank**: \`${commaNumber(playerRank)}\` \n \`•\` **Level**: \`${commaNumber(player.level)}\` \n \`•\` **Karma**: \`${commaNumber(player.karma)}\``, required: true, inline: true },
+				]);
 
 			if (player.guild !== null && player.guild.tag == null) {
-				playerStats.addField("Guild", `\`${player.guild.name}\``);
+				playerStats.addFields([
+					{ name: `Guild`, value: `\`•\` **Name**: \`${commaNumber(player.guild.name)}\``, required: true, inline: true },
+				]);
 			}
 
 			if (player.guild !== null && player.guild.tag !== null) {
 				playerStats.setTitle(`[${player.rank}] ${player.nickname} [${player.guild.tag}]`);
-				playerStats.addField("Guild",`\`${player.guild.name} [${player.guild.tag}]\``);
+				playerStats.addFields([
+					{ name: `Guild`, value: `\`•\` **Name**: \`${commaNumber(player.guild.name)} / ${commaNumber(player.guild.tag)}\` \n \`•\` **Tag Color**: \`${commaNumber(player.guild.tagColor)}\``, required: true, inline: true },
+				]);
 			}
 
 			playerStats.addField("Main MC Version", `\`${playerMinecraftVersion}\``, true);
-			playerStats.addField("First Login", `<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>`);
-			playerStats.addField("Last Login", `<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>`);
 			playerStats.addField("Status", `\`${playerIsOnline}\``, true);
+
+			playerStats.addFields([
+				{ name: `Login`, value: `\`•\` **First**: \`<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>\` \n \`•\` **Last**: \`<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>\``, required: true, inline: true },
+				{ name: `Main MC Version`, value: `\`${playerMinecraftVersion}\``, required: true, inline: true },
+				{ name: `Status`, value: `\`${playerIsOnline}\``, required: true, inline: true },
+			]);
 
 			if (player.rank.includes("MVP+")) {
 				if (player.plusColor == null) {
-					playerStats.addField("Plus Color", "`Red`");
+					playerStats.addFields([
+						{ name: `Rank Color`, value: `\`Red\``, required: true, inline: true },
+					]);
 				} else {
-					playerStats.addField("Plus Color", `\`${player.plusColor}\``);
+					playerStats.addFields([
+						{ name: `Rank Color`, value: `\`${player.plusColor}\``, required: true, inline: true },
+					]);
 				}
 			}
 
-			playerStats.addField("Social Media", `Run \`${prefix}socials ${player.nickname}\``);
+			playerStats.addDescription(` \n *For a player's social media stats, please run \`${prefix}socials ${player.nickname}\`*`);
 			message.reply({ embeds: [playerStats], allowedMentions: { repliedUser: true } });
 
 		}).catch((e) => {
@@ -216,34 +228,45 @@ module.exports = {
 				.setTitle(`[${player.rank}] ${player.nickname}`)
 				.setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
 				.setColor(colors["MainColor"])
-				.addField("Rank", `\`${playerRank}\``, true)
-				.addField("Level", `\`${player.level}\``, true)
-				.addField("Karma", `\`${commaNumber(player.karma)}\``, true);
+				.addFields([
+					{ name: `General Stats`, value: `\`•\` **Rank**: \`${commaNumber(playerRank)}\` \n \`•\` **Level**: \`${commaNumber(player.level)}\` \n \`•\` **Karma**: \`${commaNumber(player.karma)}\``, required: true, inline: true },
+				]);
 
 			if (player.guild !== null && player.guild.tag == null) {
-				playerStats.addField("Guild", `\`${player.guild.name}\``);
+				playerStats.addFields([
+					{ name: `Guild`, value: `\`•\` **Name**: \`${commaNumber(player.guild.name)}\``, required: true, inline: true },
+				]);
 			}
 
 			if (player.guild !== null && player.guild.tag !== null) {
 				playerStats.setTitle(`[${player.rank}] ${player.nickname} [${player.guild.tag}]`);
-				playerStats.addField("Guild",`\`${player.guild.name} [${player.guild.tag}]\``);
+				playerStats.addFields([
+					{ name: `Guild`, value: `\`•\` **Name**: \`${commaNumber(player.guild.name)} / ${commaNumber(player.guild.tag)}\` \n \`•\` **Tag Color**: \`${commaNumber(player.guild.tagColor)}\``, required: true, inline: true },
+				]);
 			}
 
 			playerStats.addField("Main MC Version", `\`${playerMinecraftVersion}\``, true);
-			playerStats.addField("First Login", `<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>`);
-			playerStats.addField("Last Login", `<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>`);
 			playerStats.addField("Status", `\`${playerIsOnline}\``, true);
+
+			playerStats.addFields([
+				{ name: `Login`, value: `\`•\` **First**: \`<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>\` \n \`•\` **Last**: \`<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>\``, required: true, inline: true },
+				{ name: `Main MC Version`, value: `\`${playerMinecraftVersion}\``, required: true, inline: true },
+				{ name: `Status`, value: `\`${playerIsOnline}\``, required: true, inline: true },
+			]);
 
 			if (player.rank.includes("MVP+")) {
 				if (player.plusColor == null) {
-					playerStats.addField("Plus Color", "`Red`");
+					playerStats.addFields([
+						{ name: `Rank Color`, value: `\`Red\``, required: true, inline: true },
+					]);
 				} else {
-					playerStats.addField("Plus Color", `\`${player.plusColor}\``);
+					playerStats.addFields([
+						{ name: `Rank Color`, value: `\`${player.plusColor}\``, required: true, inline: true },
+					]);
 				}
 			}
 
-			playerStats.addField("Social Media", `Run \`${serverDoc.prefix}socials ${player.nickname}\``);
-
+			playerStats.addDescription(` \n *For a player's social media stats, please run \`${prefix}socials ${player.nickname}\`*`);
             interaction.editReply({ embeds: [playerStats], allowedMentions: { repliedUser: true } });
 
         }).catch(e => { // error messages

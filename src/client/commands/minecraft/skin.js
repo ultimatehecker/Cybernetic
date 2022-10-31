@@ -61,9 +61,11 @@ module.exports = {
 			const skin = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.addField("Username", `\`${user.nickname}\``)
-				.addField("Apply Skin", `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`)
 				.setImage(`http://photopass.appspot.com/3d.php?user=${player}&vr=-25&hr=35&hrh=0&vrll=0&vrrl=0&vrla=0&vrra=0&displayHair=true&headOnly=false&format=png&ratio=20&aa=true&layers=true}`)
+				.addFields([
+					{ name: `Username`, value: `\`${user.nickname}\``, required: true, inline: true },
+					{ name: `Apply Skin`, value: `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`, required: true, inline: true },
+				]);
 
 			message.reply({ embeds: [skin], allowedMentions: { repliedUser: true } });
 		} catch (error) {
@@ -143,9 +145,11 @@ module.exports = {
 			const skin = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.addField("Username", `\`${user.nickname}\``)
-				.addField("Apply Skin", `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`)
 				.setImage(`http://photopass.appspot.com/3d.php?user=${player}&vr=-25&hr=35&hrh=0&vrll=0&vrrl=0&vrla=0&vrra=0&displayHair=true&headOnly=false&format=png&ratio=20&aa=true&layers=true}`)
+				.addFields([
+					{ name: `Username`, value: `\`${user.nickname}\``, required: true, inline: true },
+					{ name: `Apply Skin`, value: `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`, required: true, inline: true },
+				]);
 
 			interaction.editReply({ embeds: [skin], allowedMentions: { repliedUser: true } });
 
