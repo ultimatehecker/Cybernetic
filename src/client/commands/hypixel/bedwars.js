@@ -161,7 +161,7 @@ module.exports = {
                 const gamemode504 = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
-                    .setDescription(`That gamemode does not exist or the argument list wasnt correctly order. \n \n *Reminder that dream statistics must have a gamemode that is either doubles or fours.*`)
+                    .setDescription(`That gamemode does not exist or one of the arguments is wrong. If you need assistance, please run\`${prefix}help bedwars\``)
                 message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
                         message.delete()
