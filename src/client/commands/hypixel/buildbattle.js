@@ -76,12 +76,11 @@ module.exports = {
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
                 .addFields([
-                    { name: "Total Games", value: `\`•\` **Total Games**: \`${commaNumber(player.stats.buildbattle.playedGames)}\` \n \`•\` **Total Votes**: \`${commaNumber(player.stats.buildbattle.totalVotes)}\``, required: true, inline: true },
-                    { name: "Wins", value: `\`•\` **Coins**: \`${commaNumber(player.stats.buildbattle.coins)}\` \n **Solo Wins**: \`${commaNumber(player.stats.buildbattle.wins.solo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.buildbattle.wins.team)}\` \n \`•\` **Pro Wins**: \`${commaNumber(player.stats.buildbattle.wins.pro)}\` \n \`•\` **GTB Wins**: \`${commaNumber(player.stats.buildbattle.wins.gtb)}\` \n \`•\` **Total Wins**: \`${commaNumber(player.stats.buildbattle.totalWins)}\``, required: true, inline: true },
-                ])
+                    { name: "General Stats", value: `\`•\` **Coins**: \`${commaNumber(player.stats.buildbattle.coins)}\` \n \`•\` **Total Games**: \`${commaNumber(player.stats.buildbattle.playedGames)}\` \n \`•\` **Total Votes**: \`${commaNumber(player.stats.buildbattle.totalVotes)}\` \n \`•\` **Score**: \`${commaNumber(player.stats.buildbattle.score)}\``, required: true, inline: true },
+                    { name: "Wins", value: `\`•\` **Solo Wins**: \`${commaNumber(player.stats.buildbattle.wins.solo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.buildbattle.wins.team)}\` \n \`•\` **Pro Wins**: \`${commaNumber(player.stats.buildbattle.wins.pro)}\` \n \`•\` **GTB Wins**: \`${commaNumber(player.stats.buildbattle.wins.gtb)}\` \n \`•\` **Total Wins**: \`${commaNumber(player.stats.buildbattle.totalWins)}\``, required: true, inline: true },
+                ]);
 
             message.reply({ embeds: [buildbattle], allowedMentions: { repliedUser: true } });
-
         }).catch((e) => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
                 const player404 = new Discord.EmbedBuilder()
@@ -174,12 +173,11 @@ module.exports = {
                 .setColor(colors["MainColor"])
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
                 .addFields([
-                    { name: "Total Games", value: `\`•\` **Total Games**: \`${commaNumber(player.stats.buildbattle.playedGames)}\` \n \`•\` **Total Votes**: \`${commaNumber(player.stats.buildbattle.totalVotes)}\``, required: true, inline: true },
-                    { name: "Wins", value: `\`•\` **Coins**: \`${commaNumber(player.stats.buildbattle.coins)}\` \n **Solo Wins**: \`${commaNumber(player.stats.buildbattle.wins.solo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.buildbattle.wins.team)}\` \n \`•\` **Pro Wins**: \`${commaNumber(player.stats.buildbattle.wins.pro)}\` \n \`•\` **GTB Wins**: \`${commaNumber(player.stats.buildbattle.wins.gtb)}\` \n \`•\` **Total Wins**: \`${commaNumber(player.stats.buildbattle.totalWins)}\``, required: true, inline: true },
-                ])
+                    { name: "General Stats", value: `\`•\` **Coins**: \`${commaNumber(player.stats.buildbattle.coins)}\` \n \`•\` **Total Games**: \`${commaNumber(player.stats.buildbattle.playedGames)}\` \n \`•\` **Total Votes**: \`${commaNumber(player.stats.buildbattle.totalVotes)}\` \n \`•\` **Score**: \`${commaNumber(player.stats.buildbattle.score)}\``, required: true, inline: true },
+                    { name: "Wins", value: `\`•\` **Solo Wins**: \`${commaNumber(player.stats.buildbattle.wins.solo)}\` \n \`•\` **Team Wins**: \`${commaNumber(player.stats.buildbattle.wins.team)}\` \n \`•\` **Pro Wins**: \`${commaNumber(player.stats.buildbattle.wins.pro)}\` \n \`•\` **GTB Wins**: \`${commaNumber(player.stats.buildbattle.wins.gtb)}\` \n \`•\` **Total Wins**: \`${commaNumber(player.stats.buildbattle.totalWins)}\``, required: true, inline: true },
+                ]);
 
             interaction.editReply({ embeds: [buildbattle], allowedMentions: { repliedUser: true } });
-
         }).catch(e => { // error messages
             if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
                 const player404 = new Discord.EmbedBuilder()
