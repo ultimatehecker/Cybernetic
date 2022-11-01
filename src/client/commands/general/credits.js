@@ -20,7 +20,7 @@ module.exports = {
         const credits = new Discord.EmbedBuilder()
             .setAuthor(author)
             .setColor(colors["MainColor"])
-            .setDescription(`Cybernetic was made by \`poly#3622\` & \`ultimate_hecker#1165\` using Discord.js v13 and the MongoDB Database Atlas Cluster! Cybernetic is fully open source under the license GPL 3.0. \n \n You can check out the full GitHub Repository [https://github.com/ultimatehecker/Cybernetic] \n \n You can check out the Cybernetic Support Server at [https://discord.gg/PRXhMuHcAx]`)
+            .setDescription(`Cybernetic was made by \`poly#3622\` & \`ultimate_hecker#1165\` using Discord.js v14 and the MongoDB Database! Cybernetic is fully open source under the license GPL 3.0. \n \n Check out the full GitHub Repository: https://github.com/ultimatehecker/Cybernetic \n \n Join the support server at: https://discord.gg/4hv23VguQY`)
 
         return message.reply({ embeds: [credits], allowedMentions: { repliedUser: true } });
     },
@@ -36,7 +36,7 @@ module.exports = {
 		const embed = new Discord.EmbedBuilder()
 			.setAuthor(author)
 			.setColor(colors["MainColor"])
-			.setDescription(`Cybernetic was made by \`poly#3622\` & \`ultimate_hecker#1165\` using Discord.js and the MongoDB Database! Cybernetic is fully open source and is under the lisence GLP 3.0. Check out the full GitHub repositoiry on GitHub at https://github.com/ultiamtehecker/Cybernetic \n \n  Join the support server at https://discord.gg/JNdmb5GNK3`)
+			.setDescription(`Cybernetic was made by \`poly#3622\` & \`ultimate_hecker#1165\` using Discord.js v14 and the MongoDB Database! Cybernetic is fully open source under the license GPL 3.0. \n \n Check out the full GitHub Repository: https://github.com/ultimatehecker/Cybernetic \n \n Join the support server at: https://discord.gg/4hv23VguQY`)
 
 		interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 	}

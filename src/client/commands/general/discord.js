@@ -22,7 +22,7 @@ module.exports = {
 			.setColor(colors["MainColor"])
             .setDescription("This will send you to the Cybernetic Support Server, where you will have the chance to see future updates, more information and test out beta features!")
 
-		message.reply({ embeds: [discord], allowedMentions: { repliedUser: true }, components: [{ type: "ACTION_ROW", components: [{ type: "BUTTON", label: "Discord Support Server", url: "https://discord.gg/3b5rUekJkF", style: "LINK" }]}]});
+		message.reply({ embeds: [discord], allowedMentions: { repliedUser: true }, components: [{ type: "ACTION_ROW", components: [{ type: "BUTTON", label: "Discord Support Server", url: "https://discord.gg/4hv23VguQY", style: "LINK" }]}]});
     }, 
     async slashExecute(client, Discord, interaction, serverDoc) {
 
@@ -39,7 +39,7 @@ module.exports = {
             .setDescription("This will send you to the Cybernetic Support Server, where you will have the chance to see future updates, more information and test out beta features!")
 
             
-            interaction.editReply({ embeds: [discord], allowedMentions: { repliedUser: true }, components: [{ type: "ACTION_ROW", components: [{ type: "BUTTON", label: "Discord Support Server", url: "https://discord.gg/3b5rUekJkF", style: "LINK" }]}]});
+        interaction.editReply({ embeds: [discord], allowedMentions: { repliedUser: true }, components: [{ type: "ACTION_ROW", components: [{ type: "BUTTON", label: "Discord Support Server", url: "https://discord.gg/4hv23VguQY", style: "LINK" }]}]});
         
     }
 };
