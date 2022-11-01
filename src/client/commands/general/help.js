@@ -1,6 +1,8 @@
 const colors = require("../../tools/colors.json");
 const { ApplicationCommandOptionType } = require("discord.js");
 
+// TODO: Make sure to migrate this file
+
 module.exports = {
     name: "help",
     aliases: ["commands", "commandlist"],

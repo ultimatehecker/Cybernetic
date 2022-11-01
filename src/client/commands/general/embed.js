@@ -1,6 +1,8 @@
 const colors = require("../../tools/colors.json");
 const { ApplicationCommandOptionType } = require("discord.js");
 
+//TODO fix embed color not using imprimatives
+
 module.exports = {
 	name: "embed",
     aliases: [],
@@ -27,7 +29,8 @@ module.exports = {
 	],
     defaultPermission: true,
     usage: 'embed (title) (color) (content)',
-	example: 'embed "Cybernetic Makers" RED The Creator of Cybernetic is ultiamte_hecker#1165',
+	example: 'embed "Cybernetic Makers" #ffffff The Creator of Cybernetic is ultiamte_hecker#1165',
+	notes: 'The color must be a offical hex color',
 	async execute(client, message, args, Discord) {
 
 		await message.channel.sendTyping();

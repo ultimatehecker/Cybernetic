@@ -2,6 +2,8 @@ const prettyMS = import("pretty-ms")
 const os = require("os-utils")
 const colors = require("../../tools/colors.json");
 
+// TODO: Make sure to removed prettyMS is not a function
+
 module.exports = {
     name: "info",
     aliases: [],
