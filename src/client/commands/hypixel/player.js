@@ -103,9 +103,6 @@ module.exports = {
 				]);
 			}
 
-			playerStats.addField("Main MC Version", `\`${playerMinecraftVersion}\``, true);
-			playerStats.addField("Status", `\`${playerIsOnline}\``, true);
-
 			playerStats.addFields([
 				{ name: `Login`, value: `\`•\` **First**: \`<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>\` \n \`•\` **Last**: \`<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>\``, required: true, inline: true },
 				{ name: `Main MC Version`, value: `\`${playerMinecraftVersion}\``, required: true, inline: true },
@@ -244,9 +241,6 @@ module.exports = {
 					{ name: `Guild`, value: `\`•\` **Name**: \`${commaNumber(player.guild.name)} / ${commaNumber(player.guild.tag)}\` \n \`•\` **Tag Color**: \`${commaNumber(player.guild.tagColor)}\``, required: true, inline: true },
 				]);
 			}
-
-			playerStats.addField("Main MC Version", `\`${playerMinecraftVersion}\``, true);
-			playerStats.addField("Status", `\`${playerIsOnline}\``, true);
 
 			playerStats.addFields([
 				{ name: `Login`, value: `\`•\` **First**: \`<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>\` \n \`•\` **Last**: \`<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>\``, required: true, inline: true },

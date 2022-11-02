@@ -14,6 +14,12 @@ module.exports = {
 			description: "Shows the statistics of an average Hypixel Bedwars player!",
 			required: false,
 			type: ApplicationCommandOptionType.String
+		},
+        {
+			name: "mode",
+			description: "Shows the statistics of an average Hypixel Megalwals player gamemode stats!",
+			required: false,
+			type: ApplicationCommandOptionType.String
 		}
 	],
     defaultPermission: true,
@@ -177,6 +183,7 @@ module.exports = {
 			});
         }
 
+        let gamemode = interaction.options.get("mode")?.value
         let player
         if (data && !interaction.options.get("player")?.value) {
              player = data.uuid;
@@ -198,7 +205,7 @@ module.exports = {
                 });
             }
 
-            if(!gamemode) {
+            if(!interaction.options.get("mode")?.value) {
                 const megawalls = new Discord.EmbedBuilder()
                     .setAuthor(authorSuccess)
                     .setTitle(`[${player.rank}] ${player.nickname}`)
@@ -213,7 +220,7 @@ module.exports = {
                     ]);
                 
                 interaction.editReply({ embeds: [megawalls], allowedMentions: { repliedUser: true } });
-            }else if(gamemode == "normal" || "faceoff" || "casualBrawl") {
+            }else if(interaction.options.get("mode")?.value == "normal" || "faceoff" || "casualBrawl") {
                 const megawalls = new Discord.EmbedBuilder()
                     .setAuthor(authorSuccess)
                     .setTitle(`[${player.rank}] ${player.nickname}`)
@@ -221,8 +228,8 @@ module.exports = {
                     .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
                     .addFields([
                         { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.megawalls.coins)}\` \n \`•\` **Class**: \`${commaNumber(player.stats.megawalls.selectedClass)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.megawalls.playedGames)}\``, required: true, inline: true },
-                        { name: `Combat`, value: `\`•\` **Kills/Assists**: \`${commaNumber(player.stats.megawalls.mode[gamemode].kills)}\` / \`${commaNumber(player.stats.megawalls.mode[gamemode].assists)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.mode[gamemode].deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.megawalls.mode[gamemode].KDRatio)}\` \n `, required: true, inline: true },
-                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.megawalls.mode[gamemode].wins)}\` \n \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.mode[gamemode].losses)}\` \`•\` **Kills**: \`${commaNumber(player.stats.megawalls.mode[gamemode].WLRatio)}\` \n \n `, required: true, inline: true },
+                        { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.megawalls.mode[gamemode].kills)}\` / \`${commaNumber(player.stats.megawalls.mode[gamemode].assists)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.mode[gamemode].deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.megawalls.mode[gamemode].KDRatio)}\` \n `, required: true, inline: true },
+                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.megawalls.mode[gamemode].wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.megawalls.mode[gamemode].losses)}\` \`•\` **WLR**: \`${commaNumber(player.stats.megawalls.mode[gamemode].WLRatio)}\` \n \n `, required: true, inline: true },
                         { name: `Finals`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.megawalls.finalKills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.megawalls.finalDeaths)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.megawalls.finalKDRatio)}\` \n `, required: true, inline: true },
                         { name: `Random Stats`, value: `\`•\` **Defender Kills**: \`${commaNumber(player.stats.megawalls.defenderKills)}\` \n \`•\` **Wither Damage**: \`${commaNumber(player.stats.megawalls.finalAssists)}\``, required: true, inline: true },
                     ]);

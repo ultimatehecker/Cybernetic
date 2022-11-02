@@ -192,11 +192,12 @@ module.exports = {
 
             // If problem occours, it is most probably line 199 & 198 along with the last 2 on line 197
 
-            if(player.stats.blitzsg.kitStats) {
+            if(player.stats.blitzsg.kitStats && player.stats.blitzsg.kitStats.name != undefined) {
                 blitzsurvivalgames.addFields([
-                    { name: `Kit Statistics`, value: `\`•\` **Name**: \`${commaNumber(player.stats.blitzsg.kitStats.name)}\` \n \`•\` **Level**: \`${commaNumber(player.stats.blitzsg.kitStats.level)}\` \n \`•\` **Time Played**: \`${commaNumber(player.stats.blitzsg.kitStats.timePlayed)}\` \n \`•\` **Games Played**: \`${commaNumber(player.stats.blitzsg.kitStats.games)}\` \n \`•\` **Experience**: \`${commaNumber(player.stats.blitzsg.kitStats.prestige)}\` \n \`•\` **Experience**: \`${commaNumber(player.stats.blitzsg.kitStats.experience)}\``, required: true, inline: true },
                     { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.blitzsg.kitStats.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kitStats.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.kitStats.KDRatio)}\``, required: true, inline: true },
                     { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.blitzsg.kitStats.wins)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.blitzsg.kitStats.losses)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.blitzsg.kitStats.WLRatio)}\``, required: true, inline: true },
+                    { name: `Kit Statistics`, value: `\`•\` **Name**: \`${commaNumber(player.stats.blitzsg.kitStats.name)}\` \n \`•\` **Level**: \`${commaNumber(player.stats.blitzsg.kitStats.level)}\` \n \`•\` **Time Played**: \`${commaNumber(player.stats.blitzsg.kitStats.timePlayed)}\` \n`, required: true, inline: true },
+                    { name: `Random Statistics`, value: `\`•\` **Games Played**: \`${commaNumber(player.stats.blitzsg.kitStats.games)}\` \n \`•\` **Experience**: \`${commaNumber(player.stats.blitzsg.kitStats.prestige)}\` \n \`•\` **Experience**: \`${commaNumber(player.stats.blitzsg.kitStats.experience)}\``, required: true, inline: true}
                 ]);
             }
 

@@ -147,7 +147,7 @@ module.exports = {
                     .setColor(colors["MainColor"])
                     .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
                     .addFields([
-                        { name: "General Stats", value: `\`•\` **Levels**: \`${player.stats.bedwars.level}✫\` \n \`•\` **Coins**: \`${commaNumber(player.stats.bedwars.coins)}\` \n \`•\` **Loot Chest**: \`${commaNumber((player.stats.bedwars.lootChests.normal + player.stats.bedwars.lootChests.golden + player.stats.bedwars.dream[dream][gamemode].lootChests.christmas + player.stats.bedwars.lootChests.easter + player.stats.bedwars.lootChests.halloween))}\``, required: true, inline: true },
+                        { name: "General Stats", value: `\`•\` **Levels**: \`${player.stats.bedwars.level}✫\` \n \`•\` **Coins**: \`${commaNumber(player.stats.bedwars.coins)}\` \n \`•\` **Loot Chest**: \`${commaNumber((player.stats.bedwars.lootChests.normal + player.stats.bedwars.lootChests.golden + player.stats.bedwars.lootChests.christmas + player.stats.bedwars.lootChests.easter + player.stats.bedwars.lootChests.halloween))}\``, required: true, inline: true },
                         { name: "Games", value: `\`•\` **Winstreak**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].winstreak)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].losses)}\` \n \`•\` **WLR**: \`${player.stats.bedwars.dream[dream][gamemode].WLRatio}\``, required: true, inline: true },
                         { name: "Combat", value: `\`•\` **Kills**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].deaths)}\` \n \`•\` **KDR**: \`${player.stats.bedwars.dream[dream][gamemode].KDRatio}\``, required: true, inline: true },
                         { name: "Finals", value: `\`•\` **Kills**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].finalKills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].finalDeaths)}\` \n \`•\` **FKDR**: \`${player.stats.bedwars.dream[dream][gamemode].finalKDRatio}\``, required: true, inline: true },
@@ -276,7 +276,31 @@ module.exports = {
 
                 interaction.editReply({ embeds: [bedwars], allowedMentions: { repliedUser: true } });
 
-            } else if(interaction.options.get("mode")?.value) {
+            } else if(interaction.options.get("dream")?.value && interaction.options.get("mode")?.value) {
+
+                let str = dream.slice(1);
+		        let uppercase = dream[0].toUpperCase();
+		        let uppercased = uppercase + str;
+
+                authorSuccess.name = `${uppercased} Bedwars Statistics`;
+
+                const bedwarsDream = new Discord.EmbedBuilder()
+                    .setAuthor(authorSuccess)
+                    .setTitle(`[${player.rank}] ${player.nickname}`)
+                    .setColor(colors["MainColor"])
+                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                    .addFields([
+                        { name: "General Stats", value: `\`•\` **Levels**: \`${player.stats.bedwars.level}✫\` \n \`•\` **Coins**: \`${commaNumber(player.stats.bedwars.coins)}\` \n \`•\` **Loot Chest**: \`${commaNumber((player.stats.bedwars.lootChests.normal + player.stats.bedwars.lootChests.golden + player.stats.bedwars.lootChests.christmas + player.stats.bedwars.lootChests.easter + player.stats.bedwars.lootChests.halloween))}\``, required: true, inline: true },
+                        { name: "Games", value: `\`•\` **Winstreak**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].winstreak)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].losses)}\` \n \`•\` **WLR**: \`${player.stats.bedwars.dream[dream][gamemode].WLRatio}\``, required: true, inline: true },
+                        { name: "Combat", value: `\`•\` **Kills**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].deaths)}\` \n \`•\` **KDR**: \`${player.stats.bedwars.dream[dream][gamemode].KDRatio}\``, required: true, inline: true },
+                        { name: "Finals", value: `\`•\` **Kills**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].finalKills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].finalDeaths)}\` \n \`•\` **FKDR**: \`${player.stats.bedwars.dream[dream][gamemode].finalKDRatio}\``, required: true, inline: true },
+                        { name: "Beds", value: `\`•\` **Broken**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].beds.broken)}\` \n \`•\` **Lost**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].beds.lost)}\` \n \`•\` **BBLR**: \`${player.stats.bedwars.dream[dream][gamemode].beds.BLRatio}\``, required: true, inline: true },
+                        { name: "Averages per Game", value: `\`•\` **Kills**: \`${commaNumber((player.stats.bedwars.dream[dream][gamemode].kills / player.stats.bedwars.dream[dream][gamemode].playedGames).toFixed(2))}\` \n \`•\` **Final Kills**: \`${commaNumber((player.stats.bedwars.dream[dream][gamemode].finalKills / player.stats.bedwars.dream[dream][gamemode].playedGames).toFixed(2))}\` \n \`•\` **Beds**: \`${commaNumber((player.stats.bedwars.dream[dream][gamemode].beds.broken / player.stats.bedwars.dream[dream][gamemode].playedGames).toFixed(2))}\``, required: true, inline: true },
+                        { name: "Milestones", value: `\`•\` **Wins to ${commaNumber(Math.ceil(player.stats.bedwars.dream[dream][gamemode].WLRatio))} WLR**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].losses * Math.ceil(player.stats.bedwars.dream[dream][gamemode].WLRatio) - player.stats.bedwars.dream[dream][gamemode].wins)}\` \n \`•\` **Finals to ${commaNumber(Math.ceil(player.stats.bedwars.dream[dream][gamemode].finalKDRatio))} FKDR**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].finalDeaths * Math.ceil(player.stats.bedwars.dream[dream][gamemode].finalKDRatio) - player.stats.bedwars.dream[dream][gamemode].finalKills)}\` \n \`•\` **Beds to ${commaNumber(Math.ceil(player.stats.bedwars.dream[dream][gamemode].beds.BLRatio))} BBLR**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].beds.lost * Math.ceil(player.stats.bedwars.dream[dream][gamemode].beds.BLRatio) - player.stats.bedwars.dream[dream][gamemode].beds.broken)}\``, required: true, inline: true },
+                    ]);
+
+                interaction.editReply({ embeds: [bedwarsDream], allowedMentions: { repliedUser: true } });
+            }else if(interaction.options.get("mode")?.value) {
 
                 let str = gamemode.slice(1);
 		        let uppercase = gamemode[0].toUpperCase();
@@ -297,34 +321,9 @@ module.exports = {
                         { name: "Beds", value: `\`•\` **Broken**: \`${commaNumber(player.stats.bedwars[gamemode].beds.broken)}\` \n \`•\` **Lost**: \`${commaNumber(player.stats.bedwars[gamemode].beds.lost)}\` \n \`•\` **BBLR**: \`${player.stats.bedwars[gamemode].beds.BLRatio}\``, required: true, inline: true },
                         { name: "Averages per Game", value: `\`•\` **Kills**: \`${commaNumber((player.stats.bedwars[gamemode].kills / player.stats.bedwars[gamemode].playedGames).toFixed(2))}\` \n \`•\` **Final Kills**: \`${commaNumber((player.stats.bedwars[gamemode].finalKills / player.stats.bedwars[gamemode].playedGames).toFixed(2))}\` \n \`•\` **Beds**: \`${commaNumber((player.stats.bedwars[gamemode].beds.broken / player.stats.bedwars[gamemode].playedGames).toFixed(2))}\``, required: true, inline: true },
                         { name: "Milestones", value: `\`•\` **Wins to ${commaNumber(Math.ceil(player.stats.bedwars[gamemode].WLRatio))} WLR**: \`${commaNumber(player.stats.bedwars[gamemode].losses * Math.ceil(player.stats.bedwars[gamemode].WLRatio) - player.stats.bedwars[gamemode].wins)}\` \n \`•\` **Finals to ${commaNumber(Math.ceil(player.stats.bedwars[gamemode].finalKDRatio))} FKDR**: \`${commaNumber(player.stats.bedwars[gamemode].finalDeaths * Math.ceil(player.stats.bedwars[gamemode].finalKDRatio) - player.stats.bedwars[gamemode].finalKills)}\` \n \`•\` **Beds to ${commaNumber(Math.ceil(player.stats.bedwars[gamemode].beds.BLRatio))} BBLR**: \`${commaNumber(player.stats.bedwars[gamemode].beds.lost * Math.ceil(player.stats.bedwars[gamemode].beds.BLRatio) - player.stats.bedwars[gamemode].beds.broken)}\``, required: true, inline: true },
-                    ])
+                    ]);
 
                 interaction.editReply({ embeds: [bedwarsGamemode], allowedMentions: { repliedUser: true } });
-
-            }else if(interaction.options.get("dream")?.value && interaction.options.get("mode")?.value) {
-
-                let str = dream.slice(1);
-		        let uppercase = dream[0].toUpperCase();
-		        let uppercased = uppercase + str;
-
-                authorSuccess.name = `${uppercased} Bedwars Statistics`;
-
-                const bedwarsDream = new Discord.EmbedBuilder()
-                    .setAuthor(authorSuccess)
-                    .setTitle(`[${player.rank}] ${player.nickname}`)
-                    .setColor(colors["MainColor"])
-                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-                    .addFields([
-                        { name: "General Stats", value: `\`•\` **Levels**: \`${player.stats.bedwars.level}✫\` \n \`•\` **Coins**: \`${commaNumber(player.stats.bedwars.coins)}\` \n \`•\` **Loot Chest**: \`${commaNumber((player.stats.bedwars.lootChests.normal + player.stats.bedwars.lootChests.golden + player.stats.bedwars.dream[dream][gamemode].lootChests.christmas + player.stats.bedwars.lootChests.easter + player.stats.bedwars.lootChests.halloween))}\``, required: true, inline: true },
-                        { name: "Games", value: `\`•\` **Winstreak**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].winstreak)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].wins)}\` \n \`•\` **Losses**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].losses)}\` \n \`•\` **WLR**: \`${player.stats.bedwars.dream[dream][gamemode].WLRatio}\``, required: true, inline: true },
-                        { name: "Combat", value: `\`•\` **Kills**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].deaths)}\` \n \`•\` **KDR**: \`${player.stats.bedwars.dream[dream][gamemode].KDRatio}\``, required: true, inline: true },
-                        { name: "Finals", value: `\`•\` **Kills**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].finalKills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].finalDeaths)}\` \n \`•\` **FKDR**: \`${player.stats.bedwars.dream[dream][gamemode].finalKDRatio}\``, required: true, inline: true },
-                        { name: "Beds", value: `\`•\` **Broken**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].beds.broken)}\` \n \`•\` **Lost**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].beds.lost)}\` \n \`•\` **BBLR**: \`${player.stats.bedwars.dream[dream][gamemode].beds.BLRatio}\``, required: true, inline: true },
-                        { name: "Averages per Game", value: `\`•\` **Kills**: \`${commaNumber((player.stats.bedwars.dream[dream][gamemode].kills / player.stats.bedwars.dream[dream][gamemode].playedGames).toFixed(2))}\` \n \`•\` **Final Kills**: \`${commaNumber((player.stats.bedwars.dream[dream][gamemode].finalKills / player.stats.bedwars.dream[dream][gamemode].playedGames).toFixed(2))}\` \n \`•\` **Beds**: \`${commaNumber((player.stats.bedwars.dream[dream][gamemode].beds.broken / player.stats.bedwars.dream[dream][gamemode].playedGames).toFixed(2))}\``, required: true, inline: true },
-                        { name: "Milestones", value: `\`•\` **Wins to ${commaNumber(Math.ceil(player.stats.bedwars.dream[dream][gamemode].WLRatio))} WLR**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].losses * Math.ceil(player.stats.bedwars.dream[dream][gamemode].WLRatio) - player.stats.bedwars.dream[dream][gamemode].wins)}\` \n \`•\` **Finals to ${commaNumber(Math.ceil(player.stats.bedwars.dream[dream][gamemode].finalKDRatio))} FKDR**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].finalDeaths * Math.ceil(player.stats.bedwars.dream[dream][gamemode].finalKDRatio) - player.stats.bedwars.dream[dream][gamemode].finalKills)}\` \n \`•\` **Beds to ${commaNumber(Math.ceil(player.stats.bedwars.dream[dream][gamemode].beds.BLRatio))} BBLR**: \`${commaNumber(player.stats.bedwars.dream[dream][gamemode].beds.lost * Math.ceil(player.stats.bedwars.dream[dream][gamemode].beds.BLRatio) - player.stats.bedwars.dream[dream][gamemode].beds.broken)}\``, required: true, inline: true },
-                    ])
-
-                interaction.editReply({ embeds: [bedwarsDream], allowedMentions: { repliedUser: true } });
             } else {
                 const gamemode504 = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
