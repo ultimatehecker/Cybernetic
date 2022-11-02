@@ -39,7 +39,7 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Your account is already connected!");
-			return message.reply({ embeds: [alreadyconnected], allowedMentions: { repliedUser: true } }).then(() => {
+			return message.reply({ embeds: [alreadyconnected], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(function() {
 					sent.delete();
 				}, 5000);
@@ -51,7 +51,7 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}link ultimate_hecker\`)`)
-			return message.reply({embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
+			return message.reply({embeds: [ign404], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(function() {
 					sent.delete();
 				}, 5000);
@@ -65,7 +65,7 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("You haven't connected your Discord account to your account. Watch the GIF to learn how to connect your Discord account.")
 					.setImage("https://thumbs.gfycat.com/DentalTemptingLeonberger-size_restricted.gif")
-				return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
@@ -76,7 +76,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`${player.nickname}'s connected Discord tag doesn't match your Discord tag.`)
-				return message.reply({embeds: [tagnomatch], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({embeds: [tagnomatch], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
@@ -89,7 +89,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("That player has already been linked to another account.")
-				return message.reply({embeds: [playerdupe], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({embeds: [playerdupe], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
@@ -109,7 +109,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
-				return message.reply({embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({embeds: [player404], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
@@ -119,7 +119,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("That player has never logged into Hypixel.")
-				return message.reply({embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);

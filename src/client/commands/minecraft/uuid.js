@@ -43,7 +43,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}uuid ultiamte_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultiamte_hecker\`)`)
-				return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
 						sent.delete();
 					}, 5000);
@@ -79,7 +79,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
-				return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
 						sent.delete();
 					}, 5000);
@@ -89,7 +89,7 @@ module.exports = {
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`Redstone#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
-				return message.reply({embeds: [err], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({embeds: [err], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
 						sent.delete();
 					}, 5000);

@@ -48,7 +48,7 @@ module.exports = {
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`You need to type in a player's IGN! (Example: \`${prefix}murdermystery cxntered\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link cxntered\`)`)
-            return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
+            return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
                     sent.delete();
                 }, 5000);
@@ -70,7 +70,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription("That player has never played this game")
-                return message.reply({ embeds: [neverPlayed], allowedMentions: { repliedUser: true } }).then(() => {
+                return message.reply({ embeds: [neverPlayed], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
@@ -109,7 +109,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription("That gamemode does not exist.")
-                message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
+                message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
@@ -122,7 +122,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription('I could not find that player in the API. Check spelling and name history.')
-                return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
+                return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
@@ -132,7 +132,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription('That player has never logged into Hypixel.')
-                return message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then(() => {
+                return message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
@@ -143,7 +143,7 @@ module.exports = {
                     .setColor(colors["ErrorColor"])
                     .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
                 console.error(e);
-                return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
+                return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);

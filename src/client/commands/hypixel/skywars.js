@@ -56,7 +56,7 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}skywars ultimate_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultimate_hecker\`)`)
-			return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then(() => {
+			return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(function() {
 					sent.delete();
 				}, 5000);
@@ -84,7 +84,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription("That player has never played this game")
-                return interaction.reply({ embeds: [neverPlayed], allowedMentions: { repliedUser: true } }).then(() => {
+                return interaction.reply({ embeds: [neverPlayed], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
 						sent.delete();
 					}, 5000);
@@ -141,7 +141,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
                     .setDescription(`That gamemode does not exist or the argument list wasnt correctly order. \n \n *Reminder that dream statistics are currently not supported, and will be supported in a later update*`)
-                message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then(() => {
+                message.reply({ embeds: [gamemode504], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
                         sent.delete();
                     }, 5000);
@@ -154,7 +154,7 @@ module.exports = {
 					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
 					.setColor(colors["ErrorColor"])
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
-				return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
 						sent.delete();
 					}, 5000);
@@ -164,7 +164,7 @@ module.exports = {
 					.setAuthor("Error", "https://cdn.discordapp.com/avatars/879180094650863727/3040c2fb097ef6a9fb59005cab44626c.webp")
 					.setColor(colors["ErrorColor"])
 					.setDescription("That player has never logged into Hypixel.")
-				return message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
 						sent.delete();
 					}, 5000);
@@ -175,7 +175,7 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
 				console.error(e);
-				return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
+				return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
 						sent.delete();
 					}, 5000);

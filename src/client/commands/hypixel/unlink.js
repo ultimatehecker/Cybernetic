@@ -29,7 +29,7 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Your account is not connected!")
-			return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: true } }).then(() => {
+			return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
                     sent.delete();
                 }, 5000);

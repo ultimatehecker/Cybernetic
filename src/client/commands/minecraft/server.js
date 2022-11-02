@@ -37,7 +37,7 @@ module.exports = {
                     .setAuthor(authorError)
                     .setColor(colors["MainColor"])
                     .setDescription(`You need to type in a server IP! (Example: \`${prefix}server mc.hypixel.net\`)`)
-                return message.reply({ embeds: [ip404], allowedMentions: { repliedUser: true } }).then(() => {
+                return message.reply({ embeds: [ip404], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
 						sent.delete();
 					}, 5000);
@@ -65,7 +65,7 @@ module.exports = {
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
                 .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${prefix}github\``)
-            message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
+            message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
                     sent.delete();
                 }, 5000);

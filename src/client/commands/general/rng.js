@@ -45,7 +45,7 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You didn't specify a lowest and highest number! (Example: \`${prefix}rng 1 10\`)`);
 
-			return message.reply({ embeds: [nonumbers], allowedMentions: { repliedUser: true } }).then(() => {
+			return message.reply({ embeds: [nonumbers], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
                     sent.delete();
                 }, 5000);
@@ -58,7 +58,7 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("That is not a number!");
 
-			return message.reply({ embeds: [nan], allowedMentions: { repliedUser: true } }).then(() => {
+			return message.reply({ embeds: [nan], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
                     sent.delete();
                 }, 5000);

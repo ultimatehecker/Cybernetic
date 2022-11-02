@@ -54,7 +54,7 @@ module.exports = {
                 .setColor(colors["MainColor"])
                 .setDescription(`That command list isn't a valid command!`)
 
-            return message.reply({ embeds: [command404], allowedMentions: { repliedUser: true } }).then(() => {
+            return message.reply({ embeds: [command404], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
                     sent.delete();
                 }, 5000);

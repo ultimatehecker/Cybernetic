@@ -66,7 +66,7 @@ module.exports = {
 			const permsEmbed = new Discord.EmbedBuilder()
                 .setAuthor(authorError)
                 .setColor(colors["ErrorColor"])
-				.setDescription("You don\'t have permission to change my prefix!")
+				.setDescription("You don\'t have to make embeds!")
 
 			interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
                 setTimeout(function() {

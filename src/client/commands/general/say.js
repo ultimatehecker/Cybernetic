@@ -36,7 +36,7 @@ module.exports = {
                 .setColor(colors["ErrorColor"])
                 .setDescription(`You need to enter something to say`)
 
-            return message.reply({ embeds: [content404], allowedMentions: { repliedUser: true } }).then(() => {
+            return message.reply({ embeds: [content404], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
                     sent.delete();
                 }, 5000);
