@@ -1,6 +1,8 @@
-const prettyMS = import("pretty-ms")
+const importPrettyMS = import("pretty-ms")
 const os = require("os-utils")
 const colors = require("../../tools/colors.json");
+
+
 
 // TODO: Make sure to removed prettyMS is not a function
 
@@ -20,6 +22,9 @@ module.exports = {
             name: "Cybernetic - Database Statistics, Uptime & Popularity",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
+
+        const prettyMS = (await importPrettyMS).default
+        console.log(prettyMS)
 
         os.cpuUsage((percentage) => {
             client.myprofileSchema.distinct("userID").exec((err, count) => {
@@ -50,6 +55,9 @@ module.exports = {
         }
 
         const currentDate = new Date(Date.now());
+
+        const prettyMS = (await importPrettyMS).default
+        console.log(prettyMS)
 
 		os.cpuUsage((percentage) => {
 			client.myprofileSchema.distinct("userID").exec((err, count) => {

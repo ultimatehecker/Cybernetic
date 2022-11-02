@@ -41,7 +41,7 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`You need to type in a guild's name! (Not guild tag, but guild name.) (Example: \`${prefix}guild Dragons of War\`)`)
-			return message.reply({embeds: [guildArg404], allowedMentions: { repliedUser: true } }).then(() => {
+			return message.reply({embeds: [guildArg404], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(function() {
 					sent.delete();
 				}, 5000);
@@ -53,8 +53,8 @@ module.exports = {
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.addFields([
-					{ name: `Guild Info`, value: `\`•\` **Name**: \`${commaNumber(guild.name)}\` \n \`•\` **Level**: \`${commaNumber(guild.level)}\` \n \`•\` **Members**: \`${commaNumber(guild.members)}\` \n \`•\` **Created**: \`${commaNumber(guild.createdAt)}\``, required: true, inline: true },
-					{ name: `General Stats`, value: `\`•\` **Experince**: \`${commaNumber(guild.experience)}\` \n \`•\` **Preferred Games**: \`${commaNumber(guild.preferredGames)}\` \n \`•\` **Joinable**: \`${commaNumber(guild.joinable)}\` \n \`•\` **Publicly Listed**: \`${commaNumber(guild.publiclyListed)}\``, required: true, inline: true },
+					{ name: `Guild Info`, value: `\`•\` **Name**: \`${commaNumber(guild.name)}\` \n \`•\` **Level**: \`${commaNumber(guild.level)}\` \n \`•\` **Members**: \`${commaNumber(guild.members.length)}\` \n \`•\` **Created**: \`${commaNumber(guild.createdAt)}\``, required: true, inline: true },
+					{ name: `General Stats`, value: `\`•\` **Experince**: \`${commaNumber(guild.experience)}\` \n \`•\` **Joinable**: \`${commaNumber(guild.joinable)}\` \n \`•\` **Publicly Listed**: \`${commaNumber(guild.publiclyListed)}\``, required: true, inline: true },
 					{ name: `Activity`, value: `\`•\` **Guild Master**: \`${commaNumber(guild.guildMaster)}\` \n \`•\` **Daily History**: \`${commaNumber(guild.expHistory.exp)}\` \n \`•\` **Weekly GXP**: \`${commaNumber(guild.totalWeeklyGexp)}\``, required: true, inline: true },
 				]);
 
@@ -81,7 +81,7 @@ module.exports = {
 					guildInfoEmbed.setTitle(`${guild.name}`)
 				}
 
-			message.reply({embeds: [guildInfoEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+			message.reply({embeds: [guildInfoEmbed], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(function() {
 					sent.delete();
 				}, 5000);

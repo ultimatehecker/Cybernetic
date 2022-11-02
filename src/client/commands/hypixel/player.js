@@ -159,7 +159,7 @@ module.exports = {
 			}
 		});
 	},
-	async slashExecute(client, Discord, interaction, serverDoc) {
+	async slashExecute(client, Discord, interaction, serverDoc, prefix) {
 
         await interaction.deferReply({ ephemeral: false });
 

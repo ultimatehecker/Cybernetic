@@ -28,7 +28,7 @@ const Discord = require("discord.js");
 const { GatewayIntentBits, Partials, ActivityType } = require("discord.js");
 const client = new Discord.Client({
     partials: [Partials.Reaction, Partials.Message, Partials.Channel],
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildBans, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.DirectMessages],
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildBans, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.DirectMessages],
     failIfNotExists: true,
 });
 

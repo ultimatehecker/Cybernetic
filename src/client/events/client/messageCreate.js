@@ -24,6 +24,7 @@ function splitCommandLine(commandLine) {
 }
 
 module.exports = async (Discord, client, message) => {
+
     if (message.author.bot || message.channel.type === "DM") return
 
     let serverDoc;
@@ -64,7 +65,7 @@ module.exports = async (Discord, client, message) => {
     if(!command) return;
 
     if(!command.guildOnly && message.channel.type === "DM") {
-        const cmdguildonly = new Discord.MessageEmbed()
+        const cmdguildonly = new Discord.EmbedBuilder()
             .setAuthor("Error", "https://i.imgur.com/OuoECfX.jpeg")
             .setDescription("I can't execute that command inside DMs!")
         return message.reply({ embeds: [cmdguildonly], allowedMentions: { repliedUser: false }});
@@ -74,8 +75,8 @@ module.exports = async (Discord, client, message) => {
         command.execute(client, message, args, Discord, prefix, serverDoc);
         console.log(`Old Message Based Command Recieved - ${command.name} by ${message.author.tag} in ${message.guild.name} at ${currentDate.getUTCMonth()}/${currentDate.getUTCDate()}/${currentDate.getUTCFullYear()} @ ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()} UTC`);
     }catch (err) {
-        consolor.error(err);
-        const errorEmbed = new Discord.MessageEmbed()
+        console.error(err);
+        const errorEmbed = new Discord.EmbedBuilder()
             .setAuthor("Error", "https://i.imgur.com/OuoECfX.jpeg")
             .setDescription(`Uhoh! There was an error trying to execute the command. If this is your first time encounting this error, please check the command, and check our quick fix error handling. If this keep on appearing, please DM ultimatehecker#1165 with this context: \`\`\`${err}\`\`\``)
         message.reply({ embed: [errorEmbed], allowedMentions: { repliedUser: false}});

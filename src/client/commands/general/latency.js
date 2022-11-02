@@ -1,3 +1,4 @@
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const colors = require("../../tools/colors.json");
 
 module.exports = {
@@ -28,6 +29,12 @@ module.exports = {
 
         await interaction.deferReply({ ephemeral: false });
 
+        const latencyTest = new ActionRowBuilder().addComponents(new ButtonBuilder()
+			.setLabel('Retest')
+            .setCustomId('Retest')
+			.setStyle(ButtonStyle.Primary),
+		);
+
         let authorSuccess = {
             name: "Cybernetic Latency & API Latency",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
@@ -43,8 +50,8 @@ module.exports = {
 			.setDescription(`🏓 Cybernetic's Latency is: \`${Date.now() - interaction.createdTimestamp}\` ms. Discord API Latency is: \`${Math.round(client.ws.ping)}\` ms.`)
 			.setColor(colors["MainColor"]);
 
-		interaction.editReply({embeds: [latestEmbed], allowedMentions: { repliedUser: true }, components: [{type: "ACTION_ROW", components: [{type: "BUTTON", label: "Retest", style: "PRIMARY", customId: "retest" }] }] }).then((reply) => {
-            let collector = reply.createMessageComponentCollector({ componentType: "BUTTON", time: 300000, dispose: true });
+		interaction.editReply({embeds: [latestEmbed], allowedMentions: { repliedUser: true }, components: [latencyTest] }).then((reply) => {
+            let collector = reply.createMessageComponentCollector({ time: 300000, dispose: true });
 
             collector.on("collect", async (press) => {
                 if (press.user.id !== interaction.user.id) {
@@ -66,12 +73,11 @@ module.exports = {
                         .setColor(colors["MainColor"])
                         .setDescription(`🏓 Cybernetic's Latency is: \`${Date.now() - press.createdTimestamp}\` ms. Discord API Latency is: \`${Math.round(client.ws.ping)}\` ms.`)
                         
-
                     latestEmbed = embed;
                     press.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
                 }
             });
-            collector.on("end", () => {interaction.editReply({ components: [{type: "ACTION_ROW", components: [{ type: "BUTTON", label: "Retest", style: "PRIMARY", customId: "retest", disabled: true }] }], embeds: [latestEmbed], allowedMentions: { repliedUser: true } }) });
+            collector.on("end", () => {interaction.editReply({ embeds: [latestEmbed], allowedMentions: { repliedUser: true }, components: [latencyTest] }) });
         });
 	},
 };

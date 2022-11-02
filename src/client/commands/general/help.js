@@ -65,14 +65,18 @@ module.exports = {
             .setAuthor(authorHelp)
             .setColor(colors["MainColor"])
             .setTitle(`${command.name} Command Description`)
-            .addField("Description:", `\`\`\`${command.description}\`\`\``)
+            .addFields([
+                { name: `Description`, value: `\`\`\`${command.description}\`\`\``, required: true, inline: false },
+            ]);
 
-            if (command.aliases)
-                help
-                    .addField("Aliases:", `\`\`\`${prefix}${command.aliases}\`\`\``)
-                    .addField("Usage", `\`\`\`${command.usage}\`\`\``)
-                    .addField("Example", `\`\`\`${command.example}\`\`\``)
-                    .addField("Notes", ` \n *${command.notes}*`)
+            if (command.aliases) {
+                help.addFields([
+                    { name: `Aliases`, value: `\`\`\`${command.aliases}\`\`\``, required: true, inline: false },
+                    { name: `Usage`, value: `\`\`\`${command.usage}\`\`\``, required: true, inline: false },
+                    { name: `Example`, value: `\`\`\`${command.description}\`\`\``, required: true, inline: false },
+                    { name: `Notes`, value: `\`\`\`${command.description}\`\`\``, required: true, inline: false },
+                ]);
+            }
 
         message.reply({ embeds: [help], allowedMentions: { repliedUser: true } });
     },
@@ -126,13 +130,18 @@ module.exports = {
             .setAuthor(authorHelp)
             .setColor(colors["MainColor"])
             .setTitle(`${command.name} Command Description`)
-            .addField("Description:", `\`\`\`${command.description}\`\`\``);
-        if (command.aliases)
-            help
-                .addField("Aliases:", `\`\`\`${command.aliases}\`\`\``)
-                .addField("Usage:", `\`\`\`${command.usage}\`\`\``)
-                .addField("Example:", `\`\`\`${command.example}\`\`\``)
-                .addField("Notes", ` \n *${command.notes}*`)
+            .addFields([
+                { name: `Description`, value: `\`\`\`${command.description}\`\`\``, required: true, inline: false },
+            ]);
+
+            if (command.aliases) {
+                help.addFields([
+                    { name: `Aliases`, value: `\`\`\`${command.aliases}\`\`\``, required: true, inline: false },
+                    { name: `Usage`, value: `\`\`\`${command.usage}\`\`\``, required: true, inline: false },
+                    { name: `Example`, value: `\`\`\`${command.description}\`\`\``, required: true, inline: false },
+                    { name: `Notes`, value: `\`\`\`${command.description}\`\`\``, required: true, inline: false },
+                ]);
+            }
 
         interaction.editReply({ embeds: [help], allowedMentions: { repliedUser: true } });
 

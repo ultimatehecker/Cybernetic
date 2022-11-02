@@ -77,20 +77,7 @@ module.exports = {
                 });
             }
 
-            if(gamemode == "infection" || "doubleup" || "assassins") {
-                const infection = new Discord.EmbedBuilder()
-                    .setAuthor(authorSuccess)
-                    .setTitle(`[${player.rank}] ${player.nickname}`)
-                    .setColor(colors["MainColor"])
-                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
-                    .addFields([
-                        { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.murdermystery.coins)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.murdermystery[gamemode].playedGames)}\` \n `, required: true, inline: true },
-                        { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.murdermystery[gamemode].kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.murdermystery[gamemode].deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.murdermystery[gamemode].KDRatio)}\``, required: true, inline: true },
-                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.murdermystery[gamemode].wins)}\``, required: true, inline: true },
-                    ]);
-
-                message.reply({ embeds: [infection], allowedMentions: { repliedUser: true } });
-            } else if(!gamemode) {
+            if(!gamemode) {
                 const murdermystery = new Discord.EmbedBuilder()
                     .setAuthor(authorSuccess)
                     .setTitle(`[${player.rank}] ${player.nickname}`)
@@ -103,6 +90,20 @@ module.exports = {
                     ]);
 
                 message.reply({ embeds: [murdermystery], allowedMentions: { repliedUser: true } });
+
+            } else if(gamemode == "infection" || "doubleup" || "assassins") {
+                const infection = new Discord.EmbedBuilder()
+                    .setAuthor(authorSuccess)
+                    .setTitle(`[${player.rank}] ${player.nickname}`)
+                    .setColor(colors["MainColor"])
+                    .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                    .addFields([
+                        { name: `General Stats`, value: `\`•\` **Coins**: \`${commaNumber(player.stats.murdermystery.coins)}\` \n \`•\` **Played Games**: \`${commaNumber(player.stats.murdermystery[gamemode].playedGames)}\` \n `, required: true, inline: true },
+                        { name: `Combat`, value: `\`•\` **Kills**: \`${commaNumber(player.stats.murdermystery[gamemode].kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.murdermystery[gamemode].deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.murdermystery[gamemode].KDRatio)}\``, required: true, inline: true },
+                        { name: `Games`, value: `\`•\` **Wins**: \`${commaNumber(player.stats.murdermystery[gamemode].wins)}\``, required: true, inline: true },
+                    ]);
+
+                message.reply({ embeds: [infection], allowedMentions: { repliedUser: true } });
             } else {
                 const gamemode504 = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
@@ -140,7 +141,7 @@ module.exports = {
                 const error = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
                     .setColor(colors["ErrorColor"])
-                    .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
+                    .setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
                 console.error(e);
                 return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
                     setTimeout(function() {
