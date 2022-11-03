@@ -2,7 +2,7 @@ const { hypixel, errors } = require('../../schemas/hypixel');
 const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
-const { ApplicationCommandOptionType } = require("discord.js");
+const { ApplicationCommandOptionType, UserFlags } = require("discord.js");
 
 module.exports = {
     name: 'uhc',
@@ -80,6 +80,21 @@ module.exports = {
             }
 
             if(!gamemode) {
+
+                if(!player.stats.uhc.brawl || !player.stats.uhc.brawlSolo || !player.stats.uhc.brawlDuo || !player.stats.uhc.redVsBlue || !player.stats.uhc.solo || !player.stats.uhc.team || !player.stats.uhc.noDiamond) {
+                    const uhc = new Discord.EmbedBuilder()
+                        .setAuthor(authorSuccess)
+                        .setTitle(`[${player.rank}] ${player.nickname}`)
+                        .setColor(colors["MainColor"])
+                        .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
+                        .addFields([
+                            { name: "General Stats", value: `\`•\` **Coins**: \`${commaNumber(player.stats.uhc.coins)}\` \n \`•\` **Stars**: \`${commaNumber(player.stats.uhc.starLevel)}\` \n \`•\` **Score**: \`${commaNumber(player.stats.uhc.score)}\``, required: true, inline: true },
+                            { name: "Combat", value: `\`•\` **Kills**: \`${commaNumber(player.stats.uhc.kills)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.uhc.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.uhc.KDRatio)}\``, required: true, inline: true },
+                        ]);
+
+                    message.reply({ embeds: [uhc], allowedMentions: { repliedUser: true } });
+                }
+
                 const uhc = new Discord.EmbedBuilder()
                     .setAuthor(authorSuccess)
                     .setTitle(`[${player.rank}] ${player.nickname}`)
