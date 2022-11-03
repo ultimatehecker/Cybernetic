@@ -44,6 +44,7 @@ module.exports = {
                 .setDescription(`You need to type in a player's IGN! (Example: \`${prefix}tntgames ultimate_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultimate_hecker\`)`)
             return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
+                    message.delete();
                     sent.delete();
                 }, 5000);
             });
@@ -65,6 +66,7 @@ module.exports = {
                     .setDescription("That player has never played this game")
                 return message.reply({ embeds: [neverPlayed], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
+                        message.delete();
 						sent.delete();
 					}, 5000);
 				});
@@ -98,6 +100,7 @@ module.exports = {
                     .setDescription('I could not find that player in the API. Check spelling and name history.')
                 return message.reply({ embeds: [player404], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
+                        message.delete();
 						sent.delete();
 					}, 5000);
 				});
@@ -108,6 +111,7 @@ module.exports = {
                     .setDescription('That player has never logged into Hypixel.')
                 return message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
+                        message.delete();
 						sent.delete();
 					}, 5000);
 				});
@@ -119,6 +123,7 @@ module.exports = {
                 console.error(e);
                 return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
+                        message.delete();
 						sent.delete();
 					}, 5000);
 				});
@@ -186,11 +191,11 @@ module.exports = {
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
                 .addFields([
                     { name: "General Stats", value: `\`•\` **Coins**: \`${commaNumber(player.stats.tntgames.coins)}\` \n \`•\` **Total Wins**: \`${commaNumber(player.stats.tntgames.wins)}\` \n \`•\` **Winstreak**: \`${commaNumber(player.stats.tntgames.winstreak)}\``, required: true, inline: true },
-                    { name: "TNT Run", value: `\`•\` **Kills**: \`N/A\` \n \`•\` **TNT Run Wins**: \`${commaNumber(player.stats.tntgames.tntrun.wins)}\` \n \`•\` **TNT Run Deaths**: \`${commaNumber(player.stats.tntgames.tntrun.deaths)}\` \n \`•\` **TNT Run Longest Game**: \`${Math.floor(player.stats.tntgames.tntrun.record / 60)}\`:\`${player.stats.tntgames.tntrun.record - Math.floor(player.stats.tntgames.tntrun.record / 60) * 60}\` \n \`•\` **TNT Run Record**: \`${commaNumber(player.stats.tntgames.tntrun.record)}\` \n \`•\` **TNT Run KDR**: \`${commaNumber(player.stats.tntgames.tntrun.KDRatio)}\``, required: true, inline: true },
                     { name: "PvP Run", value: `\`•\` **Kills**: \`${commaNumber(player.stats.tntgames.pvprun.kills)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.tntgames.pvprun.wins)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.tntgames.pvprun.deaths)}\` \n \`•\` **Longest Game**: \`${Math.floor(player.stats.tntgames.pvprun.record / 60)}\`:\`${player.stats.tntgames.pvprun.record - Math.floor(player.stats.tntgames.pvprun.record / 60) * 60}\` \n \`•\` **Record**: \`${commaNumber(player.stats.tntgames.pvprun.record)}\``, required: true, inline: true },
                     { name: "TNT Tag", value: `\`•\` **Kills**: \`${commaNumber(player.stats.tntgames.tnttag.kills)}\` \n \`•\` **Wins**: \`${commaNumber(player.stats.tntgames.tnttag.wins)}\` \n \`•\` **Speed**: \`${commaNumber(player.stats.tntgames.tnttag.speed)}\` \n `, required: true, inline: true },
                     { name: "Bow Spleef", value: `\`•\` **Wins**: \`${commaNumber(player.stats.tntgames.bowspleef.wins)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.tntgames.bowspleef.deaths)}\` \n \`•\` **Tags**: \`${commaNumber(player.stats.tntgames.bowspleef.tags)}\` \n `, required: true, inline: true },
-                    { name: "Wizards", value: `\`•\` *Points**: \`${commaNumber(player.stats.tntgames.wizards.points)}\` \n \`•\` *Kills/Assists**: \`${commaNumber(player.stats.tntgames.wizards.kills)}\` / \`${commaNumber(player.stats.tntgames.wizards.assists)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.tntgames.wizards.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.tntgames.wizards.KDRatio)}\` `, required: true, inline: true },
+                    { name: "Wizards", value: `\`•\` **Points**: \`${commaNumber(player.stats.tntgames.wizards.points)}\` \n \`•\` **Kills/Assists**: \`${commaNumber(player.stats.tntgames.wizards.kills)}\` / \`${commaNumber(player.stats.tntgames.wizards.assists)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.tntgames.wizards.deaths)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.tntgames.wizards.KDRatio)}\` `, required: true, inline: true },
+                    { name: "TNT Run", value: `\`•\` **Kills**: \`N/A\` \n \`•\` **Wins**: \`${commaNumber(player.stats.tntgames.tntrun.wins)}\` \n \`•\` **Deaths**: \`${commaNumber(player.stats.tntgames.tntrun.deaths)}\` \n \`•\` **Longest**: \`${Math.floor(player.stats.tntgames.tntrun.record / 60)}\`:\`${player.stats.tntgames.tntrun.record - Math.floor(player.stats.tntgames.tntrun.record / 60) * 60}\` \n \`•\` **Record**: \`${commaNumber(player.stats.tntgames.tntrun.record)}\` \n \`•\` **KDR**: \`${commaNumber(player.stats.tntgames.tntrun.KDRatio)}\``, required: true, inline: true },
                 ])
 
             interaction.editReply({ embeds: [tntgames], allowedMentions: { repliedUser: true } });

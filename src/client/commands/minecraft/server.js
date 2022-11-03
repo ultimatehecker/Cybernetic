@@ -39,6 +39,7 @@ module.exports = {
                     .setDescription(`You need to type in a server IP! (Example: \`${prefix}server mc.hypixel.net\`)`)
                 return message.reply({ embeds: [ip404], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
+                        message.delete();
 						sent.delete();
 					}, 5000);
 				});
@@ -67,6 +68,7 @@ module.exports = {
                 .setDescription(`An error has occurred. Check the IP address. If the error persists and you are certain that the IP is correct, create a new issue on the github repository by doing \`${prefix}github\``)
             message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
+                    message.delete();
                     sent.delete();
                 }, 5000);
             });

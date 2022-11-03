@@ -34,7 +34,7 @@ module.exports = {
 
             message.reply({ embeds: [coinflip], allowedMentions: { repliedUser: true } });
     },
-    async slashExecute(client, Discord, interaction){
+    async slashExecute(client, Discord, interaction) {
 
         let author = {
             name: "Random CoinFlip",

@@ -41,7 +41,7 @@ module.exports = {
             const general = new Discord.EmbedBuilder()
                 .setAuthor(authorGeneral)
                 .setColor(colors["MainColor"])
-                .setDescription(`Do \`${prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n *The prefix of the bot is currently: \`${prefix}\`. You can change the prefix by doing ${prefix}prefix (prefix)* \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\` \n \n 🚔 Moderation: \`ban\`, \`clear\`, \`kick\`, \`mute\`, \`nickname\`, \`reactionrole\`, \`unban\`, \`unmute\` \n \n 🌆 Hypixel: \`bedwars\`, \`blizsurvivalgames\`, \`buildbattle\`, \`copsandcrims\`, \`crazywalls\`, \`duels\`, \`guild\`, \`link\`, \`megawalls\`, \`miniwalls\`, \`murdermystery\`, \`player\`, \`skywars\`, \`smashheroes\`, \`soccer\`, \`socials\`, \`speeduhc\`, \`tntgames\`, \`uhc\`, \`unlink\`, \`vampirez\`, \`watchdog\`, \`zombies\`, \n \n 🏗️Minecraft: \`seed\`, \`server\`, \`skin\`, \`uuid\`, \`namehistory\` \n \n :gear: Settings: \`prefix\`, \`welcomemessage\`, \`leavemessage\``)
+                .setDescription(`Do \`${prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n *The prefix of the bot is currently: \`${prefix}\`. You can change the prefix by doing ${prefix}prefix (prefix)* \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\` \n \n 🌆 Hypixel: \`bedwars\`, \`blizsurvivalgames\`, \`buildbattle\`, \`copsandcrims\`, \`crazywalls\`, \`guild\`, \`link\`, \`megawalls\`, \`murdermystery\`, \`player\`, \`skywars\`, \`smashheroes\`, \`socials\`, \`speeduhc\`, \`tntgames\`, \`uhc\`, \`unlink\`, \`vampirez\`, \`watchdog\`, \n \n 🏗️Minecraft: \`seed\`, \`server\`, \`skin\`, \`uuid\`, \n \n :gear: Settings: \`prefix\`, \`welcomemessage\`, \`leavemessage\``)
 
             return message.reply({ embeds: [general], allowedMentions: { repliedUser: true } })
         }
@@ -56,6 +56,7 @@ module.exports = {
 
             return message.reply({ embeds: [command404], allowedMentions: { repliedUser: true } }).then((sent) => {
                 setTimeout(function() {
+                    message.delete();
                     sent.delete();
                 }, 5000);
             });
@@ -104,7 +105,7 @@ module.exports = {
 			const general = new Discord.EmbedBuilder()
 				.setAuthor(authorGeneral)
 				.setColor(colors["MainColor"])
-				.setDescription(`Do \`${serverDoc.prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n *The prefix of the bot is currently: \`${serverDoc.prefix}\`. You can change the prefix by doing ${serverDoc.prefix}prefix (prefix)* \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\` \n \n 🚔 Moderation: \`ban\`, \`clear\`, \`kick\`, \`mute\`, \`nickname\`, \`prefix\`, \`reactionrole\`, \`unban\`, \`unmute\` \n \n 🌆 Hypixel: \`bedwars\`, \`blizsurvivalgames\`, \`buildbattle\`, \`copsandcrims\`, \`crazywalls\`, \`duels\`, \`guild\`, \`link\`, \`megawalls\`, \`miniwalls\`, \`murdermystery\`, \`player\`, \`skywars\`, \`smashheroes\`, \`soccer\`, \`socials\`, \`speeduhc\`, \`tntgames\`, \`uhc\`, \`unlink\`, \`vampirez\`, \`watchdog\`, \`zombies\`, \n \n 🏗️Minecraft: \`seed\`, \`server\`, \`skin\`, \`uuid\`, \`namehistory\` \n \n :gear: Settings: \`prefix\`, \`welcomemessage\`, \`leavemessage\``)
+				.setDescription(`Do \`${serverDoc.prefix}help [command]\` to see what a command does. Anything put in parenthesis "()" means that argument is required, but anything in brackets "[]" is optional! \n \n *The prefix of the bot is currently: \`${serverDoc.prefix}\`. You can change the prefix by doing ${serverDoc.prefix}prefix (prefix)* \n \n 🛠️ General: \`coinflip\`, \`credits\`, \`discord\`, \`embed\`, \`github\`, \`info\`, \`invite\`, \`latency\`, \`overview\`, \`rng\`, \`say\` \n \n 🌆 Hypixel: \`bedwars\`, \`blizsurvivalgames\`, \`buildbattle\`, \`copsandcrims\`, \`crazywalls\`, \`guild\`, \`link\`, \`megawalls\`, \`murdermystery\`, \`player\`, \`skywars\`, \`smashheroes\`, \`socials\`, \`speeduhc\`, \`tntgames\`, \`uhc\`, \`unlink\`, \`vampirez\`, \`watchdog\`, \n \n 🏗️Minecraft: \`seed\`, \`server\`, \`skin\`, \`uuid\`, \n \n :gear: Settings: \`prefix\`, \`welcomemessage\`, \`leavemessage\``)
 
 			return interaction.editReply({embeds: [general], allowedMentions: { repliedUser: true }});
 

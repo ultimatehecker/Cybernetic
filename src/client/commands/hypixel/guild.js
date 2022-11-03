@@ -3,6 +3,7 @@ const commaNumber = require('comma-number');
 const User = require('../../schemas/user');
 const colors = require("../../tools/colors.json");
 const { ApplicationCommandOptionType, GuildMember } = require("discord.js");
+const axios = require('axios');
 
 module.exports = {
 	name: "guild",
@@ -43,19 +44,23 @@ module.exports = {
 				.setDescription(`You need to type in a guild's name! (Not guild tag, but guild name.) (Example: \`${prefix}guild Dragons of War\`)`)
 			return message.reply({embeds: [guildArg404], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(function() {
+					message.delete();
 					sent.delete();
 				}, 5000);
 			});
 		}
 
 		hypixel.getGuild("name", guildName).then(async (guild) => {
+
+			const guildMasterNick = (await axios.get(`https://api.mojang.com/user/profile/${guild.guildMaster}`)).data
+
 			const guildInfoEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.addFields([
 					{ name: `Guild Info`, value: `\`•\` **Name**: \`${commaNumber(guild.name)}\` \n \`•\` **Level**: \`${commaNumber(guild.level)}\` \n \`•\` **Members**: \`${commaNumber(guild.members.length)}\` \n \`•\` **Created**: \`${commaNumber(guild.createdAt)}\``, required: true, inline: true },
 					{ name: `General Stats`, value: `\`•\` **Experince**: \`${commaNumber(guild.experience)}\` \n \`•\` **Joinable**: \`${commaNumber(guild.joinable)}\` \n \`•\` **Publicly Listed**: \`${commaNumber(guild.publiclyListed)}\``, required: true, inline: true },
-					{ name: `Activity`, value: `\`•\` **Guild Master**: \`${commaNumber(guild.guildMaster)}\` \n \`•\` **Daily History**: \`${commaNumber(guild.expHistory.exp)}\` \n \`•\` **Weekly GXP**: \`${commaNumber(guild.totalWeeklyGexp)}\``, required: true, inline: true },
+					{ name: `Activity`, value: `\`•\` **Guild Master**: \`${guildMasterNick.name}\` \n \`•\` **Daily History**: \`${commaNumber(guild.expHistory.exp)}\` \n \`•\` **Weekly GXP**: \`${commaNumber(guild.totalWeeklyGexp)}\``, required: true, inline: true },
 				]);
 
 				if (guild.description !== null) {
@@ -72,7 +77,7 @@ module.exports = {
 				 }
 
 				guildInfoEmbed.addFields([
-					{ name: `GEXP History`, value: `\`${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n\``, required: true, inline: true },
+					{ name: `GEXP History`, value: `${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n`, required: true, inline: true },
 				]);
 
 				if (guild.tag !== null) {
@@ -90,6 +95,7 @@ module.exports = {
 					.setDescription("I could not find that guild in the API. Check spelling and name history.")
 				return message.reply({ embeds: [guild404], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
@@ -101,6 +107,7 @@ module.exports = {
 				console.error(e);
 				return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
@@ -140,13 +147,16 @@ module.exports = {
         }
 
 		hypixel.getGuild("name", guildName).then(async (guild) => {
+
+			const guildMasterNick = (await axios.get(`https://api.mojang.com/user/profile/${guild.guildMaster}`)).data
+
 			const guildInfoEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.addFields([
-					{ name: `Guild Info`, value: `\`•\` **Name**: \`${commaNumber(guild.name)}\` \n \`•\` **Level**: \`${commaNumber(guild.level)}\` \n \`•\` **Members**: \`${commaNumber(guild.members)}\` \n \`•\` **Created**: \`${commaNumber(guild.createdAt)}\``, required: true, inline: true },
-					{ name: `General Stats`, value: `\`•\` **Experince**: \`${commaNumber(guild.experience)}\` \n \`•\` **Preferred Games**: \`${commaNumber(guild.preferredGames)}\` \n \`•\` **Joinable**: \`${commaNumber(guild.joinable)}\` \n \`•\` **Publicly Listed**: \`${commaNumber(guild.publiclyListed)}\``, required: true, inline: true },
-					{ name: `Activity`, value: `\`•\` **Guild Master**: \`${commaNumber(guild.guildMaster)}\` \n \`•\` **Daily History**: \`${commaNumber(guild.expHistory.exp)}\` \n \`•\` **Weekly GXP**: \`${commaNumber(guild.totalWeeklyGexp)}\``, required: true, inline: true },
+					{ name: `Guild Info`, value: `\`•\` **Name**: \`${commaNumber(guild.name)}\` \n \`•\` **Level**: \`${commaNumber(guild.level)}\` \n \`•\` **Members**: \`${commaNumber(guild.members.length)}\` \n \`•\` **Created**: \`${commaNumber(guild.createdAt)}\``, required: true, inline: true },
+					{ name: `General Stats`, value: `\`•\` **Experince**: \`${commaNumber(guild.experience)}\` \n \`•\` **Joinable**: \`${commaNumber(guild.joinable)}\` \n \`•\` **Publicly Listed**: \`${commaNumber(guild.publiclyListed)}\``, required: true, inline: true },
+					{ name: `Activity`, value: `\`•\` **Guild Master**: \`${guildMasterNick.name}\` \n \`•\` **Daily History**: \`${commaNumber(guild.expHistory.exp)}\` \n \`•\` **Weekly GXP**: \`${commaNumber(guild.totalWeeklyGexp)}\``, required: true, inline: true },
 				]);
 
 				if (guild.description !== null) {
@@ -163,7 +173,7 @@ module.exports = {
 				 }
 
 				guildInfoEmbed.addFields([
-					{ name: `GEXP History`, value: `\`${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n\``, required: true, inline: true },
+					{ name: `GEXP History`, value: `${arr[0]}\n${arr[1]}\n${arr[2]}\n${arr[3]}\n${arr[4]}\n${arr[5]}\n${arr[6]}\n`, required: true, inline: true },
 				]);
 
 				if (guild.tag !== null) {

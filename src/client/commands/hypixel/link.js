@@ -41,6 +41,7 @@ module.exports = {
 				.setDescription("Your account is already connected!");
 			return message.reply({ embeds: [alreadyconnected], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(function() {
+					message.delete();
 					sent.delete();
 				}, 5000);
 			});
@@ -53,6 +54,7 @@ module.exports = {
 				.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}link ultimate_hecker\`)`)
 			return message.reply({embeds: [ign404], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(function() {
+					message.delete();
 					sent.delete();
 				}, 5000);
 			});
@@ -67,6 +69,7 @@ module.exports = {
 					.setImage("https://thumbs.gfycat.com/DentalTemptingLeonberger-size_restricted.gif")
 				return message.reply({embeds: [notconnected], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
@@ -78,6 +81,7 @@ module.exports = {
 					.setDescription(`${player.nickname}'s connected Discord tag doesn't match your Discord tag.`)
 				return message.reply({embeds: [tagnomatch], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
@@ -91,6 +95,7 @@ module.exports = {
 					.setDescription("That player has already been linked to another account.")
 				return message.reply({embeds: [playerdupe], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
@@ -111,6 +116,7 @@ module.exports = {
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
 				return message.reply({embeds: [player404], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
@@ -121,6 +127,7 @@ module.exports = {
 					.setDescription("That player has never logged into Hypixel.")
 				return message.reply({embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
@@ -133,6 +140,7 @@ module.exports = {
 						console.error(e);
 					return message.reply({embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
 						setTimeout(function() {
+							message.delete();
 							sent.delete();
 						}, 5000);
 					});

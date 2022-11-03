@@ -84,6 +84,19 @@ module.exports = {
 			}
 		}
 
+		if (!leaveChannel.isTextBased()) {
+			const embed = new Discord.EmbedBuilder()
+				.setAuthor(authorError)
+				.setColor(colors["ErrorColor"])
+				.setDescription("This is not a valid text channel!");
+
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				setTimeout(function() {
+					sent.delete()
+				}, 5000);
+			});
+		}
+
 		const leaveMessage = args.join(" ");
 
 		client.utils.updateServer(client, message.guild.id, serverDoc, {
@@ -139,7 +152,7 @@ module.exports = {
 
 		let leaveChannel = interaction.options.get("channel").channel;
 
-		if (!leaveChannel.isText()) {
+		if (!leaveChannel.isTextBased()) {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])

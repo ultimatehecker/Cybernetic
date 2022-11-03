@@ -44,6 +44,7 @@ module.exports = {
 				.setDescription(`You need to type in a player's IGN! (Example: \`${prefix}player ultimate_hecker\`) \nYou can also link your account to do commands without inputting an IGN. (Example: \`${prefix}link ultimate_hecker\`)`)
 			return message.reply({ embeds: [ign404], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(function() {
+					message.delete();
 					sent.delete();
 				}, 5000);
 			});
@@ -104,7 +105,7 @@ module.exports = {
 			}
 
 			playerStats.addFields([
-				{ name: `Login`, value: `\`•\` **First**: \`<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>\` \n \`•\` **Last**: \`<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>\``, required: true, inline: true },
+				{ name: `Login`, value: `\`•\` **First**: <t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R> \n \`•\` **Last**: <t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>`, required: true, inline: true },
 				{ name: `Main MC Version`, value: `\`${playerMinecraftVersion}\``, required: true, inline: true },
 				{ name: `Status`, value: `\`${playerIsOnline}\``, required: true, inline: true },
 			]);
@@ -121,7 +122,7 @@ module.exports = {
 				}
 			}
 
-			playerStats.addDescription(` \n *For a player's social media stats, please run \`${prefix}socials ${player.nickname}\`*`);
+			playerStats.setDescription(` \n *For a player's social media stats, please run \`${prefix}socials ${player.nickname}\`*`);
 			message.reply({ embeds: [playerStats], allowedMentions: { repliedUser: true } });
 
 		}).catch((e) => {
@@ -132,6 +133,7 @@ module.exports = {
 					.setDescription("I could not find that player in the API. Check spelling and name history.")
 				return message.reply({embeds: [player404], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
@@ -142,6 +144,7 @@ module.exports = {
 					.setDescription("That player has never logged into Hypixel.");
 				return message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
@@ -153,13 +156,14 @@ module.exports = {
 				console.error(e);
 				return message.reply({ embeds: [error], allowedMentions: { repliedUser: true } }).then((sent) => {
                     setTimeout(function() {
+						message.delete();
                         sent.delete();
                     }, 5000);
                 });
 			}
 		});
 	},
-	async slashExecute(client, Discord, interaction, serverDoc, prefix) {
+	async slashExecute(client, Discord, interaction, serverDoc) {
 
         await interaction.deferReply({ ephemeral: false });
 
@@ -243,7 +247,7 @@ module.exports = {
 			}
 
 			playerStats.addFields([
-				{ name: `Login`, value: `\`•\` **First**: \`<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>\` \n \`•\` **Last**: \`<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>\``, required: true, inline: true },
+				{ name: `Login`, value: `\`•\` **First**: <t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R> \n \`•\` **Last**: <t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>`, required: true, inline: true },
 				{ name: `Main MC Version`, value: `\`${playerMinecraftVersion}\``, required: true, inline: true },
 				{ name: `Status`, value: `\`${playerIsOnline}\``, required: true, inline: true },
 			]);
@@ -260,7 +264,7 @@ module.exports = {
 				}
 			}
 
-			playerStats.addDescription(` \n *For a player's social media stats, please run \`${prefix}socials ${player.nickname}\`*`);
+			playerStats.setDescription(` \n *For a player's social media stats, please run \`${serverDoc.prefix}socials ${player.nickname}\`*`);
             interaction.editReply({ embeds: [playerStats], allowedMentions: { repliedUser: true } });
 
         }).catch(e => { // error messages

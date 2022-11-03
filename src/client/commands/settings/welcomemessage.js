@@ -99,6 +99,19 @@ module.exports = {
 			});
 		}
 
+		if (!leaveChannel.isTextBased()) {
+			const embed = new Discord.EmbedBuilder()
+				.setAuthor(authorError)
+				.setColor(colors["ErrorColor"])
+				.setDescription("This is not a valid text channel!");
+
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				setTimeout(function() {
+					sent.delete()
+				}, 5000);
+			});
+		}
+
 		client.utils.updateServer(client, message.guild.id, {
 				welcomeMessage: welcomeMessage,
 				welcomeChannelID: welcomeChannel.id,
@@ -153,7 +166,7 @@ module.exports = {
 
 		let welcomeChannel = interaction.options.get("channel").channel;
 
-		if (!welcomeChannel.isText()) {
+		if (!welcomeChannel.isTextBased()) {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
