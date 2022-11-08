@@ -45,8 +45,8 @@ module.exports = {
         }
 
         const invite = new Discord.EmbedBuilder()
-			.setAuthor(author)
-			.setColor(colors["MainColor"])
+            .setAuthor(author)
+            .setColor(colors["MainColor"])
             .setDescription("This Cybernetic Invite Link does include the slash commands which will be added soon and includes the regular message based commands.")
 
 		interaction.editReply({ embeds: [invite], allowedMentions: { repliedUser: true }, components: [botInvite] });

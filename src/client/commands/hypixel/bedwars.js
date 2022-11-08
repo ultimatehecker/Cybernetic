@@ -63,13 +63,7 @@ module.exports = {
             });
         }
 
-        if(gamemode && dream) {
-			dream = args[1];
-			gamemode = args[2];
-		} else {
-			gamemode = args[1];
-		}
-
+        let gamemode = args[1];
         let player;
         if (data && !args[0]) {
             player = data.uuid;

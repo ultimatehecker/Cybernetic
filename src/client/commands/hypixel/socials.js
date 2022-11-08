@@ -80,43 +80,43 @@ module.exports = {
 
 				if (player.socialMedia[0] != undefined || player.socialMedia[0] != null) {
 					socials.addFields([
-						{ name: `Social Media 1`, value: `**${player.socialMedia[0].name}:** \`${player.socialMedia[0].link}\``, required: true, inline: false }
+						{ name: `Social Media 1`, value: `**${player.socialMedia[0].name}:** \`${player.socialMedia[0].link}\``, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[1] != undefined || player.socialMedia[1] != null) {
 					socials.addFields([
-						{ name: `Social Media 2`, value: `**${player.socialMedia[1].name}:** \`${player.socialMedia[1].link}`, required: true, inline: false }
+						{ name: `Social Media 2`, value: `**${player.socialMedia[1].name}:** \`${player.socialMedia[1].link}\``, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[2] != undefined || player.socialMedia[2] != null) {
 					socials.addFields([
-						{ name: `Social Media 3`, value: `**${player.socialMedia[2].name}:** \`${player.socialMedia[2].link}\``, required: true, inline: false }
+						{ name: `Social Media 3`, value: `**${player.socialMedia[2].name}:** \`${player.socialMedia[2].link}\``, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[3] != undefined || player.socialMedia[3] != null) {
 					socials.addFields([
-						{ name: `Social Media 4`, value: `**${player.socialMedia[3].name}:** \`${player.socialMedia[3].link}`, required: true, inline: false }
+						{ name: `Social Media 4`, value: `**${player.socialMedia[3].name}:** \`${player.socialMedia[3].link}`, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[4] != undefined || player.socialMedia[4] != null) {
 					socials.addFields([
-						{ name: `Social Media 5`, value: `**${player.socialMedia[4].name}:** \`${player.socialMedia[4].link}`, required: true, inline: false }
+						{ name: `Social Media 5`, value: `**${player.socialMedia[4].name}:** \`${player.socialMedia[4].link}`, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[5] != undefined || player.socialMedia[5] != null) {
 					socials.addFields([
-						{ name: `Social Media 6`, value: `**${player.socialMedia[5].name}:** \`${player.socialMedia[5].link}`, required: true, inline: false }
+						{ name: `Social Media 6`, value: `**${player.socialMedia[5].name}:** \`${player.socialMedia[5].link}`, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[6] != undefined || player.socialMedia[6] != null) {
 					socials.addFields([
-						{ name: `Social Media 7`, value: `**${player.socialMedia[6].name}:** \`${player.socialMedia[6].link}`, required: true, inline: false }
+						{ name: `Social Media 7`, value: `**${player.socialMedia[6].name}:** \`${player.socialMedia[6].link}`, required: true, inline: false },
 					]);
 				}
 
@@ -219,37 +219,37 @@ module.exports = {
 
 				if (player.socialMedia[0] != undefined || player.socialMedia[0] != null) {
 					socials.addFields([
-						{ name: `Social Media 1`, value: `**${player.socialMedia[0].name}:** \`${player.socialMedia[0].link}\``, required: true, inline: false }
+						{ name: `Social Media 1`, value: `**${player.socialMedia[0].name}:** \`${player.socialMedia[0].link}\``, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[1] != undefined || player.socialMedia[1] != null) {
 					socials.addFields([
-						{ name: `Social Media 2`, value: `**${player.socialMedia[1].name}:** \`${player.socialMedia[1].link}`, required: true, inline: false }
+						{ name: `Social Media 2`, value: `**${player.socialMedia[1].name}:** \`${player.socialMedia[1].link}\``, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[2] != undefined || player.socialMedia[2] != null) {
 					socials.addFields([
-						{ name: `Social Media 3`, value: `**${player.socialMedia[2].name}:** \`${player.socialMedia[2].link}\``, required: true, inline: false }
+						{ name: `Social Media 3`, value: `**${player.socialMedia[2].name}:** \`${player.socialMedia[2].link}\``, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[3] != undefined || player.socialMedia[3] != null) {
 					socials.addFields([
-						{ name: `Social Media 4`, value: `**${player.socialMedia[3].name}:** \`${player.socialMedia[3].link}`, required: true, inline: false }
+						{ name: `Social Media 4`, value: `**${player.socialMedia[3].name}:** \`${player.socialMedia[3].link}`, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[4] != undefined || player.socialMedia[4] != null) {
 					socials.addFields([
-						{ name: `Social Media 5`, value: `**${player.socialMedia[4].name}:** \`${player.socialMedia[4].link}`, required: true, inline: false }
+						{ name: `Social Media 5`, value: `**${player.socialMedia[4].name}:** \`${player.socialMedia[4].link}`, required: true, inline: false },
 					]);
 				}
 	
 				if (player.socialMedia[5] != undefined || player.socialMedia[5] != null) {
 					socials.addFields([
-						{ name: `Social Media 6`, value: `**${player.socialMedia[5].name}:** \`${player.socialMedia[5].link}`, required: true, inline: false }
+						{ name: `Social Media 6`, value: `**${player.socialMedia[5].name}:** \`${player.socialMedia[5].link}`, required: true, inline: false },
 					]);
 				}
 	

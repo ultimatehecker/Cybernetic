@@ -41,7 +41,7 @@ module.exports = async (Discord, client, message) => {
     if(message.content.match(mention)) {
         const botprefix = new Discord.MessageEmbed()
             .setAuthor("Cybernetic", "https://i.imgur.com/OuoECfX.jpeg")
-            .setDescription(`My prefix is: \`.\``);
+            .setDescription(`My prefix is: \`${serverDoc.prefix}\``);
 
         return message.reply({ embeds: [botprefix], allowedMentions: { repliedUser: false } });
     }
