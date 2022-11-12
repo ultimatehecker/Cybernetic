@@ -34,9 +34,9 @@ module.exports = {
         }
 
 		const embed = new Discord.EmbedBuilder()
-			.setAuthor(author)
-			.setColor(colors["MainColor"])
-			.setDescription(`Cybernetic was made by \`poly#3622\` & \`ultimate_hecker#1165\` using Discord.js v14 and the MongoDB Database! Cybernetic is fully open source under the license GPL 3.0. \n \n Check out the full GitHub Repository: https://github.com/ultimatehecker/Cybernetic \n \n Join the support server at: https://discord.gg/4hv23VguQY`)
+		    .setAuthor(author)
+            .setColor(colors["MainColor"])
+            .setDescription(`Cybernetic was made by \`poly#3622\` & \`ultimate_hecker#1165\` using Discord.js v14 and the MongoDB Database! Cybernetic is fully open source under the license GPL 3.0. \n \n Check out the full GitHub Repository: https://github.com/ultimatehecker/Cybernetic \n \n Join the support server at: https://discord.gg/4hv23VguQY`)
 
 		interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 	}

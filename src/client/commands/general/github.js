@@ -47,8 +47,8 @@ module.exports = {
         }
 
         const github = new Discord.EmbedBuilder()
-			.setAuthor(author)
-			.setColor(colors["MainColor"])
+            .setAuthor(author)
+            .setColor(colors["MainColor"])
             .setDescription("This will redirect you to Cybernetic's GitHub Repository, where you can view issues, code and potential contribute to Cybernetic")
 
 		interaction.editReply({ embeds: [github], allowedMentions: { repliedUser: true }, components: [githubRepository] });

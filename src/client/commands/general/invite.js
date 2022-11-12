@@ -12,7 +12,7 @@ module.exports = {
         await message.channel.sendTyping()
 
         const botInvite = new ActionRowBuilder().addComponents(new ButtonBuilder()
-			.setLabel('Discord Support Server')
+			.setLabel('Cybernetic Invite Link')
             .setURL('https://discord.com/api/oauth2/authorize?client_id=923239259845066843&permissions=8&scope=bot%20applications.commands')
 			.setStyle(ButtonStyle.Link),
 		);
@@ -34,7 +34,7 @@ module.exports = {
         await interaction.deferReply({ ephemeral: false });
 
         const botInvite = new ActionRowBuilder().addComponents(new ButtonBuilder()
-			.setLabel('Discord Support Server')
+			.setLabel('Cybernetic Invite Link')
             .setURL('https://discord.com/api/oauth2/authorize?client_id=923239259845066843&permissions=8&scope=bot%20applications.commands')
 			.setStyle(ButtonStyle.Link),
 		);
@@ -45,8 +45,8 @@ module.exports = {
         }
 
         const invite = new Discord.EmbedBuilder()
-			.setAuthor(author)
-			.setColor(colors["MainColor"])
+            .setAuthor(author)
+            .setColor(colors["MainColor"])
             .setDescription("This Cybernetic Invite Link does include the slash commands which will be added soon and includes the regular message based commands.")
 
 		interaction.editReply({ embeds: [invite], allowedMentions: { repliedUser: true }, components: [botInvite] });

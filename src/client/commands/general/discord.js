@@ -52,7 +52,6 @@ module.exports = {
             .setColor(colors["MainColor"])
             .setDescription("This will send you to the Cybernetic Support Server, where you will have the chance to see future updates, more information and test out beta features!")
 
-            
         interaction.editReply({ embeds: [discord], allowedMentions: { repliedUser: true }, components: [discordInvite] });
         
     }

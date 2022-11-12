@@ -2,10 +2,6 @@ const importPrettyMS = import("pretty-ms")
 const os = require("os-utils")
 const colors = require("../../tools/colors.json");
 
-
-
-// TODO: Make sure to removed prettyMS is not a function
-
 module.exports = {
     name: "info",
     aliases: [],
@@ -41,6 +37,7 @@ module.exports = {
                         { name: "System", value: `CPU Usage: \`${Math.round((percentage * 100) / os.cpuCount())}%\` \n Memory Usage: \`${Math.round((process.memoryUsage().rss / 1024 / 1024) * 100) / 100}\`MB`, inline: true },
                         { name: "Popularity", value: `Number of Servers: \`${client.guilds.cache.size}\` \n Number of Members: \`${count.length}\``, inline: true },
                     ]);
+
                 message.reply({ embeds: [info], allowedMentions: { repliedUser: true } });
             });
         });
@@ -74,6 +71,7 @@ module.exports = {
 						{ name: "System", value: `CPU Usage: \`${Math.round((percentage * 100) / os.cpuCount())}%\` \n Memory Usage: \`${Math.round((process.memoryUsage().rss / 1024 / 1024) * 100) / 100}\`MB`, inline: true },
 						{ name: "Popularity", value: `Number of Servers: \`${client.guilds.cache.size}\` \n Number of Users: \`${count.length}\``, inline: true },
 					]);
+                    
 				interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 			});
 		});

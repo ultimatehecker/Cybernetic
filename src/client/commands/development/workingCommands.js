@@ -26,7 +26,7 @@ module.exports = {
                     \`conflip\` - ${EmojiConstructor["alt"].yep} \n 
                     \`credits\` - ${EmojiConstructor["alt"].yep} \n 
                     \`discord\` - ${EmojiConstructor["alt"].yep} \n 
-                    \`embed\` - ${EmojiConstructor["alt"].yep} \n 
+                    \`embed\` - ${EmojiConstructor["alt"].nope} \n 
                     \`faq\` - ${EmojiConstructor["alt"].yep} \n 
                     \`github\` - ${EmojiConstructor["alt"].yep} \n 
                     \`help\` - ${EmojiConstructor["alt"].yep} \n 
@@ -89,7 +89,7 @@ module.exports = {
                 \`conflip\` - ${EmojiConstructor["alt"].yep} \n 
                 \`credits\` - ${EmojiConstructor["alt"].yep} \n 
                 \`discord\` - ${EmojiConstructor["alt"].yep} \n 
-                \`embed\` - ${EmojiConstructor["alt"].yep} \n 
+                \`embed\` - ${EmojiConstructor["nope"].yep} \n 
                 \`faq\` - ${EmojiConstructor["alt"].yep} \n 
                 \`github\` - ${EmojiConstructor["alt"].yep} \n 
                 \`help\` - ${EmojiConstructor["alt"].yep} \n 

@@ -1,23 +1,12 @@
 console.log('Event File Successfully Scanned - messageReactionAdd')
 
 module.exports = async(Discord, client, reaction, user) => {
-    if(reaction.partial) {
-        await fetch(true).catch((error) => {
-            console.log("Something went wrong when fetching the message ", error)
-        });
-    }
-
-    if(user.partial) {
-        await user.fetch().catch((error) => {
-            console.log("Something went wrong when fetching the message ", error);
-        });
-    }
 
     let realReaction = reaction;
     let realUser = user;
 
     const serverDoc = await client.utils.loadGuildInfo(
-        client.
+        client,
         reaction.message.guild
     );
 

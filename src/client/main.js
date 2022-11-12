@@ -112,10 +112,10 @@ db.once("open", () => {
 
         process.on('unhandledRejection', error => {
             console.error('Unhandled promise rejection:', error);
-        });        
+        });
 
         ["command_handler", "event_handler", "util_handler"].forEach((handler) => {
-            require(`./handlers/${handler}`)(client, Discord);
+            require(`./components/${handler}`)(client, Discord);
         });
     });
     loginTransaction.finish();

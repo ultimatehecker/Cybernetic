@@ -69,8 +69,8 @@ module.exports = {
 				]);
 
 			message.reply({ embeds: [skin], allowedMentions: { repliedUser: true } });
-		} catch (error) {
-			if (error.message === errors.PLAYER_DOES_NOT_EXIST) {
+		} catch (e) {
+			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
 				const player404 = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
@@ -85,7 +85,7 @@ module.exports = {
 				const error = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
-					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
+					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
 				return message.reply({embeds: [error], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(function() {
 						message.delete();
@@ -146,8 +146,8 @@ module.exports = {
 
 			interaction.editReply({ embeds: [skin], allowedMentions: { repliedUser: true } });
 
-		} catch (error) {
-			if (error.message === errors.PLAYER_DOES_NOT_EXIST) {
+		} catch (e) {
+			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
 				const player404 = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
@@ -157,21 +157,11 @@ module.exports = {
 						interaction.deleteReply()
 					}, 5000);
 				});
-			} else if (error.message === errors.PLAYER_HAS_NEVER_LOGGED) {
-				const neverLogged = new Discord.EmbedBuilder()
-					.setAuthor(authorError)
-					.setColor(colors["ErrorColor"])
-					.setDescription("That player has never logged into Hypixel.");
-				return interaction.editReply({embeds: [neverLogged], allowedMentions: { repliedUser: true } }).then(() => {
-					setTimeout(function() {
-						interaction.deleteReply()
-					}, 5000);
-				});
 			} else {
 				const error = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
-					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${error}\`\`\``)
+					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
 				return interaction.editReply({embeds: [error], allowedMentions: { repliedUser: true } }).then(() => {
 					setTimeout(function() {
 						interaction.deleteReply()
