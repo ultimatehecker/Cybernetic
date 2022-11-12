@@ -14,8 +14,8 @@ module.exports = async (Discord, client, member) => {
         tagRegex, `${member.user.tag}`
     );
 
-    welcomemessage = welcomemessage.replace(nameRegex, `${member.user.username}`);
-    welcomemessage = welcomemessage.replace(mentionRegex, `<@${member.user.id}>`);
+    welcomeMessage = welcomeMessage.replace(nameRegex, `${member.user.username}`);
+    welcomeMessage = welcomeMessage.replace(mentionRegex, `<@${member.user.id}>`);
 
     channel.send({ content: welcomeMessage });
 };

@@ -1,7 +1,6 @@
 const colors = require("../../tools/colors.json");
 const { ApplicationCommandOptionType } = require("discord.js");
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const { readDirAsync } = require("@sentry/node/types/integrations/context");
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, resolveColor } = require('discord.js');
 
 //TODO fix embed color not using imprimatives
 
@@ -22,10 +21,6 @@ module.exports = {
 			required: true,
 			type: ApplicationCommandOptionType.String,
 			choices: [
-				{
-					name: "DEFAULT",
-					value: 'Default'
-				},
 				{
 					name: "WHITE",
 					value: 'White'
@@ -53,10 +48,6 @@ module.exports = {
 				{
 					name: "LUMINOUS VIVID PINK",
 					value: 'LuminousVividPink'
-				},
-				{
-					name: "FUCKSIA",
-					value: 'Fuchsia'
 				},
 				{
 					name: "GOLD",
@@ -87,8 +78,8 @@ module.exports = {
 					value: 'DarkGreen'
 				},
 				{
-					name: "BLUE",
-					value: 'Blue'
+					name: "Dark BLUE",
+					value: 'DarkBlue'
 				},
 				{
 					name: "DARK PURPLE",
@@ -99,32 +90,24 @@ module.exports = {
 					value: 'DarkVividPink'
 				},
 				{
-					name: "PURPLE",
+					name: "DARK GOLD",
 					value: 'DarkGold'
 				},
 				{
-					name: "PURPLE",
+					name: "DARK ORANGE",
 					value: 'DarkOrange'
 				},
 				{
-					name: "PURPLE",
+					name: "DARK RED",
 					value: 'DarkRed'
 				},
 				{
-					name: "PURPLE",
+					name: "DARK GREY",
 					value: 'DarkGrey'
-				},
-				{
-					name: "DARKER GREY",
-					value: 'DarkerGrey'
 				},
 				{
 					name: "LIGHT GREY",
 					value: 'LightGrey'
-				},
-				{
-					name: "DARK NAVY",
-					value: 'DarkNavy'
 				},
 				{
 					name: "BLURPLE",
@@ -133,18 +116,6 @@ module.exports = {
 				{
 					name: "GREYPLE",
 					value: 'Greyple'
-				},
-				{
-					name: "DARK BUT NOT BLACK",
-					value: 'DarkButNotBlack'
-				},
-				{
-					name: "NOT BLACK",
-					value: 'NotQuiteBlack'
-				},
-				{
-					name: "RANDOM",
-					value: 'Random'
 				},
 			]
 		},
@@ -180,25 +151,39 @@ module.exports = {
 		);
 
 		const title = args.shift();
-		const color = args.shift();
+		let color = args.shift();
 
 		let description = args.join(" ");
 
-		if(!title || !color || !content) {
-			const embed = new Discord.EmbedBuilder()
-				.setAuthor(authorError)
-				.setColor(colors["ErrorColor"])
-				.setDescription("You must enter a Title, Color or Description")
+		try {
+			if(!title || !color || !content) {
+				const embed = new Discord.EmbedBuilder()
+					.setAuthor(authorError)
+					.setColor(colors["ErrorColor"])
+					.setDescription("You must enter a Title, Color or Description")
+	
+				return message.channel.send({ embeds: [embed], allowedMentions: { repliedUser: true }, components: [colorLink] });
+			}
 
-			return message.channel.send({ embeds: [embed], allowedMentions: { repliedUser: true }, components: [colorLink] });
-		} else {
+			let colors = resolveColor(color)
+
 			const embed = new Discord.EmbedBuilder()
 				.setTitle(title)
-				.setColor(color)
+				.setColor(colors)
 				.setDescription(description)
 
 			return message.channel.send({ embeds: [embed], allowedMentions: { repliedUser: true } });
+
+		} catch {
+			const embed = new Discord.EmbedBuilder()
+					.setTitle(authorError)
+					.setColor(colors["ErrorColor"])
+					.setDescription("You must enter a valid ColorResolvable")
+	
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true }, components: [colorLink] });
 		}
+
+	
 	},
 	async slashExecute(client, Discord, interaction) {
 
@@ -222,22 +207,23 @@ module.exports = {
 
 		const title = interaction.options.get("title")?.value
 		const color = interaction.options.get("color")?.value
-		const content = interaction.options.get("content")?.value
+		const description = interaction.options.get("description")?.value
 
-		if(interaction.options.get("color")?.value && interaction.options.get("hexColor")?.value) {
+		try {
 			const embed = new Discord.EmbedBuilder()
-				.setAuthor(authorError)
-				.setColor(colors["ErrorColor"])
-				.setDescription("You must enter either a ColorResolvable or a Hex Color.")
+				.setTitle(title)
+				.setColor(color)
+				.setDescription(description)
 
-			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true }, components: [colorLink] });
+			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+		} catch(error) {
+			const embed = new Discord.EmbedBuilder()
+					.setAuthor(authorError)
+					.setColor(colors["ErrorColor"])
+					.setDescription("You must enter a valid ColorResolvable")
+
+			console.log(error)
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true }, components: [colorLink] });
 		}
-
-		const embed = new Discord.EmbedBuilder()
-			.setTitle(title)
-			.setColor(color)
-			.setDescription(content)
-
-		interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 	}
 };
