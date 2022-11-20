@@ -82,7 +82,7 @@ module.exports = {
 		if (user) {
 			const member = message.guild.members.resolve(user);
 			if (member.permissions.has("ADMINISTRATOR")) {
-				const permsEmbed = new Discord.MessageEmbed()
+				const permsEmbed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("You cannot ban a moderator!")
@@ -92,7 +92,7 @@ module.exports = {
 			if (member) {
 				const banner = message.guild.members.resolve(message.author);
 				if (!banner.permissions.has("BAN_MEMBERS")) {
-					const permsEmbed = new Discord.MessageEmbed()
+					const permsEmbed = new Discord.EmbedBuilder()
 						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
 						.setDescription("You do not have permission to ban!")
@@ -101,7 +101,7 @@ module.exports = {
 
 				if (args[1] && isNaN(args[1])) {
 					return member.ban({ reason: [args[1]] }).then(() => {
-						const embed = new Discord.MessageEmbed()
+						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorSuccess)
 							.setColor(colors["MainColor"])
 							.setDescription(`Successfully banned **${user.tag}**`);
@@ -109,7 +109,7 @@ module.exports = {
 						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 					}).catch((err) => {
 						if (err.message === "Missing Permissions") {
-							const embed = new Discord.MessageEmbed()
+							const embed = new Discord.EmbedBuilder()
 								.setAuthor(authorError)
 								.setColor(colors["ErrorColor"])
 								.setDescription("I do not have permissions to ban this user!");
@@ -117,7 +117,7 @@ module.exports = {
 							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 						}
 
-						const embed = new Discord.MessageEmbed()
+						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
 							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);
@@ -127,7 +127,7 @@ module.exports = {
 					});
 				} else if (!args[1]) {
 					return member.ban({ reason: `User banned by ${message.author.tag}` }).then(() => {
-						const embed = new Discord.MessageEmbed()
+						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorSuccess)
 							.setColor(colors["MainColor"])
 							.setDescription(`Successfully banned **${user.tag}**`);
@@ -135,7 +135,7 @@ module.exports = {
 						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 					}).catch((err) => {
 						if (err.message === "Missing Permissions") {
-							const embed = new Discord.MessageEmbed()
+							const embed = new Discord.EmbedBuilder()
 								.setAuthor(authorError)
 								.setColor(colors["ErrorColor"])
 								.setDescription("I do not have permissions to ban this user!");
@@ -143,7 +143,7 @@ module.exports = {
 							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 						}
 
-						const embed = new Discord.MessageEmbed()
+						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
 							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);
@@ -153,7 +153,7 @@ module.exports = {
 					});
 				} else {
 					if (args[1] > 7) {
-						const embed = new Discord.MessageEmbed()
+						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
 							.setDescription("You cannot tempban someone for more than 7 days!");
@@ -162,7 +162,7 @@ module.exports = {
 					}
 
 					member.ban({ days: args[1], reason: args[2] ? args[2] : `User banned by ${message.author.tag}`}).then(() => {
-						const embed = new Discord.MessageEmbed()
+						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorSuccess)
 							.setColor(colors["MainColor"])
 							.setDescription(`Successfully banned **${user.tag}**`);
@@ -170,7 +170,7 @@ module.exports = {
 						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 					}).catch((err) => {
 						if (err.message === "Missing Permissions") {
-							const embed = new Discord.MessageEmbed()
+							const embed = new Discord.EmbedBuilder()
 								.setAuthor(authorError)
 								.setColor(colors["ErrorColor"])
 								.setDescription("I do not have permissions to ban this user!");
@@ -178,7 +178,7 @@ module.exports = {
 							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 						}
 
-						const embed = new Discord.MessageEmbed()
+						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
 							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);
@@ -188,7 +188,7 @@ module.exports = {
 					});
 				}
 			} else {
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("That user isn't in this guild!");
@@ -197,7 +197,7 @@ module.exports = {
 			}
 
 		} else {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You didn't mention the user to ban!");
@@ -222,7 +222,7 @@ module.exports = {
 		let user = interaction.options.get("user");
 
 		if (user.member.permissions.has("ADMINISTRATOR")) {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot ban a moderator!")
@@ -231,7 +231,7 @@ module.exports = {
 		}
 
 		if (!interaction.member.permissions.has("BAN_MEMBERS")) {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to ban!")
@@ -239,7 +239,7 @@ module.exports = {
 			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
 		}
 
-		const bannedEmbed = new Discord.MessageEmbed()
+		const bannedEmbed = new Discord.EmbedBuilder()
 			.setColor(colors["MainColor"])
 			.setDescription(`You have been banned from **${interaction.guild.name}** for \`${interaction.options.get("reason")?.value ?? `User banned by ${interaction.user.tag}`}\``);
 
@@ -259,7 +259,7 @@ module.exports = {
 				...userDoc.toObject(), infractions: userDoc.infractions,
 			});
 
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`Successfully banned **${user.user.tag}**`);
@@ -267,7 +267,7 @@ module.exports = {
 			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 		}).catch((err) => {
 			if (err.message === "Missing Permissions") {
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I do not have permissions to ban this user!");
@@ -275,7 +275,7 @@ module.exports = {
 				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 			}
 
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);

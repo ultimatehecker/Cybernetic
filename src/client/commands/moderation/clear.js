@@ -31,7 +31,7 @@ module.exports = {
         }
 		
 		if (!message.member.permissions.has("ADMINISTRATOR")) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to clear messages!")
@@ -40,7 +40,7 @@ module.exports = {
 		}
 
 		if (!args[0]) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Please enter the amount of messages you wish to clear!");
@@ -51,7 +51,7 @@ module.exports = {
 		if (isNaN(args[0])) {
 			if (args[0] === "all") {
 				message.channel.clone({ position: message.channel.rawPosition, reason: "Clearing channel message history" }).then((newChannel) => {
-					const embed = new Discord.MessageEmbed()
+					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
 						.setDescription("Channel message history cleared!");
@@ -65,7 +65,7 @@ module.exports = {
 			message.channel.delete({ reason: "Clearing channel message history" });
 			return;
 		} else {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Please enter an actual number!");
@@ -74,7 +74,7 @@ module.exports = {
 		}
 
 		if (args[0] > 100) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You are not able to delete over 100 messages at a time!");
@@ -83,7 +83,7 @@ module.exports = {
 		}
 
 		if (args[0] < 1) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You must delete at least one message!");
@@ -93,7 +93,7 @@ module.exports = {
 
 		message.delete().then(() => {
 			message.channel.bulkDelete(args[0], true).then(async (collection) => {
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorSuccess)
 					.setColor(authorSuccess)
 					.setDescription(`Successfully cleared \`${collection.size}\` messages!`)
@@ -104,7 +104,7 @@ module.exports = {
 					}, 5000);
 				});
 			}).catch((err) => {
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("At this time, you cannot delete messages that are over 14 days old.")
@@ -129,7 +129,7 @@ module.exports = {
         }
 
 		if (!interaction.member.permissions.has("ADMINISTRATOR")) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to clear messages!")
@@ -140,7 +140,7 @@ module.exports = {
 		if (!Number.isInteger(Number(interaction.options.get("amount").value))) {
 			if (interaction.options.get("amount").value === "all") {
 				interaction.channel.clone({ position: interaction.channel.rawPosition, reason: "Clearing channel message history" }).then((newChannel) => {
-					const embed = new Discord.MessageEmbed()
+					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
 						.setDescription("Channel message history cleared!");
@@ -156,7 +156,7 @@ module.exports = {
 				return;
 
 			} else {
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("Please enter a valid integer!");
@@ -166,7 +166,7 @@ module.exports = {
 		}
 
 		if (Number(interaction.options.get("amount").value) > 100) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You are not able to delete over 100 messages at a time!");
@@ -175,7 +175,7 @@ module.exports = {
 		}
 
 		if (Number(interaction.options.get("amount").value) < 1) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You must delete at least one message!");
@@ -183,14 +183,14 @@ module.exports = {
 		}
 
 		interaction.channel.bulkDelete(Number(interaction.options.get("amount").value), true).then(async (collection) => {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`Successfully cleared \`${collection.size}\` messages! *Note: Some messages may have not been cleared since they are older than 14 days old.*`)
 	
 			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 		}).catch((err) => {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("An error occured while clearing the messages.")
