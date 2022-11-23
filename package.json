@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ultimatehecker/Cybernetic#readme",
   "dependencies": {
-    "@sentry/node": "^7.20.0",
+    "@sentry/node": "^7.21.1",
     "@sentry/tracing": "^7.20.0",
     "axios": "^1.2.0",
     "comma-number": "^2.1.0",
