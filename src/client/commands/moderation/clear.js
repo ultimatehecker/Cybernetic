@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType } = require("discord.js");
+const { ApplicationCommandOptionType, PermissionFlagsBits } = require("discord.js");
 const colors = require("../../tools/colors.json");
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
 	example: "clear 100",
 	async execute(client, message, args, Discord) {
 
-		await message.replyTyping();
+		await message.channel.sendTyping();
 
         let authorError = {
             name: "Error",
@@ -30,13 +30,17 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 		
-		if (!message.member.permissions.has("ADMINISTRATOR")) {
+		if (!message.member.permissions.has(PermissionFlagsBits.Administrator)) {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to clear messages!")
 				
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				setTimeout(() => {
+					sent.delete();
+				}, 5000);
+			});
 		}
 
 		if (!args[0]) {
@@ -45,7 +49,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("Please enter the amount of messages you wish to clear!");
 
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				setTimeout(() => {
+					sent.delete();
+				}, 5000);
+			});
 		}
 
 		if (isNaN(args[0])) {
@@ -69,7 +77,11 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Please enter an actual number!");
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				setTimeout(() => {
+					sent.delete();
+				}, 5000);
+			});
 		}
 		}
 
@@ -79,7 +91,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You are not able to delete over 100 messages at a time!");
 
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				setTimeout(() => {
+					sent.delete();
+				}, 5000);
+			});
 		}
 
 		if (args[0] < 1) {
@@ -88,7 +104,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You must delete at least one message!");
 
-			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				setTimeout(() => {
+					sent.delete();
+				}, 5000);
+			});
 		}
 
 		message.delete().then(() => {
@@ -110,7 +130,11 @@ module.exports = {
 					.setDescription("At this time, you cannot delete messages that are over 14 days old.")
 
 				console.error(err);
-				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+					setTimeout(() => {
+						sent.delete();
+					}, 5000);
+				});
 			});
 		});
 	},
@@ -128,13 +152,17 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-		if (!interaction.member.permissions.has("ADMINISTRATOR")) {
+		if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to clear messages!")
 
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					interaction.deleteReply()
+				}, 5000);
+			});
 		}
 
 		if (!Number.isInteger(Number(interaction.options.get("amount").value))) {
@@ -161,7 +189,11 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("Please enter a valid integer!");
 
-				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						interaction.deleteReply()
+					}, 5000);
+				});
 			}
 		}
 
@@ -171,7 +203,11 @@ module.exports = {
 				.setColor(colors["ErrorColor"])
 				.setDescription("You are not able to delete over 100 messages at a time!");
 
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					interaction.deleteReply()
+				}, 5000);
+			});
 		}
 
 		if (Number(interaction.options.get("amount").value) < 1) {
@@ -179,7 +215,11 @@ module.exports = {
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You must delete at least one message!");
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					interaction.deleteReply()
+				}, 5000);
+			});
 		}
 
 		interaction.channel.bulkDelete(Number(interaction.options.get("amount").value), true).then(async (collection) => {
@@ -189,14 +229,19 @@ module.exports = {
 				.setDescription(`Successfully cleared \`${collection.size}\` messages! *Note: Some messages may have not been cleared since they are older than 14 days old.*`)
 	
 			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+
 		}).catch((err) => {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
-				.setDescription("An error occured while clearing the messages.")
+				.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``)
 
-			console.error(err);
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					console.error(err);
+					interaction.deleteReply()
+				}, 5000);
+			});
 		});
 	},
 };

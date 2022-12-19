@@ -1,5 +1,7 @@
-const { ApplicationCommandOptionType } = require("discord.js");
+const { ApplicationCommandOptionType, PermissionFlagsBits } = require("discord.js");
 const colors = require("../../tools/colors.json");
+
+//TODO fix the slash command
 
 module.exports = {
 	name: "ban",
@@ -61,7 +63,7 @@ module.exports = {
 	notes: "The number of days cannot be longer than 7 - if days are omitted, mentioned user will be banned indefinitely",
 	async execute(client, message, args, Discord) {
 
-		await message.replyTyping();
+		await message.channel.sendTyping();
 
         let authorError = {
             name: "Error",
@@ -81,7 +83,7 @@ module.exports = {
 
 		if (user) {
 			const member = message.guild.members.resolve(user);
-			if (member.permissions.has("ADMINISTRATOR")) {
+			if (member.permissions.has(PermissionFlagsBits.Administrator)) {
 				const permsEmbed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
@@ -91,7 +93,7 @@ module.exports = {
 
 			if (member) {
 				const banner = message.guild.members.resolve(message.author);
-				if (!banner.permissions.has("BAN_MEMBERS")) {
+				if (!banner.permissions.has(PermissionFlagsBits.BanMembers)) {
 					const permsEmbed = new Discord.EmbedBuilder()
 						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
@@ -120,7 +122,7 @@ module.exports = {
 						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
-							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);
+							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
 
 						console.error(err);
 						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
@@ -146,7 +148,7 @@ module.exports = {
 						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
-							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);
+							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
 
 						console.error(err);
 						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
@@ -181,7 +183,7 @@ module.exports = {
 						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
-							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);
+							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
 
 						console.error(err)
 						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
@@ -221,22 +223,30 @@ module.exports = {
 
 		let user = interaction.options.get("user");
 
-		if (user.member.permissions.has("ADMINISTRATOR")) {
+		if (user.member.permissions.has(PermissionFlagsBits.Administrator)) {
 			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot ban a moderator!")
 
-			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					interaction.deleteReply()
+				}, 5000);
+			});
 		}
 
-		if (!interaction.member.permissions.has("BAN_MEMBERS")) {
+		if (!interaction.member.permissions.has(PermissionFlagsBits.BanMembers)) {
 			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to ban!")
 
-			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					interaction.deleteReply()
+				}, 5000);
+			});
 		}
 
 		const bannedEmbed = new Discord.EmbedBuilder()
@@ -272,16 +282,25 @@ module.exports = {
 					.setColor(colors["ErrorColor"])
 					.setDescription("I do not have permissions to ban this user!");
 
-				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						interaction.deleteReply()
+					}, 5000);
+				});
 			}
 
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
-				.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);
+				.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
 
 			console.error(err);
-			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					console.log(err)
+					interaction.deleteReply()
+				}, 5000);
+			});
 		});
 	},
 };
