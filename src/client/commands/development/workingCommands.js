@@ -36,6 +36,7 @@ module.exports = {
                 \`overview\` - ${EmojiConstructor["alt"].yep} \n 
                 \`rng\` - ${EmojiConstructor["alt"].yep} \n 
                 \`say\` - ${EmojiConstructor["alt"].yep} \n 
+                \`xkcd\` - ${EmojiConstructor["alt"].yep} \n 
                 \`bedwars\` - ${EmojiConstructor["alt"].yep} \n 
                 \`blitzsurvivalgames\` - ${EmojiConstructor["alt"].yep} \n 
                 \`buildbattle\` - ${EmojiConstructor["alt"].yep} \n 
