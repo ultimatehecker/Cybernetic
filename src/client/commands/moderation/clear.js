@@ -142,8 +142,6 @@ module.exports = {
 		});
 	},
 	async slashExecute(client, Discord, interaction) {
-
-		console.log('fuck')
 		
 		await interaction.deferReply({ emphemeral: false });
 
