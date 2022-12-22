@@ -62,11 +62,11 @@ module.exports = {
                 \`prefix\` - ${EmojiConstructor["alt"].yep} \n
                 \`leavemessage\` - ${EmojiConstructor["alt"].yep} \n
                 \`welcomemessage\` - ${EmojiConstructor["alt"].yep} \n
-                \`ban\` - ${EmojiConstructor["alt"].clue} \n
-                \`clear\` - ${EmojiConstructor["alt"].clue} \n
-                \`infractions\` - ${EmojiConstructor["alt"].clue} \n
-                \`kick\` - ${EmojiConstructor["alt"].clue} \n
-                \`mute\` - ${EmojiConstructor["alt"].clue} \n
+                \`ban\` - ${EmojiConstructor["alt"].yep} \n
+                \`clear\` - ${EmojiConstructor["alt"].yep} \n
+                \`infractions\` - ${EmojiConstructor["alt"].yep} \n
+                \`kick\` - ${EmojiConstructor["alt"].yep} \n
+                \`mute\` - ${EmojiConstructor["alt"].yep} \n
                 \`nickname\` - ${EmojiConstructor["alt"].clue} \n
                 \`reactionrole\` - ${EmojiConstructor["alt"].clue} \n
                 \`unban\` - ${EmojiConstructor["alt"].clue} \n
