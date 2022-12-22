@@ -61,6 +61,7 @@ db.once("open", () => {
         experience: Number,
         items: Array,
         rareItems: Array,
+        infractions: [],
     });
 
     const serverSchema = new mongoose.Schema({
@@ -82,10 +83,9 @@ db.once("open", () => {
 
     myprofileSchema.index({ guildID: 1, userID: -1 });
     mylevelSchema.index({ guildID: 1, userID: -1 });
-    myprofileSchema.index({ guildID: 1 });
 
     client.myprofileSchema = mongoose.model("Profiles", myprofileSchema);
-    client.serverModel = mongoose.model("Servers", serverSchema);
+    client.serverSchema = mongoose.model("Servers", serverSchema);
     client.mylevelSchema = mongoose.model("Levels", mylevelSchema);
 
     client.commands = new Discord.Collection();

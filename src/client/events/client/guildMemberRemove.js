@@ -2,7 +2,7 @@ console.log('Event File Successfully Scanned - guildMemberRemove')
 
 module.exports = async (Discord, client, member) => {
 
-    const serverDoc = await client.serverModel.findOne({
+    const serverDoc = await client.serverSchema.findOne({
         guildID: member.guild.id
     });
 

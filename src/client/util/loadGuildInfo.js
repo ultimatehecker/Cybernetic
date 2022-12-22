@@ -3,12 +3,12 @@ console.log('Util File Successfully Scanned - loadGuildInfo')
 module.exports = (client, guildResolvable) => {
     return new Promise((resolve, reject) => {
         let guild = client.guilds.resolve(guildResolvable);
-        client.serverModel
+        client.serverSchema
             .findOne({ guildID: guild.id })
             .exec()
             .then((serverDoc) => {
                 if(serverDoc === null) {
-                    client.serverModel.create(
+                    client.serverSchema.create(
                         {
                             guildID: guild.id,
                             prefix: "-",
