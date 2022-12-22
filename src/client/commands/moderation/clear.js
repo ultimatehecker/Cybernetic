@@ -26,7 +26,7 @@ module.exports = {
         }
 
         let authorSuccess = {
-            name: "Server Information",
+            name: "Success",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 		
@@ -85,7 +85,10 @@ module.exports = {
 		}
 		}
 
-		if (args[0] > 100) {
+		let numberDelete = Number(args[0])
+		numberDelete++
+
+		if (numberDelete > 100) {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
@@ -98,7 +101,7 @@ module.exports = {
 			});
 		}
 
-		if (args[0] < 1) {
+		if (numberDelete < 1) {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
@@ -112,13 +115,13 @@ module.exports = {
 		}
 
 		message.delete().then(() => {
-			message.channel.bulkDelete(args[0], true).then(async (collection) => {
+			message.channel.bulkDelete(numberDelete, true).then(async (collection) => {
 				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorSuccess)
-					.setColor(authorSuccess)
-					.setDescription(`Successfully cleared \`${collection.size}\` messages!`)
+					.setColor(colors["MainColor"])
+					.setDescription(`Successfully cleared \`${collection.size - 1}\` messages!`)
 
-				message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
+				message.channel.send({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
 					setTimeout(() => {
 						sent.delete();
 					}, 5000);
@@ -139,6 +142,8 @@ module.exports = {
 		});
 	},
 	async slashExecute(client, Discord, interaction) {
+
+		console.log('fuck')
 		
 		await interaction.deferReply({ emphemeral: false });
 
@@ -197,7 +202,10 @@ module.exports = {
 			}
 		}
 
-		if (Number(interaction.options.get("amount").value) > 100) {
+		let numberDelete = Number(interaction.options.get("amount")?.value)
+		numberDelete++
+
+		if (numberDelete > 100) {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
@@ -210,7 +218,7 @@ module.exports = {
 			});
 		}
 
-		if (Number(interaction.options.get("amount").value) < 1) {
+		if (numberDelete < 1) {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
@@ -222,13 +230,13 @@ module.exports = {
 			});
 		}
 
-		interaction.channel.bulkDelete(Number(interaction.options.get("amount").value), true).then(async (collection) => {
+		interaction.channel.bulkDelete(numberDelete, true).then(async (collection) => {
 			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.setDescription(`Successfully cleared \`${collection.size}\` messages! *Note: Some messages may have not been cleared since they are older than 14 days old.*`)
+				.setDescription(`Successfully cleared \`${collection.size - 1}\` messages! *Note: Some messages may have not been cleared since they are older than 14 days old.*`)
 	
-			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+			interaction.channel.send({ embeds: [embed], allowedMentions: { repliedUser: true } });
 
 		}).catch((err) => {
 			const embed = new Discord.EmbedBuilder()

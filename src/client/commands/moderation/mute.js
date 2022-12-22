@@ -46,7 +46,7 @@ module.exports = {
 			const member = message.guild.members.resolve(user);
 
 			if (member.permissions.has(PermissionFlagsBits.Administrator)) {
-				const permsEmbed = new Discord.MessageEmbed()
+				const permsEmbed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("You cannot mute a moderator!")
@@ -59,7 +59,7 @@ module.exports = {
 			}
 
 			if (member.roles.cache.find((role) => role.name === "Muted")) {
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("This member is already muted!")
@@ -75,7 +75,7 @@ module.exports = {
 
 			if (member) {
 				if (!muter.permissions.has(PermissionFlagsBits.MuteMembers)) {
-					const permsEmbed = new Discord.MessageEmbed()
+					const permsEmbed = new Discord.EmbedBuilder()
 						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
 						.setDescription("You do not have permissions to mute!")
@@ -132,14 +132,14 @@ module.exports = {
 				}
 
 				member.roles.add(muteRole, args[1]).then(() => {
-					const embed = new Discord.MessageEmbed()
+					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
 						.setDescription(`Successfully muted **${user.tag}**`);
 
 					message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 				}).catch((err) => {
-					const embed = new Discord.MessageEmbed()
+					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
 						.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);
@@ -152,7 +152,7 @@ module.exports = {
 					});
 				});
 			} else {
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("That user isn't in this server!");
@@ -164,7 +164,7 @@ module.exports = {
 				});
 			}
 		} else {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You didn't mention the user to mute!");
@@ -193,7 +193,7 @@ module.exports = {
 		let user = interaction.options.get("user");
 
 		if (user.member.permissions.has(PermissionFlagsBits.Administrator)) {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot mute a moderator!")
@@ -206,7 +206,7 @@ module.exports = {
 		}
 
 		if (!interaction.member.permissions.has(PermissionFlagsBits.MuteMembers)) {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permissions to mute!")
@@ -219,7 +219,7 @@ module.exports = {
 		}
 
 		if (user.member.roles.cache.find((role) => role.name === "Muted")) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("This member is already muted!")
@@ -256,7 +256,7 @@ module.exports = {
 			channels.mapValues((chanel) => {
 				if (!(chanel instanceof Discord.ThreadChannel)) {
 					if (chanel.manageable) {
-						if (chanel.isText()) {
+						if (chanel.isTextBased()) {
 							chanel.permissionOverwrites.create(
 								muteRole,
 								{ SEND_MESSAGES: false },
@@ -291,14 +291,14 @@ module.exports = {
 				infractions: userDoc.infractions,
 			});
 
-			const mutedEmbed = new Discord.MessageEmbed()
+			const mutedEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`You have been muted in **${interaction.guild.name}** for \`${interaction.options.get("reason")?.value ?? `User banned by ${interaction.user.tag}`}\``);
 
 			user.user.send({ embeds: [mutedEmbed], allowedMentions: { repliedUser: true } });
 
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`Successfully muted **${user.user.tag}**`);
@@ -306,7 +306,7 @@ module.exports = {
 			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 
 		}).catch((err) => {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);

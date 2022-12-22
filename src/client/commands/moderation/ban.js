@@ -297,7 +297,7 @@ module.exports = {
 			console.error(err);
 			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					console.log(err)
+					console.error(err)
 					interaction.deleteReply()
 				}, 5000);
 			});

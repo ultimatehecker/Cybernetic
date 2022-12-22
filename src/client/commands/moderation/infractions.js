@@ -31,6 +31,7 @@ module.exports = {
         }
 
 		let user = message.mentions.users.first();
+		const member = message.guild.members.resolve(user);
 
 		if (!user) {
 			user = client.utils.resolveTag(message.guild, args[0]);
@@ -40,7 +41,7 @@ module.exports = {
 			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
-				.setDescription("You cannot ban a moderator!")
+				.setDescription("Moderators cannot have infractions!")
 			return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(() => {
 					sent.delete();
@@ -48,11 +49,11 @@ module.exports = {
 			});
 		}
 
-		if (!banner.permissions.has(PermissionFlagsBits.BanMembers)) {
+		if (!message.member.permissions.has(PermissionFlagsBits.BanMembers)) {
 			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
-				.setDescription("You do not have permission to ban!")
+				.setDescription("You do not have permission to view infractions!")
 			return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } }).then((sent) => {
 				setTimeout(() => {
 					sent.delete();
@@ -60,18 +61,18 @@ module.exports = {
 			});
 		}
 
-		const userDoc = await client.utils.loadUserInfo(client, serverDoc, user.user.id);
+		const userDoc = await client.utils.loadUserInfo(client, serverDoc, user.id);
 
 		const embed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
-			.setTitle(`${user.user.tag}`)
+			.setTitle(`${user.tag}`)
 			.setColor(colors["MainColor"])
 
 		if (userDoc.infractions.length > 0) {
 			for (let infraction of userDoc.infractions) {
 				let timestamp = new Date(infraction.timestamp);
 				embed.addFields([
-					{ name: `**${timestamp.getUTCMonth()}/${timestamp.getUTCDate()}/${timestamp.getUTCFullYear()}** - ${infraction.type} from ${infraction.modTag}`, value: `infraction.message`, required: true, inline: true }
+					{ name: `\`${timestamp.getUTCMonth()}/${timestamp.getUTCDate()}/${timestamp.getUTCFullYear()}\` - ${infraction.type} from ${infraction.modTag}`, value: `${infraction.message}`, required: true, inline: true }
 				]);
 			}
 		} else {
@@ -134,7 +135,7 @@ module.exports = {
 			for (let infraction of userDoc.infractions) {
 				let timestamp = new Date(infraction.timestamp);
 				embed.addFields([
-					{ name: `**${timestamp.getUTCMonth()}/${timestamp.getUTCDate()}/${timestamp.getUTCFullYear()}** - ${infraction.type} from ${infraction.modTag}`, value: `infraction.message`, required: true, inline: true }
+					{ name: `\`${timestamp.getUTCMonth()}/${timestamp.getUTCDate()}/${timestamp.getUTCFullYear()}\` - ${infraction.type} from ${infraction.modTag}`, value: `\`${infraction.message}\``, required: true, inline: true }
 				]);
 			}
 		} else {

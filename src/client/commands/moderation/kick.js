@@ -48,7 +48,7 @@ module.exports = {
 		if (user) {
 			const member = message.guild.members.resolve(user);
 			if (member.permissions.has(PermissionFlagsBits.Administrator)) {
-				const permsEmbed = new Discord.MessageEmbed()
+				const permsEmbed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("You cannot kick a moderator!")
@@ -64,7 +64,7 @@ module.exports = {
 
 			if (member) {
 				if (!kicker.permissions.has(PermissionFlagsBits.KickMembers) && !kicker.permissions.has(PermissionFlagsBits.Administrator)) {
-					const permsEmbed = new Discord.MessageEmbed()
+					const permsEmbed = new Discord.EmbedBuilder()
 						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
 						.setDescription("You do not have permissions to kick!")
@@ -77,7 +77,7 @@ module.exports = {
 				}
 
 				member.kick(reason ? reason : `User kicked by ${message.author.tag}`).then(() => {
-					const successEmbed = new Discord.MessageEmbed()
+					const successEmbed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
 						.setDescription(`Successfully kicked **${user.tag}**`)
@@ -86,7 +86,7 @@ module.exports = {
 
 				}).catch((err) => {
 					if (err.message === "Missing Permissions") {
-						const embed = new Discord.MessageEmbed()
+						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
 							.setDescription("I don't have permissions to kick this user!");
@@ -98,7 +98,7 @@ module.exports = {
 						});
 
 					} else {
-						const errEmbed = new Discord.MessageEmbed()
+						const errEmbed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
 							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
@@ -112,7 +112,7 @@ module.exports = {
 					}
 				});
 			} else {
-				const naEmbed = new Discord.MessageEmbed()
+				const naEmbed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("That user isn't in this server!")
@@ -124,7 +124,7 @@ module.exports = {
 				});
 			}
 		} else {
-			const mentionEmbed = new Discord.MessageEmbed()
+			const mentionEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You didn't mention the user to kick!")
@@ -155,7 +155,7 @@ module.exports = {
 		const reason = interaction.options.get("reason");
 
 		if (user.member.permissions.has(PermissionFlagsBits.Administrator)) {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot kick a moderator!")
@@ -168,7 +168,7 @@ module.exports = {
 		}
 
 		if (!interaction.member.permissions.has(PermissionFlagsBits.KickMembers) && !interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permissions to kick!")
@@ -180,7 +180,7 @@ module.exports = {
 			});
 		}
 
-		const kickedEmbed = new Discord.MessageEmbed()
+		const kickedEmbed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
 			.setDescription(`You have been kicked from **${interaction.guild.name}** for \`${interaction.options.get("reason")?.value ?? `User banned by ${interaction.user.tag}`}\``);
@@ -203,7 +203,7 @@ module.exports = {
 				infractions: userDoc.infractions,
 			});
 
-			const successEmbed = new Discord.MessageEmbed()
+			const successEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
 				.setDescription(`Successfully kicked **${user.user.tag}**`)
@@ -211,7 +211,7 @@ module.exports = {
 			interaction.editReply({ embeds: [successEmbed], allowedMentions: { repliedUser: true } });
 		}).catch((err) => {
 			if (err.message === "Missing Permissions") {
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription("I don't have permissions to kick this user!")
@@ -224,7 +224,7 @@ module.exports = {
 
 				return interaction.editReply({ embeds: [embed] });
 			}
-			const errEmbed = new Discord.MessageEmbed()
+			const errEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
