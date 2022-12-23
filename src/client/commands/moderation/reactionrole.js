@@ -70,9 +70,7 @@ module.exports = {
 
 		await message.guild.roles.fetch();
 
-		let roleCheck = await message.guild.roles.cache.find(
-			(role) => role.name === roleName
-		);
+		let roleCheck = await message.guild.roles.cache.find((role) => role.name === roleName);
 
 		if (!roleCheck) {
 			const embed = new Discord.EmbedBuilder()
