@@ -7,7 +7,7 @@ const Tracing = require("@sentry/tracing");
 
 Sentry.init({
     dsn: "https://d5ca07bf8f4845adb0bbd96aec2a7d96@o922460.ingest.sentry.io/6123054",
-    release: "0.4.1",
+    release: "0.5.0",
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
     environment: "development",
@@ -61,6 +61,7 @@ db.once("open", () => {
         experience: Number,
         items: Array,
         rareItems: Array,
+        infractions: [],
     });
 
     const serverSchema = new mongoose.Schema({
@@ -82,10 +83,9 @@ db.once("open", () => {
 
     myprofileSchema.index({ guildID: 1, userID: -1 });
     mylevelSchema.index({ guildID: 1, userID: -1 });
-    myprofileSchema.index({ guildID: 1 });
 
     client.myprofileSchema = mongoose.model("Profiles", myprofileSchema);
-    client.serverModel = mongoose.model("Servers", serverSchema);
+    client.serverSchema = mongoose.model("Servers", serverSchema);
     client.mylevelSchema = mongoose.model("Levels", mylevelSchema);
 
     client.commands = new Discord.Collection();

@@ -10,15 +10,16 @@ module.exports = {
 			name: "channel", 
 			description: "The channel that the message should be sent in", 
 			type: ApplicationCommandOptionType.Channel, 
-			required: true 
+			required: false 
 		},
 		{ 
 			name: "message", 
 			description: '{tag}, {name}, and {mention} are valid placeholders - "none" to turn off welcome messages', 
 			type: ApplicationCommandOptionType.String, 
-			required: true },
+			required: false 
+		},
 	],
-	usage: 'welcomemessage (channel) (welcomemessage)',
+	usage: 'welcomemessage [channel] [welcomemessage]',
 	example:'welcomemessage #welcome "Welcome, {member-mention}!',
 	notes: 'If you want to disable welcome messages, you can just run the command how it is',
 	async execute(client, message, args, Discord, prefix, serverDoc) {
