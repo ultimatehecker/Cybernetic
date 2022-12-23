@@ -10,18 +10,18 @@ module.exports = {
 			name: "channel", 
 			description: "The channel that the message should be sent in", 
 			type: ApplicationCommandOptionType.Channel, 
-			required: true 
+			required: false 
 		},
 		{ 
 			name: "message", 
 			description: '{tag} and {name} are valid placeholders - "none" to turn off leave messages', 
 			type: ApplicationCommandOptionType.String, 
-			required: true 
+			required: false 
 		},
 	],
-	usage: 'leavemessage (channel) (leavemessage)',
+	usage: 'leavemessage [channel] [leavemessage]',
 	example: 'leavemessage #goodbye "Goodbye, {member-tag}"',
-	notes: 'If you want to disable leave messages, you can just run the command how it is',
+	notes: 'If you want to disable leave messages, you can just run the command without any arguments',
 	async execute(client, message, args, Discord, prefix, serverDoc) {
 
 		await message.channel.sendTyping();
@@ -139,7 +139,8 @@ module.exports = {
 				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 			} else {
 				const embed = new Discord.EmbedBuilder()
-					.setColor(authorError)
+					.setAuthor(authorError)
+					.setColor(colors["ErrorColor"])
 					.setDescription("Leave messages are currently toggled off. To turn them on, run this command with the appropriate arguments.");
 
 				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
