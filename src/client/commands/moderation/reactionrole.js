@@ -56,7 +56,7 @@ module.exports = {
 
 		for (let field in checkObj) {
 			if (!checkObj[field]) {
-				const embed = new Discord.MessageEmbed()
+				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
 					.setColor(colors["ErrorColor"])
 					.setDescription(`A required argument was not provided: \`${field}\``);
@@ -75,7 +75,7 @@ module.exports = {
 		);
 
 		if (!roleCheck) {
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("That role does not exist!");
@@ -101,12 +101,16 @@ module.exports = {
 
 		sentMessage.react(emoji);
 
-		const successEmbed = new Discord.MessageEmbed()
+		const successEmbed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
-			.setDescription("Reaction role added!");
+			.setDescription("Reaction role added! *This message will auto-delete in 3 seconds*");
 
-		message.channel.send({ embeds: [successEmbed], allowedMentions: { repliedUser: true } });
+		message.channel.send({ embeds: [successEmbed], allowedMentions: { repliedUser: true } }).then((sent) => {
+			setTimeout(() => {
+				sent.delete();
+			}, 3000);
+		});
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
 		
@@ -139,7 +143,7 @@ module.exports = {
 		} catch {
 			sentMessage.delete();
 
-			const embed = new Discord.MessageEmbed()
+			const embed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("Invalid emoji");
@@ -151,11 +155,42 @@ module.exports = {
 			});
 		}
 
-		const successEmbed = new Discord.MessageEmbed()
-			.setAuthor(authorSuccess)
-			.setColor(colors["MainColor"])
-			.setDescription("Reaction role added!");
+		try {
+			const successEmbed = new Discord.EmbedBuilder()
+				.setAuthor(authorSuccess)
+				.setColor(colors["MainColor"])
+				.setDescription("Reaction role added! *This message will auto-delete in 3 seconds*");
 
-		interaction.editReply({ embeds: [successEmbed], allowedMentions: { repliedUser: true } });
+			interaction.editReply({ embeds: [successEmbed], allowedMentions: { repliedUser: true } }).then(() => {
+				setTimeout(function() {
+					interaction.deleteReply()
+				}, 3000);
+			});
+		} catch(err) {
+			if(err = "Missing Permissions") {
+				const embed = new Discord.EmbedBuilder()
+					.setAuthor(authorError)
+					.setColor(colors["ErrorColor"])
+					.setDescription(`I do not have the permissions to reactionrole these users`);
+
+				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						interaction.deleteReply()
+					}, 5000);
+				});
+			} else {
+				const embed = new Discord.EmbedBuilder()
+					.setAuthor(authorError)
+					.setColor(colors["ErrorColor"])
+					.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
+
+				return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then(() => {
+					setTimeout(function() {
+						console.error(err)
+						interaction.deleteReply()
+					}, 5000);
+				});
+			}
+		}
 	},
 };

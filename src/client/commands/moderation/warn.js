@@ -85,7 +85,7 @@ module.exports = {
 
 		let userDoc = await client.utils.loadUserInfo(client, serverDoc, user.user.id);
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
 			.setDescription(`Successfully warned \`${warner.tag}\` for \`${reason ?? `User warned by ${user.tag}`}\``);
@@ -111,7 +111,7 @@ module.exports = {
 		let user = interaction.options.get("user");
 
 		if (user.member.permissions.has(PermissionFlagsBits.Administrator)) {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You cannot warn a moderator!")
@@ -124,7 +124,7 @@ module.exports = {
 		}
 
 		if (!interaction.member.permissions.has(PermissionFlagsBits.BanMembers)) {
-			const permsEmbed = new Discord.MessageEmbed()
+			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
 				.setDescription("You do not have permission to warn!")
@@ -151,14 +151,14 @@ module.exports = {
 			infractions: userDoc.infractions,
 		});
 
-		const warnedEmbed = new Discord.MessageEmbed()
+		const warnedEmbed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
 			.setDescription(`You have been warned in **${interaction.guild.name}** for \`${interaction.options.get("reason")?.value ?? `User banned by ${interaction.user.tag}`}\``);
 
 		user.user.send({ embeds: [warnedEmbed], allowedMentions: { repliedUser: true } });
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
 			.setDescription(`Successfully warned \`${user.user.tag}\` for \`${interaction.options.get("warning")?.value ?? `User warned by ${interaction.user.tag}`}\``);
