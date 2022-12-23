@@ -75,6 +75,15 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
+		const embed = new Discord.EmbedBuilder()
+			.setAuthor(authorError)
+			.setColor(colors["ErrorColor"])
+			.setDescription("At this moment, the message based command is not functional due to the complexity. This will be fixed in Cybernetic 0.5.1, but for the moment, please use the new slash commands.");
+
+		return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+
+		/*
+
 		let user = message.mentions.users.first();
 
 		if (!user) {
@@ -206,6 +215,8 @@ module.exports = {
 
 			message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 		}
+
+		*/
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
 		
