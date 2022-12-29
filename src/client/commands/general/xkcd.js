@@ -1,7 +1,6 @@
 const { ApplicationCommandOptionType } = require("discord.js");
 const colors = require("../../tools/colors.json");
 const axios = require('axios');
-const { slashExecute } = require("./rng");
 
 module.exports = {
     name: "xkcd",
