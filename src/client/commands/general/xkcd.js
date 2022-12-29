@@ -5,7 +5,7 @@ const axios = require('axios');
 module.exports = {
     name: "xkcd",
     aliases: [],
-    description: "Responds with something that you say that is coming from the client",
+    description: "Responds with the xkcd for the day or a certain comic number",
 	options: [
 		{
 			name: "number",
