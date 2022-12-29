@@ -40,7 +40,7 @@ build/Release
 # Dependency directories
 node_modules/
 img/
-src/client/commands/formula1
+src/client/commands/motorsports
 pages/
 jspm_packages/
 
