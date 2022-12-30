@@ -193,11 +193,6 @@ module.exports = {
             name: "Error",
             iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
         }
-    
-        let authorSuccess = {
-            name: "Success",
-            iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
-        }
 
 		const colorLink = new ActionRowBuilder().addComponents(new ButtonBuilder()
 			.setLabel('ColorResolvable List')
@@ -218,9 +213,9 @@ module.exports = {
 			interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 		} catch(error) {
 			const embed = new Discord.EmbedBuilder()
-					.setAuthor(authorError)
-					.setColor(colors["ErrorColor"])
-					.setDescription("You must enter a valid ColorResolvable")
+				.setAuthor(authorError)
+				.setColor(colors["ErrorColor"])
+				.setDescription("You must enter a valid ColorResolvable")
 
 			console.log(error)
 			return interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: true }, components: [colorLink] });
