@@ -11,19 +11,18 @@ module.exports = {
     example: "discord",
     async execute(client, message, args, Discord) {
 
-        await message.channel.sendTyping()
+        await message.channel.sendTyping();
+
+        let author = {
+            name: "Cybernetic Discord Support Server",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
 
         const discordInvite = new ActionRowBuilder().addComponents(new ButtonBuilder()
 			.setLabel('Discord Support Server')
             .setURL('https://discord.gg/4hv23VguQY')
 			.setStyle(ButtonStyle.Link),
 		);
-
-
-        let author = {
-            name: "Cybernetic Discord Support Server",
-            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
-        }
 
         const discord = new Discord.EmbedBuilder()
 			.setAuthor(author)
@@ -36,16 +35,16 @@ module.exports = {
 
         await interaction.deferReply({ ephemeral: false });
 
+        let author = {
+            name: "Cybernetic Discord Support Server",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
         const discordInvite = new ActionRowBuilder().addComponents(new ButtonBuilder()
 			.setLabel('Discord Support Server')
             .setURL('https://discord.gg/4hv23VguQY')
 			.setStyle(ButtonStyle.Link),
 		);
-
-        let author = {
-            name: "Cybernetic Discord Support Server",
-            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
-        }
 
         const discord = new Discord.EmbedBuilder()
             .setAuthor(author)
