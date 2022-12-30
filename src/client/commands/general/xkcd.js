@@ -20,6 +20,7 @@ module.exports = {
     async execute(client, message, args, Discord) {
 
         message.channel.sendTyping();
+        
         const number = args[0];
 
         let data;
