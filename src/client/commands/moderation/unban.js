@@ -39,12 +39,12 @@ module.exports = {
         }
 
 		let authorBanList = {
-            name: "Server Information",
+            name: "Server Ban List",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
         let authorSuccess = {
-            name: "Server Information",
+            name: "Successfully Unbanned",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 		
