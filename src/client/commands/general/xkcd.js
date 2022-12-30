@@ -20,7 +20,12 @@ module.exports = {
     async execute(client, message, args, Discord) {
 
         message.channel.sendTyping();
-        
+
+        let author = {
+            name: "Randall Munroe",
+            iconURL: "https://xkcd.com"
+        }
+
         const number = args[0];
 
         let data;
@@ -32,7 +37,7 @@ module.exports = {
 
         const xkcd = new Discord.EmbedBuilder()
             .setTitle(`xkcd #${data.num} - ${data.title}`)
-            .setAuthor({ name: "Randall Munroe", url: "https://xkcd.com" })
+            .setAuthor(author)
             .setColor(colors["MainColor"])
             .setImage(data.img)
             .setDescription(data.alt)
