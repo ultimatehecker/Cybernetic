@@ -1,6 +1,6 @@
 {
   "name": "cybernetic",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A all purpose Discord bot for anyone in a Discord server to have a fun time",
   "main": "./src/client/main.js",
   "scripts": {
