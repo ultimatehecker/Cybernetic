@@ -4,8 +4,7 @@
   "description": "A all purpose Discord bot for anyone in a Discord server to have a fun time",
   "main": "./src/client/main.js",
   "scripts": {
-    "config:win": "npm uninstall pm2 && npm install pm2 -g",
-    "config:linux": "npm uninstall pm2 && sudo npm install pm2 -g && cd src/ && cd client/ && mkdir contexts/",
+    "config": "npm uninstall pm2 && npm install pm2 --location=global",
     "build": "npm install",
     "start:dev": "npm install && cd src/ && cd client/ && pm2 start main.js --watch && pm2 monit",
     "log": "pm2 logs"
