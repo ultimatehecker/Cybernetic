@@ -61,7 +61,7 @@ module.exports = {
 	usage: 'ban (user) [days] [reason]',
 	example: "ban @ultimate_hecker 5 spamming",
 	notes: "The number of days cannot be longer than 7 - if days are omitted, mentioned user will be banned indefinitely",
-	async execute(client, message, args, Discord) {
+	async execute(client, message, args, Discord, prefix, serverDoc) {
 
 		await message.channel.sendTyping();
 
@@ -74,15 +74,6 @@ module.exports = {
             name: "Successfully Banned",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
-
-		const embed = new Discord.EmbedBuilder()
-			.setAuthor(authorError)
-			.setColor(colors["ErrorColor"])
-			.setDescription("At this moment, the message based command is not functional due to the complexity. This will be fixed in Cybernetic 0.5.1, but for the moment, please use the new slash commands.");
-
-		return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-
-		/*
 
 		let user = message.mentions.users.first();
 
@@ -110,94 +101,50 @@ module.exports = {
 					return message.reply({ embeds: [permsEmbed], allowedMentions: { repliedUser: true } });
 				}
 
-				if (args[1] && isNaN(args[1])) {
-					return member.ban({ reason: [args[1]] }).then(() => {
-						const embed = new Discord.EmbedBuilder()
-							.setAuthor(authorSuccess)
-							.setColor(colors["MainColor"])
-							.setDescription(`Successfully banned **${user.tag}**`);
+				const bannedEmbed = new Discord.EmbedBuilder()
+					.setColor(colors["MainColor"])
+					.setDescription(`You have been banned from **${message.guild.name}** for \`${args[2] ?? `User banned by ${user.tag}`}\``);
 
-						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-					}).catch((err) => {
-						if (err.message === "Missing Permissions") {
-							const embed = new Discord.EmbedBuilder()
-								.setAuthor(authorError)
-								.setColor(colors["ErrorColor"])
-								.setDescription("I do not have permissions to ban this user!");
+				await user.send({ embeds: [bannedEmbed] });
 
-							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-						}
-
-						const embed = new Discord.EmbedBuilder()
-							.setAuthor(authorError)
-							.setColor(colors["ErrorColor"])
-							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
-
-						console.error(err);
-						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				member.ban({ reason: args[2] ?? `User banned by ${banner.tag}`, days: args[1] }).then(async () => {
+					const userDoc = await client.utils.loadUserInfo(client, serverDoc, user.id);
+					userDoc.infractions.push({
+						modID: user.id,
+						modTag: user.tag,
+						timestamp: user.createdTimestamp,
+						type: "Ban",
+						message: args[1] ?? `User banned by ${user.tag}`,
 					});
-				} else if (!args[1]) {
-					return member.ban({ reason: `User banned by ${message.author.tag}` }).then(() => {
-						const embed = new Discord.EmbedBuilder()
-							.setAuthor(authorSuccess)
-							.setColor(colors["MainColor"])
-							.setDescription(`Successfully banned **${user.tag}**`);
-
-						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-					}).catch((err) => {
-						if (err.message === "Missing Permissions") {
-							const embed = new Discord.EmbedBuilder()
-								.setAuthor(authorError)
-								.setColor(colors["ErrorColor"])
-								.setDescription("I do not have permissions to ban this user!");
-
-							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-						}
-
-						const embed = new Discord.EmbedBuilder()
-							.setAuthor(authorError)
-							.setColor(colors["ErrorColor"])
-							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
-
-						console.error(err);
-						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+		
+					client.utils.updateUser(client, userDoc.guildID, userDoc.userID, {
+						...userDoc.toObject(), infractions: userDoc.infractions,
 					});
-				} else {
-					if (args[1] > 7) {
+		
+					const embed = new Discord.EmbedBuilder()
+						.setAuthor(authorSuccess)
+						.setColor(colors["MainColor"])
+						.setDescription(`Successfully banned **${user.tag}**`);
+		
+					return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				}).catch((err) => {
+					if (err.message === "Missing Permissions") {
 						const embed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
-							.setDescription("You cannot tempban someone for more than 7 days!");
+							.setDescription("I do not have permissions to ban this user!");
 
 						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 					}
 
-					member.ban({ days: args[1], reason: args[2] ? args[2] : `User banned by ${message.author.tag}`}).then(() => {
-						const embed = new Discord.EmbedBuilder()
-							.setAuthor(authorSuccess)
-							.setColor(colors["MainColor"])
-							.setDescription(`Successfully banned **${user.tag}**`);
+					const embed = new Discord.EmbedBuilder()
+						.setAuthor(authorError)
+						.setColor(colors["ErrorColor"])
+						.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
 
-						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-					}).catch((err) => {
-						if (err.message === "Missing Permissions") {
-							const embed = new Discord.EmbedBuilder()
-								.setAuthor(authorError)
-								.setColor(colors["ErrorColor"])
-								.setDescription("I do not have permissions to ban this user!");
-
-							return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-						}
-
-						const embed = new Discord.EmbedBuilder()
-							.setAuthor(authorError)
-							.setColor(colors["ErrorColor"])
-							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
-
-						console.error(err)
-						return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-					});
-				}
+					console.error(err);
+					return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
+				});
 			} else {
 				const embed = new Discord.EmbedBuilder()
 					.setAuthor(authorError)
@@ -215,8 +162,6 @@ module.exports = {
 
 			message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 		}
-
-		*/
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
 		
