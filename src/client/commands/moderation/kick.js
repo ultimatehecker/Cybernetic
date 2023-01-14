@@ -82,7 +82,7 @@ module.exports = {
 
 				await user.send({ embeds: [kickedEmbed] });
 
-				member.kick({ reason: args[2] ?? `User kicked by ${kicker.tag}`, days: args[1] }).then(async () => {
+				member.kick({ reason: args[1] ?? `User kicked by ${kicker.tag}`, days: args[1] }).then(async () => {
 					const userDoc = await client.utils.loadUserInfo(client, serverDoc, user.id);
 					userDoc.infractions.push({
 						modID: user.id,
