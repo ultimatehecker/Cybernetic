@@ -114,7 +114,7 @@ module.exports = {
 						modTag: user.tag,
 						timestamp: user.createdTimestamp,
 						type: "Ban",
-						message: args[1] ?? `User banned by ${user.tag}`,
+						message: args[2] ?? `User banned by ${user.tag}`,
 					});
 		
 					client.utils.updateUser(client, userDoc.guildID, userDoc.userID, {
