@@ -32,7 +32,7 @@ module.exports = {
         }
 
         let authorSuccess = {
-            name: "Server Information",
+            name: "Successfully Nicknamed",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 		
@@ -62,7 +62,7 @@ module.exports = {
 
 		const member = message.guild.members.resolve(user);
 
-		if (member.permissions.has(PermissionFlagsBits.Administrator) && user.id !== "923239259845066843") {
+		if (member.permissions.has(PermissionFlagsBits.Administrator) && user.id !== "923947315063062529") {
 			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])
@@ -148,7 +148,7 @@ module.exports = {
 
 		const member = interaction.options.get("user").member;
 
-		if (member.permissions.has(PermissionFlagsBits.Administrator) && user.id !== "923239259845066843") {
+		if (member.permissions.has(PermissionFlagsBits.Administrator) && user.id !== "923947315063062529") {
 			const permsEmbed = new Discord.EmbedBuilder()
 				.setAuthor(authorError)
 				.setColor(colors["ErrorColor"])

@@ -15,7 +15,7 @@ module.exports = {
 		{
 			name: "warning",
 			type: ApplicationCommandOptionType.String,
-			description: 'The message to warn the user for - defaults to "warned by <your tag>"',
+			description: 'The message to warn the user for - defaults to "User warned by <your tag>"',
 			required: false,
 		},
 	],
@@ -32,18 +32,9 @@ module.exports = {
         }
 
         let authorSuccess = {
-            name: "Server Information",
+            name: "Successfully Warned",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
-
-		const embed = new Discord.EmbedBuilder()
-			.setAuthor(authorError)
-			.setColor(colors["ErrorColor"])
-			.setDescription("At this moment, the message based command is not functional due to the complexity. This will be fixed in Cybernetic 0.5.1, but for the moment, please use the new slash commands.");
-
-		return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-
-		/*
 
 		let user = message.mentions.users.first();
 
@@ -83,16 +74,34 @@ module.exports = {
 			}
 		}
 
-		let userDoc = await client.utils.loadUserInfo(client, serverDoc, user.user.id);
+		const userDoc = await client.utils.loadUserInfo(client, serverDoc, user.id);
+
+		userDoc.infractions.push({
+			modID: user.id,
+			modTag: user.tag,
+			timestamp: user.createdTimestamp,
+			type: "Warning",
+			message: args[1] ?? `User warned by ${user.tag}`,
+		});
+
+		client.utils.updateUser(client, userDoc.guildID, userDoc.userID, {
+			...userDoc.toObject(), 
+			infractions: userDoc.infractions,
+		});
+
+		const warnedEmbed = new Discord.EmbedBuilder()
+			.setColor(colors["MainColor"])
+			.setDescription(`You have been warned in **${message.guild.name}** for \`${args[1] ?? `User warned by ${user.tag}`}\``);
+
+		await user.send({ embeds: [warnedEmbed] });
+
 
 		const embed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
-			.setDescription(`Successfully warned \`${warner.tag}\` for \`${reason ?? `User warned by ${user.tag}`}\``);
+			.setDescription(`Successfully warned \`${member.user.tag}\` for \`${args[1] ?? `User warned by ${user.tag}`}\``);
 
 		message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-
-		*/
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
 		
@@ -154,7 +163,7 @@ module.exports = {
 		const warnedEmbed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
-			.setDescription(`You have been warned in **${interaction.guild.name}** for \`${interaction.options.get("reason")?.value ?? `User banned by ${interaction.user.tag}`}\``);
+			.setDescription(`You have been warned in **${interaction.guild.name}** for \`${interaction.options.get("reason")?.value ?? `User warned by ${interaction.user.tag}`}\``);
 
 		user.user.send({ embeds: [warnedEmbed], allowedMentions: { repliedUser: true } });
 

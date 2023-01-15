@@ -19,7 +19,7 @@ module.exports = {
         }
 
         let authorSuccess = {
-            name: "Unlink",
+            name: "Successfully Unlinked",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 		

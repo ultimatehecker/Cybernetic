@@ -18,7 +18,7 @@ module.exports = {
         }
 
         function randomFlip() {
-            let rand = Math.random()
+            let rand = Math.random();
 
             if(rand <= 0.5) {
                 return `The Coin landed on Heads!`
@@ -44,7 +44,7 @@ module.exports = {
 		await interaction.deferReply({ ephemeral: false });
 
 		function randomFlip() {
-            let rand = Math.random()
+            let rand = Math.random();
 
             if(rand <= 0.5) {
                 return `The Coin landed on Heads!`

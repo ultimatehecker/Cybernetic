@@ -39,6 +39,9 @@ build/Release
 
 # Dependency directories
 node_modules/
+img/
+docs/
+src/client/commands/motorsports
 pages/
 jspm_packages/
 
@@ -103,8 +106,3 @@ dist
 
 # TernJS port file
 .tern-port
-
-# ?
-friend.js
-apistatus.js
-zombies.js

@@ -9,7 +9,7 @@ You will need to have these things installed on your system for this to fully wo
 - node `16.6` or greater
 - npm `7.0` or higher
 - At least `200MB` of RAM **FREE**
-- At least `500MB` of free HDD space
+- At least `800MB` of free HDD space
 
 Not nessacary but nice things to have:
 

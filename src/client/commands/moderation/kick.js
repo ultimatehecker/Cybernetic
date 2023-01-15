@@ -4,7 +4,7 @@ const colors = require("../../tools/colors.json");
 module.exports = {
 	name: "kick",
 	aliases: [],
-	description: "Kicks the mentioned user",
+	description: "Kicks the specified user for the specified reason",
 	options: [
 		{
 			name: "user",
@@ -15,14 +15,14 @@ module.exports = {
 		{
 			name: "reason",
 			type: ApplicationCommandOptionType.String,
-			description: 'A short reason for kicking this user - will default to "Kicked by <your tag>" if omitted',
+			description: 'A short reason for kicking this user - will default to "User kicked by <your tag>" if omitted',
 			required: false,
 		},
 	],
 	defaultPermission: true,
 	usage: 'kick (user) [reason]',
 	example: "kick @ulitmate_hecker spamming",
-	async execute(client, message, args, Discord) {
+	async execute(client, message, args, Discord, prefix, serverDoc) {
 
 		await message.channel.sendTyping();
 
@@ -32,18 +32,9 @@ module.exports = {
         }
 
         let authorSuccess = {
-            name: "Server Information",
+            name: "Successfully Kicked",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
-
-		const embed = new Discord.EmbedBuilder()
-			.setAuthor(authorError)
-			.setColor(colors["ErrorColor"])
-			.setDescription("At this moment, the message based command is not functional due to the complexity. This will be fixed in Cybernetic 0.5.1, but for the moment, please use the new slash commands.");
-
-		return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-
-		/*
 
 		let user = message.mentions.users.first();
 
@@ -85,14 +76,32 @@ module.exports = {
 					});
 				}
 
-				member.kick(reason ? reason : `User kicked by ${message.author.tag}`).then(() => {
-					const successEmbed = new Discord.EmbedBuilder()
+				const kickedEmbed = new Discord.EmbedBuilder()
+					.setColor(colors["MainColor"])
+					.setDescription(`You have been kicked from **${message.guild.name}** for \`${args[1] ?? `User kicked by ${user.tag}`}\``);
+
+				await user.send({ embeds: [kickedEmbed] });
+
+				member.kick({ reason: args[1] ?? `User kicked by ${kicker.tag}`, days: args[1] }).then(async () => {
+					const userDoc = await client.utils.loadUserInfo(client, serverDoc, user.id);
+					userDoc.infractions.push({
+						modID: user.id,
+						modTag: user.tag,
+						timestamp: user.createdTimestamp,
+						type: "Kick",
+						message: args[1] ?? `User kicked by ${user.tag}`,
+					});
+
+					client.utils.updateUser(client, userDoc.guildID, userDoc.userID, {
+						...userDoc.toObject(), infractions: userDoc.infractions,
+					});
+
+					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
-						.setDescription(`Successfully kicked **${user.tag}**`)
+						.setDescription(`Successfully kicked **${member.user.tag}**`);
 
-					message.reply({ embeds: [successEmbed], allowedMentions: { repliedUser: true } });
-
+					return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 				}).catch((err) => {
 					if (err.message === "Missing Permissions") {
 						const embed = new Discord.EmbedBuilder()
@@ -110,7 +119,7 @@ module.exports = {
 						const errEmbed = new Discord.EmbedBuilder()
 							.setAuthor(authorError)
 							.setColor(colors["ErrorColor"])
-							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``)
+							.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``)
 
 						message.reply({ embeds: [errEmbed], allowedMentions: { repliedUser: true } }).then((sent) => {
 							setTimeout(() => {
@@ -144,8 +153,6 @@ module.exports = {
 				}, 5000);
 			});
 		}
-
-		*/
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
 		
@@ -194,7 +201,7 @@ module.exports = {
 		const kickedEmbed = new Discord.EmbedBuilder()
 			.setAuthor(authorSuccess)
 			.setColor(colors["MainColor"])
-			.setDescription(`You have been kicked from **${interaction.guild.name}** for \`${interaction.options.get("reason")?.value ?? `User banned by ${interaction.user.tag}`}\``);
+			.setDescription(`You have been kicked from **${interaction.guild.name}** for \`${interaction.options.get("reason")?.value ?? `User kicked by ${interaction.user.tag}`}\``);
 
 		user.user.send({ embeds: [kickedEmbed] });
 

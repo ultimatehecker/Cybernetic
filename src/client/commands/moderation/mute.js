@@ -4,7 +4,7 @@ const colors = require("../../tools/colors.json");
 module.exports = {
 	name: "mute",
 	aliases: [],
-	description: "Mutes the mentioned user h",
+	description: "Mutes the specified user for the specified reason",
 	options: [
 		{
 			name: "user",
@@ -15,14 +15,14 @@ module.exports = {
 		{
 			name: "reason",
 			type: ApplicationCommandOptionType.String,
-			description: 'A short reason for muting this user - will default to "Muted by <your tag>" if omitted',
+			description: 'A short reason for muting this user - will default to "User muted by <your tag>" if omitted',
 			required: false,
 		},
 	],
 	defaultPermission: true,
 	usage: 'mute (user) [reason]',
 	example: "mute @ultimate_hecker spamming",
-	async execute(client, message, args, Discord) {
+	async execute(client, message, args, Discord, prefix, serverDoc) {
 
 		await message.channel.sendTyping();
 
@@ -32,18 +32,9 @@ module.exports = {
         }
 
         let authorSuccess = {
-            name: "Server Information",
+            name: "Successfully Muted",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
-
-		const embed = new Discord.EmbedBuilder()
-			.setAuthor(authorError)
-			.setColor(colors["ErrorColor"])
-			.setDescription("At this moment, the message based command is not functional due to the complexity. This will be fixed in Cybernetic 0.5.1, but for the moment, please use the new slash commands.");
-
-		return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
-
-		/*
 		
 		let user = message.mentions.users.first();
 
@@ -96,8 +87,7 @@ module.exports = {
 					});
 				}
 
-				let rolesize;
-				message.guild.roles.fetch().then((roles) => (rolesize = roles.cache.size));
+				let rolesize = client.guilds.cache.map(guild => guild.roles.cache.size);
 
 				let muteRole = member.guild.roles.cache.find(
 					(rl) => rl.name === "Muted"
@@ -140,18 +130,37 @@ module.exports = {
 					});
 				}
 
-				member.roles.add(muteRole, args[1]).then(() => {
+				member.roles.add(muteRole, args[1] ?? `User muted by ${user.tag}`).then(async () => {
+					const userDoc = await client.utils.loadUserInfo(client, serverDoc, user.id);
+					userDoc.infractions.push({
+						modID: user.id,
+						modTag: user.tag,
+						timestamp: user.createdTimestamp,
+						type: "Mute",
+						message: args[1] ?? `User muted by ${user.tag}`,
+					});
+
+					client.utils.updateUser(client, userDoc.guildID, userDoc.userID, {
+						...userDoc.toObject(), infractions: userDoc.infractions,
+					});
+
+					const mutedEmbed = new Discord.EmbedBuilder()
+						.setColor(colors["MainColor"])
+						.setDescription(`You have been muted in **${message.guild.name}** for \`${args[1] ?? `User banned by ${user.tag}`}\``);
+
+					await user.send({ embeds: [mutedEmbed] });
+
 					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
-						.setDescription(`Successfully muted **${user.tag}**`);
+						.setDescription(`Successfully muted **${member.user.tag}**`);
 
 					message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 				}).catch((err) => {
 					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorError)
 						.setColor(colors["ErrorColor"])
-						.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${e}\`\`\``);
+						.setDescription(`A problem has been detected and the command has been aborted, if this is the first time seeing this, check the error message for more details, if this error appears multiple times, DM \`ultiamte_hecker#1165\` with this error message \n \n \`Error:\` \n \`\`\`${err}\`\`\``);
 
 					message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } }).then((sent) => {
 						setTimeout(() => {
@@ -184,8 +193,6 @@ module.exports = {
 				}, 5000);
 			});
 		}
-
-		*/
 	},
 	async slashExecute(client, Discord, interaction, serverDoc) {
 		

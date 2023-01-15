@@ -11,18 +11,18 @@ module.exports = {
     example: "github",
     async execute(client, message, args, Discord) {
 
-        await message.channel.sendTyping()
+        await message.channel.sendTyping();
+
+        let author = {
+            name: "Cybernetic GitHub Link",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
 
         const githubRepository = new ActionRowBuilder().addComponents(new ButtonBuilder()
 			.setLabel('GitHub Repository')
             .setURL('https://github.com/ultimatehecker/Cybernetic')
 			.setStyle(ButtonStyle.Link),
 		);
-
-        let author = {
-            name: "Cybernetic GitHub Link",
-            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
-        }
 
         const github = new Discord.EmbedBuilder()
 			.setAuthor(author)
@@ -35,16 +35,16 @@ module.exports = {
 
         await interaction.deferReply({ ephemeral: false });
 
+        let author = {
+            name: "Cybernetic GitHub Link",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
         const githubRepository = new ActionRowBuilder().addComponents(new ButtonBuilder()
 			.setLabel('GitHub Repository')
             .setURL('https://github.com/ultimatehecker/Cybernetic')
 			.setStyle(ButtonStyle.Link),
 		);
-
-        let author = {
-            name: "Cybernetic GitHub Link",
-            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
-        }
 
         const github = new Discord.EmbedBuilder()
             .setAuthor(author)

@@ -67,11 +67,11 @@ module.exports = {
                 \`infractions\` - ${EmojiConstructor["alt"].yep} \n
                 \`kick\` - ${EmojiConstructor["alt"].yep} \n
                 \`mute\` - ${EmojiConstructor["alt"].yep} \n
-                \`nickname\` - ${EmojiConstructor["alt"].clue} \n
-                \`reactionrole\` - ${EmojiConstructor["alt"].clue} \n
-                \`unban\` - ${EmojiConstructor["alt"].clue} \n
-                \`unmute\` - ${EmojiConstructor["alt"].clue} \n
-                \`warn\` - ${EmojiConstructor["alt"].clue}`)
+                \`nickname\` - ${EmojiConstructor["alt"].yep} \n
+                \`reactionrole\` - ${EmojiConstructor["alt"].yep} \n
+                \`unban\` - ${EmojiConstructor["alt"].yep} \n
+                \`unmute\` - ${EmojiConstructor["alt"].yep} \n
+                \`warn\` - ${EmojiConstructor["alt"].yep}`)
 
             message.reply({ embeds: [commands], allowedMentions: { repliedUser: true } });
         } else {

@@ -11,16 +11,16 @@ module.exports = {
 
         await message.channel.sendTyping()
 
+        let author = {
+            name: "Cybernetic Invite Link",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
         const botInvite = new ActionRowBuilder().addComponents(new ButtonBuilder()
 			.setLabel('Cybernetic Invite Link')
             .setURL('https://discord.com/api/oauth2/authorize?client_id=923239259845066843&permissions=8&scope=bot%20applications.commands')
 			.setStyle(ButtonStyle.Link),
 		);
-
-        let author = {
-            name: "Cybernetic Invite Link",
-            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
-        }
 
         const invite = new Discord.EmbedBuilder()
 			.setAuthor(author)
@@ -33,16 +33,16 @@ module.exports = {
 
         await interaction.deferReply({ ephemeral: false });
 
+        let author = {
+            name: "Cybernetic Invite Link",
+            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
+        }
+
         const botInvite = new ActionRowBuilder().addComponents(new ButtonBuilder()
 			.setLabel('Cybernetic Invite Link')
             .setURL('https://discord.com/api/oauth2/authorize?client_id=923239259845066843&permissions=8&scope=bot%20applications.commands')
 			.setStyle(ButtonStyle.Link),
 		);
-
-        let author = {
-            name: "Cybernetic Invite Link",
-            iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
-        }
 
         const invite = new Discord.EmbedBuilder()
             .setAuthor(author)

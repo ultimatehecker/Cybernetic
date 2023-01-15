@@ -4,7 +4,7 @@ const colors = require("../../tools/colors.json");
 module.exports = {
 	name: "unmute",
 	aliases: [],
-	description: "Unmutes the mentioned user",
+	description: "Unmutes the specified user for the specified reason",
 	options: [
 		{
 			name: "user",
@@ -14,7 +14,7 @@ module.exports = {
 		},
 		{
 			name: "reason",
-			description: 'The reason for unmuting this user - defaults to "Unmuted by <your tag>" if omitted',
+			description: 'The reason for unmuting this user - defaults to "User unmuted by <your tag>" if omitted',
 			type: ApplicationCommandOptionType.String,
 			required: false,
 		},
@@ -32,7 +32,7 @@ module.exports = {
         }
 
         let authorSuccess = {
-            name: "Success",
+            name: "Successfully Unmuted",
             iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
         }
 
