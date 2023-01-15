@@ -137,18 +137,18 @@ module.exports = {
 						modTag: user.tag,
 						timestamp: user.createdTimestamp,
 						type: "Mute",
-						message: args[1] ?? `User kicked by ${user.tag}`,
+						message: args[1] ?? `User muted by ${user.tag}`,
 					});
 
 					client.utils.updateUser(client, userDoc.guildID, userDoc.userID, {
 						...userDoc.toObject(), infractions: userDoc.infractions,
 					});
 
-					const kickedEmbed = new Discord.EmbedBuilder()
+					const mutedEmbed = new Discord.EmbedBuilder()
 						.setColor(colors["MainColor"])
 						.setDescription(`You have been muted in **${message.guild.name}** for \`${args[1] ?? `User banned by ${user.tag}`}\``);
 
-					await user.send({ embeds: [kickedEmbed] });
+					await user.send({ embeds: [mutedEmbed] });
 
 					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
