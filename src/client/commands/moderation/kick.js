@@ -4,7 +4,7 @@ const colors = require("../../tools/colors.json");
 module.exports = {
 	name: "kick",
 	aliases: [],
-	description: "Kicks the mentioned user",
+	description: "Kicks the specified user for the specified reason",
 	options: [
 		{
 			name: "user",
@@ -15,7 +15,7 @@ module.exports = {
 		{
 			name: "reason",
 			type: ApplicationCommandOptionType.String,
-			description: 'A short reason for kicking this user - will default to "Kicked by <your tag>" if omitted',
+			description: 'A short reason for kicking this user - will default to "User kicked by <your tag>" if omitted',
 			required: false,
 		},
 	],
@@ -99,7 +99,7 @@ module.exports = {
 					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
-						.setDescription(`Successfully kicked **${member.user.tag}** for \`${args[1] ?? `User kicked by ${user.tag}`}\``);
+						.setDescription(`Successfully kicked **${member.user.tag}**`);
 
 					return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 				}).catch((err) => {

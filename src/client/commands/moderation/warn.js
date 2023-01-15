@@ -15,7 +15,7 @@ module.exports = {
 		{
 			name: "warning",
 			type: ApplicationCommandOptionType.String,
-			description: 'The message to warn the user for - defaults to "warned by <your tag>"',
+			description: 'The message to warn the user for - defaults to "User warned by <your tag>"',
 			required: false,
 		},
 	],

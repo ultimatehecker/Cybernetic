@@ -4,7 +4,7 @@ const colors = require("../../tools/colors.json");
 module.exports = {
 	name: "mute",
 	aliases: [],
-	description: "Mutes the mentioned user h",
+	description: "Mutes the specified user for the specified reason",
 	options: [
 		{
 			name: "user",
@@ -15,7 +15,7 @@ module.exports = {
 		{
 			name: "reason",
 			type: ApplicationCommandOptionType.String,
-			description: 'A short reason for muting this user - will default to "Muted by <your tag>" if omitted',
+			description: 'A short reason for muting this user - will default to "User muted by <your tag>" if omitted',
 			required: false,
 		},
 	],
@@ -153,7 +153,7 @@ module.exports = {
 					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
-						.setDescription(`Successfully muted **${member.user.tag}** for \`${args[1] ?? `User muted by ${user.tag}`}\``);
+						.setDescription(`Successfully muted **${member.user.tag}**`);
 
 					message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 				}).catch((err) => {

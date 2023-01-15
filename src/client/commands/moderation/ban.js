@@ -6,7 +6,7 @@ const colors = require("../../tools/colors.json");
 module.exports = {
 	name: "ban",
 	aliases: ["tempban"],
-	description: "Bans the mentioned user",
+	description: "Bans the specified user for the specified reason",
 	options: [
 		{
 			name: "user",
@@ -52,7 +52,7 @@ module.exports = {
 		},
 		{
 			name: "reason",
-			description: 'A reason for banning this user - will default to "Banned by <your tag>" if omitted',
+			description: 'A reason for banning this user - will default to "User banned by <your tag>" if omitted',
 			type: ApplicationCommandOptionType.String,
 			required: false,
 		},
@@ -124,7 +124,7 @@ module.exports = {
 					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
-						.setDescription(`Successfully banned **${member.user.tag}** for \`${args[2] ?? `User banned by ${user.tag}`}\``);
+						.setDescription(`Successfully banned **${member.user.tag}**`);
 		
 					return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 				}).catch((err) => {

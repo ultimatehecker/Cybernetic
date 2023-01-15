@@ -4,7 +4,7 @@ const colors = require("../../tools/colors.json");
 module.exports = {
 	name: "unban",
 	aliases: [],
-	description: "Unbans the tagged user",
+	description: "Unbans the user specified for the specified reason",
 	options: [
 		{
 			name: "tag",
@@ -20,7 +20,7 @@ module.exports = {
 		},
 		{
 			name: "reason",
-			description: `The reason for unbanning this user - defaults to "Unbanned by <your tag>" if omitted}`,
+			description: `The reason for unbanning this user - defaults to "User unbanned by <your tag>" if omitted}`,
 			type: ApplicationCommandOptionType.String,
 			required: false,
 		},
@@ -293,7 +293,6 @@ module.exports = {
 
 			interaction.editReply({ embeds: [mentionEmbed], allowedMentions: { repliedUser: true } }).then(() => {
 				setTimeout(function() {
-					console.error(err);
 					interaction.deleteReply()
 				}, 5000);
 			});
