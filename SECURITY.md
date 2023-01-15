@@ -17,8 +17,9 @@ will be ignored. If you report a bug, please specify to what version.
 | 0.2.1   | :x:                | 6/04/22     | 4/09/22  | Stable            |
 | 0.3.0   | :x:                | 11/13/22    | 5/28/22  | Stable            |
 | 0.4.0   | :x:                | 11/25/22    | 11/11/22 | Pretty Stable     |
-| 0.4.1   | :warning:          | 1/6/23      | 11/3/22  | Stable            |
-| 0.5.0   | :white_check_mark: | N/A         | 12/23/22 | Stable            |
+| 0.4.1   | :x:                | 1/6/23      | 11/3/22  | Stable            |
+| 0.5.0   | :warning:          | 1/29/23     | 12/23/22 | Stable            |
+| 0.5.1   | :white_check_mark: | N/A         | 1/15/22  | Stable            |
 
 ## Reporting a Vulnerability
 
