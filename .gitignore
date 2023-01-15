@@ -41,7 +41,7 @@ build/Release
 node_modules/
 img/
 docs/
-src/client/commands/motorsports
+src/client/commands/skyblock
 pages/
 jspm_packages/
 
