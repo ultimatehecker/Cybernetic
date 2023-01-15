@@ -99,7 +99,7 @@ module.exports = {
 					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
-						.setDescription(`Successfully kicked **${user.tag}**`);
+						.setDescription(`Successfully kicked **${user.tag}** for \`${args[1] ?? `User kicked by ${user.tag}`}\``);
 
 					return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 				}).catch((err) => {

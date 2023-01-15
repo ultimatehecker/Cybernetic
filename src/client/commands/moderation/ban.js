@@ -124,7 +124,7 @@ module.exports = {
 					const embed = new Discord.EmbedBuilder()
 						.setAuthor(authorSuccess)
 						.setColor(colors["MainColor"])
-						.setDescription(`Successfully banned **${user.tag}**`);
+						.setDescription(`Successfully banned **${user.tag}** for \`${args[2] ?? `User banned by ${user.tag}`}\``);
 		
 					return message.reply({ embeds: [embed], allowedMentions: { repliedUser: true } });
 				}).catch((err) => {
