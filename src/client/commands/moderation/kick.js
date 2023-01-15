@@ -78,7 +78,7 @@ module.exports = {
 
 				const kickedEmbed = new Discord.EmbedBuilder()
 					.setColor(colors["MainColor"])
-					.setDescription(`You have been kicked from **${message.guild.name}** for \`${args[2] ?? `User kicked by ${user.tag}`}\``);
+					.setDescription(`You have been kicked from **${message.guild.name}** for \`${args[1] ?? `User kicked by ${user.tag}`}\``);
 
 				await user.send({ embeds: [kickedEmbed] });
 
