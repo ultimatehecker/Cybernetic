@@ -1,8 +1,6 @@
 const { ApplicationCommandOptionType, PermissionFlagsBits } = require("discord.js");
 const colors = require("../../tools/colors.json");
 
-//TODO fix the slash command
-
 module.exports = {
 	name: "ban",
 	aliases: ["tempban"],
