@@ -31,7 +31,7 @@
     "hypixel-api-reborn": "^10.0.0",
     "libsodium-wrappers": "^0.7.10",
     "lodash-es": "^4.17.21",
-    "minecraft-data": "^3.20.0",
+    "minecraft-data": "^3.25.2",
     "mineflayer": "^4.6.0",
     "mineflayer-pathfinder": "^2.4.2",
     "mongoose": "^6.8.3",
