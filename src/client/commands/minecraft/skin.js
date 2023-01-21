@@ -71,7 +71,7 @@ module.exports = {
 				]);
 
 			message.reply({ embeds: [skin], allowedMentions: { repliedUser: true } });
-			
+
 		} catch (e) {
 			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
 				const player404 = new Discord.EmbedBuilder()
@@ -138,10 +138,12 @@ module.exports = {
 			}
 
 			const user = await hypixel.getPlayer(player);
+			const playerUUIDData = (await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`)).data; // fetch uuid
+
 			const skin = new Discord.EmbedBuilder()
 				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.setImage(`http://photopass.appspot.com/3d.php?user=${player}&vr=-25&hr=35&hrh=0&vrll=0&vrrl=0&vrla=0&vrra=0&displayHair=true&headOnly=false&format=png&ratio=20&aa=true&layers=true}`)
+				.setImage(`https://crafatar.com/avatars/${playerUUIDData.data.player.id}?overlay&size=256`)
 				.addFields([
 					{ name: `Username`, value: `\`${user.nickname}\``, required: true, inline: true },
 					{ name: `Apply Skin`, value: `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`, required: true, inline: true },
