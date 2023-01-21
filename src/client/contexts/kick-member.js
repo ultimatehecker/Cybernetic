@@ -1,6 +1,8 @@
+const { ApplicationCommandOptionType } = require("discord.js");
+
 module.exports = {
 	name: "Kick Member",
-	type: "USER",
+	type: "2",
 	execute(client, Discord, interaction, serverDoc) {
 		require("../commands/moderation/kick.js").slashExecute(client, Discord, interaction, serverDoc);
 	},
