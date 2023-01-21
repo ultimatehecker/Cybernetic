@@ -1,5 +1,3 @@
-const { ApplicationCommandOptionType } = require("discord.js");
-
 module.exports = {
     name: "Unmute Member",
     type: "2",
