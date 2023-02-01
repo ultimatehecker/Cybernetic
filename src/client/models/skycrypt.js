@@ -1,7 +1,7 @@
 const axios = require('axios')
 const skyblockAPI = `https://sky.shiiyu.moe/api/v2`
 
-async function profileRequest() {
+async function profileRequest(player) {
     let path = `/profile/${player}`;
 
     let response = (await axios.get(`${skyblockAPI}${path}`)).data;
