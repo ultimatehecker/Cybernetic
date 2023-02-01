@@ -34,7 +34,7 @@
     "minecraft-data": "^3.26.0",
     "mineflayer": "^4.6.0",
     "mineflayer-pathfinder": "^2.4.2",
-    "mongoose": "^6.8.3",
+    "mongoose": "^6.9.0",
     "numeral": "^2.0.6",
     "os-utils": "^0.0.14",
     "pretty-ms": "^8.0.0",
