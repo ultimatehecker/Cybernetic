@@ -4,10 +4,10 @@ const plural = require('plural');
 // Set up UserSchema
 
 function formatSeconds(seconds) {
-    var duration = convertSeconds(seconds);
+    let duration = convertSeconds(seconds);
     duration.days = Math.floor(seconds / 60 / 60 / 24);
     duration.hours = duration.hours % 24;
-    var message = '';
+    let message = '';
     if (duration.days)
         message += duration.days + ' ' + plural('day', duration.days);
     if (duration.hours) {
