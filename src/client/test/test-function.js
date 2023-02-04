@@ -25,5 +25,5 @@ describe('Commands', function() {
         assert.equal("1 day, 1 hour, 1 minute", format.formatSeconds(90061));
       });
     });
-  });
+});
   
