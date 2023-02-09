@@ -1,5 +1,5 @@
 const assert = require('assert');
-const format = require('../lib/format-seconds');
+const format = require('../models/format-seconds');
 
 describe('Commands', function() {
     describe('formatSeconds()', function() {

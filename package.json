@@ -4,6 +4,7 @@
   "description": "A all purpose Discord bot for anyone in a Discord server to have a fun time",
   "main": "./src/client/main.js",
   "scripts": {
+    "test": "mocha src/client/test/test-function.js",
     "build": "rimraf ./node_modules && npm install",
     "start:dev": "npx nodemon"
   },
