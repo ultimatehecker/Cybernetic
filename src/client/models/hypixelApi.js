@@ -25,12 +25,14 @@ async function getGuild(guildName, guildId, ign) {
         let guild = data
         guild = guild.guild
         return guild
+        
     } else if(guildId) {
         let { data } = (await axios.get(`${hypixelUrl}/guild?player=${guildId}&key=${process.env.HYPIXEL_API_KEY}`))
 
         let guild = data
         guild = guild.guild
         return guild
+
     } else if(guildName) {
         let { data } = (await axios.get(`${hypixelUrl}/guild?name=${guildName}&key=${process.env.HYPIXEL_API_KEY}`))
 
