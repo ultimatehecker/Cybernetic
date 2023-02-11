@@ -75,7 +75,6 @@ async function getSkyblock(ign, uuid) {
 
         let skyblock = { collections, skills, election, bingo, news, auction, activeAuctions, endedAuctions, bazaar }
         return skyblock
-        
     }
 };
 
