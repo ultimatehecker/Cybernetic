@@ -7,7 +7,7 @@ module.exports = async (Discord, client, channel) => {
 
 	if (!(channel instanceof Discord.ThreadChannel)) {
 		if (channel.manageable) {
-			if (channel.isText()) {
+			if (channel.isTextBased()) {
 				channel.permissionOverwrites.create( muteRole, { SEND_MESSAGES: false }, { reason: "Setting up Muted role" });
 			} else {
 				channel.permissionOverwrites.create(muteRole, { SPEAK: false }, { reason: "Setting up Muted role" });
