@@ -1,4 +1,4 @@
-console.log('Schema File Successfully Scanned - user')
+console.log('Model Successfully Scanned - user')
 
 const mongoose = require("mongoose");
 

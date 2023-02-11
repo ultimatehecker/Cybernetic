@@ -1,4 +1,4 @@
-console.log('Schema File Successfully Scanned - hypixel')
+console.log('Model Successfully Scanned - hypixel')
 
 require("dotenv").config({ path: "./.env" });
 const HypixelAPIReborn = require("hypixel-api-reborn");

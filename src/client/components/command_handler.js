@@ -48,7 +48,7 @@ module.exports = (client, Discord) => {
 		.filter((file) => file.endsWith("js"));
 
 	for (const file of context_files) {
-		const context = require(`../../contexts/${file}`);
+		const context = require(`../contexts/${file}`);
 		if (context.name) {
 			client.contexts.set(context.name, context);
 			slashCommands.push({

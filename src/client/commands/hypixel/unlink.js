@@ -1,7 +1,6 @@
 const axios = require("axios");
 const colors = require(`../../tools/colors.json`);
-const User = require('../../schemas/user');
-const { ApplicationCommandOptionType } = require("discord.js");
+const User = require('../../models/user');
 
 module.exports = {
 	name: "unlink",

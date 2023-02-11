@@ -1,5 +1,5 @@
-const { hypixel, errors } = require('../../schemas/hypixel');
-const User = require('../../schemas/user');
+const { hypixel, errors } = require('../../models/hypixel');
+const User = require('../../models/user');
 const colors = require("../../tools/colors.json");
 const { ApplicationCommandOptionType } = require("discord.js");
 
