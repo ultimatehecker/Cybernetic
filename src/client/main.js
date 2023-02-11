@@ -4,13 +4,14 @@ const currentDate = new Date(Date.now());
 
 const Sentry = require("@sentry/node");
 const Tracing = require("@sentry/tracing");
+require("dotenv").config();
 
 Sentry.init({
     dsn: "https://d5ca07bf8f4845adb0bbd96aec2a7d96@o922460.ingest.sentry.io/6123054",
-    release: "0.5.2",
+    release: process.env.RELEASE,
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
-    environment: "development",
+    environment: process.env.DEVELOPMENT,
 });
 
 Sentry.setTag("appProcess", "bot-core");
@@ -32,9 +33,9 @@ const client = new Discord.Client({
     failIfNotExists: true,
 });
 
-require("dotenv").config();
 const mongoose = require("mongoose");
 
+mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGODB_SRV, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
