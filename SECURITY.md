@@ -1,5 +1,3 @@
-# Security Policy
-
 ## Supported Versions
 
 Only the current running version of Cybernetic will be supported and are currently stable. If
@@ -18,8 +16,9 @@ will be ignored. If you report a bug, please specify to what version.
 | 0.3.0   | :x:                | 11/13/22    | 5/28/22  | Stable            |
 | 0.4.0   | :x:                | 11/25/22    | 11/11/22 | Pretty Stable     |
 | 0.4.1   | :x:                | 1/6/23      | 11/3/22  | Stable            |
-| 0.5.0   | :warning:          | 1/29/23     | 12/23/22 | Stable            |
-| 0.5.1   | :white_check_mark: | N/A         | 1/15/22  | Stable            |
+| 0.5.0   | :x:                | 1/29/23     | 12/23/22 | Stable            |
+| 0.5.1   | :warning:          | 2/25/23     | 1/15/23  | Stable            |
+| 0.5.2   | :white_check_mark: | N/A         | 2/11/23  | Stable            |
 
 ## Reporting a Vulnerability
 
@@ -28,6 +27,6 @@ The Cybernetic Creator **ultimate_hecker#1165** will investigate the issue as so
 
 ## Have Suggestions
 
-Cybernetic is open to suggestions, if you want to request a suggestion, then join the Cybernetic Support Server https://discord.gg/3b5rUekJkF.
+Cybernetic is open to suggestions, if you want to request a suggestion, then join the Cybernetic Support Server  https://discord.gg/4hv23VguQY.
 You also can DM **ultimate_hecker#1165**, but if you are being obnoxious then you will not be responded to and will you will
 be blocked.
