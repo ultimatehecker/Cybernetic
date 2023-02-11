@@ -1,6 +1,4 @@
 const axios = require('axios');
-const { Client } = require('discord.js');
-const { hypixel } = require('./hypixel');
 const hypixelUrl = 'https://api.hypixel.net'
 const mojangUrl = 'https://api.mojang.com'
 require("dotenv").config({ path: "./.env" });
@@ -133,5 +131,4 @@ const Errors = {
     MULTIPLE_INSTANCES: string,
 };
 
-const errors = hypixel.Errors
-exports.errors = errors
+exports.Errors = Errors
