@@ -50,45 +50,6 @@ const db = mongoose.connection;
 db.once("open", () => {
     databaseConnectionTransaction.finish();
 
-    const myprofileSchema = new mongoose.Schema({
-        userID: String,
-        guildID: String,
-        infractions: Array,
-        profile: String,
-        netherite: Number,
-        emeralds: Number,
-        diamonds: Number,
-        bank: Number,
-        experience: Number,
-        items: Array,
-        rareItems: Array,
-        infractions: [],
-    });
-
-    const serverSchema = new mongoose.Schema({
-        guildID: String,
-        prefix: String,
-        welcomeMessage: String,
-        welcomeChannelID: String,
-        leaveChannelID: String,
-        leaveMessage: String,
-        reactionRoles: Array,
-    });
-
-    const mylevelSchema = new mongoose.Schema({
-        userID: String,
-        guildID: String,
-        level: Number,
-        lifetimeExperience: Number,
-    });
-
-    myprofileSchema.index({ guildID: 1, userID: -1 });
-    mylevelSchema.index({ guildID: 1, userID: -1 });
-
-    client.myprofileSchema = mongoose.model("Profiles", myprofileSchema);
-    client.serverSchema = mongoose.model("Servers", serverSchema);
-    client.mylevelSchema = mongoose.model("Levels", mylevelSchema);
-
     client.commands = new Discord.Collection();
     client.contexts = new Discord.Collection();
     client.events = new Discord.Collection();
