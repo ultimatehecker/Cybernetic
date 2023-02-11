@@ -96,8 +96,9 @@ async function getLeaderboards() {
 
 exports.getLeaderboards = getLeaderboards
 
+/*
 const Errors = {
-    CACHE_FILTER_INVALID: string,
+    CACHE_FILTER_INVALID: String,
     CACHE_LIMIT_MUST_BE_A_NUMBER: string,
     CACHE_TIME_MUST_BE_A_NUMBER: string,
     CONNECTION_ERROR: string,
@@ -132,3 +133,4 @@ const Errors = {
 };
 
 exports.Errors = Errors
+*/
