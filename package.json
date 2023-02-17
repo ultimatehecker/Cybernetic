@@ -30,7 +30,7 @@
     "dotenv": "^16.0.2",
     "fs": "^0.0.1-security",
     "hypixel-api-reborn": "^10.0.0",
-    "libsodium-wrappers": "^0.7.10",
+    "libsodium-wrappers": "^0.7.11",
     "lodash-es": "^4.17.21",
     "minecraft-data": "^3.27.0",
     "mineflayer": "^4.8.1",
