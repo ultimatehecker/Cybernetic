@@ -46,37 +46,20 @@ async function getGuild(guildName, guildId, ign) {
 exports.getGuild = getGuild
 
 async function getSkyblock(ign, uuid) {
-    if(uuid) {
-        let { collections } = (await axios.get(`${hypixelUrl}/resources/skyblock/collections?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { skills } = (await axios.get(`${hypixelUrl}/resources/skyblock/skills?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { election } = (await axios.get(`${hypixelUrl}/resources/skyblock/election?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { bingo } = (await axios.get(`${hypixelUrl}/resources/skyblock/bingo?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
+    let { collections } = (await axios.get(`${hypixelUrl}/resources/skyblock/collections?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`) || (await axios.get(`${hypixelUrl}/resources/skyblock/collections?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`)))
+    let { skills } = (await axios.get(`${hypixelUrl}/resources/skyblock/skills?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`) || (await axios.get(`${hypixelUrl}/resources/skyblock/skills?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`)))
+    let { election } = (await axios.get(`${hypixelUrl}/resources/skyblock/election?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`) || (await axios.get(`${hypixelUrl}/resources/skyblock/election?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`)))
+    let { bingo } = (await axios.get(`${hypixelUrl}/resources/skyblock/bingo?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`) || (await axios.get(`${hypixelUrl}/resources/skyblock/bingo?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`)))
 
-        let { news } = (await axios.get(`${hypixelUrl}/resources/skyblock/news?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { auction } = (await axios.get(`${hypixelUrl}/resources/skyblock/auction?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { activeAuctions } = (await axios.get(`${hypixelUrl}/resources/skyblock/auctions?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { endedAuctions } = (await axios.get(`${hypixelUrl}/resources/skyblock/auctions_ended?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { bazaar } = (await axios.get(`${hypixelUrl}/resources/skyblock/bazaar?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
+    let { news } = (await axios.get(`${hypixelUrl}/resources/skyblock/news?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`) || (await axios.get(`${hypixelUrl}/skyblock/news?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`)))
+    let { auction } = (await axios.get(`${hypixelUrl}/resources/skyblock/auction?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`))
+    let { activeAuctions } = (await axios.get(`${hypixelUrl}/resources/skyblock/auctions?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`) || (await axios.get(`${hypixelUrl}/skyblock/auctions?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`)))
+    let { endedAuctions } = (await axios.get(`${hypixelUrl}/resources/skyblock/auctions_ended?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`) || (await axios.get(`${hypixelUrl}/skyblock/auctions_ended?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`)))
+    let { bazaar } = (await axios.get(`${hypixelUrl}/resources/skyblock/bazaar?uuid=${uuid}&key=${process.env.HYPIXEL_API_KEY}`) || (await axios.get(`${hypixelUrl}/skyblock/bazaar?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`)))
 
-        let skyblock = { collections, skills, election, bingo, news, auction, activeAuctions, endedAuctions, bazaar }
-        return skyblock
-
-    } else if(ign) {
-        let { collections } = (await axios.get(`${hypixelUrl}/resources/skyblock/collections?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { skills } = (await axios.get(`${hypixelUrl}/resources/skyblock/skills?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { election } = (await axios.get(`${hypixelUrl}/resources/skyblock/election?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { bingo } = (await axios.get(`${hypixelUrl}/resources/skyblock/bingo?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`))
-
-        let { news } = (await axios.get(`${hypixelUrl}/resources/skyblock/news?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { auction } = (await axios.get(`${hypixelUrl}/resources/skyblock/auction?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { activeAuctions } = (await axios.get(`${hypixelUrl}/resources/skyblock/auctions?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { endedAuctions } = (await axios.get(`${hypixelUrl}/resources/skyblock/auctions_ended?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`))
-        let { bazaar } = (await axios.get(`${hypixelUrl}/resources/skyblock/bazaar?name=${ign}&key=${process.env.HYPIXEL_API_KEY}`))
-
-        let skyblock = { collections, skills, election, bingo, news, auction, activeAuctions, endedAuctions, bazaar }
-        return skyblock
-    }
-};
+    let skyblock = { collections, skills, election, bingo, news, auction, activeAuctions, endedAuctions, bazaar }
+    return skyblock
+}
 
 exports.getSkyblock = getSkyblock
 
