@@ -1,17 +1,6 @@
 {
     "skills": {
-        "xpMax": {
-            "25": 3022425,
-            "30": 8022425,
-            "35": 15522425,
-            "40": 25522425,
-            "45": 38072425,
-            "50": 55172425,
-            "55": 85472425,
-            "60": 111672425
-        },
-
-        "skillsMax": {
+        "max": {
             "farming": 60,
             "mining": 60,
             "combat": 60,
@@ -26,8 +15,19 @@
             "social": 25
         },
 
-        "xpMaxRunecrafting": {
-            "25": 94450
+        "maxXp": {
+            "farming": 111672425,
+            "mining": 111672425,
+            "combat": 111672425,
+            "foraging": 55172425,
+            "fishing": 55172425,
+            "enchanting": 111672425,
+            "alchemy": 111672425,
+            "taming": 55172425,
+            "dungeoneering": 569809640,
+            "carpentry": 55172425,
+            "runecrafting": 94450,
+            "social": 272800
         },
 
         "skillsSorted": {
