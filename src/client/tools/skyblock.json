@@ -11,21 +11,38 @@
             "60": 111672425
         },
 
+        "skillsMax": {
+            "farming": 60,
+            "mining": 60,
+            "combat": 60,
+            "foraging": 50,
+            "fishing": 50,
+            "enchanting": 60,
+            "alchemy": 60,
+            "taming": 50,
+            "dungeoneering": 50,
+            "carpentry": 50,
+            "runecrafting": 25,
+            "social": 25
+        },
+
         "xpMaxRunecrafting": {
             "25": 94450
         },
 
         "skillsSorted": {
-            "Taming": "Taming", 
-            "Farming": "Farming",
-            "Mining": "Mining",
-            "Combat": "Combat",
-            "Foraging": "Foraging",
-            "Fishing": "Fishing",
-            "Enchanting": "Enchanting",
-            "Alchemy": "Alchemy",
-            "Carpentry": "Carpentry",
-            "Runecrafting": "Runecrafting"
+            "farming": "Farming",
+            "mining": "Mining",
+            "combat": "Combat",
+            "foraging": "Foraging",
+            "fishing": "Fishing",
+            "enchanting": "Enchanting",
+            "alchemy": "Alchemy",
+            "carpentry": "Carpentry",
+            "taming": "Taming",
+            "dungeoneering": "Dungeoneering",
+            "runecrafting": "Runecrafting",
+            "social": "Social"
         },
 
         "slayersSorted": {
