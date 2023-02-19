@@ -1,0 +1,146 @@
+{
+    "skills": {
+        "xpMax": {
+            "25": 3022425,
+            "30": 8022425,
+            "35": 15522425,
+            "40": 25522425,
+            "45": 38072425,
+            "50": 55172425,
+            "55": 85472425,
+            "60": 111672425
+        },
+
+        "xpMaxRunecrafting": {
+            "25": 94450
+        },
+
+        "skillsSorted": {
+            "Taming": "Taming", 
+            "Farming": "Farming",
+            "Mining": "Mining",
+            "Combat": "Combat",
+            "Foraging": "Foraging",
+            "Fishing": "Fishing",
+            "Enchanting": "Enchanting",
+            "Alchemy": "Alchemy",
+            "Carpentry": "Carpentry",
+            "Runecrafting": "Runecrafting"
+        },
+
+        "slayersSorted": {
+            "Zombie": "Zombie",
+            "Spider": "Spider",
+            "Wolf": "Wolf"
+        },
+
+        "collections": {
+            "farming": {
+                "CACTUS": "CACTUS",
+                "CARROT": "Carrot",
+                "COCOA_BEANS": "Cocoa Beans",
+                "FEATHER": "Feather",
+                "LEATHER": "Leather",
+                "MELON": "Melon",
+                "MUSHROOM": "Mushroom",
+                "MUTTON": "Mutton",
+                "NEATHER_WART": "Neather Wart",
+                "POTATO": "Potato",
+                "PUMPKIN": "Pumpkin",
+                "RAW_CHICKEN": "Raw Chicken",
+                "RAW_PORKCHOP": "Raw Porkcop",
+                "RAW_RABBIT": "Raw Rabbit",
+                "SEEDS": "Seeds",
+                "SUGAR_CANE": "Sugar Cane",
+                "WHEAT": "Wheat",
+                
+                "raw": ["CACTUS", "CARROT", "COCOA_BEANS", "FEATHER", "LEATHER", "MELON", "MUSHROOM", "MUTTON", "NEATHER_WART", "POTATO", "PUMPKIN", "RAW_CHICKEN", "RAW_PORKCHOP", "RAW_RABBIT", "SEEDS", "SUGAR_CANE", "WHEAT"]
+            },
+
+            "mining": {
+                "COAL": "Coal",
+                "COBBLESTONE": "Cobblestone",
+                "DIAMOND": "Diamond",
+                "EMERALD": "Emerald",
+                "END_STONE": "End Stone",
+                "GEMSTONE": "Gemstone",
+                "GLOWSTONE_DUST": "Glowstone Dust",
+                "GOLD_INGOT": "Gold Ingot",
+                "GRAVEL": "Gravel",
+                "HARD_STONE": "Hard Stone",
+                "ICE": "Ice",
+                "IRON_INGOT": "Iron Ingot",
+                "LAPIS_LAZULI": "Lapis Lazuli",
+                "MITRIL": "Mitril",
+                "MYCELIUM": "Mycelium",
+                "NEATHER_QUARTZ": "Neather Quartz",
+                "NEATHERRACK": "Neatherrack",
+                "OBSIDIAN": "Obsidian",
+                "RED_SAND": "Red Sand",
+                "REDSTONE": "Redstone",
+                "SAND": "Sand",
+                "SULPHUR": "Sulpher",
+
+                "raw": ["COAL", "COBBLESTONE", "DIAMOND", "EMERALD", "END_STONE", "GEMSTONE", "GLOWSTONE_DUST", "GOLD_INGOT", "GRAVEL", "HARD_STONE", "ICE", "IRON_INGOT", "LAPIS_LAZULI", "NEATHER_QUARTZ", "NEATHERRACK", "OBSIDIAN", "RED_SAND", "REDSTONE", "SAND", "SULPHUR"]
+            },
+
+            "combat": {
+                "BLAZE_ROD": "Blaze Rod",
+                "BONE": "Bone",
+                "CHILI_PEPPER": "Chili_Pepper",
+                "ENDER_PEARL": "Ender Pearl",
+                "GHAST_TEAR": "Ghast Tear",
+                "GUNPOWDER": "Gunpowder",
+                "MAGMA_CREAM": "Magma Cream",
+                "ROTTEN_FLESH": "Rotten Flesh",
+                "SLIMEBALL": "Slimeball",
+                "SPIDER_EYE": "Spider Eye",
+                "STRING": "String",
+
+                "raw": ["BLAZE_ROD", "BONE", "CJILI_PEPPER", "ENDER_PEARL", "GHAST_TEAR", "GUNPOWDER", "MAGMA_CREAM", "ROTTEN_FLESH", "SLIMEBALL", "SPIDER_EYE", "STRING"]
+            },
+
+            "foraging": {
+                "ACACIA_WOOD": "Acacia Wood",
+                "BIRCH_WOOD": "Birch Wood",
+                "DARK_OAK_WOOD": "Dark Oak Wood",
+                "JUNGLE_WOOD": "Jungle Wood",
+                "OAK_WOOD": "Oak Wood",
+                "SPRUCE_WOOD": "Spruce Wood",
+
+                "raw": ["ACACIA_WOOD", "BIRCH_WOOD", "DARK_OAK_WOOD", "JUNGLE_WOOD", "OAK_WOOD", "SPRUCE_WOOD"]
+            },
+
+            "fishing": {
+                "CLAY": "Clay",
+                "CLOWNFISH": "Clownfish",
+                "INK_SAC": "Ink Sac",
+                "LILY_PAD": "Lily Pad",
+                "MAGMAFISH": "Magmafish",
+                "PRISMARINE_CRYSTALS": "Prismarine Crystals",
+                "PRISMARINE_SHARD": "Prismarine Shard",
+                "PUFFERFISH": "Pufferfish",
+                "RAW_FISH": "RAW_FISH",
+                "RAW_SALMON": "Raw Salmon",
+                "SPONGE": "Sponge",
+
+                "raw": ["CLAY", "CLOWNFISH", "INK_SAC", "LILY_PAD", "MAGMAFISH", "PRISMARINE_CRYSTALS", "PRISMARINE_SHARD", "PUFFERFISH", "RAW_FISH", "RAW_SALMON", "SPONGE"]
+            },
+
+            "boss": {
+                "BONZO": "Bonzo",
+                "SCARF": "Scarf",
+                "THE_PROFESSOR": "The Professor",
+                "THORN": "Thorn",
+                "LIVID": "Livid",
+                "SADAN": "Sadan",
+                "NECRON": "Necron",
+                "KUUDRA": "Kuudra",
+                
+                "raw": ["BONZO", "SCARF", "THE_PROFESSOR", "THRON", "LIVID", "SADAN", "NECRON", "KUUDRA"]
+            }
+        },
+
+        "profileNames": ["Apple", "Banana", "Blueberry", "Coconut", "Cucumber", "Grapes", "Kiwi", "Lemon", "Lime", "Mango", "Orange", "Papaya", "Peach", "Pear", "Pineapple", "Pomegranate", "Raspberry", "Strawberry", "Tomato", "Watermelon", "Zucchini"]
+    }
+}
