@@ -39,9 +39,6 @@ build/Release
 
 # Dependency directories
 node_modules/
-img/
-docs/
-src/client/commands/skyblock
 pages/
 jspm_packages/
 
