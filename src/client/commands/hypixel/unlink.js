@@ -1,6 +1,6 @@
 const axios = require("axios");
 const colors = require(`../../tools/colors.json`);
-const User = require('../../models/user');
+const User = require('../../database/schemas/user');
 
 module.exports = {
 	name: "unlink",

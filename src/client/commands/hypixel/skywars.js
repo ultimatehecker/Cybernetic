@@ -1,6 +1,6 @@
-const { hypixel, errors } = require('../../models/hypixel');
+const { hypixel, errors } = require('../../database/models/hypixel');
 const commaNumber = require('comma-number');
-const User = require('../../models/user');
+const User = require('../../database/schemas/user');
 const colors = require("../../tools/colors.json");
 const { ApplicationCommandOptionType } = require("discord.js");
 

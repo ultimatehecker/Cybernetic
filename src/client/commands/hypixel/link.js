@@ -1,6 +1,6 @@
 const colors = require(`../../tools/colors.json`)
-const { hypixel, errors } = require('../../models/hypixel');
-const User = require('../../models/user');
+const { hypixel, errors } = require('../../database/models/hypixel');
+const User = require('../../database/schemas/user');
 const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
