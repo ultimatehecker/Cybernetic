@@ -10,8 +10,6 @@ async function getSkyblock(player, profileName) {
     let { dungeons } = (await axios.get(`${skycryptUrl}/dungeons/${player}`)) // maybe add the other option
     let profileSkills = require(`../../tools/skyblock.json`)
 
-    const profile = Object.values(profiles).find(profile => profile.current);
-
     let skyblock = { profile, talismen, slayers, coins, bazaar, dungeons, profileSkills }
     return skyblock
 }
