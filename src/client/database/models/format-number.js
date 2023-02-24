@@ -16,4 +16,4 @@ function fnum(x) {
     return "1T+";
 }
 
-exports.fnum = fnum;
+module.exports = { fnum }
