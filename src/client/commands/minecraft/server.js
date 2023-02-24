@@ -50,14 +50,14 @@ module.exports = {
 
             const server = new Discord.EmbedBuilder()
                 .setAuthor(authorSuccess)
-                .setTitle(`\`\`\`${args[0]}\`\`\``)
+                .setTitle(`Hypixel - \`${args[0]}\``)
                 .setColor(colors["MainColor"])
                 .setThumbnail(serverData.favicon)
                 .addFields([
-                    { name: `IP Address`, value: `\`${MOTDData.ip}\`:\`${MOTDData.port}\``, required: true, inline: true },
-                    { name: `Version`, value: `\`${serverData.version.name}\``, required: true, inline: true },
-                    { name: `Online Players`, value: `\`${serverData.players.online}\`/\`${serverData.players.max}\``, required: true, inline: true },
-                ])
+                    { name: `Online Players`, value: `\`${serverData.players.online}\`/\`${serverData.players.max}\``, required: true, inline: false },
+                    { name: `IP Address`, value: `\`${MOTDData.ip}\`:\`${MOTDData.port}\``, required: true, inline: false },
+                    { name: `Version`, value: `\`${serverData.version.name}\``, required: true, inline: false },
+                ]);
 
             message.reply({ embeds: [server], allowedMentions: { repliedUser: true } });
 
@@ -106,14 +106,14 @@ module.exports = {
 
             const server = new Discord.EmbedBuilder()
                 .setAuthor(authorSuccess)
-                .setTitle(`\`\`\`${interaction.options.get("server").value}\`\`\``)
+                .setTitle(`Hypixel - \`${args[0]}\``)
                 .setColor(colors["MainColor"])
                 .setThumbnail(serverData.favicon)
                 .addFields([
-                    { name: `IP Address`, value: `\`${MOTDData.ip}\`:\`${MOTDData.port}\``, required: true, inline: true },
-                    { name: `Version`, value: `\`${serverData.version.name}\``, required: true, inline: true },
-                    { name: `Online Players`, value: `\`${serverData.players.online}\`/\`${serverData.players.max}\``, required: true, inline: true },
-                ])
+                    { name: `Online Players`, value: `\`${serverData.players.online}\`/\`${serverData.players.max}\``, required: true, inline: false },
+                    { name: `IP Address`, value: `\`${MOTDData.ip}\`:\`${MOTDData.port}\``, required: true, inline: false },
+                    { name: `Version`, value: `\`${serverData.version.name}\``, required: true, inline: false },
+                ]);
 
             interaction.editReply({ embeds: [server], allowedMentions: { repliedUser: true } });
         } catch(e) {
