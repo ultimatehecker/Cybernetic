@@ -10,7 +10,7 @@ async function getSkyblock(player, profileName) {
     let { dungeons } = (await axios.get(`${skycryptUrl}/dungeons/${player}`)) // maybe add the other option
     let profileSkills = require(`../../tools/skyblock.json`)
 
-    let skyblock = { profile, talismen, slayers, coins, bazaar, dungeons, profileSkills }
+    let skyblock = { profiles, talismen, slayers, coins, bazaar, dungeons, profileSkills }
     return skyblock
 }
 
