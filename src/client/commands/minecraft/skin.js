@@ -1,7 +1,9 @@
 const { hypixel, errors } = require('../../database/models/hypixel');
+const axios = require("axios");
 const User = require('../../database/schemas/user');
 const colors = require("../../tools/colors.json");
 const { ApplicationCommandOptionType } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 module.exports = {
 	name: "skin",
@@ -25,11 +27,6 @@ module.exports = {
 
 			let authorError = {
 				name: "Error",
-				iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
-			}
-		
-			let authorSuccess = {
-				name: "Skin",
 				iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
 			}
 
@@ -61,16 +58,20 @@ module.exports = {
 			const user = await hypixel.getPlayer(player);
 			const playerUUIDData = (await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`)).data; // fetch uuid
 
+			const applySkin = new ActionRowBuilder().addComponents(new ButtonBuilder()
+				.setLabel('Apply Skin')
+				.setURL('https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid}')
+				.setStyle(ButtonStyle.Link),
+			);
+
 			const skin = new Discord.EmbedBuilder()
-				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.setImage(`https://crafatar.com/avatars/${playerUUIDData.data.player.id}?overlay&size=256`)
+				.setImage(`https://crafatar.com/renders/body/${playerUUIDData.data.player.id}?overlay&size=256`)
 				.addFields([
 					{ name: `Username`, value: `\`${user.nickname}\``, required: true, inline: true },
-					{ name: `Apply Skin`, value: `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`, required: true, inline: true },
 				]);
 
-			message.reply({ embeds: [skin], allowedMentions: { repliedUser: true } });
+			message.reply({ embeds: [skin], allowedMentions: { repliedUser: true }, components: [applySkin] });
 
 		} catch (e) {
 			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
@@ -106,11 +107,6 @@ module.exports = {
 			name: "Error",
 			iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
 		}
-	
-		let authorSuccess = {
-			name: "Skin",
-			iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
-		}
 
 		try {
 			const data = await User.findOne({
@@ -140,16 +136,20 @@ module.exports = {
 			const user = await hypixel.getPlayer(player);
 			const playerUUIDData = (await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`)).data; // fetch uuid
 
+			const applySkin = new ActionRowBuilder().addComponents(new ButtonBuilder()
+				.setLabel('Apply Skin')
+				.setURL('https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid}')
+				.setStyle(ButtonStyle.Link),
+			);
+
 			const skin = new Discord.EmbedBuilder()
-				.setAuthor(authorSuccess)
 				.setColor(colors["MainColor"])
-				.setImage(`https://crafatar.com/avatars/${playerUUIDData.data.player.id}?overlay&size=256`)
+				.setImage(`https://crafatar.com/renders/body/${playerUUIDData.data.player.id}?overlay&size=256`)
 				.addFields([
 					{ name: `Username`, value: `\`${user.nickname}\``, required: true, inline: true },
-					{ name: `Apply Skin`, value: `[Link](https://www.minecraft.net/en-us/profile/skin/remote?url=https://crafatar.com/skins/${user.uuid})`, required: true, inline: true },
 				]);
 
-			interaction.editReply({ embeds: [skin], allowedMentions: { repliedUser: true } });
+			interaction.editReply({ embeds: [skin], allowedMentions: { repliedUser: true }, components: [applySkin] });
 
 		} catch (e) {
 			if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
