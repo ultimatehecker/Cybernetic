@@ -26,11 +26,6 @@ module.exports = {
 			iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
 		}
 
-		let authorSuccess = {
-			name: "UUID",
-			iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
-		}
-
 		try {
 			await message.channel.sendTyping();
 
@@ -63,13 +58,12 @@ module.exports = {
 			const playerUUIDData = (await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`)).data; // fetch uuid
 
 			const uuid = new Discord.EmbedBuilder()
-				.setAuthor(authorSuccess)
-				.setTitle(`${playerUUIDData.data.player.username}`)
 				.setColor(colors["MainColor"])
 				.setThumbnail(`https://crafatar.com/avatars/${playerUUIDData.data.player.id}?overlay&size=256`)
 				.addFields([
-					{ name: `UUID`, value: `\`${playerUUIDData.data.player.id}\``, required: true, inline: true },
-					{ name: `Trimmed UUID`, value: `\`${playerUUIDData.data.player.raw_id}\``, required: true, inline: true },
+					{ name: `Username`, value: `\`${playerUUIDData.data.player.username}\``, required: true, inline: false },
+					{ name: `UUID`, value: `\`${playerUUIDData.data.player.id}\``, required: true, inline: false },
+					{ name: `Trimmed UUID`, value: `\`${playerUUIDData.data.player.raw_id}\``, required: true, inline: false },
 				]);
 
 			message.reply({embeds: [uuid], allowedMentions: { repliedUser: true } });
@@ -109,11 +103,6 @@ module.exports = {
 			iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
 		}
 
-		let authorSuccess = {
-			name: "UUID",
-			iconURL: "https://cdn.discordapp.com/app-icons/951969820130300015/588349026faf50ab631528bad3927345.png?size=256"
-		}
-
 		try {
 			const data = await User.findOne({
 				id: interaction.user.id,
@@ -143,13 +132,12 @@ module.exports = {
 			const playerUUIDData = (await axios.get(`https://playerdb.co/api/player/minecraft/${user.uuid}`)).data; // fetch uuid
 
 			const uuid = new Discord.EmbedBuilder()
-				.setAuthor(authorSuccess)
-				.setTitle(`${playerUUIDData.data.player.username}`)
 				.setColor(colors["MainColor"])
 				.setThumbnail(`https://crafatar.com/avatars/${playerUUIDData.data.player.id}?overlay&size=256`)
 				.addFields([
-					{ name: `UUID`, value: `\`${playerUUIDData.data.player.id}\``, required: true, inline: true },
-					{ name: `Trimmed UUID`, value: `\`${playerUUIDData.data.player.raw_id}\``, required: true, inline: true },
+					{ name: `Username`, value: `\`${playerUUIDData.data.player.username}\``, required: true, inline: false },
+					{ name: `UUID`, value: `\`${playerUUIDData.data.player.id}\``, required: true, inline: false },
+					{ name: `Trimmed UUID`, value: `\`${playerUUIDData.data.player.raw_id}\``, required: true, inline: false },
 				]);
 
 			interaction.editReply({embeds: [uuid], allowedMentions: { repliedUser: true } });
