@@ -22,6 +22,12 @@ module.exports = {
 			required: false,
 			type: ApplicationCommandOptionType.String
 		},
+        {
+			name: "list",
+			description: "Shows the statistics of an average Hypixel Bedwars player of a certain dream gamemode!",
+			required: false,
+			type: ApplicationCommandOptionType.String
+		},
 	],
     defaultPermission: true,
     usage: 'skills [player] [profile]',
@@ -60,6 +66,7 @@ module.exports = {
 
         let player;
         let profileName = args[1];
+        let profile
 
         if (data && !args[0]) {
             player = data.uuid;
@@ -69,13 +76,11 @@ module.exports = {
 
         skycrypt.getSkyblock(player, profileName).then((player, profileName) => {
 
-            if(!profileName) {
-                let profiles = skycrypt.profiles
-                const profile = Object.values(profiles).find(profile => profile.current);
-
-                let skyblock = player[profiles]
+            if(profileName) {
+                profile = profileName
             } else {
-
+                let profiles = player.profiles
+                profile = Object.values(profiles).find(profile => profile.current);
             }
 
             if(!player) {
@@ -110,24 +115,24 @@ module.exports = {
 
                 return message.reply({ embeds: [hypixelSkills], allowedMentions: { repliedUser: true } })
             } else {
-                authorSuccess.name = `${skyblock.data.display_name}`
+                authorSuccess.name = `${player[profile].data.display_name}`
                 const skills = new Discord.EmbedBuilder()
                     .setAuthor(authorSuccess)
                     .setColor(colors["MainColor"])
-                    .setDescription(`Total Skill XP: \`${skyblock.data.total_skill_xp}\` \n Average Skill Level: \`${skyblock.data.average_level}\` (${skyblock.data.average_level_no_progress}) (#${fnum(skyblock.data.average_level_rank)})`)
+                    .setDescription(`Total Skill XP: \`${player[profile].data.total_skill_xp}\` \n Average Skill Level: \`${player[profile].data.average_level}\` (${player[profile].data.average_level_no_progress}) (#${fnum(player[profile].data.average_level_rank)})`)
                     .addFields([
-                        { name: `<:sbFarming:1066468715643805816> Farming \`${skyblock.data.levels.farming.level}\` (#${fnum(skyblock.data.levels.farming.rank)})`, value: `\`${skyblock.data.levels.farming.xpCurrent}\`/\`${skyblock.data.levels.farming.xpForNext}\` (${skyblock.data.levels.farming.progress * 100}%)`, require: true, inline: true },
+                        { name: `<:sbFarming:1066468715643805816> Farming \`${player[profile].data.levels.farming.level}\` (#${fnum(player[profile].data.levels.farming.rank)})`, value: `\`${player[profile].data.levels.farming.xpCurrent}\`/\`${player[profile].data.levels.farming.xpForNext}\` (${player[profile].data.levels.farming.progress * 100}%)`, require: true, inline: true },
                         /*
-                        { name: `<:sbMining:1066469016970985543> Mining \`${skyblock.data.levels.mining.level}\` (#${fnum(skyblock.data.levels.mining.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbCombat:1066468570239877120> Combat \`${skyblock.data.levels.combat.level}\` (#${fnum(skyblock.data.levels.combat.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbForaging:1066468913422008542> Foraging \`${skyblock.data.levels.foraging.level}\` (#${fnum(skyblock.data.levels.foraging.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbFishing:1066468831377244210> Fishing \`${skyblock.data.levels.fishing.level}\` (#${fnum(skyblock.data.levels.fishing.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbEnchanting:1066468624665157642> Enchanting \`${skyblock.data.levels.enchanting.level}\` (#${fnum(skyblock.data.levels.enchanting.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbAlchemy:1066468420654215289> Alchemy \`${skyblock.data.levels.alchemy.level}\` (#${fnum(skyblock.data.levels.alchemy.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbCarpentry:1066468510315855915> Carpentry \`${skyblock.data.levels.carpentry.level}\` (#${fnum(skyblock.data.levels.carpentry.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbDungeoneering:1077789384105005087> Dungeoneering \`${skyblock.data.levels.dungeoneering.level}\` (#${fnum(skyblock.data.levels.farming.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbRunecrafting:1066469136412184686> Runecrafting \`${skyblock.data.levels.runecrafting.level}\` (#${fnum(skyblock.data.levels.runecrafting.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbSocial:1077789629182394440> Social \`${skyblock.data.levels.social.level}\` (#${fnum(skyblock.data.levels.social.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbMining:1066469016970985543> Mining \`${player[profile].data.levels.mining.level}\` (#${fnum(player[profile].data.levels.mining.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbCombat:1066468570239877120> Combat \`${player[profile].data.levels.combat.level}\` (#${fnum(player[profile].data.levels.combat.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbForaging:1066468913422008542> Foraging \`${player[profile].data.levels.foraging.level}\` (#${fnum(player[profile].data.levels.foraging.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbFishing:1066468831377244210> Fishing \`${player[profile].data.levels.fishing.level}\` (#${fnum(player[profile].data.levels.fishing.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbEnchanting:1066468624665157642> Enchanting \`${player[profile].data.levels.enchanting.level}\` (#${fnum(player[profile].data.levels.enchanting.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbAlchemy:1066468420654215289> Alchemy \`${player[profile].data.levels.alchemy.level}\` (#${fnum(player[profile].data.levels.alchemy.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbCarpentry:1066468510315855915> Carpentry \`${player[profile].data.levels.carpentry.level}\` (#${fnum(player[profile].data.levels.carpentry.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbDungeoneering:1077789384105005087> Dungeoneering \`${player[profile].data.levels.dungeoneering.level}\` (#${fnum(player[profile].data.levels.farming.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbRunecrafting:1066469136412184686> Runecrafting \`${player[profile].data.levels.runecrafting.level}\` (#${fnum(player[profile].data.levels.runecrafting.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbSocial:1077789629182394440> Social \`${player[profile].data.levels.social.level}\` (#${fnum(player[profile].data.levels.social.rank)})`, value: ``, require: true, inline: true },
                         */
                     ]);
 
@@ -185,9 +190,6 @@ module.exports = {
             iconURL: "https://cdn.discordapp.com/app-icons/923947315063062529/588349026faf50ab631528bad3927345.png?size=256"
         }
 
-        let profile = interaction.options.get("profile")?.value;
-
-
 		const data = await User.findOne({
 			id: interaction.user.id,
 		});
@@ -204,7 +206,10 @@ module.exports = {
             });
 		}
 
+        let profileName = interaction.options.get("profile")?.value;
 		let player;
+        let profile;
+        
 		if (data && !interaction.options.get("player")?.value) {
 			player = data.uuid;
 		} else if (interaction.options.get("player")?.value) {
@@ -212,6 +217,14 @@ module.exports = {
 		}
 
 		skycrypt.getSkyblock(player).then((player) => {
+
+            if(profileName) {
+                profile = profileName
+            } else {
+                let profiles = player.profiles
+                profile = Object.values(profiles).find(profile => profile.current);
+            }
+
             if(!player) {
                 const neverPlayed = new Discord.EmbedBuilder()
                     .setAuthor(authorError)
@@ -223,12 +236,11 @@ module.exports = {
                         sent.delete();
                     }, 5000);
                 });
-            } else if(args[0] == "list") {
+            } else if(interaction.options.get("list")?.value) {
                 const hypixelSkills = new Discord.EmbedBuilder()
                     .setAuthor(authorSuccess)
                     .setColor(colors["MainColor"])
                     .addFields([
-                        { name: `Taming`, value: `Max Level: \`${player.profileSkills.skills.max.carpentry}\` \n \`Max Level ${player.profileSkills.skills.maxXp.taming}\``, require: true, inline: true },
                         { name: `Farming`, value: `Max Level: \`${player.profileSkills.skills.max.farming}\` \n \`Max Level ${player.profileSkills.skills.maxXp.farming}\``, require: true, inline: true },
                         { name: `Mining`, value: `Max Level: \`${player.profileSkills.skills.max.mining}\` \n \`Max Level ${player.profileSkills.skills.maxXp.mining}\``, require: true, inline: true },
                         { name: `Combat`, value: `Max Level: \`${player.profileSkills.skills.max.combat}\` \n \`Max Level ${player.profileSkills.skills.maxXp.combat}\``, require: true, inline: true },
@@ -237,6 +249,7 @@ module.exports = {
                         { name: `Enchanting`, value: `Max Level: \`${player.profileSkills.skills.max.enchanting}\` \n \`Max Level ${player.profileSkills.skills.maxXp.enchanting}\``, require: true, inline: true },
                         { name: `Alchemy`, value: `Max Level: \`${player.profileSkills.skills.max.alchemy}\` \n \`Max Level ${player.profileSkills.skills.maxXp.alchemy}\``, require: true, inline: true },
                         { name: `Carpentry`, value: `Max Level: \`${player.profileSkills.skills.max.carpentry}\` \n \`Max Level ${player.profileSkills.skills.maxXp.carpentry}\``, require: true, inline: true },
+                        { name: `Taming`, value: `Max Level: \`${player.profileSkills.skills.max.carpentry}\` \n \`Max Level ${player.profileSkills.skills.maxXp.taming}\``, require: true, inline: true },
                         { name: `Dungeoneering`, value: `Max Level: \`${player.profileSkills.skills.max.dungeoneering}\` \n \`Max Level ${player.profileSkills.skills.maxXp.dungeoneering}\``, require: true, inline: true },
                         { name: `Runecrafting`, value: `Max Level: \`${player.profileSkills.skills.max.runecrafting}\` \n \`Max Level ${player.profileSkills.skills.maxXp.runecrafting}\``, require: true, inline: true },
                         { name: `Social`, value: `Max Level: \`${player.profileSkills.skills.max.social}\` \n \`Max Level ${player.profileSkills.skills.maxXp.social}\``, require: true, inline: true },
@@ -244,25 +257,25 @@ module.exports = {
 
                 return interaction.editReply({ embeds: [hypixelSkills], allowedMentions: { repliedUser: true } })
             } else {
-                authorSuccess.name = `${skyblock.data.display_name}`
+                authorSuccess.name = `${player[profile].data.display_name}`
 
                 const skills = new Discord.EmbedBuilder()
                     .setAuthor(authorSuccess)
                     .setColor(colors["MainColor"])
-                    .setDescription(`Total Skill XP: \`${skyblock.data.total_skill_xp}\` \n Average Skill Level: \`${skyblock.data.average_level}\` (${skyblock.data.average_level_no_progress}) (#${fnum(skyblock.data.average_level_rank)})`)
+                    .setDescription(`Total Skill XP: \`${player[profile].data.total_skill_xp}\` \n Average Skill Level: \`${player[profile].data.average_level}\` (${player[profile].data.average_level_no_progress}) (#${fnum(player[profile].data.average_level_rank)})`)
                     .addFields([
-                        { name: `<:sbFarming:1066468715643805816> Farming \`${skyblock.data.levels.farming.level}\` (#${fnum(skyblock.data.levels.farming.rank)})`, value: `\`${skyblock.data.levels.farming.xpCurrent}\`/\`${skyblock.data.levels.farming.xpForNext}\` (${skyblock.data.levels.farming.progress * 100}%)`, require: true, inline: true },
+                        { name: `<:sbFarming:1066468715643805816> Farming \`${player[profile].data.levels.farming.level}\` (#${fnum(player[profile].data.levels.farming.rank)})`, value: `\`${player[profile].data.levels.farming.xpCurrent}\`/\`${player[profile].data.levels.farming.xpForNext}\` (${player[profile].data.levels.farming.progress * 100}%)`, require: true, inline: true },
                         /*
-                        { name: `<:sbMining:1066469016970985543> Mining \`${skyblock.data.levels.mining.level}\` (#${fnum(skyblock.data.levels.mining.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbCombat:1066468570239877120> Combat \`${skyblock.data.levels.combat.level}\` (#${fnum(skyblock.data.levels.combat.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbForaging:1066468913422008542> Foraging \`${skyblock.data.levels.foraging.level}\` (#${fnum(skyblock.data.levels.foraging.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbFishing:1066468831377244210> Fishing \`${skyblock.data.levels.fishing.level}\` (#${fnum(skyblock.data.levels.fishing.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbEnchanting:1066468624665157642> Enchanting \`${skyblock.data.levels.enchanting.level}\` (#${fnum(skyblock.data.levels.enchanting.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbAlchemy:1066468420654215289> Alchemy \`${skyblock.data.levels.alchemy.level}\` (#${fnum(skyblock.data.levels.alchemy.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbCarpentry:1066468510315855915> Carpentry \`${skyblock.data.levels.carpentry.level}\` (#${fnum(skyblock.data.levels.carpentry.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbDungeoneering:1077789384105005087> Dungeoneering \`${skyblock.data.levels.dungeoneering.level}\` (#${fnum(skyblock.data.levels.farming.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbRunecrafting:1066469136412184686> Runecrafting \`${skyblock.data.levels.runecrafting.level}\` (#${fnum(skyblock.data.levels.runecrafting.rank)})`, value: ``, require: true, inline: true },
-                        { name: `<:sbSocial:1077789629182394440> Social \`${skyblock.data.levels.social.level}\` (#${fnum(skyblock.data.levels.social.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbMining:1066469016970985543> Mining \`${player[profile].data.levels.mining.level}\` (#${fnum(player[profile].data.levels.mining.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbCombat:1066468570239877120> Combat \`${player[profile].data.levels.combat.level}\` (#${fnum(player[profile].data.levels.combat.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbForaging:1066468913422008542> Foraging \`${player[profile].data.levels.foraging.level}\` (#${fnum(player[profile].data.levels.foraging.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbFishing:1066468831377244210> Fishing \`${player[profile].data.levels.fishing.level}\` (#${fnum(player[profile].data.levels.fishing.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbEnchanting:1066468624665157642> Enchanting \`${player[profile].data.levels.enchanting.level}\` (#${fnum(player[profile].data.levels.enchanting.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbAlchemy:1066468420654215289> Alchemy \`${player[profile].data.levels.alchemy.level}\` (#${fnum(player[profile].data.levels.alchemy.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbCarpentry:1066468510315855915> Carpentry \`${player[profile].data.levels.carpentry.level}\` (#${fnum(player[profile].data.levels.carpentry.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbDungeoneering:1077789384105005087> Dungeoneering \`${player[profile].data.levels.dungeoneering.level}\` (#${fnum(player[profile].data.levels.farming.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbRunecrafting:1066469136412184686> Runecrafting \`${player[profile].data.levels.runecrafting.level}\` (#${fnum(player[profile].data.levels.runecrafting.rank)})`, value: ``, require: true, inline: true },
+                        { name: `<:sbSocial:1077789629182394440> Social \`${player[profile].data.levels.social.level}\` (#${fnum(player[profile].data.levels.social.rank)})`, value: ``, require: true, inline: true },
                         */
                     ]);
 
