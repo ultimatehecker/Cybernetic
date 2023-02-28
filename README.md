@@ -13,7 +13,7 @@ You will need to have these things installed on your system for this to fully wo
 
 Not nessacary but nice things to have:
 
-- Text/Program editor like Visual Studio/Code, WebStorm, Atom, Subline Text etc.
+- Text/Program editor like Visual Studio/Code, WebStorm, Atom, Subline Text, Vim, NeoVim etc.
 
 ### Building the Directory
 
