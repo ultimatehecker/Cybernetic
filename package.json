@@ -43,7 +43,7 @@
     "prismarine-viewer": "^1.23.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.21",
     "rimraf": "^4.1.3"
   }
 }
