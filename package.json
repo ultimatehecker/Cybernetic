@@ -44,6 +44,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.21",
-    "rimraf": "^4.2.0"
+    "rimraf": "^4.3.1"
   }
 }
