@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/ultimatehecker/Cybernetic#readme",
   "dependencies": {
-    "@discordjs/builders": "^1.4.0",
+    "@discordjs/builders": "^1.5.0",
     "@sentry/node": "^7.42.0",
     "@sentry/tracing": "^7.42.0",
     "assert": "^2.0.0",
