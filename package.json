@@ -40,7 +40,7 @@
     "os-utils": "^0.0.14",
     "plural": "^1.1.0",
     "pretty-ms": "^8.0.0",
-    "prismarine-viewer": "^1.24.0"
+    "prismarine-viewer": "^1.25.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22",
