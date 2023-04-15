@@ -100,7 +100,7 @@ module.exports = {
 		skycrypt.getSkyblock(player).then((player) => {
 
             if(profileName) {
-                profile = Object.values(profileName).find(profile.cute_name === profileName);
+                skyblock = Object.values(profileName).find(profile.cute_name === profileName);
             } else {
                 skyblock = Object.values(player.profiles.data.profiles).find(profile => profile.current);
             }
