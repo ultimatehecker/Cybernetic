@@ -1,5 +1,5 @@
 const skycrypt = require("../../database/models/skycrypt");
-const { hypixel, errors } = require('../../database/models/hypixel');
+const { errors } = require('../../database/models/hypixel');
 const User = require('../../database/schemas/user');
 const colors = require("../../tools/colors.json");
 const { ApplicationCommandOptionType } = require("discord.js");
@@ -116,7 +116,7 @@ module.exports = {
                         sent.delete();
                     }, 5000);
                 });
-            } else if(args[0] == "list") {
+            } else if(!args[0]) {
                 const hypixelSkills = new Discord.EmbedBuilder()
                     .setAuthor(authorSuccess)
                     .setColor(colors["MainColor"])
@@ -270,7 +270,7 @@ module.exports = {
 		skycrypt.getSkyblock(player).then((player) => {
 
             if(profileName) {
-                profile = Object.values(profileName).find(profile.cute_name === profileName);
+                skyblock = Object.values(profileName).find(profile.cute_name === profileName);
             } else {
                 skyblock = Object.values(player.profiles.data.profiles).find(profile => profile.current);
             }
