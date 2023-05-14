@@ -34,7 +34,7 @@
     "lodash-es": "^4.17.21",
     "minecraft-data": "^3.33.0",
     "mineflayer": "^4.8.1",
-    "mineflayer-pathfinder": "^2.4.2",
+    "mineflayer-pathfinder": "^2.4.3",
     "mongoose": "^7.1.0",
     "numeral": "^2.0.6",
     "os-utils": "^0.0.14",
