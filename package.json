@@ -20,7 +20,7 @@
   "homepage": "https://github.com/ultimatehecker/Cybernetic#readme",
   "dependencies": {
     "@discordjs/builders": "^1.6.3",
-    "@sentry/node": "^7.51.2",
+    "@sentry/node": "^7.52.1",
     "@sentry/tracing": "^7.51.2",
     "assert": "^2.0.0",
     "axios": "^1.4.0",
