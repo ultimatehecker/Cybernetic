@@ -35,7 +35,7 @@
     "lodash-es": "^4.17.21",
     "log4js": "^6.9.1",
     "minecraft-data": "^3.33.0",
-    "mineflayer": "^4.8.1",
+    "mineflayer": "^4.9.0",
     "mineflayer-pathfinder": "^2.4.4",
     "mongoose": "^7.2.0",
     "numeral": "^2.0.6",
