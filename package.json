@@ -34,7 +34,7 @@
     "libsodium-wrappers": "^0.7.11",
     "lodash-es": "^4.17.21",
     "log4js": "^6.9.1",
-    "minecraft-data": "^3.40.0",
+    "minecraft-data": "^3.43.1",
     "mineflayer": "^4.10.1",
     "mineflayer-pathfinder": "^2.4.4",
     "mongoose": "^7.4.1",
